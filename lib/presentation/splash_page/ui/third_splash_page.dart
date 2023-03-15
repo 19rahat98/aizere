@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:speech_synthesis/config/base_provider.dart';
 
 import 'package:speech_synthesis/config/theme.dart';
@@ -34,8 +33,8 @@ class ThirdSplashPage extends StatelessWidget {
                     bottom: 0,
                     left: 0,
                     child: Container(
-                      width: 320.w,
-                      height: 550.h,
+                      width: 320,
+                      height: 550,
                       child: Image.asset(
                         AppPngImages.picture_splashPage2,
                         fit: BoxFit.fill,
@@ -52,7 +51,7 @@ class ThirdSplashPage extends StatelessWidget {
                         Text(
                           '3. Қолданбаға фонда жұмыс істеуге рұқсат беріңіз',
                           style: TextStyle(
-                            fontSize: 24.sp,
+                            fontSize: 24,
                             color: AppColors.whiteColor,
                             fontWeight: FontWeight.w600,
                           ),
@@ -66,13 +65,13 @@ class ThirdSplashPage extends StatelessWidget {
                     right: 24,
                     //alignment: Alignment.bottomCenter,
                     child: Container(
-                      width: w * 0.8.w,
-                      margin: EdgeInsets.only(bottom: 70.h),
+                      width: w * 0.8,
+                      margin: EdgeInsets.only(bottom: 70),
                       alignment: Alignment.center,
                       child: Column(
                         children: [
                           Container(
-                            height: 60.h,
+                            height: 60,
                             child: ElevatedButton(
                               onPressed: () async {
                                 model.setValueToSP(true);
@@ -98,7 +97,7 @@ class ThirdSplashPage extends StatelessWidget {
                                     Text(
                                       'Рұқсат ету'.toUpperCase(),
                                       style: TextStyle(
-                                          fontSize: 18.sp, color: AppColors.appMainColor, fontWeight: FontWeight.bold),
+                                          fontSize: 18, color: AppColors.appMainColor, fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -113,8 +112,8 @@ class ThirdSplashPage extends StatelessWidget {
                               InkWell(
                                 onTap: () {},
                                 child: Container(
-                                  width: 60.w,
-                                  height: 60.h,
+                                  width: 60,
+                                  height: 60,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.white,
@@ -123,7 +122,7 @@ class ThirdSplashPage extends StatelessWidget {
                                     child: Text(
                                       '1',
                                       style: TextStyle(
-                                        fontSize: 30.sp,
+                                        fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: AppColors.appMainColor,
                                       ),
@@ -138,8 +137,8 @@ class ThirdSplashPage extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                width: 60.w,
-                                height: 60.h,
+                                width: 60,
+                                height: 60,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.white,
@@ -148,7 +147,7 @@ class ThirdSplashPage extends StatelessWidget {
                                   child: Text(
                                     '2',
                                     style: TextStyle(
-                                      fontSize: 30.sp,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.appMainColor,
                                     ),
@@ -162,8 +161,8 @@ class ThirdSplashPage extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                width: 60.w,
-                                height: 60.h,
+                                width: 60,
+                                height: 60,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.white,
@@ -172,7 +171,7 @@ class ThirdSplashPage extends StatelessWidget {
                                   child: Text(
                                     '3',
                                     style: TextStyle(
-                                      fontSize: 30.sp,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.appMainColor,
                                     ),

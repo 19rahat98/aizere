@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:speech_synthesis/config/base_provider.dart';
 
 import 'package:speech_synthesis/config/theme.dart';
@@ -24,7 +22,6 @@ class SecondSplashPage extends StatelessWidget {
             child: Container(
               width: w,
               height: h,
-              //padding: EdgeInsets.only(top: 40, bottom: 70),
               child: Stack(
                 children: [
                   Container(
@@ -37,7 +34,7 @@ class SecondSplashPage extends StatelessWidget {
                         Text(
                           '2. «Дыбыстау»  батырмасын басыңыз”',
                           style: TextStyle(
-                            fontSize: 24.sp,
+                            fontSize: 24,
                             color: AppColors.whiteColor,
                             fontWeight: FontWeight.w600,
                           ),
@@ -49,8 +46,8 @@ class SecondSplashPage extends StatelessWidget {
                             child: Image.asset(
                               AppPngImages.picture_splashPage3,
                               fit: BoxFit.fill,
-                              width: 280.w,
-                              height: 280.h,
+                              width: 280,
+                              height: 280,
                             ),
                           ),
                         ),
@@ -59,7 +56,7 @@ class SecondSplashPage extends StatelessWidget {
                   ),
                   Positioned(
                     right: 0,
-                    bottom: 150.h,
+                    bottom: 150,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(50),
                       onTap: (){
@@ -77,8 +74,8 @@ class SecondSplashPage extends StatelessWidget {
                     right: 24,
                     //alignment: Alignment.bottomCenter,
                     child: Container(
-                      width: w * 0.8.w,
-                      margin: EdgeInsets.only(bottom: 70.h),
+                      width: w * 0.8,
+                      margin: EdgeInsets.only(bottom: 70),
                       alignment: Alignment.center,
                       child: Column(
                         children: [
@@ -87,8 +84,8 @@ class SecondSplashPage extends StatelessWidget {
                             children: [
                               RowSpacer(2),
                               Container(
-                                width: 60.w,
-                                height: 60.h,
+                                width: 60,
+                                height: 60,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.white,
@@ -97,7 +94,7 @@ class SecondSplashPage extends StatelessWidget {
                                   child: Text(
                                     '1',
                                     style: TextStyle(
-                                      fontSize: 30.sp,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.appMainColor,
                                     ),
@@ -108,8 +105,8 @@ class SecondSplashPage extends StatelessWidget {
                                 child: MySeparator(height: 2, color: AppColors.whiteColor,),
                               ),
                               Container(
-                                width: 60.w,
-                                height: 60.h,
+                                width: 60,
+                                height: 60,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.white,
@@ -118,7 +115,7 @@ class SecondSplashPage extends StatelessWidget {
                                   child: Text(
                                     '2',
                                     style: TextStyle(
-                                      fontSize: 30.sp,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.appMainColor,
                                     ),
@@ -129,8 +126,8 @@ class SecondSplashPage extends StatelessWidget {
                                 child: MySeparator(height: 2, color: AppColors.whiteColor,),
                               ),
                               Container(
-                                width: 60.w,
-                                height: 60.h,
+                                width: 60,
+                                height: 60,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(width: 2, color: Colors.white)
@@ -139,7 +136,7 @@ class SecondSplashPage extends StatelessWidget {
                                   child: Text(
                                     '3',
                                     style: TextStyle(
-                                        fontSize: 30.sp,
+                                        fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: AppColors.whiteColor
                                     ),

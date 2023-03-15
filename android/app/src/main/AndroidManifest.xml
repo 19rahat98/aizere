@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kz.cloudlab.speech_synthesis">
+    package="kz.cloudlabeech_synthesis">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
    <application
@@ -20,7 +20,7 @@
               android:resource="@style/NormalTheme"
               />
             <meta-data
-              android:name="io.flutter.embedding.android.SplashScreenDrawable"
+              android:name="io.flutter.embedding.androidlashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
             <intent-filter>

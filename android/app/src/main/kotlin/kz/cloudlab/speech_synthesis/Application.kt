@@ -1,4 +1,4 @@
-package kz.cloudlab.speech_synthesis
+package kz.cloudlabeech_synthesis
 
 import `in`.jvapps.system_alert_window.SystemAlertWindowPlugin
 import io.flutter.app.FlutterApplication

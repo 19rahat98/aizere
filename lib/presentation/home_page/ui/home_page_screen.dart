@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:speech_synthesis/config/base_provider.dart';
 import 'package:speech_synthesis/config/theme.dart';
 import 'package:speech_synthesis/presentation/home_page/provider/synthes_provider.dart';
@@ -22,7 +21,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.appMainColor,
@@ -35,7 +33,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               child: LayoutBuilder(builder: (context, constraints) {
                   return SingleChildScrollView(
                     padding: EdgeInsets.only(
-                      top: 16.h,
+                      top: 16,
                     ),
                     physics: BouncingScrollPhysics(),
                     child: ConstrainedBox(
@@ -61,7 +59,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 Container(
                                   margin: EdgeInsets.only(right: 20),
                                   child: IconButton(
-                                    iconSize: 24.h,
+                                    iconSize: 24,
                                     icon: SvgPicture.asset(
                                       AppSvgImages.ic_backspace,
                                     ),
@@ -111,7 +109,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                             controller: model.textEditingController,
                                             style: TextStyle(
                                               height: 1.4,
-                                              fontSize: 18.sp,
+                                              fontSize: 18,
                                               fontWeight: FontWeight.w500,
                                             ),
                                             onChanged: (value){
@@ -131,7 +129,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                               disabledBorder: InputBorder.none,
                                               hintText: 'Сөзді енгізіңіз',
                                               hintStyle: TextStyle(
-                                                fontSize: 18.sp,
+                                                fontSize: 18,
                                                 fontWeight: FontWeight.w400,
                                                 color: Color(0xff000000).withOpacity(0.42),
                                               ),
@@ -159,7 +157,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                   'Жылдамдық (${model.playerSpeed.toStringAsFixed(2)}х)',
                                                   style: TextStyle(
                                                       color: Colors.black,
-                                                      fontSize: 18.sp,
+                                                      fontSize: 18,
                                                       fontWeight: FontWeight.bold),),
                                               ),
                                               SizedBox(
@@ -200,7 +198,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                               child: Stack(
                                                 children: [
                                                   Container(
-                                                    height: 60.h,
+                                                    height: 60,
                                                     margin: EdgeInsets.symmetric(horizontal: 16),
                                                     child: ElevatedButton(
                                                       onPressed: () async{
@@ -212,7 +210,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                       style: ElevatedButton.styleFrom(
                                                         primary: AppColors.appCustomPurpleColor,
                                                         textStyle: TextStyle(
-                                                            fontSize: 18.sp,
+                                                            fontSize: 18,
                                                             fontWeight: FontWeight.bold),),
                                                       child: Container(
                                                         padding: EdgeInsets.symmetric(horizontal: 12),
@@ -239,7 +237,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                   ),
                                                   if(model.loadingState)
                                                     Container(
-                                                      height: 60.h,
+                                                      height: 60,
                                                       margin: EdgeInsets.symmetric(horizontal: 16),
                                                       color: Colors.transparent.withOpacity(0.6),
                                                       child: Center(
@@ -250,8 +248,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                               ),
                                             ),
                                             Container(
-                                              height: 60.h,
-                                              width: 60.h,
+                                              height: 60,
+                                              width: 60,
                                               margin: EdgeInsets.only(right: 16),
                                               child: ElevatedButton(
                                                 onPressed: (){
@@ -261,7 +259,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                   primary: AppColors.sliderColor,
                                                   padding: EdgeInsets.all(0),
                                                   textStyle: TextStyle(
-                                                      fontSize: 18.sp,
+                                                      fontSize: 18,
                                                       fontWeight: FontWeight.bold),),
                                                 child: Container(
                                                   decoration: BoxDecoration(

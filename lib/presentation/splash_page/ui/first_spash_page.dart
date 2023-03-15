@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:speech_synthesis/config/base_provider.dart';
 
 import 'package:speech_synthesis/config/theme.dart';
@@ -23,7 +21,7 @@ class FistSplashPage extends StatelessWidget {
             child: Container(
               width: w,
               height: h,
-              padding: EdgeInsets.only(top: 40, bottom: 70.h),
+              padding: EdgeInsets.only(top: 40, bottom: 70),
               child: Stack(
                 children: [
                   Container(
@@ -35,7 +33,7 @@ class FistSplashPage extends StatelessWidget {
                         Text(
                           'Қош келдіңіз!'.toUpperCase(),
                           style: TextStyle(
-                            fontSize: 24.sp,
+                            fontSize: 24,
                             color: AppColors.whiteColor,
                             fontWeight: FontWeight.w600,
                           ),
@@ -45,7 +43,7 @@ class FistSplashPage extends StatelessWidget {
                         Text(
                           '1. Алдымен мәтінді енгізіңіз',
                           style: TextStyle(
-                            fontSize: 24.sp,
+                            fontSize: 24,
                             color: AppColors.whiteColor,
                             fontWeight: FontWeight.w600,
                           ),
@@ -57,8 +55,8 @@ class FistSplashPage extends StatelessWidget {
                           child: Center(
                             child: Image.asset(
                               AppPngImages.picture_splashPage1,
-                              height: 100.h,
-                              width: 185.w,
+                              height: 100,
+                              width: 185,
                             ),
                           ),
                         ),
@@ -86,7 +84,7 @@ class FistSplashPage extends StatelessWidget {
                             readOnly: true,
                             style: TextStyle(
                               height: 1.4,
-                              fontSize: 18.sp,
+                              fontSize: 18,
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
                             ),
@@ -136,8 +134,8 @@ class FistSplashPage extends StatelessWidget {
                         children: [
                           InkWell(
                             child: Container(
-                              width: 60.w,
-                              height: 60.h,
+                              width: 60,
+                              height: 60,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.white,
@@ -146,7 +144,7 @@ class FistSplashPage extends StatelessWidget {
                                   child: Text(
                                     '1',
                                     style: TextStyle(
-                                      fontSize: 30.sp,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.appMainColor,
                                     ),
@@ -158,8 +156,8 @@ class FistSplashPage extends StatelessWidget {
                             child: MySeparator(height: 2, color: AppColors.whiteColor,),
                           ),
                           Container(
-                            width: 60.w,
-                            height: 60.h,
+                            width: 60,
+                            height: 60,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(width: 2, color: Colors.white)
@@ -168,7 +166,7 @@ class FistSplashPage extends StatelessWidget {
                                 child: Text(
                                   '2',
                                   style: TextStyle(
-                                    fontSize: 30.sp,
+                                    fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.whiteColor
                                   ),
@@ -179,8 +177,8 @@ class FistSplashPage extends StatelessWidget {
                             child: MySeparator(height: 2, color: AppColors.whiteColor,),
                           ),
                           Container(
-                            width: 60.w,
-                            height: 60.h,
+                            width: 60,
+                            height: 60,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(width: 2, color: Colors.white)
@@ -189,7 +187,7 @@ class FistSplashPage extends StatelessWidget {
                               child: Text(
                                 '3',
                                 style: TextStyle(
-                                    fontSize: 30.sp,
+                                    fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.whiteColor
                                 ),

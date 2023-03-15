@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ColumnSpacer extends StatelessWidget {
   final double value;
@@ -9,7 +8,7 @@ class ColumnSpacer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: value * 10.h,
+      height: value * 10,
     );
   }
 }
@@ -22,7 +21,7 @@ class RowSpacer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: value * 10.w,
+      width: value * 10,
     );
   }
 }
