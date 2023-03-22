@@ -27,45 +27,46 @@ class MessageLookup extends MessageLookupByLibrary {
             "AiZere синтезирует ваш текст и восспроизводит с помощью голового интерфейса"),
         "aizereVoiceTextOnScreen": MessageLookupByLibrary.simpleMessage(
             "AizereVoice произносит названия объектов на экране. Вы можете управлять функцией AizereVoice с помощью простого набора жестов."),
-        "back": MessageLookupByLibrary.simpleMessage("Назад"),
+        "back": MessageLookupByLibrary.simpleMessage("Артқа"),
         "chooseSpeaker":
-            MessageLookupByLibrary.simpleMessage("Выберите спикера"),
+            MessageLookupByLibrary.simpleMessage("Спикерді таңдаңыз"),
         "chooseVoiceSpeaker": MessageLookupByLibrary.simpleMessage(
             "Выбрать спикера, чтобы можно было воспроизвести аудио голосом опреденного спикера"),
         "clickPlay":
-            MessageLookupByLibrary.simpleMessage("Нажмите воспроизвести"),
-        "copyText": MessageLookupByLibrary.simpleMessage("Скопируйте текст"),
-        "favorite": MessageLookupByLibrary.simpleMessage("Избранное"),
+            MessageLookupByLibrary.simpleMessage("Ойнату батырмасын басыңыз"),
+        "copyText": MessageLookupByLibrary.simpleMessage("Мәтінді көшіру"),
+        "favorite": MessageLookupByLibrary.simpleMessage("Таңдаулар"),
         "interaction": MessageLookupByLibrary.simpleMessage("Взаимодействие"),
         "iseke": MessageLookupByLibrary.simpleMessage("Исеке"),
         "kazakh": MessageLookupByLibrary.simpleMessage("Қазақша"),
-        "keepContinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
-        "language": MessageLookupByLibrary.simpleMessage("Язык"),
-        "library": MessageLookupByLibrary.simpleMessage("Библиотека"),
+        "keepContinue": MessageLookupByLibrary.simpleMessage("Жалғастыру"),
+        "language": MessageLookupByLibrary.simpleMessage("Тіл"),
+        "library": MessageLookupByLibrary.simpleMessage("Кітапхана"),
         "next": MessageLookupByLibrary.simpleMessage("Келесі"),
-        "paste": MessageLookupByLibrary.simpleMessage("Вставить"),
+        "paste": MessageLookupByLibrary.simpleMessage("Қою"),
         "playbackSpeed":
-            MessageLookupByLibrary.simpleMessage("Скорость воспроизведения"),
+            MessageLookupByLibrary.simpleMessage("Ойнату жылдамдығы"),
         "raya": MessageLookupByLibrary.simpleMessage("Рая"),
         "russian": MessageLookupByLibrary.simpleMessage("Русский"),
-        "selectLanguage": MessageLookupByLibrary.simpleMessage("Выберите язык"),
+        "selectLanguage":
+            MessageLookupByLibrary.simpleMessage("Тілді таңдаңыз"),
         "selectLanguageInterface": MessageLookupByLibrary.simpleMessage(
-            "Выбрать язык интерфейса, чтобы можно было читать и вводить текст на этом языке"),
-        "setting": MessageLookupByLibrary.simpleMessage("Настройка"),
-        "skip": MessageLookupByLibrary.simpleMessage("Пропустить"),
-        "speakerOnlyKazakh": MessageLookupByLibrary.simpleMessage(
-            "Спикеры только на казахском языке"),
-        "speakers": MessageLookupByLibrary.simpleMessage("Спикеры"),
+            "Интерфейс тілін сол тілдегі мәтінді оқу және теру үшін таңдаңыз"),
+        "setting": MessageLookupByLibrary.simpleMessage("Баптау"),
+        "skip": MessageLookupByLibrary.simpleMessage("Өткізу"),
+        "speakerOnlyKazakh":
+            MessageLookupByLibrary.simpleMessage("Спикерлер тек қазақ тілінде"),
+        "speakers": MessageLookupByLibrary.simpleMessage("Спикер"),
         "specialFeature":
-            MessageLookupByLibrary.simpleMessage("Специальные возможности"),
-        "start": MessageLookupByLibrary.simpleMessage("Начать"),
-        "stepOne": MessageLookupByLibrary.simpleMessage("Шаг 1"),
-        "stepTwo": MessageLookupByLibrary.simpleMessage("Шаг 2"),
-        "toFind": MessageLookupByLibrary.simpleMessage("Найти"),
-        "usual": MessageLookupByLibrary.simpleMessage("Обычная"),
+            MessageLookupByLibrary.simpleMessage("Арнаулы мүмкіндіктер"),
+        "start": MessageLookupByLibrary.simpleMessage("Бастау "),
+        "stepOne": MessageLookupByLibrary.simpleMessage("Қадам 1"),
+        "stepTwo": MessageLookupByLibrary.simpleMessage("Қадам 2"),
+        "toFind": MessageLookupByLibrary.simpleMessage("Іздеу "),
+        "usual": MessageLookupByLibrary.simpleMessage("Қалыпты "),
         "voiceAssistant":
-            MessageLookupByLibrary.simpleMessage("Голосовой помощник"),
+            MessageLookupByLibrary.simpleMessage("Дауысты көмекші"),
         "voiceSpeed": MessageLookupByLibrary.simpleMessage("Оқу жылдамдамдығы"),
-        "yourText": MessageLookupByLibrary.simpleMessage("Ваш текст")
+        "yourText": MessageLookupByLibrary.simpleMessage("Сіздің мәтініңіз")
       };
 }

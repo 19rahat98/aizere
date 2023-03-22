@@ -239,28 +239,78 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
     if (state.isLoading) {
       return const AppProgressIndicatorButton();
     } else if (state.playerState == 1) {
-      return IconButton(
-        splashRadius: 100,
-        onPressed: _cubit.playAudio,
-        constraints: const BoxConstraints(
-          minWidth: 64,
-          minHeight: 64,
-        ),
-        icon: SvgPicture.asset(
-          AppIcons.icPlayFilled,
-        ),
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: IconButton(
+              splashRadius: 100,
+              onPressed: () => _cubit.downloadRequisites(
+                _textController.text,
+              ),
+              constraints: const BoxConstraints(
+                minWidth: 64,
+                minHeight: 64,
+              ),
+              icon: SvgPicture.asset(
+                AppIcons.icRepeat,
+              ),
+            ),
+          ),
+          Expanded(
+            child: IconButton(
+              splashRadius: 100,
+              onPressed: _cubit.playAudio,
+              constraints: const BoxConstraints(
+                minWidth: 64,
+                minHeight: 64,
+              ),
+              icon: SvgPicture.asset(
+                AppIcons.icPlayFilled,
+              ),
+            ),
+          ),
+          const Expanded(
+            child: SizedBox(),
+          ),
+        ],
       );
     } else if (state.playerState == 2) {
-      return IconButton(
-        splashRadius: 100,
-        onPressed: _cubit.playAudio,
-        constraints: const BoxConstraints(
-          minWidth: 64,
-          minHeight: 64,
-        ),
-        icon: SvgPicture.asset(
-          AppIcons.icPause,
-        ),
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: IconButton(
+              splashRadius: 100,
+              onPressed: () => _cubit.downloadRequisites(
+                _textController.text,
+              ),
+              constraints: const BoxConstraints(
+                minWidth: 64,
+                minHeight: 64,
+              ),
+              icon: SvgPicture.asset(
+                AppIcons.icRepeat,
+              ),
+            ),
+          ),
+          Expanded(
+            child: IconButton(
+              splashRadius: 100,
+              onPressed: _cubit.playAudio,
+              constraints: const BoxConstraints(
+                minWidth: 64,
+                minHeight: 64,
+              ),
+              icon: SvgPicture.asset(
+                AppIcons.icPause,
+              ),
+            ),
+          ),
+          const Expanded(
+            child: SizedBox(),
+          ),
+        ],
       );
     }
 

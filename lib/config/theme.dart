@@ -35,6 +35,7 @@ class AppIcons {
   static const icLoader = 'assets/svg/ic_loader.svg';
   static const icTrash = 'assets/svg/ic_trash.svg';
   static const icPause = 'assets/svg/ic_pause_filled.svg';
+  static const icRepeat = 'assets/svg/ic_repeate.svg';
 }
 
 class AppImages {
