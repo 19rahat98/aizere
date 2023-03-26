@@ -10,7 +10,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:meta/meta.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart' as http;
@@ -99,11 +98,11 @@ class SpeechCubit extends Cubit<SpeechState> {
   }
 
   /// скачиваем реквизиты карты
-  void downloadRequisites(String text) async {
+  void downloadRequisites(String text, List<String> listFav) async {
     requestPermission(
       permission: Permission.storage,
       onGrantedPermission: () async {
-        await request(text);
+        await request(text, listFav);
       },
       onDenied: () {
         emit(SpeechDownloadError('Permission error'));
@@ -141,7 +140,7 @@ class SpeechCubit extends Cubit<SpeechState> {
     ));
   }
 
-  Future<void> request(String text) async {
+  Future<void> request(String text, List<String> listFav) async {
     final state = getCommonState();
     emit(
       state.copyWith(
@@ -161,8 +160,11 @@ class SpeechCubit extends Cubit<SpeechState> {
       await responseFile.writeAsBytes(requestBytes);
       _filePath = responseFile.path;
       await player.setFilePath(_filePath);
+      final isContain = listFav.contains(text);
+      emit(SpeechSuccessDownloaded());
       emit(
         state.copyWith(
+          isContain: isContain,
           isLoading: false,
           playerState: 1,
           totalTime: _totalTime,
@@ -202,12 +204,20 @@ class SpeechCubit extends Cubit<SpeechState> {
     return response.bodyBytes;
   }
 
+  void removeFavoriteState (value) {
+    final state = getCommonState();
+    emit(state.copyWith(
+      isContain: value,
+    ));
+  }
+
   SpeechCommonState getCommonState() {
     if (state is SpeechCommonState) {
       return state as SpeechCommonState;
     }
     return SpeechCommonState(
       isLoading: false,
+      isContain: false,
       totalTime: _totalTime,
       initialTime: _initialTime,
       speakerId: _speakerId,

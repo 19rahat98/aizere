@@ -18,6 +18,7 @@ class GlobalPrefConstant {
   static const prefPassword = "prefPassword";
   static const prefPinCode = "prefPinCode";
   static const prefUseBiometric = "prefUseBiometric";
+  static const prefFavoritesList = "prefFavoritesList";
 
   /// данные юзера
   static const prefUserData = "prefUserData";

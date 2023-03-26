@@ -11,6 +11,7 @@ class SpeechInitial extends SpeechState {}
 class SpeechCommonState extends SpeechState {
   final int speakerId;
   final bool isLoading;
+  final bool isContain;
   final int playerState;
   final double speedSpeaker;
 
@@ -23,9 +24,11 @@ class SpeechCommonState extends SpeechState {
     int? speakerId,
     int? playerState,
     bool? isLoading,
+    bool? isContain,
     double? speedSpeaker,
   }) {
     return SpeechCommonState(
+      isContain: isContain ?? this.isContain,
       totalTime: totalTime ?? this.totalTime,
       initialTime: initialTime ?? this.initialTime,
       isLoading: isLoading ?? this.isLoading,
@@ -40,6 +43,7 @@ class SpeechCommonState extends SpeechState {
     this.initialTime = 0,
     this.playerState = 0,
     required this.isLoading,
+    required this.isContain,
     required this.speakerId,
     required this.speedSpeaker,
   });
@@ -50,6 +54,7 @@ class SpeechCommonState extends SpeechState {
         totalTime,
         playerState,
         isLoading,
+        isContain,
         speakerId,
         speedSpeaker,
       ];
@@ -60,3 +65,5 @@ class SpeechDownloadError extends SpeechState {
 
   SpeechDownloadError(this.error);
 }
+
+class SpeechSuccessDownloaded extends SpeechState {}

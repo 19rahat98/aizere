@@ -207,9 +207,9 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
                                         color: AppColors.mainBlack,
                                       ),
                                     ),
-                                    const Expanded(
+                                    Expanded(
                                       child: Text(
-                                        'Коснитесь дважды по объекту для озвучивание объекта',
+                                        context.l10n.doubleTapForVoice,
                                         style: AppTextStyle.body,
                                       ),
                                     ),
@@ -231,9 +231,9 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
                                         color: AppColors.mainBlack,
                                       ),
                                     ),
-                                    const Expanded(
+                                    Expanded(
                                       child: Text(
-                                        'Зажмите двумя пальцами и проведите вверх или вниз для регулировки громкости речи',
+                                        context.l10n.holdTwoFingerToChangeVolume,
                                         style: AppTextStyle.body,
                                       ),
                                     ),
@@ -255,9 +255,9 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
                                         color: AppColors.mainBlack,
                                       ),
                                     ),
-                                    const Expanded(
+                                    Expanded(
                                       child: Text(
-                                        'Коснитесь тремя пальцами для выключения или включения функции AizereVoice',
+                                        context.l10n.pressThreeFingerToAizereVoice,
                                         style: AppTextStyle.body,
                                       ),
                                     ),

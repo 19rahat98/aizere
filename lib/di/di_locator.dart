@@ -1,6 +1,8 @@
 // ignore_for_file: cascade_invocations
 
 import 'package:aizere_app/di/local_storage_servic.dart';
+import 'package:aizere_app/feature/favorites/data/pref/favorite_global_data_source.dart';
+import 'package:aizere_app/feature/favorites/data/repository/favorites_global_repository.dart';
 import 'package:aizere_app/feature/language_logic/data/repositories/language_logic_repository_impl.dart';
 import 'package:aizere_app/feature/language_logic/domain/usecase/get_default_language_code_use_case.dart';
 import 'package:aizere_app/feature/onboarding/data/pref/onboarding_global_data_source.dart';
@@ -53,6 +55,7 @@ Future<void> _dataSourceModule() async {
   sl.registerFactory(() => CoreGlobalSettingLocalDataSource(sl.getAsync()));
   sl.registerFactory(() => CoreGlobalSpeakerDataSource(sl.getAsync()));
   sl.registerFactory(() => CoreGlobalVoiceSpeedDataSource(sl.getAsync()));
+  sl.registerFactory(() => CoreFavoriteDataSource(sl.getAsync()));
 }
 
 /// для репозиторий
@@ -64,6 +67,7 @@ void _repositoryModule() {
   sl.registerFactory(() => CoreGlobalSettingSpeakerRepository());
   sl.registerFactory(() => CoreGlobalSpeakerSpeedRepository());
   sl.registerFactory(() => CoreGlobalSettingLauncherRepository());
+  sl.registerFactory(() => CoreGlobalFavoritesRepository());
 }
 
 void _useCaseModule() async {

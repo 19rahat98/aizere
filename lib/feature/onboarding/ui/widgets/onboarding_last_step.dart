@@ -65,7 +65,7 @@ class OnboardingLastStep extends StatelessWidget {
                   height: 28,
                 ),
                 Text(
-                  context.l10n.aizereSpeechText,
+                  context.l10n.librarySectionAndListenBooks,
                   textAlign: TextAlign.center,
                   style: AppTextStyle.body.copyWith(
                     color: Colors.white,

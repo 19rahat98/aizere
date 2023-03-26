@@ -3,6 +3,7 @@ import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/onboarding/ui/widgets/onboarding_last_step.dart';
 import 'package:aizere_app/feature/onboarding/ui/widgets/onboarding_second_step.dart';
+import 'package:aizere_app/feature/onboarding/ui/widgets/onboarding_third_step.dart';
 import 'package:aizere_app/feature/onboarding/ui/widgets/ondoaring_first_step.dart';
 import 'package:aizere_app/feature/settings/choose_local/presentation/ui/choose_locale_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
@@ -26,12 +27,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     pageList = [
       OnboardingFirstStep(
         onPressSkipButton: () {
-          pageController.jumpToPage(1);
+          pageController.animateToPage(
+            1,
+            curve: Curves.ease,
+            duration: const Duration(milliseconds: 1000),
+          );
         },
       ),
       OnboardingSecondStep(
         onPressSkipButton: () {
-          pageController.jumpToPage(2);
+          pageController.animateToPage(
+            2,
+            curve: Curves.ease,
+            duration: const Duration(milliseconds: 1000),
+          );
+        },
+      ),
+      OnboardingThirdStep(
+        onPressSkipButton: () {
+          pageController.animateToPage(
+            3,
+            curve: Curves.ease,
+            duration: const Duration(milliseconds: 1000),
+          );
         },
       ),
       const OnboardingLastStep(),
@@ -46,6 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: SafeArea(
         bottom: false,
         child: Scaffold(
+          backgroundColor: AppColors.mainBlue,
           body: Column(
             children: [
               Expanded(
@@ -55,7 +74,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     setState(() {});
                   },
                   controller: pageController,
-                  physics: const NeverScrollableScrollPhysics(),
                   children: pageList,
                 ),
               ),
@@ -87,7 +105,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (currentPage + 1 != pageList.length) {
       return AppTextButton(
         onTap: () {
-          pageController.jumpToPage(currentPage + 1);
+          pageController.animateToPage(
+            currentPage + 1,
+            curve: Curves.ease,
+            duration: const Duration(milliseconds: 1000),
+          );
         },
         text: context.l10n.next,
       );

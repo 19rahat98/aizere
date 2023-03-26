@@ -6,12 +6,12 @@ class LanguageEntityModel extends Equatable {
     required this.value,
   }) : super();
 
-  final int? code;
-  final String? value;
+  final int code;
+  final String value;
 
   @override
   List<Object?> get props => [
-    code ?? 0,
-    value ?? 0,
+    code,
+    value,
   ];
 }

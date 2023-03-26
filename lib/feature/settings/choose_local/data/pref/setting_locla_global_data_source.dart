@@ -19,6 +19,6 @@ class CoreGlobalSettingLocalDataSource {
   /// получаем флаг был ли пользовтель ранее в приложении
   Future<int> get isSelectedApplicationLocal async {
     final prefs = await _sharedPreferences;
-    return prefs.getInt(GlobalPrefConstant.prefLocalization) ?? 1;
+    return prefs.getInt(GlobalPrefConstant.prefLocalization) ?? 2;
   }
 }

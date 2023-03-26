@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/config/theme.dart';
@@ -66,7 +68,7 @@ class OnboardingFirstStep extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                  context.l10n.copyText,
+                  context.l10n.selectDesiredText,
                   style: AppTextStyle.title.copyWith(
                     color: Colors.white,
                   ),
@@ -75,7 +77,7 @@ class OnboardingFirstStep extends StatelessWidget {
                   height: 28,
                 ),
                 Text(
-                  context.l10n.aizereSpeechText,
+                  context.l10n.aizereSynthesisThousandText,
                   textAlign: TextAlign.center,
                   style: AppTextStyle.body.copyWith(
                     color: Colors.white,
@@ -85,10 +87,10 @@ class OnboardingFirstStep extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: -40,
-            bottom: MediaQuery.of(context).size.height / 6,
+            left: -40,
+            bottom: 100,
             child: Transform.rotate(
-              angle: 6.4,
+              angle: - pi / 14,
               child: Container(
                 width: 320,
                 padding: const EdgeInsets.all(20),
@@ -96,9 +98,16 @@ class OnboardingFirstStep extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Text(
-                  'Абай қазақтың әдебиетінде қайталанбас ұлы ойшы, философ, ақын. Абай өз балалық кезін әжесі мен анасының жанында өткізген.',
-                  style: AppTextStyle.body,
+                child: Column(
+                  children: [
+                    SvgPicture.asset(
+                      AppIcons.icSoundLine,
+                    ),
+                    const HBox(),
+                    SvgPicture.asset(
+                      AppIcons.icPlayFilled,
+                    ),
+                  ],
                 ),
               ),
             ),

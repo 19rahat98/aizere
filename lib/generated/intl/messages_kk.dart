@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "aizere": MessageLookupByLibrary.simpleMessage("Aizere"),
         "aizereSpeechText": MessageLookupByLibrary.simpleMessage(
             "AiZere синтезирует ваш текст и восспроизводит с помощью голового интерфейса"),
+        "aizereSynthesisThousandText": MessageLookupByLibrary.simpleMessage(
+            "AiZere - 1000 таңбаға дейін қазақша мәтін синтезі"),
         "aizereVoiceTextOnScreen": MessageLookupByLibrary.simpleMessage(
             "AizereVoice произносит названия объектов на экране. Вы можете управлять функцией AizereVoice с помощью простого набора жестов."),
         "back": MessageLookupByLibrary.simpleMessage("Артқа"),
@@ -32,22 +34,38 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Спикерді таңдаңыз"),
         "chooseVoiceSpeaker": MessageLookupByLibrary.simpleMessage(
             "Выбрать спикера, чтобы можно было воспроизвести аудио голосом опреденного спикера"),
+        "clear": MessageLookupByLibrary.simpleMessage("Тазалау"),
         "clickPlay":
             MessageLookupByLibrary.simpleMessage("Ойнату батырмасын басыңыз"),
-        "copyText": MessageLookupByLibrary.simpleMessage("Мәтінді көшіру"),
+        "copyText": MessageLookupByLibrary.simpleMessage(
+            "Көшіріп, синтездеу жолағына қойыңыз"),
+        "doubleTapForVoice": MessageLookupByLibrary.simpleMessage(
+            "Дыбыс шығару үшін нысанды екі рет түртіңіз"),
         "favorite": MessageLookupByLibrary.simpleMessage("Таңдаулар"),
+        "holdTwoFingerToChangeVolume": MessageLookupByLibrary.simpleMessage(
+            "Сөйлеу дыбысын реттеу үшін екі саусақпен ұстап, жоғары немесе төмен жүргізіңіз"),
         "interaction": MessageLookupByLibrary.simpleMessage("Взаимодействие"),
         "iseke": MessageLookupByLibrary.simpleMessage("Исеке"),
         "kazakh": MessageLookupByLibrary.simpleMessage("Қазақша"),
         "keepContinue": MessageLookupByLibrary.simpleMessage("Жалғастыру"),
         "language": MessageLookupByLibrary.simpleMessage("Тіл"),
         "library": MessageLookupByLibrary.simpleMessage("Кітапхана"),
+        "librarySectionAndListenBooks": MessageLookupByLibrary.simpleMessage(
+            "«Кітапхана» бөліміне өтіп, қазақ тіліндегі дайын аудиокітаптарды тыңдаңыз"),
+        "minimumButtonFriendlyUx": MessageLookupByLibrary.simpleMessage(
+            "AiZere - ыңғайлы интерфейс және ең аз батырмалар"),
+        "myFavorites":
+            MessageLookupByLibrary.simpleMessage("Менің таңдауларым"),
         "next": MessageLookupByLibrary.simpleMessage("Келесі"),
         "paste": MessageLookupByLibrary.simpleMessage("Қою"),
         "playbackSpeed":
             MessageLookupByLibrary.simpleMessage("Ойнату жылдамдығы"),
+        "pressThreeFingerToAizereVoice": MessageLookupByLibrary.simpleMessage(
+            "AizereVoice өшіру немесе қосу үшін үш саусақпен түртіңіз"),
         "raya": MessageLookupByLibrary.simpleMessage("Рая"),
         "russian": MessageLookupByLibrary.simpleMessage("Русский"),
+        "selectDesiredText":
+            MessageLookupByLibrary.simpleMessage("Қажетті мәтінді таңдаңыз"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Тілді таңдаңыз"),
         "selectLanguageInterface": MessageLookupByLibrary.simpleMessage(
@@ -61,8 +79,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Арнаулы мүмкіндіктер"),
         "start": MessageLookupByLibrary.simpleMessage("Бастау "),
         "stepOne": MessageLookupByLibrary.simpleMessage("Қадам 1"),
+        "stepThree": MessageLookupByLibrary.simpleMessage("Қадам 3"),
         "stepTwo": MessageLookupByLibrary.simpleMessage("Қадам 2"),
         "toFind": MessageLookupByLibrary.simpleMessage("Іздеу "),
+        "useVirtualSpeakers": MessageLookupByLibrary.simpleMessage(
+            "AiZere - виртуалды спикерлер көмегімен мәтінді ойнату"),
         "usual": MessageLookupByLibrary.simpleMessage("Қалыпты "),
         "voiceAssistant":
             MessageLookupByLibrary.simpleMessage("Дауысты көмекші"),

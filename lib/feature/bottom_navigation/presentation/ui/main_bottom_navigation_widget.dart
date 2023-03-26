@@ -1,6 +1,7 @@
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/cubit/global_navigation_cubit.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/ui/widgets/nav_bar_icon_item_widget.dart';
+import 'package:aizere_app/feature/favorites/presentation/ui/favorites_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _MainBottomBarWidgetState extends State<MainBottomBarWidget> {
   final List<Widget> _screens = [
     const SpeechSynthesisBuild(),
     const SpeechSynthesisBuild(),
-    const SpeechSynthesisBuild(),
+    const FavoritesScreen(),
     const SpeechSynthesisBuild(),
   ];
 

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/config/theme.dart';
@@ -68,7 +66,8 @@ class OnboardingSecondStep extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                  context.l10n.clickPlay,
+                  context.l10n.copyText,
+                  textAlign: TextAlign.center,
                   style: AppTextStyle.title.copyWith(
                     color: Colors.white,
                   ),
@@ -77,7 +76,7 @@ class OnboardingSecondStep extends StatelessWidget {
                   height: 28,
                 ),
                 Text(
-                  context.l10n.aizereSpeechText,
+                  context.l10n.minimumButtonFriendlyUx,
                   textAlign: TextAlign.center,
                   style: AppTextStyle.body.copyWith(
                     color: Colors.white,
@@ -87,10 +86,10 @@ class OnboardingSecondStep extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: -40,
-            bottom: 100,
+            right: -40,
+            bottom: MediaQuery.of(context).size.height / 6,
             child: Transform.rotate(
-              angle: - pi / 9,
+              angle: 6.4,
               child: Container(
                 width: 320,
                 padding: const EdgeInsets.all(20),
@@ -98,16 +97,9 @@ class OnboardingSecondStep extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Column(
-                  children: [
-                    SvgPicture.asset(
-                      AppIcons.icSoundLine,
-                    ),
-                    const HBox(),
-                    SvgPicture.asset(
-                      AppIcons.icPlayFilled,
-                    ),
-                  ],
+                child: const Text(
+                  'Абай қазақтың әдебиетінде қайталанбас ұлы ойшы, философ, ақын. Абай өз балалық кезін әжесі мен анасының жанында өткізген.',
+                  style: AppTextStyle.body,
                 ),
               ),
             ),

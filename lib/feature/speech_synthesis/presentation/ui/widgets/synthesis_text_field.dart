@@ -9,11 +9,13 @@ class SynthesisTextField extends StatelessWidget {
   const SynthesisTextField({
     Key? key,
     this.onClear,
+    this.canEdit = true,
     required this.controller,
   }) : super(key: key);
 
-  final TextEditingController controller;
+  final bool canEdit;
   final Function()? onClear;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class SynthesisTextField extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
+                enabled: canEdit,
                 controller: controller,
                 style: AppTextStyle.body,
                 maxLines: null,

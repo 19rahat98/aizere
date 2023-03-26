@@ -19,6 +19,6 @@ class LocalLanguageCubit extends Cubit<LocalLanguageState> {
   }
 
   void changeLocalApp(LanguageEntity locale) {
-    emit(LanguageLoaded(Locale(locale.value ?? 'ru')));
+    emit(LanguageLoaded(Locale(locale.value)));
   }
 }

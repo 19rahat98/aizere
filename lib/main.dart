@@ -1,8 +1,9 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/cubit/global_navigation_cubit.dart';
+import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/language_logic/presentation/cubit/local_language_cubit.dart';
-import 'package:aizere_app/feature/launch_app/presentation/launch_app_page.dart';
+import 'package:aizere_app/feature/onboarding/ui/onboarding_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:aizere_app/di/di_locator.dart' as di_locator;
@@ -37,6 +38,10 @@ class MyApp extends StatelessWidget {
         BlocProvider<GlobalNavigationCubit>(
           create: (context) => GlobalNavigationCubit(),
         ),
+        BlocProvider<FavoritesCubit>(
+          lazy: false,
+          create: (context) => FavoritesCubit()..loadFavorites(),
+        ),
       ],
       child: BlocBuilder<LocalLanguageCubit, LocalLanguageState>(
         builder: (context, localLanguageState) {
@@ -52,7 +57,7 @@ class MyApp extends StatelessWidget {
               ],
               locale: localLanguageState.locale,
               supportedLocales: AppLocalizations.supportedLocales,
-              home: const LaunchAppPage(),
+              home: const OnboardingScreen(),
             );
           }
 

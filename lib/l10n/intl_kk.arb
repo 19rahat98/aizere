@@ -2,9 +2,10 @@
   "@@locale": "kk",
   "next": "Келесі",
   "skip": "Өткізу",
+  "stepThree": "Қадам 3",
   "stepTwo": "Қадам 2",
   "stepOne": "Қадам 1",
-  "copyText": "Мәтінді көшіру",
+  "copyText": "Көшіріп, синтездеу жолағына қойыңыз",
   "aizereSpeechText": "AiZere синтезирует ваш текст и восспроизводит с помощью голового интерфейса",
   "clickPlay": "Ойнату батырмасын басыңыз",
   "library": "Кітапхана",
@@ -34,5 +35,16 @@
   "usual": "Қалыпты ",
   "toFind": "Іздеу ",
   "favorite": "Таңдаулар",
-  "paste": "Қою"
+  "paste": "Қою",
+  "clear": "Тазалау",
+  "myFavorites": "Менің таңдауларым",
+
+  "pressThreeFingerToAizereVoice": "AizereVoice өшіру немесе қосу үшін үш саусақпен түртіңіз",
+  "holdTwoFingerToChangeVolume": "Сөйлеу дыбысын реттеу үшін екі саусақпен ұстап, жоғары немесе төмен жүргізіңіз",
+  "doubleTapForVoice": "Дыбыс шығару үшін нысанды екі рет түртіңіз",
+  "selectDesiredText": "Қажетті мәтінді таңдаңыз",
+  "aizereSynthesisThousandText": "AiZere - 1000 таңбаға дейін қазақша мәтін синтезі",
+  "minimumButtonFriendlyUx": "AiZere - ыңғайлы интерфейс және ең аз батырмалар",
+  "useVirtualSpeakers": "AiZere - виртуалды спикерлер көмегімен мәтінді ойнату",
+  "librarySectionAndListenBooks": "«Кітапхана» бөліміне өтіп, қазақ тіліндегі дайын аудиокітаптарды тыңдаңыз"
 }

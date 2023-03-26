@@ -70,6 +70,16 @@ class S {
     );
   }
 
+  /// `Шаг 3`
+  String get stepThree {
+    return Intl.message(
+      'Шаг 3',
+      name: 'stepThree',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Шаг 2`
   String get stepTwo {
     return Intl.message(
@@ -90,10 +100,10 @@ class S {
     );
   }
 
-  /// `Скопируйте текст`
+  /// `Скопировать и вставить в поле для синтеза`
   String get copyText {
     return Intl.message(
-      'Скопируйте текст',
+      'Скопировать и вставить в поле для синтеза',
       name: 'copyText',
       desc: '',
       args: [],
@@ -395,6 +405,106 @@ class S {
     return Intl.message(
       'Вставить',
       name: 'paste',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Очистить`
+  String get clear {
+    return Intl.message(
+      'Очистить',
+      name: 'clear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Мои избранные`
+  String get myFavorites {
+    return Intl.message(
+      'Мои избранные',
+      name: 'myFavorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Коснитесь тремя пальцами для выключения или включения функции AizereVoice`
+  String get pressThreeFingerToAizereVoice {
+    return Intl.message(
+      'Коснитесь тремя пальцами для выключения или включения функции AizereVoice',
+      name: 'pressThreeFingerToAizereVoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Зажмите двумя пальцами и проведите вверх или вниз для регулировки громкости речи`
+  String get holdTwoFingerToChangeVolume {
+    return Intl.message(
+      'Зажмите двумя пальцами и проведите вверх или вниз для регулировки громкости речи',
+      name: 'holdTwoFingerToChangeVolume',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Коснитесь дважды по объекту для озвучивание объекта`
+  String get doubleTapForVoice {
+    return Intl.message(
+      'Коснитесь дважды по объекту для озвучивание объекта',
+      name: 'doubleTapForVoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выбрать нужный текст`
+  String get selectDesiredText {
+    return Intl.message(
+      'Выбрать нужный текст',
+      name: 'selectDesiredText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AiZere - синтез текста на казахском языке до 1000 символов`
+  String get aizereSynthesisThousandText {
+    return Intl.message(
+      'AiZere - синтез текста на казахском языке до 1000 символов',
+      name: 'aizereSynthesisThousandText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AiZere - удобный интерфейс и минимум кнопок`
+  String get minimumButtonFriendlyUx {
+    return Intl.message(
+      'AiZere - удобный интерфейс и минимум кнопок',
+      name: 'minimumButtonFriendlyUx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AiZere - воспроизведение текста с помощью виртуальных спикеров`
+  String get useVirtualSpeakers {
+    return Intl.message(
+      'AiZere - воспроизведение текста с помощью виртуальных спикеров',
+      name: 'useVirtualSpeakers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Переходи в раздел Библиотека и слушай готовые аудиокниги на казахском языке`
+  String get librarySectionAndListenBooks {
+    return Intl.message(
+      'Переходи в раздел Библиотека и слушай готовые аудиокниги на казахском языке',
+      name: 'librarySectionAndListenBooks',
       desc: '',
       args: [],
     );

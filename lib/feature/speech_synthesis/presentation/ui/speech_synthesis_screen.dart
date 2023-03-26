@@ -5,6 +5,7 @@ import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/settings/app_setting/presentation/ui/app_settings_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_playback_line.dart';
@@ -80,165 +81,181 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
           ),
         ],
       ),
-      body: BlocConsumer<SpeechCubit, SpeechState>(
-        listener: (context, state) {
-          if (state is SpeechDownloadError) {
-            final snackBar = errorSnackBar(
-              title: state.error,
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          }
-        },
-        buildWhen: (prev, current) => current is SpeechCommonState,
-        builder: (context, state) {
-          if (state is SpeechCommonState) {
-            final speed = state.speedSpeaker;
-            return Container(
-              padding: const EdgeInsets.only(
-                top: 24,
-                left: 20,
-                right: 20,
-                bottom: 10,
-              ),
-              color: Colors.white,
-              child: Column(
-                children: [
-                  SynthesisTextField(
-                    onClear: () {
-                      _cubit.stopAudio();
-                      _textController.clear();
-                    },
-                    controller: _textController,
+      body: BlocBuilder<FavoritesCubit, FavoriteState>(
+        builder: (context, favState) {
+          return BlocConsumer<SpeechCubit, SpeechState>(
+            listener: (context, state) {
+              if (state is SpeechDownloadError) {
+                final snackBar = errorSnackBar(
+                  title: state.error,
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              } else if (state is SpeechSuccessDownloaded) {
+                context.read<FavoritesCubit>().loadFavorites();
+              }
+            },
+            buildWhen: (prev, current) => current is SpeechCommonState,
+            builder: (context, state) {
+              if (state is SpeechCommonState) {
+                final speed = state.speedSpeaker;
+                return Container(
+                  padding: const EdgeInsets.only(
+                    top: 24,
+                    left: 20,
+                    right: 20,
+                    bottom: 10,
                   ),
-                  SynthesisPlaybackLine(
-                    totalDuration: state.totalTime,
-                    initialPosition: state.initialTime,
-                  ),
-                  const HBox(),
-                  buildButton(state),
-                  const HBox(
-                    height: 30,
-                  ),
-                  Text(
-                    context.l10n.playbackSpeed,
-                    style: AppTextStyle.regular.copyWith(
-                      color: AppColors.black,
-                    ),
-                  ),
-                  const HBox(
-                    height: 12,
-                  ),
-                  Row(
+                  color: Colors.white,
+                  child: Column(
                     children: [
-                      Flexible(
-                        child: AppTextButton(
-                          onTap: () => _cubit.setSpeed(0.25),
-                          text: '0.25',
-                          isCenter: false,
-                          style: speed == 0.25
-                              ? AppTextStyle.light.copyWith(
-                                  color: AppColors.mainBlue,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              : AppTextStyle.light,
+                      SynthesisTextField(
+                        canEdit: !state.isLoading,
+                        onClear: () {
+                          _cubit.stopAudio();
+                          _textController.clear();
+                        },
+                        controller: _textController,
+                      ),
+                      SynthesisPlaybackLine(
+                        totalDuration: state.totalTime,
+                        initialPosition: state.initialTime,
+                      ),
+                      const HBox(),
+                      buildButton(
+                        state,
+                        isConstrain: state.isContain,
+                        favList: favState.list,
+                      ),
+                      const HBox(
+                        height: 30,
+                      ),
+                      Text(
+                        context.l10n.playbackSpeed,
+                        style: AppTextStyle.regular.copyWith(
+                          color: AppColors.black,
                         ),
                       ),
-                      Flexible(
-                        child: AppTextButton(
-                          onTap: () => _cubit.setSpeed(0.5),
-                          text: '0.5',
-                          isCenter: false,
-                          style: speed == 0.5
-                              ? AppTextStyle.light.copyWith(
-                                  color: AppColors.mainBlue,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              : AppTextStyle.light,
-                        ),
+                      const HBox(
+                        height: 12,
                       ),
-                      Flexible(
-                        child: AppTextButton(
-                          onTap: () => _cubit.setSpeed(0.75),
-                          text: '0.75',
-                          isCenter: false,
-                          style: speed == 0.75
-                              ? AppTextStyle.light.copyWith(
-                                  color: AppColors.mainBlue,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              : AppTextStyle.light,
-                        ),
-                      ),
-                      AppTextButton(
-                        onTap: () => _cubit.setSpeed(1),
-                        isCenter: false,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                        ),
-                        text: context.l10n.usual,
-                        style: speed == 1
-                            ? AppTextStyle.light.copyWith(
-                                color: AppColors.mainBlue,
-                                fontWeight: FontWeight.w600,
-                              )
-                            : AppTextStyle.light,
-                      ),
-                      Flexible(
-                        child: AppTextButton(
-                          onTap: () => _cubit.setSpeed(1.25),
-                          text: '1.25',
-                          isCenter: false,
-                          style: speed == 1.25
-                              ? AppTextStyle.light.copyWith(
-                                  color: AppColors.mainBlue,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              : AppTextStyle.light,
-                        ),
-                      ),
-                      Flexible(
-                        child: AppTextButton(
-                          onTap: () => _cubit.setSpeed(1.5),
-                          text: '1.5',
-                          isCenter: false,
-                          style: speed == 1.5
-                              ? AppTextStyle.light.copyWith(
-                                  color: AppColors.mainBlue,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              : AppTextStyle.light,
-                        ),
-                      ),
-                      Flexible(
-                        child: AppTextButton(
-                          onTap: () => _cubit.setSpeed(1.75),
-                          text: '1.75',
-                          isCenter: false,
-                          style: speed == 1.75
-                              ? AppTextStyle.light.copyWith(
-                                  color: AppColors.mainBlue,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              : AppTextStyle.light,
-                        ),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: AppTextButton(
+                              onTap: () => _cubit.setSpeed(0.25),
+                              text: '0.25',
+                              isCenter: false,
+                              style: speed == 0.25
+                                  ? AppTextStyle.light.copyWith(
+                                      color: AppColors.mainBlue,
+                                      fontWeight: FontWeight.w600,
+                                    )
+                                  : AppTextStyle.light,
+                            ),
+                          ),
+                          Flexible(
+                            child: AppTextButton(
+                              onTap: () => _cubit.setSpeed(0.5),
+                              text: '0.5',
+                              isCenter: false,
+                              style: speed == 0.5
+                                  ? AppTextStyle.light.copyWith(
+                                      color: AppColors.mainBlue,
+                                      fontWeight: FontWeight.w600,
+                                    )
+                                  : AppTextStyle.light,
+                            ),
+                          ),
+                          Flexible(
+                            child: AppTextButton(
+                              onTap: () => _cubit.setSpeed(0.75),
+                              text: '0.75',
+                              isCenter: false,
+                              style: speed == 0.75
+                                  ? AppTextStyle.light.copyWith(
+                                      color: AppColors.mainBlue,
+                                      fontWeight: FontWeight.w600,
+                                    )
+                                  : AppTextStyle.light,
+                            ),
+                          ),
+                          AppTextButton(
+                            onTap: () => _cubit.setSpeed(1),
+                            isCenter: false,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                            ),
+                            text: context.l10n.usual,
+                            style: speed == 1
+                                ? AppTextStyle.light.copyWith(
+                                    color: AppColors.mainBlue,
+                                    fontWeight: FontWeight.w600,
+                                  )
+                                : AppTextStyle.light,
+                          ),
+                          Flexible(
+                            child: AppTextButton(
+                              onTap: () => _cubit.setSpeed(1.25),
+                              text: '1.25',
+                              isCenter: false,
+                              style: speed == 1.25
+                                  ? AppTextStyle.light.copyWith(
+                                      color: AppColors.mainBlue,
+                                      fontWeight: FontWeight.w600,
+                                    )
+                                  : AppTextStyle.light,
+                            ),
+                          ),
+                          Flexible(
+                            child: AppTextButton(
+                              onTap: () => _cubit.setSpeed(1.5),
+                              text: '1.5',
+                              isCenter: false,
+                              style: speed == 1.5
+                                  ? AppTextStyle.light.copyWith(
+                                      color: AppColors.mainBlue,
+                                      fontWeight: FontWeight.w600,
+                                    )
+                                  : AppTextStyle.light,
+                            ),
+                          ),
+                          Flexible(
+                            child: AppTextButton(
+                              onTap: () => _cubit.setSpeed(1.75),
+                              text: '1.75',
+                              isCenter: false,
+                              style: speed == 1.75
+                                  ? AppTextStyle.light.copyWith(
+                                      color: AppColors.mainBlue,
+                                      fontWeight: FontWeight.w600,
+                                    )
+                                  : AppTextStyle.light,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            );
-          }
+                );
+              }
 
-          return const SizedBox();
+              return const SizedBox();
+            },
+          );
         },
       ),
     );
   }
 
-  Widget buildButton(SpeechCommonState state) {
+  Widget buildButton(
+    SpeechCommonState state, {
+    bool isConstrain = false,
+    required List<String> favList,
+  }) {
     if (state.isLoading) {
       return const AppProgressIndicatorButton();
-    } else if (state.playerState == 1) {
+    }
+    else if (state.playerState == 1) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -247,6 +264,7 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
               splashRadius: 100,
               onPressed: () => _cubit.downloadRequisites(
                 _textController.text,
+                favList,
               ),
               constraints: const BoxConstraints(
                 minWidth: 64,
@@ -270,12 +288,17 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
               ),
             ),
           ),
-          const Expanded(
-            child: SizedBox(),
+          Expanded(
+            child: FavoriteButton(
+              isConstrain: isConstrain,
+              controller: _textController,
+              changeFav: _cubit.removeFavoriteState,
+            ),
           ),
         ],
       );
-    } else if (state.playerState == 2) {
+    }
+    else if (state.playerState == 2) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -284,6 +307,7 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
               splashRadius: 100,
               onPressed: () => _cubit.downloadRequisites(
                 _textController.text,
+                favList,
               ),
               constraints: const BoxConstraints(
                 minWidth: 64,
@@ -307,8 +331,12 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
               ),
             ),
           ),
-          const Expanded(
-            child: SizedBox(),
+          Expanded(
+            child: FavoriteButton(
+              isConstrain: isConstrain,
+              controller: _textController,
+              changeFav: _cubit.removeFavoriteState,
+            ),
           ),
         ],
       );
@@ -317,6 +345,7 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
     return AppFilledColorButton(
       onTap: () => _cubit.downloadRequisites(
         _textController.text,
+        favList,
       ),
       width: 200,
       height: 54,
@@ -326,6 +355,49 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
         context.l10n.start,
         style: AppTextStyle.textButtonStyle.copyWith(
           color: Colors.white,
+        ),
+      ),
+    );
+  }
+}
+
+class FavoriteButton extends StatelessWidget {
+  const FavoriteButton({
+    Key? key,
+    required this.changeFav,
+    required this.isConstrain,
+    required this.controller,
+  }) : super(key: key);
+
+  final bool isConstrain;
+  final Function(bool) changeFav;
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      splashRadius: 100,
+      onPressed: () {
+        changeFav(!isConstrain);
+        if (isConstrain) {
+          context.read<FavoritesCubit>().removeFromFavorites(
+                controller.text,
+              );
+        } else {
+          context.read<FavoritesCubit>().addToFavorites(
+                controller.text,
+              );
+        }
+      },
+      constraints: const BoxConstraints(
+        minWidth: 64,
+        minHeight: 64,
+      ),
+      icon: SvgPicture.asset(
+        AppIcons.icHeart,
+        colorFilter: ColorFilter.mode(
+          isConstrain ? AppColors.mainBlack : AppColors.monoGrey,
+          BlendMode.srcIn,
         ),
       ),
     );

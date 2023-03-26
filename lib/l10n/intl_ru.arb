@@ -2,9 +2,10 @@
   "@@locale": "ru",
   "next": "Далее",
   "skip": "Пропустить",
+  "stepThree": "Шаг 3",
   "stepTwo": "Шаг 2",
   "stepOne": "Шаг 1",
-  "copyText": "Скопируйте текст",
+  "copyText": "Скопировать и вставить в поле для синтеза",
   "aizereSpeechText": "AiZere синтезирует ваш текст и восспроизводит с помощью голового интерфейса",
   "clickPlay": "Нажмите воспроизвести",
   "library": "Библиотека",
@@ -34,5 +35,16 @@
   "usual": "Обычная",
   "toFind": "Найти",
   "favorite": "Избранное",
-  "paste": "Вставить"
+  "paste": "Вставить",
+  "clear": "Очистить",
+  "myFavorites": "Мои избранные",
+
+  "pressThreeFingerToAizereVoice": "Коснитесь тремя пальцами для выключения или включения функции AizereVoice",
+  "holdTwoFingerToChangeVolume": "Зажмите двумя пальцами и проведите вверх или вниз для регулировки громкости речи",
+  "doubleTapForVoice": "Коснитесь дважды по объекту для озвучивание объекта",
+  "selectDesiredText": "Выбрать нужный текст",
+  "aizereSynthesisThousandText": "AiZere - синтез текста на казахском языке до 1000 символов",
+  "minimumButtonFriendlyUx": "AiZere - удобный интерфейс и минимум кнопок",
+  "useVirtualSpeakers": "AiZere - воспроизведение текста с помощью виртуальных спикеров",
+  "librarySectionAndListenBooks": "Переходи в раздел Библиотека и слушай готовые аудиокниги на казахском языке"
 }

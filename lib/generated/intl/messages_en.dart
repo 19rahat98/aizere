@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "aizere": MessageLookupByLibrary.simpleMessage("Aizere"),
         "aizereSpeechText": MessageLookupByLibrary.simpleMessage(
             "AiZere синтезирует ваш текст и восспроизводит с помощью голового интерфейса"),
+        "aizereSynthesisThousandText": MessageLookupByLibrary.simpleMessage(
+            "AiZere - синтез текста на казахском языке до 1000 символов"),
         "aizereVoiceTextOnScreen": MessageLookupByLibrary.simpleMessage(
             "AizereVoice произносит названия объектов на экране. Вы можете управлять функцией AizereVoice с помощью простого набора жестов."),
         "back": MessageLookupByLibrary.simpleMessage("Назад"),
@@ -32,22 +34,37 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите спикера"),
         "chooseVoiceSpeaker": MessageLookupByLibrary.simpleMessage(
             "Выбрать спикера, чтобы можно было воспроизвести аудио голосом опреденного спикера"),
+        "clear": MessageLookupByLibrary.simpleMessage("Очистить"),
         "clickPlay":
             MessageLookupByLibrary.simpleMessage("Нажмите воспроизвести"),
-        "copyText": MessageLookupByLibrary.simpleMessage("Скопируйте текст"),
+        "copyText": MessageLookupByLibrary.simpleMessage(
+            "Скопировать и вставить в поле для синтеза"),
+        "doubleTapForVoice": MessageLookupByLibrary.simpleMessage(
+            "Коснитесь дважды по объекту для озвучивание объекта"),
         "favorite": MessageLookupByLibrary.simpleMessage("Избранное"),
+        "holdTwoFingerToChangeVolume": MessageLookupByLibrary.simpleMessage(
+            "Зажмите двумя пальцами и проведите вверх или вниз для регулировки громкости речи"),
         "interaction": MessageLookupByLibrary.simpleMessage("Взаимодействие"),
         "iseke": MessageLookupByLibrary.simpleMessage("Исеке"),
         "kazakh": MessageLookupByLibrary.simpleMessage("Қазақша"),
         "keepContinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "language": MessageLookupByLibrary.simpleMessage("Язык"),
         "library": MessageLookupByLibrary.simpleMessage("Библиотека"),
+        "librarySectionAndListenBooks": MessageLookupByLibrary.simpleMessage(
+            "Переходи в раздел Библиотека и слушай готовые аудиокниги на казахском языке"),
+        "minimumButtonFriendlyUx": MessageLookupByLibrary.simpleMessage(
+            "AiZere - удобный интерфейс и минимум кнопок"),
+        "myFavorites": MessageLookupByLibrary.simpleMessage("Мои избранные"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "paste": MessageLookupByLibrary.simpleMessage("Вставить"),
         "playbackSpeed":
             MessageLookupByLibrary.simpleMessage("Скорость воспроизведения"),
+        "pressThreeFingerToAizereVoice": MessageLookupByLibrary.simpleMessage(
+            "Коснитесь тремя пальцами для выключения или включения функции AizereVoice"),
         "raya": MessageLookupByLibrary.simpleMessage("Рая"),
         "russian": MessageLookupByLibrary.simpleMessage("Русский"),
+        "selectDesiredText":
+            MessageLookupByLibrary.simpleMessage("Выбрать нужный текст"),
         "selectLanguage": MessageLookupByLibrary.simpleMessage("Выберите язык"),
         "selectLanguageInterface": MessageLookupByLibrary.simpleMessage(
             "Выбрать язык интерфейса, чтобы можно было читать и вводить текст на этом языке"),
@@ -60,8 +77,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Специальные возможности"),
         "start": MessageLookupByLibrary.simpleMessage("Начать"),
         "stepOne": MessageLookupByLibrary.simpleMessage("Шаг 1"),
+        "stepThree": MessageLookupByLibrary.simpleMessage("Шаг 3"),
         "stepTwo": MessageLookupByLibrary.simpleMessage("Шаг 2"),
         "toFind": MessageLookupByLibrary.simpleMessage("Найти"),
+        "useVirtualSpeakers": MessageLookupByLibrary.simpleMessage(
+            "AiZere - воспроизведение текста с помощью виртуальных спикеров"),
         "usual": MessageLookupByLibrary.simpleMessage("Обычная"),
         "voiceAssistant":
             MessageLookupByLibrary.simpleMessage("Голосовой помощник"),
