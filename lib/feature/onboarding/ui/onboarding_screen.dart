@@ -25,33 +25,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void initState() {
     pageController = PageController();
     pageList = [
-      OnboardingFirstStep(
-        onPressSkipButton: () {
-          pageController.animateToPage(
-            1,
-            curve: Curves.ease,
-            duration: const Duration(milliseconds: 1000),
-          );
-        },
-      ),
-      OnboardingSecondStep(
-        onPressSkipButton: () {
-          pageController.animateToPage(
-            2,
-            curve: Curves.ease,
-            duration: const Duration(milliseconds: 1000),
-          );
-        },
-      ),
-      OnboardingThirdStep(
-        onPressSkipButton: () {
-          pageController.animateToPage(
-            3,
-            curve: Curves.ease,
-            duration: const Duration(milliseconds: 1000),
-          );
-        },
-      ),
+      const OnboardingFirstStep(),
+      const OnboardingSecondStep(),
+      const OnboardingThirdStep(),
       const OnboardingLastStep(),
     ];
     super.initState();

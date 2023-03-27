@@ -4,6 +4,7 @@ import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/settings/app_setting/presentation/ui/app_settings_screen.dart';
+import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -69,6 +70,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 top: 20,
                 left: 20,
                 right: 20,
+                bottom: 10,
               ),
               child: Row(
                 children: [
@@ -88,9 +90,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 ],
               ),
             ),
-            const AppCommonDividerWidget(
-              height: 32,
-            ),
+            const AppCommonDividerWidget(),
             BlocBuilder<FavoritesCubit, FavoriteState>(
               builder: (context, state) {
                 return ListView.separated(
@@ -98,38 +98,53 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   padding: EdgeInsets.zero,
                   itemCount: state.list.length,
                   separatorBuilder: (context, index) =>
-                      const AppCommonDividerWidget(
-                    height: 32,
-                  ),
+                      const AppCommonDividerWidget(),
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        state.list[index],
-                        maxLines: 3,
-                        style: AppTextStyle.light,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      leading: Container(
-                        width: 48,
-                        height: 48,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: AppColors.monoGrey,
-                          borderRadius: BorderRadius.circular(12),
+                    return Material(
+                      color: Colors.transparent,
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                          horizontal: 12,
                         ),
-                        child: SvgPicture.asset(
-                          AppIcons.icVoiceCircle,
-                        ),
-                      ),
-                      trailing: IconButton(
-                        icon: SvgPicture.asset(
-                          AppIcons.icHeartFilled,
-                        ),
-                        onPressed: () {
-                          _cubit.removeFromFavorites(
-                            state.list[index],
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => SpeechSynthesisBuild(
+                                text: state.list[index],
+                              ),
+                            ),
                           );
                         },
+                        title: Text(
+                          state.list[index],
+                          maxLines: 3,
+                          style: AppTextStyle.light,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        leading: Container(
+                          width: 48,
+                          height: 48,
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: AppColors.monoGrey,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: SvgPicture.asset(
+                            AppIcons.icVoiceCircle,
+                          ),
+                        ),
+                        trailing: IconButton(
+                          icon: SvgPicture.asset(
+                            AppIcons.icHeartFilled,
+                          ),
+                          onPressed: () {
+                            _cubit.removeFromFavorites(
+                              state.list[index],
+                            );
+                          },
+                        ),
                       ),
                     );
                   },

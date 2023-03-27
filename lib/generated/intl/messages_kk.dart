@@ -28,12 +28,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "aizereSynthesisThousandText": MessageLookupByLibrary.simpleMessage(
             "AiZere - 1000 таңбаға дейін қазақша мәтін синтезі"),
         "aizereVoiceTextOnScreen": MessageLookupByLibrary.simpleMessage(
-            "AizereVoice произносит названия объектов на экране. Вы можете управлять функцией AizereVoice с помощью простого набора жестов."),
+            "AizereVoice экрандағы нысандардың атауларын айтады. AizereVoice функциясын қарапайым қимылдар жиынтығымен басқаруға болады"),
         "back": MessageLookupByLibrary.simpleMessage("Артқа"),
         "chooseSpeaker":
             MessageLookupByLibrary.simpleMessage("Спикерді таңдаңыз"),
         "chooseVoiceSpeaker": MessageLookupByLibrary.simpleMessage(
-            "Выбрать спикера, чтобы можно было воспроизвести аудио голосом опреденного спикера"),
+            "Спикерді таңдау, таңдаған спикер дауысымен дыбысты ойнату үшін"),
         "clear": MessageLookupByLibrary.simpleMessage("Тазалау"),
         "clickPlay":
             MessageLookupByLibrary.simpleMessage("Ойнату батырмасын басыңыз"),

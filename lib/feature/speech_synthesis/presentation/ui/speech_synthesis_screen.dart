@@ -1,3 +1,4 @@
+import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_progess_idicator_button.dart';
@@ -17,19 +18,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SpeechSynthesisBuild extends StatelessWidget {
-  const SpeechSynthesisBuild({Key? key}) : super(key: key);
+  const SpeechSynthesisBuild({
+    Key? key,
+    this.text = GlobalConstant.empty,
+  }) : super(key: key);
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SpeechCubit>(
       create: (_) => SpeechCubit()..initCubit(),
-      child: const SpeechSynthesisScreen(),
+      child: SpeechSynthesisScreen(
+        text: text,
+      ),
     );
   }
 }
 
 class SpeechSynthesisScreen extends StatefulWidget {
-  const SpeechSynthesisScreen({Key? key}) : super(key: key);
+  const SpeechSynthesisScreen({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+
+  final String text;
 
   @override
   State<SpeechSynthesisScreen> createState() => _SpeechSynthesisScreenState();
@@ -46,7 +59,9 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
       SystemUiOverlayStyle.light,
     );
     _cubit = context.read<SpeechCubit>();
-    _textController = TextEditingController();
+    _textController = TextEditingController(
+      text: widget.text,
+    );
     super.initState();
   }
 
@@ -57,7 +72,7 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
       backGround: AppColors.black,
       appBar: AppBar(
         backgroundColor: AppColors.black,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: widget.text.isNotEmpty ? true: false,
         title: SvgPicture.asset(
           AppIcons.icLogo,
           height: 24,
@@ -254,8 +269,7 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
   }) {
     if (state.isLoading) {
       return const AppProgressIndicatorButton();
-    }
-    else if (state.playerState == 1) {
+    } else if (state.playerState == 1) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -297,8 +311,7 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
           ),
         ],
       );
-    }
-    else if (state.playerState == 2) {
+    } else if (state.playerState == 2) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

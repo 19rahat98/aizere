@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/settings/choose_local/presentation/ui/choose_locale_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,10 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class OnboardingThirdStep extends StatelessWidget {
   const OnboardingThirdStep({
     Key? key,
-    required this.onPressSkipButton,
   }) : super(key: key);
-
-  final Function() onPressSkipButton;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,14 @@ class OnboardingThirdStep extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: AppTextButton(
-                    onTap: onPressSkipButton,
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ChooseLocale(),
+                        ),
+                      );
+                    },
                     isCenter: false,
                     text: context.l10n.skip,
                     style: AppTextStyle.textButtonStyle.copyWith(
@@ -115,7 +120,7 @@ class OnboardingThirdStep extends StatelessWidget {
             left: -40,
             bottom: MediaQuery.of(context).size.height / 4,
             child: Transform.rotate(
-              angle: - pi / 14,
+              angle: -pi / 14,
               child: Container(
                 padding: const EdgeInsets.only(
                   top: 20,

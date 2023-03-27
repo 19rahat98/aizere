@@ -2,6 +2,7 @@ import 'package:aizere_app/common/widgets/app_common_divider_widget.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/settings/choose_local/presentation/ui/choose_locale_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,6 +45,14 @@ class OnboardingLastStep extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: AppTextButton(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ChooseLocale(),
+                        ),
+                      );
+                    },
                     text: context.l10n.skip,
                     isCenter: false,
                     style: AppTextStyle.textButtonStyle.copyWith(
