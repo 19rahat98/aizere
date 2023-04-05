@@ -37,6 +37,7 @@ class AppIcons {
   static const icPause = 'assets/svg/ic_pause_filled.svg';
   static const icRepeat = 'assets/svg/ic_repeate.svg';
   static const icHeartFilled = 'assets/svg/ic_heart_filled.svg';
+  static const icMicrophone = 'assets/svg/ic_microphone.svg';
 }
 
 class AppImages {

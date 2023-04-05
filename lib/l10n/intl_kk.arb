@@ -24,12 +24,12 @@
   "voiceAssistant": "Дауысты көмекші",
   "aizereVoiceTextOnScreen": "AizereVoice экрандағы нысандардың атауларын айтады. AizereVoice функциясын қарапайым қимылдар жиынтығымен басқаруға болады",
   "voiceSpeed": "Оқу жылдамдамдығы",
-  "interaction": "Взаимодействие",
+  "interaction": "Өзара әрекеттесу",
   "setting": "Баптау",
   "specialFeature": "Арнаулы мүмкіндіктер",
   "language": "Тіл",
   "speakers": "Спикер",
-  "aizere": "Aizere",
+  "aizere": "Айзере",
   "playbackSpeed": "Ойнату жылдамдығы",
   "yourText": "Сіздің мәтініңіз",
   "usual": "Қалыпты ",
@@ -38,6 +38,16 @@
   "paste": "Қою",
   "clear": "Тазалау",
   "myFavorites": "Менің таңдауларым",
+  "search": "Іздеу",
+  "searchHistory": "Іздеу тарихы",
+  "classOf": "{value} сынып",
+  "@classOf": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
 
   "pressThreeFingerToAizereVoice": "AizereVoice өшіру немесе қосу үшін үш саусақпен түртіңіз",
   "holdTwoFingerToChangeVolume": "Сөйлеу дыбысын реттеу үшін екі саусақпен ұстап, жоғары немесе төмен жүргізіңіз",

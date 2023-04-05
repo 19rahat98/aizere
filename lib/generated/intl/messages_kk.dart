@@ -20,9 +20,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'kk';
 
+  static String m0(value) => "${value} сынып";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "aizere": MessageLookupByLibrary.simpleMessage("Aizere"),
+        "aizere": MessageLookupByLibrary.simpleMessage("Айзере"),
         "aizereSpeechText": MessageLookupByLibrary.simpleMessage(
             "AiZere синтезирует ваш текст и восспроизводит с помощью голового интерфейса"),
         "aizereSynthesisThousandText": MessageLookupByLibrary.simpleMessage(
@@ -34,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Спикерді таңдаңыз"),
         "chooseVoiceSpeaker": MessageLookupByLibrary.simpleMessage(
             "Спикерді таңдау, таңдаған спикер дауысымен дыбысты ойнату үшін"),
+        "classOf": m0,
         "clear": MessageLookupByLibrary.simpleMessage("Тазалау"),
         "clickPlay":
             MessageLookupByLibrary.simpleMessage("Ойнату батырмасын басыңыз"),
@@ -44,7 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorite": MessageLookupByLibrary.simpleMessage("Таңдаулар"),
         "holdTwoFingerToChangeVolume": MessageLookupByLibrary.simpleMessage(
             "Сөйлеу дыбысын реттеу үшін екі саусақпен ұстап, жоғары немесе төмен жүргізіңіз"),
-        "interaction": MessageLookupByLibrary.simpleMessage("Взаимодействие"),
+        "interaction": MessageLookupByLibrary.simpleMessage("Өзара әрекеттесу"),
         "iseke": MessageLookupByLibrary.simpleMessage("Исеке"),
         "kazakh": MessageLookupByLibrary.simpleMessage("Қазақша"),
         "keepContinue": MessageLookupByLibrary.simpleMessage("Жалғастыру"),
@@ -64,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "AizereVoice өшіру немесе қосу үшін үш саусақпен түртіңіз"),
         "raya": MessageLookupByLibrary.simpleMessage("Рая"),
         "russian": MessageLookupByLibrary.simpleMessage("Русский"),
+        "search": MessageLookupByLibrary.simpleMessage("Іздеу"),
+        "searchHistory": MessageLookupByLibrary.simpleMessage("Іздеу тарихы"),
         "selectDesiredText":
             MessageLookupByLibrary.simpleMessage("Қажетті мәтінді таңдаңыз"),
         "selectLanguage":

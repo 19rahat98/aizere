@@ -7,7 +7,7 @@ import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/language_logic/data/models/language.dart';
 import 'package:aizere_app/feature/language_logic/presentation/cubit/local_language_cubit.dart';
 import 'package:aizere_app/feature/settings/choose_local/presentation/cubit/setting_app_local_cubit.dart';
-import 'package:aizere_app/feature/settings/select_speaker/presentation/ui/choose_speaker.dart';
+import 'package:aizere_app/feature/settings/voice_assistant/presentation/ui/voice_assistant.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -166,7 +166,7 @@ class _ChooseLocaleState extends State<ChooseLocaleScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => const ChooseSpeaker(),
+              builder: (_) => const VoiceAssistant(),
             ),
           );
         },

@@ -29,7 +29,7 @@
   "specialFeature": "Специальные возможности",
   "language": "Язык",
   "speakers": "Спикеры",
-  "aizere": "Aizere",
+  "aizere": "Айзере",
   "playbackSpeed": "Скорость воспроизведения",
   "yourText": "Ваш текст",
   "usual": "Обычная",
@@ -38,6 +38,16 @@
   "paste": "Вставить",
   "clear": "Очистить",
   "myFavorites": "Мои избранные",
+  "search": "Поиск",
+  "searchHistory": "История поиска",
+  "classOf": "{value} класс",
+  "@classOf": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
 
   "pressThreeFingerToAizereVoice": "Коснитесь тремя пальцами для выключения или включения функции AizereVoice",
   "holdTwoFingerToChangeVolume": "Зажмите двумя пальцами и проведите вверх или вниз для регулировки громкости речи",

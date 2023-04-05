@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(value) => "${value} класс";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aizere": MessageLookupByLibrary.simpleMessage("Aizere"),
@@ -34,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите спикера"),
         "chooseVoiceSpeaker": MessageLookupByLibrary.simpleMessage(
             "Выбрать спикера, чтобы можно было воспроизвести аудио голосом опреденного спикера"),
+        "classOf": m0,
         "clear": MessageLookupByLibrary.simpleMessage("Очистить"),
         "clickPlay":
             MessageLookupByLibrary.simpleMessage("Нажмите воспроизвести"),
@@ -63,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Коснитесь тремя пальцами для выключения или включения функции AizereVoice"),
         "raya": MessageLookupByLibrary.simpleMessage("Рая"),
         "russian": MessageLookupByLibrary.simpleMessage("Русский"),
+        "search": MessageLookupByLibrary.simpleMessage("Поиск"),
+        "searchHistory": MessageLookupByLibrary.simpleMessage("История поиска"),
         "selectDesiredText":
             MessageLookupByLibrary.simpleMessage("Выбрать нужный текст"),
         "selectLanguage": MessageLookupByLibrary.simpleMessage("Выберите язык"),

@@ -1,5 +1,4 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
-import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -29,34 +28,30 @@ class SynthesisTextField extends StatelessWidget {
           color: AppColors.monoGrey,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Column(
+        child: Stack(
+          fit: StackFit.expand,
           children: [
-            Expanded(
-              child: TextField(
-                enabled: canEdit,
-                controller: controller,
-                style: AppTextStyle.body,
-                maxLines: null,
-                decoration: InputDecoration(
-                  isDense: true,
-                  border: InputBorder.none,
-                  counterText: GlobalConstant.empty,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  hintText: context.l10n.yourText,
-                  hintStyle: AppTextStyle.body.copyWith(
-                    color: AppColors.monoGrey1,
-                  ),
+            TextField(
+              enabled: canEdit,
+              controller: controller,
+              style: AppTextStyle.body,
+              maxLines: null,
+              decoration: InputDecoration(
+                isDense: true,
+                border: InputBorder.none,
+                counterText: GlobalConstant.empty,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                hintText: context.l10n.yourText,
+                hintStyle: AppTextStyle.body.copyWith(
+                  color: AppColors.monoGrey1,
                 ),
               ),
             ),
             if (controller.text.isNotEmpty) ...[
-              const HBox(
-                height: 8,
-              ),
               Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.bottomRight,
                 child: Material(
                   color: Colors.transparent,
                   child: IconButton(
@@ -68,7 +63,7 @@ class SynthesisTextField extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ],
         ),

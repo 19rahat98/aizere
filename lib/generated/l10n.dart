@@ -430,6 +430,36 @@ class S {
     );
   }
 
+  /// `Поиск`
+  String get search {
+    return Intl.message(
+      'Поиск',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `История поиска`
+  String get searchHistory {
+    return Intl.message(
+      'История поиска',
+      name: 'searchHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{value} класс`
+  String classOf(int value) {
+    return Intl.message(
+      '$value класс',
+      name: 'classOf',
+      desc: '',
+      args: [value],
+    );
+  }
+
   /// `Коснитесь тремя пальцами для выключения или включения функции AizereVoice`
   String get pressThreeFingerToAizereVoice {
     return Intl.message(

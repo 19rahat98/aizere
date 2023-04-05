@@ -148,9 +148,9 @@ class SpeechCubit extends Cubit<SpeechState> {
         playerState: 2,
       ),
     );
-    final requestBytes = await doRequest(text, speaker: _speakerId);
 
     try {
+      final requestBytes = await doRequest(text, speaker: _speakerId);
       var tempDir = Platform.isIOS
           ? await getApplicationDocumentsDirectory()
           : await getExternalStorageDirectory();

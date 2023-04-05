@@ -104,7 +104,7 @@ class _ChooseSpeakerState extends State<ChooseSpeakerScreen> {
                               child: SpeakerGrid(
                                 onTap: () => _cubit.changeSpeakerId(0),
                                 isSelected: isRaya,
-                                name: context.l10n.raya,
+                                name: context.l10n.aizere,
                                 imageName: AppImages.icRaya,
                               ),
                             ),
