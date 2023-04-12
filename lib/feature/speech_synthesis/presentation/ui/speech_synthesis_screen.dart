@@ -121,135 +121,148 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
                     bottom: 10,
                   ),
                   color: Colors.white,
-                  child: Column(
-                    children: [
-                      SynthesisTextField(
-                        canEdit: !state.isLoading,
-                        onClear: () {
-                          _cubit.stopAudio();
-                          _textController.clear();
-                        },
-                        controller: _textController,
-                      ),
-                      SynthesisPlaybackLine(
-                        totalDuration: state.totalTime,
-                        initialPosition: state.initialTime,
-                      ),
-                      const HBox(),
-                      buildButton(
-                        state,
-                        isConstrain: state.isContain,
-                        favList: favState.list,
-                      ),
-                      const HBox(
-                        height: 30,
-                      ),
-                      Text(
-                        context.l10n.playbackSpeed,
-                        style: AppTextStyle.regular.copyWith(
-                          color: AppColors.black,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onPanDown: (_) {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    },
+                    child: Column(
+                      children: [
+                        SynthesisTextField(
+                          onTap: () {
+                            FocusScope.of(context).unfocus();
+                            _cubit.downloadRequisites(
+                              _textController.text,
+                              favState.list,
+                            );
+                          },
+                          canEdit: !state.isLoading,
+                          onClear: () {
+                            _cubit.stopAudio();
+                            _textController.clear();
+                          },
+                          controller: _textController,
                         ),
-                      ),
-                      const HBox(
-                        height: 12,
-                      ),
-                      Row(
-                        children: [
-                          Flexible(
-                            child: AppTextButton(
-                              onTap: () => _cubit.setSpeed(0.25),
-                              text: '0.25',
+                        SynthesisPlaybackLine(
+                          totalDuration: state.totalTime,
+                          initialPosition: state.initialTime,
+                        ),
+                        const HBox(),
+                        buildButton(
+                          state,
+                          isConstrain: state.isContain,
+                          favList: favState.list,
+                        ),
+                        const HBox(
+                          height: 30,
+                        ),
+                        Text(
+                          context.l10n.playbackSpeed,
+                          style: AppTextStyle.regular.copyWith(
+                            color: AppColors.black,
+                          ),
+                        ),
+                        const HBox(
+                          height: 12,
+                        ),
+                        Row(
+                          children: [
+                            Flexible(
+                              child: AppTextButton(
+                                onTap: () => _cubit.setSpeed(0.25),
+                                text: '0.25',
+                                isCenter: false,
+                                style: speed == 0.25
+                                    ? AppTextStyle.light.copyWith(
+                                        color: AppColors.mainBlue,
+                                        fontWeight: FontWeight.w600,
+                                      )
+                                    : AppTextStyle.light,
+                              ),
+                            ),
+                            Flexible(
+                              child: AppTextButton(
+                                onTap: () => _cubit.setSpeed(0.5),
+                                text: '0.5',
+                                isCenter: false,
+                                style: speed == 0.5
+                                    ? AppTextStyle.light.copyWith(
+                                        color: AppColors.mainBlue,
+                                        fontWeight: FontWeight.w600,
+                                      )
+                                    : AppTextStyle.light,
+                              ),
+                            ),
+                            Flexible(
+                              child: AppTextButton(
+                                onTap: () => _cubit.setSpeed(0.75),
+                                text: '0.75',
+                                isCenter: false,
+                                style: speed == 0.75
+                                    ? AppTextStyle.light.copyWith(
+                                        color: AppColors.mainBlue,
+                                        fontWeight: FontWeight.w600,
+                                      )
+                                    : AppTextStyle.light,
+                              ),
+                            ),
+                            AppTextButton(
+                              onTap: () => _cubit.setSpeed(1),
                               isCenter: false,
-                              style: speed == 0.25
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              text: context.l10n.usual,
+                              style: speed == 1
                                   ? AppTextStyle.light.copyWith(
                                       color: AppColors.mainBlue,
                                       fontWeight: FontWeight.w600,
                                     )
                                   : AppTextStyle.light,
                             ),
-                          ),
-                          Flexible(
-                            child: AppTextButton(
-                              onTap: () => _cubit.setSpeed(0.5),
-                              text: '0.5',
-                              isCenter: false,
-                              style: speed == 0.5
-                                  ? AppTextStyle.light.copyWith(
-                                      color: AppColors.mainBlue,
-                                      fontWeight: FontWeight.w600,
-                                    )
-                                  : AppTextStyle.light,
+                            Flexible(
+                              child: AppTextButton(
+                                onTap: () => _cubit.setSpeed(1.25),
+                                text: '1.25',
+                                isCenter: false,
+                                style: speed == 1.25
+                                    ? AppTextStyle.light.copyWith(
+                                        color: AppColors.mainBlue,
+                                        fontWeight: FontWeight.w600,
+                                      )
+                                    : AppTextStyle.light,
+                              ),
                             ),
-                          ),
-                          Flexible(
-                            child: AppTextButton(
-                              onTap: () => _cubit.setSpeed(0.75),
-                              text: '0.75',
-                              isCenter: false,
-                              style: speed == 0.75
-                                  ? AppTextStyle.light.copyWith(
-                                      color: AppColors.mainBlue,
-                                      fontWeight: FontWeight.w600,
-                                    )
-                                  : AppTextStyle.light,
+                            Flexible(
+                              child: AppTextButton(
+                                onTap: () => _cubit.setSpeed(1.5),
+                                text: '1.5',
+                                isCenter: false,
+                                style: speed == 1.5
+                                    ? AppTextStyle.light.copyWith(
+                                        color: AppColors.mainBlue,
+                                        fontWeight: FontWeight.w600,
+                                      )
+                                    : AppTextStyle.light,
+                              ),
                             ),
-                          ),
-                          AppTextButton(
-                            onTap: () => _cubit.setSpeed(1),
-                            isCenter: false,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
+                            Flexible(
+                              child: AppTextButton(
+                                onTap: () => _cubit.setSpeed(1.75),
+                                text: '1.75',
+                                isCenter: false,
+                                style: speed == 1.75
+                                    ? AppTextStyle.light.copyWith(
+                                        color: AppColors.mainBlue,
+                                        fontWeight: FontWeight.w600,
+                                      )
+                                    : AppTextStyle.light,
+                              ),
                             ),
-                            text: context.l10n.usual,
-                            style: speed == 1
-                                ? AppTextStyle.light.copyWith(
-                                    color: AppColors.mainBlue,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                : AppTextStyle.light,
-                          ),
-                          Flexible(
-                            child: AppTextButton(
-                              onTap: () => _cubit.setSpeed(1.25),
-                              text: '1.25',
-                              isCenter: false,
-                              style: speed == 1.25
-                                  ? AppTextStyle.light.copyWith(
-                                      color: AppColors.mainBlue,
-                                      fontWeight: FontWeight.w600,
-                                    )
-                                  : AppTextStyle.light,
-                            ),
-                          ),
-                          Flexible(
-                            child: AppTextButton(
-                              onTap: () => _cubit.setSpeed(1.5),
-                              text: '1.5',
-                              isCenter: false,
-                              style: speed == 1.5
-                                  ? AppTextStyle.light.copyWith(
-                                      color: AppColors.mainBlue,
-                                      fontWeight: FontWeight.w600,
-                                    )
-                                  : AppTextStyle.light,
-                            ),
-                          ),
-                          Flexible(
-                            child: AppTextButton(
-                              onTap: () => _cubit.setSpeed(1.75),
-                              text: '1.75',
-                              isCenter: false,
-                              style: speed == 1.75
-                                  ? AppTextStyle.light.copyWith(
-                                      color: AppColors.mainBlue,
-                                      fontWeight: FontWeight.w600,
-                                    )
-                                  : AppTextStyle.light,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }

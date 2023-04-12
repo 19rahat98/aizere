@@ -9,11 +9,13 @@ class SynthesisTextField extends StatelessWidget {
     Key? key,
     this.onClear,
     this.canEdit = true,
+    this.onTap,
     required this.controller,
   }) : super(key: key);
 
   final bool canEdit;
   final Function()? onClear;
+  final Function()? onTap;
   final TextEditingController controller;
 
   @override
