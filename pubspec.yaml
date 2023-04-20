@@ -29,6 +29,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  flutter_persistent_keyboard_height: ^1.0.5
 
 dev_dependencies:
   flutter_test:

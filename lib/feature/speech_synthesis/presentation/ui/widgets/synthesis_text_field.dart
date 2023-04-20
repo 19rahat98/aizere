@@ -1,10 +1,11 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
+import 'package:aizere_app/common/widgets/app_keyboard_overlay.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SynthesisTextField extends StatelessWidget {
+class SynthesisTextField extends StatefulWidget {
   const SynthesisTextField({
     Key? key,
     this.onClear,
@@ -17,6 +18,35 @@ class SynthesisTextField extends StatelessWidget {
   final Function()? onClear;
   final Function()? onTap;
   final TextEditingController controller;
+
+  @override
+  State<SynthesisTextField> createState() => _SynthesisTextFieldState();
+}
+
+class _SynthesisTextFieldState extends State<SynthesisTextField> {
+  FocusNode textFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    textFocusNode.addListener(() {
+      bool hasFocus = textFocusNode.hasFocus;
+      if (hasFocus) {
+        AppKeyboardOverlay.showOverlay(
+          context,
+          onTap: widget.onTap,
+        );
+      } else {
+        AppKeyboardOverlay.removeOverlay();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    textFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +64,11 @@ class SynthesisTextField extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             TextField(
-              enabled: canEdit,
-              controller: controller,
+              enabled: widget.canEdit,
+              controller: widget.controller,
               style: AppTextStyle.body,
               maxLines: null,
+              focusNode: textFocusNode,
               decoration: InputDecoration(
                 isDense: true,
                 border: InputBorder.none,
@@ -51,14 +82,14 @@ class SynthesisTextField extends StatelessWidget {
                 ),
               ),
             ),
-            if (controller.text.isNotEmpty) ...[
+            if (widget.controller.text.isNotEmpty) ...[
               Align(
                 alignment: Alignment.bottomRight,
                 child: Material(
                   color: Colors.transparent,
                   child: IconButton(
                     splashRadius: 100,
-                    onPressed: onClear,
+                    onPressed: widget.onClear,
                     constraints: const BoxConstraints(),
                     icon: SvgPicture.asset(
                       AppIcons.icTrash,

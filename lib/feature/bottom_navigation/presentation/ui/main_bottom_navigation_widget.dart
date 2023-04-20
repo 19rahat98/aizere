@@ -128,6 +128,7 @@ class _MainBottomBarWidgetState extends State<MainBottomBarWidget> {
         selectedTabScreenContext: (context) {},
         navBarHeight: 60,
         resizeToAvoidBottomInset: true,
+        hideNavigationBarWhenKeyboardShows: false,
         backgroundColor: Colors.white.withOpacity(0.94),
         decoration: NavBarDecoration(
           border: Border.all(

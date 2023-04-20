@@ -68,11 +68,11 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      bottom: false,
+      bottom: true,
       backGround: AppColors.black,
       appBar: AppBar(
         backgroundColor: AppColors.black,
-        automaticallyImplyLeading: widget.text.isNotEmpty ? true: false,
+        automaticallyImplyLeading: widget.text.isNotEmpty ? true : false,
         title: SvgPicture.asset(
           AppIcons.icLogo,
           height: 24,
@@ -130,7 +130,7 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
                       children: [
                         SynthesisTextField(
                           onTap: () {
-                            FocusScope.of(context).unfocus();
+                            FocusScope.of(context).requestFocus(FocusNode());
                             _cubit.downloadRequisites(
                               _textController.text,
                               favState.list,
