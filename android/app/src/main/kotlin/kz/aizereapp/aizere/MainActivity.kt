@@ -1,4 +1,4 @@
-package com.example.aizere_app
+package kz.aizereapp.aizere
 
 import io.flutter.embedding.android.FlutterActivity
 

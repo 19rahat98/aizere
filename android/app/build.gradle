@@ -44,7 +44,7 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.example.aizere_app"
+        applicationId "kz.aizereapp.aizere"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
