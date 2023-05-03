@@ -17,6 +17,7 @@ class GlobalConstant {
   static const int oneInt = 1;
   static const String positiveValue = '+';
   static const String negativeValue = '-';
+  static const int negative = -1;
   static const List<dynamic> emptyList = [];
 
   static const defaultLat = 43.23;

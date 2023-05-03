@@ -8,4 +8,6 @@ class GlobalNetworkConstant {
   static const unauthorized = 'unauthorized';
 
   static const notFoundStatus = 404;
+
+  static const socketException = "SocketException";
 }
