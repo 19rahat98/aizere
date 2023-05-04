@@ -10,6 +10,7 @@ import 'package:aizere_app/di/di_locator.dart' as di_locator;
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_persistent_keyboard_height/flutter_persistent_keyboard_height.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         builder: (context, localLanguageState) {
           if (localLanguageState is LanguageLoaded) {
             return MaterialApp(
+              useInheritedMediaQuery: false,
               title: GlobalConstant.appName,
               theme: AppTheme.defaultTheme,
               localizationsDelegates: const [
@@ -58,6 +60,10 @@ class MyApp extends StatelessWidget {
               locale: localLanguageState.locale,
               supportedLocales: AppLocalizations.supportedLocales,
               home: const LaunchAppPage(),
+              // персистент нав бардан кин MediaQuery.of(context).viewInsets.bottom стеми калад, выглядит иронично но решение тоже персистент фигня хахаха
+              builder: (context, child) => PersistentKeyboardHeightProvider(
+                child: child!,
+              ),
             );
           }
 

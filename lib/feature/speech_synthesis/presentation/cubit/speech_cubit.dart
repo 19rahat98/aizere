@@ -189,7 +189,8 @@ class SpeechCubit extends Cubit<SpeechState> {
   Future<Uint8List> doRequest(String text, {int? speaker}) async {
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse('http://20.121.195.17:5000/tts'),
+      //Uri.parse('http://20.121.195.17:5000/tts'),
+      Uri.parse("https://aizere.azure-api.net/old/tts"),
     );
     request.fields.addAll(
       {
@@ -204,7 +205,7 @@ class SpeechCubit extends Cubit<SpeechState> {
     return response.bodyBytes;
   }
 
-  void removeFavoriteState (value) {
+  void removeFavoriteState(value) {
     final state = getCommonState();
     emit(state.copyWith(
       isContain: value,

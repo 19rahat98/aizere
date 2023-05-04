@@ -12,6 +12,7 @@ import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cu
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_playback_line.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_text_field.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,11 +69,11 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      bottom: false,
+      bottom: true,
       backGround: AppColors.black,
       appBar: AppBar(
         backgroundColor: AppColors.black,
-        automaticallyImplyLeading: widget.text.isNotEmpty ? true: false,
+        automaticallyImplyLeading: widget.text.isNotEmpty ? true : false,
         title: SvgPicture.asset(
           AppIcons.icLogo,
           height: 24,
@@ -123,14 +124,14 @@ class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
                   color: Colors.white,
                   child: GestureDetector(
                     behavior: HitTestBehavior.opaque,
-                    onPanDown: (_) {
+                    onVerticalDragDown: (_) {
                       FocusScope.of(context).requestFocus(FocusNode());
                     },
                     child: Column(
                       children: [
                         SynthesisTextField(
                           onTap: () {
-                            FocusScope.of(context).unfocus();
+                            FocusScope.of(context).requestFocus(FocusNode());
                             _cubit.downloadRequisites(
                               _textController.text,
                               favState.list,
