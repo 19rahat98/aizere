@@ -2,7 +2,7 @@ name: aizere_app
 description: Aizere
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 2.0.7+8
+version: 2.0.8+9
 
 environment:
   sdk: '>=2.19.4 <3.0.0'
@@ -28,16 +28,14 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.1
+  flutter_persistent_keyboard_height: ^1.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-
-flutter_intl:
-  enabled: true
 
 flutter_icons:
   android: "launcher_icon"
