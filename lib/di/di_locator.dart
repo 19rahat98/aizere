@@ -1,10 +1,15 @@
 // ignore_for_file: cascade_invocations
 
+import 'package:aizere_app/common/constants/global_dio_constant.dart';
+import 'package:aizere_app/common/network/api_service.dart';
+import 'package:aizere_app/common/network/core_network.dart';
 import 'package:aizere_app/di/local_storage_servic.dart';
 import 'package:aizere_app/feature/favorites/data/pref/favorite_global_data_source.dart';
 import 'package:aizere_app/feature/favorites/data/repository/favorites_global_repository.dart';
 import 'package:aizere_app/feature/language_logic/data/repositories/language_logic_repository_impl.dart';
 import 'package:aizere_app/feature/language_logic/domain/usecase/get_default_language_code_use_case.dart';
+import 'package:aizere_app/feature/library/data/repository/library_repository.dart';
+import 'package:aizere_app/feature/library/domain/use_case/get_class_lib_use_case.dart';
 import 'package:aizere_app/feature/onboarding/data/pref/onboarding_global_data_source.dart';
 import 'package:aizere_app/feature/onboarding/data/repository/global_settings_repositpry.dart';
 import 'package:aizere_app/feature/onboarding/data/repository/onboarding_launcher_global_repository.dart';
@@ -46,6 +51,18 @@ Future _localStorageModule() async {
 
 Future _apiServiceModule() async {
   //sl.registerLazySingleton(() => NetworkCall());
+  sl.registerSingletonAsync(
+    () => createHttpClient(GlobalDioConstant.apiBaseUrl),
+    instanceName: GlobalDioConstant.authorized,
+  );
+
+  sl.registerSingleton(
+    ApiService(
+      sl.getAsync(
+        instanceName: GlobalDioConstant.authorized,
+      ),
+    ),
+  );
 }
 
 /// для локального хранения данных
@@ -68,6 +85,7 @@ void _repositoryModule() {
   sl.registerFactory(() => CoreGlobalSpeakerSpeedRepository());
   sl.registerFactory(() => CoreGlobalSettingLauncherRepository());
   sl.registerFactory(() => CoreGlobalFavoritesRepository());
+  sl.registerFactory(() => LibraryRepository());
 }
 
 void _useCaseModule() async {
@@ -76,4 +94,5 @@ void _useCaseModule() async {
   sl.registerFactory(GlobalMakeSettingApplicationUseCase.new);
   sl.registerFactory(GlobalRegisterConfigureAppUseCase.new);
   sl.registerFactory(GetDefaultLanguageCode.new);
+  sl.registerFactory(GetClassLibraryUseCase.new);
 }
