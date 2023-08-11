@@ -16,30 +16,33 @@ class SuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            /// Сомнительное решение, пока не придумал ничего лучше
-            SizedBox(height: MediaQuery.of(context).size.height / 6),
-            SvgPicture.asset(AppIcons.icSuccess),
-            30.h,
-            AppTitleWidget(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          /// Сомнительное решение, пока не придумал ничего лучше
+          SizedBox(height: MediaQuery.of(context).size.height / 6),
+          SvgPicture.asset(AppIcons.icSuccess),
+          30.h,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: AppTitleWidget(
                 title: 'Поздравляем, Жанибек!',
                 text: isNewPassword!
                     ? 'Новый пароль для входа доступа к вашему аккаунту создан.'
                     : 'Доступные вам функционалы уже готовы к использованию. Начните задавать вопросы AIzere.'),
+          ),
 
-            const Spacer(),
-            AppButton(
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+            child: AppButton(
               text: 'Завершить',
               onPressed: () {
                 context.router.replace(SpeechSynthesisBuildRoute());
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
