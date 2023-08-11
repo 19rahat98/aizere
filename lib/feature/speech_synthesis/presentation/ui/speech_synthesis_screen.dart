@@ -12,14 +12,15 @@ import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cu
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_playback_line.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_text_field.dart';
 import 'package:aizere_app/l10n/l10n.dart';
-import 'package:flutter/gestures.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SpeechSynthesisBuild extends StatelessWidget {
-  const SpeechSynthesisBuild({
+@RoutePage()
+class SpeechSynthesisBuildScreen extends StatelessWidget {
+  const SpeechSynthesisBuildScreen({
     Key? key,
     this.text = GlobalConstant.empty,
   }) : super(key: key);
@@ -30,15 +31,15 @@ class SpeechSynthesisBuild extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SpeechCubit>(
       create: (_) => SpeechCubit()..initCubit(),
-      child: SpeechSynthesisScreen(
+      child: SpeechSynthesis(
         text: text,
       ),
     );
   }
 }
 
-class SpeechSynthesisScreen extends StatefulWidget {
-  const SpeechSynthesisScreen({
+class SpeechSynthesis extends StatefulWidget {
+  const SpeechSynthesis({
     Key? key,
     required this.text,
   }) : super(key: key);
@@ -46,10 +47,10 @@ class SpeechSynthesisScreen extends StatefulWidget {
   final String text;
 
   @override
-  State<SpeechSynthesisScreen> createState() => _SpeechSynthesisScreenState();
+  State<SpeechSynthesis> createState() => _SpeechSynthesisState();
 }
 
-class _SpeechSynthesisScreenState extends State<SpeechSynthesisScreen> {
+class _SpeechSynthesisState extends State<SpeechSynthesis> {
   late SpeechCubit _cubit;
 
   late TextEditingController _textController;
