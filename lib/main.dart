@@ -65,7 +65,6 @@ class MyApp extends StatelessWidget {
               locale: localLanguageState.locale,
               supportedLocales: AppLocalizations.supportedLocales,
               home: const LaunchAppPage(),
-              // персистент нав бардан кин MediaQuery.of(context).viewInsets.bottom стеми калад, выглядит иронично но решение тоже персистент фигня хахаха
               builder: (context, child) => PersistentKeyboardHeightProvider(
                 child: child!,
               ),
