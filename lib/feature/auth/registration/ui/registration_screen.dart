@@ -1,4 +1,3 @@
-import 'package:aizere_app/common/constants/global_file_extension_constant.dart';
 import 'package:aizere_app/common/widgets/app_button.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
@@ -25,19 +24,19 @@ class RegistrationScreen extends StatelessWidget {
                 title: 'Регистрация',
                 text:
                     'Заполните все поля ниже, чтобы пользоваться функциями сервиса'),
-            40.h,
+            const SizedBox(height: 40,),
             const AppTextField(
               title: 'Имя',
             ),
-            24.h,
+            const SizedBox(height: 24,),
             const AppTextField(
               title: 'Номер телефона',
             ),
-            24.h,
+            const SizedBox(height: 24,),
             const AppTextField(
               title: 'Пароль',
             ),
-            32.h,
+            const SizedBox(height: 32,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

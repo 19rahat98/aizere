@@ -1,4 +1,3 @@
-import 'package:aizere_app/common/constants/global_file_extension_constant.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +16,7 @@ class AppTextField extends StatelessWidget {
           child: Text.rich(
             TextSpan(
               children: [
-                 TextSpan(text: title ?? '', style: AppTextStyle.w400s16),
+                TextSpan(text: title ?? '', style: AppTextStyle.w400s16),
                 TextSpan(
                   text: '*',
                   style:
@@ -27,7 +26,9 @@ class AppTextField extends StatelessWidget {
             ),
           ),
         ),
-        10.h,
+        const SizedBox(
+          height: 10,
+        ),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),

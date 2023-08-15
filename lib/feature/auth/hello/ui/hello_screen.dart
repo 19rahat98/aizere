@@ -1,12 +1,9 @@
-import 'package:aizere_app/common/constants/global_file_extension_constant.dart';
 import 'package:aizere_app/common/widgets/app_button.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/auth/hello/ui/widgets/hello_icons.dart';
 import 'package:aizere_app/router/router.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -23,7 +20,7 @@ class HelloScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Center(child: HelloIcons()),
-            30.h,
+            const SizedBox(height: 30,),
             const AppTitleWidget(
               title: 'Добро пожаловать в AIzere!',
               text:
@@ -35,7 +32,7 @@ class HelloScreen extends StatelessWidget {
                 onPressed: () {
                   context.router.push(const RegistrationRoute());
                 }),
-            20.h,
+            const SizedBox(height: 20,),
             AppButton(
               text: 'Вход',
               color: AppColors.ffABB0BC,

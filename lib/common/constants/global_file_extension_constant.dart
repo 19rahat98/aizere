@@ -6,8 +6,3 @@ class GlobalExtensionFileConstant {
   static const mp3 = ".mp3";
 }
 
-extension SizedBoxExtension on int {
-  SizedBox get h => SizedBox(height: toDouble());
-
-  SizedBox get w => SizedBox(width: toDouble());
-}

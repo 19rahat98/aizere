@@ -1,5 +1,5 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
-import 'package:aizere_app/feature/auth/confirmation/ui/confirmation_screen.dart';
+import 'package:aizere_app/feature/auth/confirmation/presentation/ui/confirmation_screen.dart';
 import 'package:aizere_app/feature/auth/forgot/ui/forgot_password_screen.dart';
 import 'package:aizere_app/feature/auth/hello/ui/hello_screen.dart';
 import 'package:aizere_app/feature/auth/new_password/ui/new_password_screen.dart';

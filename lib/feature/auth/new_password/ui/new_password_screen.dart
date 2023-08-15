@@ -1,10 +1,8 @@
-import 'package:aizere_app/common/constants/global_file_extension_constant.dart';
 import 'package:aizere_app/common/widgets/app_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/router/router.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -25,15 +23,15 @@ class NewPasswordScreen extends StatelessWidget {
                 title: 'Новый пароль',
                 text:
                     'Придумайте новый пароль для входа доступа вашего аккаунта'),
-            40.h,
+            const SizedBox(height: 40,),
             const AppTextField(
               title: 'Новый пароль',
             ),
-            24.h,
+            const SizedBox(height: 24,),
             const AppTextField(
               title: 'Повторить новый пароль',
             ),
-            32.h,
+            const SizedBox(height: 32,),
             const Spacer(),
             AppButton(
               text: 'Восстановить',
@@ -41,7 +39,7 @@ class NewPasswordScreen extends StatelessWidget {
                 context.router.replace(SuccessRoute(isNewPassword: true));
               },
             ),
-            20.h,
+            const SizedBox(height: 24,),
             AppButton(
               text: 'Отменить',
               color: Colors.transparent,

@@ -1,4 +1,3 @@
-import 'package:aizere_app/common/constants/global_file_extension_constant.dart';
 import 'package:aizere_app/common/widgets/app_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
@@ -23,7 +22,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 title: 'Забыли пароль?',
                 text:
                     'Заполните все поля ниже, чтобы восстановить доступ к аккаунту.'),
-            40.h,
+            const SizedBox(height: 40,),
             const AppTextField(
               title: 'Номер телефона',
             ),

@@ -1,4 +1,3 @@
-import 'package:aizere_app/common/constants/global_file_extension_constant.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
@@ -25,15 +24,15 @@ class SignInScreen extends StatelessWidget {
             const AppTitleWidget(
                 title: 'Авторизация',
                 text: 'Заполните все поля ниже, чтобы войти в систему сервиса'),
-            40.h,
+            const SizedBox(height: 40,),
             const AppTextField(
               title: 'Номер телефона',
             ),
-            24.h,
+            const SizedBox(height: 24,),
             const AppTextField(
               title: 'Пароль',
             ),
-            32.h,
+            const SizedBox(height: 32,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -58,7 +57,7 @@ class SignInScreen extends StatelessWidget {
                 context.router.replace(SpeechSynthesisBuildRoute());
               },
             ),
-            20.h,
+            const SizedBox(height: 20,),
             AppButton(
               text: 'Забыли пароль?',
               color: Colors.transparent,

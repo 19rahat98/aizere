@@ -1,4 +1,3 @@
-import 'package:aizere_app/common/constants/global_file_extension_constant.dart';
 import 'package:aizere_app/common/widgets/app_button.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
@@ -19,10 +18,9 @@ class SuccessScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          /// Сомнительное решение, пока не придумал ничего лучше
           SizedBox(height: MediaQuery.of(context).size.height / 6),
           SvgPicture.asset(AppIcons.icSuccess),
-          30.h,
+          const SizedBox(height: 30,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: AppTitleWidget(
