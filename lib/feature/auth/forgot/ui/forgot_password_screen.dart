@@ -28,10 +28,11 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             const Spacer(),
             AppButton(
-              text: 'Отправить код',
               onPressed: () {
                 context.router.replace(ConfirmationRoute(isForgotPass: true));
               },
+              text: 'Отправить код',
+
             ),
           ],
         ),

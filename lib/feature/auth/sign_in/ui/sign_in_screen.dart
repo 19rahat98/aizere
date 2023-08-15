@@ -41,30 +41,33 @@ class SignInScreen extends StatelessWidget {
                   style: AppTextStyle.w600s17,
                 ),
                 AppTextButton(
-                  text: 'Регистрация',
-                  style:
-                      AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
                   onTap: () {
                     context.router.replace(const RegistrationRoute());
                   },
+                  text: 'Регистрация',
+                  style:
+                      AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
+
                 ),
               ],
             ),
             const Spacer(),
             AppButton(
-              text: 'Войти',
               onPressed: () {
                 context.router.replace(SpeechSynthesisBuildRoute());
               },
+              text: 'Войти',
+
             ),
             const SizedBox(height: 20,),
             AppButton(
-              text: 'Забыли пароль?',
-              color: Colors.transparent,
-              textColor: AppColors.black,
               onPressed: () {
                 context.router.push(const ForgotPasswordRoute());
               },
+              text: 'Забыли пароль?',
+              color: Colors.transparent,
+              textColor: AppColors.black,
+
             ),
           ],
         ),

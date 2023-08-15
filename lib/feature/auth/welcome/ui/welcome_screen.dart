@@ -29,17 +29,19 @@ class WelcomeScreen extends StatelessWidget {
             ),
             const Spacer(),
             AppButton(
+              onPressed: () {
+                context.router.push(const RegistrationRoute());
+              },
                 text: 'Регистрация',
-                onPressed: () {
-                  context.router.push(const RegistrationRoute());
-                }),
+               ),
             const SizedBox(height: 20,),
             AppButton(
-              text: 'Вход',
-              color: AppColors.ffABB0BC,
               onPressed: () {
                 context.router.replace(const SignInRoute());
               },
+              text: 'Вход',
+              color: AppColors.ffABB0BC,
+
             )
           ],
         ),

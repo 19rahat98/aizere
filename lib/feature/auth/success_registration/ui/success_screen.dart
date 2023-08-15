@@ -32,12 +32,14 @@ class SuccessScreen extends StatelessWidget {
 
           const Spacer(),
           Padding(
+
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             child: AppButton(
-              text: 'Завершить',
               onPressed: () {
                 context.router.replace(SpeechSynthesisBuildRoute());
               },
+              text: 'Завершить',
+
             ),
           ),
         ],

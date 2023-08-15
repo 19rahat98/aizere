@@ -45,21 +45,23 @@ class RegistrationScreen extends StatelessWidget {
                   style: AppTextStyle.w600s17,
                 ),
                 AppTextButton(
-                  text: 'Войти',
-                  style:
-                      AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
                   onTap: () {
                     context.router.replace(const SignInRoute());
                   },
+                  text: 'Войти',
+                  style:
+                      AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
+
                 ),
               ],
             ),
             const Spacer(),
             AppButton(
-              text: 'Продолжить',
               onPressed: () {
                 context.router.push(ConfirmationRoute());
               },
+              text: 'Продолжить',
+
             ),
           ],
         ),

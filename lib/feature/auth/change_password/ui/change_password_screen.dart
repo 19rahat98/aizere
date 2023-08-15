@@ -34,19 +34,21 @@ class ChangePasswordScreen extends StatelessWidget {
             const SizedBox(height: 32,),
             const Spacer(),
             AppButton(
-              text: 'Восстановить',
               onPressed: () {
                 context.router.replace(SuccessRoute(isNewPassword: true));
               },
+              text: 'Восстановить',
+
             ),
             const SizedBox(height: 24,),
             AppButton(
-              text: 'Отменить',
-              color: Colors.transparent,
-              textColor: AppColors.black,
               onPressed: () {
                 context.router.pop();
               },
+              text: 'Отменить',
+              color: Colors.transparent,
+              textColor: AppColors.black,
+
             ),
           ],
         ),

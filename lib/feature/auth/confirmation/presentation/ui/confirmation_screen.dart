@@ -58,23 +58,25 @@ class ConfirmationScreen extends StatelessWidget {
               ),
               const Spacer(),
               AppButton(
-                text: 'Продолжить',
                 onPressed: () {
                   isForgotPass!
                       ? context.router.replace(const ChangePasswordRoute())
                       : context.router.replace(SuccessRoute());
                 },
+                text: 'Продолжить',
+
               ),
               const SizedBox(
                 height: 20,
               ),
               AppButton(
-                text: 'Назад',
-                color: Colors.transparent,
-                textColor: AppColors.black,
                 onPressed: () {
                   context.router.pop();
                 },
+                text: 'Назад',
+                color: Colors.transparent,
+                textColor: AppColors.black,
+
               ),
             ],
           ),
