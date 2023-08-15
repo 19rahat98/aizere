@@ -1,7 +1,7 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
+import 'package:aizere_app/feature/auth/change_password/ui/change_password_screen.dart';
 import 'package:aizere_app/feature/auth/confirmation/presentation/ui/confirmation_screen.dart';
 import 'package:aizere_app/feature/auth/forgot/ui/forgot_password_screen.dart';
-import 'package:aizere_app/feature/auth/new_password/ui/new_password_screen.dart';
 import 'package:aizere_app/feature/auth/registration/ui/registration_screen.dart';
 import 'package:aizere_app/feature/auth/sign_in/ui/sign_in_screen.dart';
 import 'package:aizere_app/feature/auth/success_registration/ui/success_screen.dart';
@@ -29,7 +29,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SuccessRoute.page),
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: ForgotPasswordRoute.page),
-        AutoRoute(page: NewPasswordRoute.page),
+        AutoRoute(page: ChangePasswordRoute.page),
 
         AutoRoute(
           page: MainBottomNavigationRoute.page,

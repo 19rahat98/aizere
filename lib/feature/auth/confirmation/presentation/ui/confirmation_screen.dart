@@ -61,7 +61,7 @@ class ConfirmationScreen extends StatelessWidget {
                 text: 'Продолжить',
                 onPressed: () {
                   isForgotPass!
-                      ? context.router.replace(const NewPasswordRoute())
+                      ? context.router.replace(const ChangePasswordRoute())
                       : context.router.replace(SuccessRoute());
                 },
               ),
