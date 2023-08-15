@@ -15,8 +15,6 @@ class ForgotPasswordScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const AppTitleWidget(
                 title: 'Забыли пароль?',
