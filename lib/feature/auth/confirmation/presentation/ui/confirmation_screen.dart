@@ -10,9 +10,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class ConfirmationScreen extends StatelessWidget {
+  const ConfirmationScreen({super.key, this.isForgotPass = false});
+
   final bool? isForgotPass;
 
-  const ConfirmationScreen({super.key, this.isForgotPass = false});
 
   @override
   Widget build(BuildContext context) {

@@ -8,9 +8,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class SuccessScreen extends StatelessWidget {
-  final bool? isNewPassword;
 
   const SuccessScreen({super.key, this.isNewPassword = false});
+
+  final bool? isNewPassword;
+
 
   @override
   Widget build(BuildContext context) {
