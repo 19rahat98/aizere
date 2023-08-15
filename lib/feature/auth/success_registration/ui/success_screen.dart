@@ -8,21 +8,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class SuccessScreen extends StatelessWidget {
-
   const SuccessScreen({super.key, this.isNewPassword = false});
 
   final bool? isNewPassword;
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height / 6),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 6,
+          ),
           SvgPicture.asset(AppIcons.icSuccess),
-          const SizedBox(height: 30,),
+          const SizedBox(
+            height: 30,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: AppTitleWidget(
@@ -31,20 +32,16 @@ class SuccessScreen extends StatelessWidget {
                     ? 'Новый пароль для входа доступа к вашему аккаунту создан.'
                     : 'Доступные вам функционалы уже готовы к использованию. Начните задавать вопросы AIzere.'),
           ),
-
-          const Spacer(),
-          Padding(
-
-            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-            child: AppButton(
-              onPressed: () {
-                context.router.replace(SpeechSynthesisBuildRoute());
-              },
-              text: 'Завершить',
-
-            ),
-          ),
         ],
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+        child: AppButton(
+          onPressed: () {
+            context.router.replace(SpeechSynthesisBuildRoute());
+          },
+          text: 'Завершить',
+        ),
       ),
     );
   }
