@@ -1,4 +1,4 @@
-import 'package:aizere_app/common/widgets/app_button.dart';
+import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
@@ -22,19 +22,27 @@ class RegistrationScreen extends StatelessWidget {
                 title: 'Регистрация',
                 text:
                     'Заполните все поля ниже, чтобы пользоваться функциями сервиса'),
-            const SizedBox(height: 40,),
+            const SizedBox(
+              height: 40,
+            ),
             const AppTextField(
               title: 'Имя',
             ),
-            const SizedBox(height: 24,),
+            const SizedBox(
+              height: 24,
+            ),
             const AppTextField(
               title: 'Номер телефона',
             ),
-            const SizedBox(height: 24,),
+            const SizedBox(
+              height: 24,
+            ),
             const AppTextField(
               title: 'Пароль',
             ),
-            const SizedBox(height: 32,),
+            const SizedBox(
+              height: 32,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -49,18 +57,19 @@ class RegistrationScreen extends StatelessWidget {
                   text: 'Войти',
                   style:
                       AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
-
                 ),
               ],
             ),
             const Spacer(),
-            AppButton(
-              onPressed: () {
+            AppFilledColorButton(
+              onTap: () {
                 context.router.push(ConfirmationRoute());
               },
               text: 'Продолжить',
-
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              color: AppColors.mainBlue,
             ),
+
           ],
         ),
       ),

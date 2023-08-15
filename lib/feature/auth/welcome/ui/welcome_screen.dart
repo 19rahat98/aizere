@@ -1,4 +1,4 @@
-import 'package:aizere_app/common/widgets/app_button.dart';
+import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/router/router.dart';
@@ -19,28 +19,36 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const Center(child: WelcomeIcons()),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             const AppTitleWidget(
               title: 'Добро пожаловать в AIzere!',
               text:
                   'Более миллионов человек уже используют AIzere, чтобы общаться с искусственным интелектом',
             ),
             const Spacer(),
-            AppButton(
-              onPressed: () {
+            AppFilledColorButton(
+              onTap: () {
                 context.router.push(const RegistrationRoute());
               },
-                text: 'Регистрация',
-               ),
-            const SizedBox(height: 20,),
-            AppButton(
-              onPressed: () {
+              color: AppColors.mainBlue,
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+              ),
+              text: 'Регистрация',
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            AppFilledColorButton(
+              onTap: () {
                 context.router.replace(const SignInRoute());
               },
               text: 'Вход',
               color: AppColors.ffABB0BC,
-
-            )
+              padding: const EdgeInsets.symmetric(vertical: 16),
+            ),
           ],
         ),
       ),
