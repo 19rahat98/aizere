@@ -1,11 +1,11 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/feature/auth/confirmation/presentation/ui/confirmation_screen.dart';
 import 'package:aizere_app/feature/auth/forgot/ui/forgot_password_screen.dart';
-import 'package:aizere_app/feature/auth/hello/ui/hello_screen.dart';
 import 'package:aizere_app/feature/auth/new_password/ui/new_password_screen.dart';
 import 'package:aizere_app/feature/auth/registration/ui/registration_screen.dart';
 import 'package:aizere_app/feature/auth/sign_in/ui/sign_in_screen.dart';
 import 'package:aizere_app/feature/auth/success_registration/ui/success_screen.dart';
+import 'package:aizere_app/feature/auth/welcome/ui/welcome_screen.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/ui/main_bottom_navigation_widget.dart';
 import 'package:aizere_app/feature/favorites/presentation/ui/favorites_screen.dart';
 import 'package:aizere_app/feature/library/presentation/ui/library_screen.dart';
@@ -23,7 +23,7 @@ part 'router.gr.dart';
 class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(path: '/auth', page: HelloRoute.page, initial: true),
+        AutoRoute(path: '/auth', page: WelcomeRoute.page, initial: true),
         AutoRoute(page: RegistrationRoute.page),
         AutoRoute(page: ConfirmationRoute.page),
         AutoRoute(page: SuccessRoute.page),

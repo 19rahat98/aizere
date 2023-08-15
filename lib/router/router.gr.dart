@@ -56,12 +56,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ForgotPasswordScreen(),
       );
     },
-    HelloRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HelloScreen(),
-      );
-    },
     LibraryEmptyRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -130,6 +124,12 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           isNewPassword: args.isNewPassword,
         ),
+      );
+    },
+    WelcomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WelcomeScreen(),
       );
     },
   };
@@ -239,20 +239,6 @@ class ForgotPasswordRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ForgotPasswordRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [HelloScreen]
-class HelloRoute extends PageRouteInfo<void> {
-  const HelloRoute({List<PageRouteInfo>? children})
-      : super(
-          HelloRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HelloRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -444,4 +430,18 @@ class SuccessRouteArgs {
   String toString() {
     return 'SuccessRouteArgs{key: $key, isNewPassword: $isNewPassword}';
   }
+}
+
+/// generated route for
+/// [WelcomeScreen]
+class WelcomeRoute extends PageRouteInfo<void> {
+  const WelcomeRoute({List<PageRouteInfo>? children})
+      : super(
+          WelcomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WelcomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

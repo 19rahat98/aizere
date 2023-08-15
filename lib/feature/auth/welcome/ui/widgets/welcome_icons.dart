@@ -2,8 +2,8 @@ import 'package:aizere_app/config/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HelloIcons extends StatelessWidget {
-  const HelloIcons({super.key});
+class WelcomeIcons extends StatelessWidget {
+  const WelcomeIcons({super.key});
 
   @override
   Widget build(BuildContext context) {
