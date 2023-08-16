@@ -247,16 +247,20 @@ class NavigationBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoButton(
-      minSize: 0,
-      onPressed: () => changeIndex(index),
-      child: SvgPicture.asset(
-        icon,
-        width: 50,
-        height: 50,
-        fit: BoxFit.scaleDown,
-        // ignore: deprecated_member_use
-        color: isSelected ? AppColors.mainBlue : AppColors.monoGrey1,
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: InkWell(
+        onTap: () => changeIndex(index),
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        child: SvgPicture.asset(
+          icon,
+          width: 50,
+          height: 50,
+          fit: BoxFit.scaleDown,
+          // ignore: deprecated_member_use
+          color: isSelected ? AppColors.mainBlue : AppColors.monoGrey1,
+        ),
       ),
     );
   }
