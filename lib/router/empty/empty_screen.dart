@@ -25,8 +25,3 @@ class FavoriteEmptyScreen extends AutoRouter {
 class LibraryEmptyScreen extends AutoRouter {
   const LibraryEmptyScreen({Key? key}) : super(key: key);
 }
-
-// @RoutePage()
-// class AuthEmptyScreen extends AutoRouter {
-//   const AuthEmptyScreen({Key? key}) : super(key: key);
-// }

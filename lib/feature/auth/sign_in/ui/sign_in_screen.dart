@@ -7,7 +7,6 @@ import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-
 @RoutePage()
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -16,22 +15,26 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+        padding: const EdgeInsets.symmetric(
+          vertical: 60,
+          horizontal: 20,
+        ),
         child: Column(
           children: [
-            const AppTitleWidget(
-                title: 'Авторизация',
-                text: 'Заполните все поля ниже, чтобы войти в систему сервиса'),
+            const AuthTitleWidget(
+              title: 'Авторизация',
+              text: 'Заполните все поля ниже, чтобы войти в систему сервиса',
+            ),
             const SizedBox(
               height: 40,
             ),
-            const AppTextField(
+            const AuthTextField(
               title: 'Номер телефона',
             ),
             const SizedBox(
               height: 24,
             ),
-            const AppTextField(
+            const AuthTextField(
               title: 'Пароль',
             ),
             const SizedBox(
@@ -46,18 +49,23 @@ class SignInScreen extends StatelessWidget {
                 ),
                 AppTextButton(
                   onTap: () {
-                    context.router.replace(const RegistrationRoute());
+                    context.router.replace(
+                      const RegistrationRoute(),
+                    );
                   },
                   text: 'Регистрация',
-                  style:
-                      AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
+                  style: AppTextStyle.w600s17.copyWith(
+                    color: AppColors.mainBlue,
+                  ),
                 ),
               ],
             ),
             const Spacer(),
             AppFilledColorButton(
               onTap: () {
-                context.router.replace(SpeechSynthesisBuildRoute());
+                context.router.replace(
+                  SpeechSynthesisBuildRoute(),
+                );
               },
               text: 'Войти',
               padding: const EdgeInsets.symmetric(vertical: 16),
@@ -66,16 +74,17 @@ class SignInScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-
-            // AppFilledColorButton(
-            //   onTap: () {
-            //     context.router.push(const ForgotPasswordRoute());
-            //   },
-            //   text: 'Забыли пароль?',
-            //   padding: const EdgeInsets.symmetric(vertical: 16),
-            //   color: Colors.transparent,
-            //   textColor: AppColors.black,
-            // ),
+            TextButton(
+              onPressed: () {
+                context.router.push(const ForgotPasswordRoute());
+              },
+              child: Text(
+                'Забыли пароль?',
+                style: AppTextStyle.w600s17.copyWith(
+                  color: AppColors.black,
+                ),
+              ),
+            ),
           ],
         ),
       ),

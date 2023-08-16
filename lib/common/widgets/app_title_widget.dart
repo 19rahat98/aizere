@@ -1,11 +1,13 @@
 import 'package:aizere_app/config/theme.dart';
 import 'package:flutter/material.dart';
 
-class AppTitleWidget extends StatelessWidget {
+
+/// Виджет нужен исключительно для авторизации, содержит в себе  заглавный текст и обычный.
+class AuthTitleWidget extends StatelessWidget {
   final String title;
   final String text;
 
-  const AppTitleWidget({super.key, required this.title, required this.text});
+  const AuthTitleWidget({super.key, required this.title, required this.text});
 
   @override
   Widget build(BuildContext context) {

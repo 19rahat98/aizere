@@ -33,7 +33,6 @@ class AppRouter extends _$AppRouter {
 
         AutoRoute(
           page: MainBottomNavigationRoute.page,
-          // initial: true,
           children: [
             AutoRoute(page: AizereEmptyRoute.page, children: [
               AutoRoute(path: 'aizere', page: SpeechSynthesisBuildRoute.page),

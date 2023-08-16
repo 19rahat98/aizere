@@ -1,10 +1,12 @@
 import 'package:aizere_app/config/theme.dart';
 import 'package:flutter/material.dart';
 
-class AppTextField extends StatelessWidget {
+
+/// Textfield который имеет title над собой. Нужен чтобы показать то что данные в textfield Required
+class AuthTextField extends StatelessWidget {
   final String? title;
 
-  const AppTextField({super.key, required this.title});
+  const AuthTextField({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

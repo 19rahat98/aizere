@@ -18,26 +18,26 @@ class RegistrationScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
         child: Column(
           children: [
-            const AppTitleWidget(
+            const AuthTitleWidget(
                 title: 'Регистрация',
                 text:
                     'Заполните все поля ниже, чтобы пользоваться функциями сервиса'),
             const SizedBox(
               height: 40,
             ),
-            const AppTextField(
+            const AuthTextField(
               title: 'Имя',
             ),
             const SizedBox(
               height: 24,
             ),
-            const AppTextField(
+            const AuthTextField(
               title: 'Номер телефона',
             ),
             const SizedBox(
               height: 24,
             ),
-            const AppTextField(
+            const AuthTextField(
               title: 'Пароль',
             ),
             const SizedBox(

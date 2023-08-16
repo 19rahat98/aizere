@@ -22,7 +22,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const AppTitleWidget(
+            const AuthTitleWidget(
               title: 'Добро пожаловать в AIzere!',
               text:
                   'Более миллионов человек уже используют AIzere, чтобы общаться с искусственным интелектом',

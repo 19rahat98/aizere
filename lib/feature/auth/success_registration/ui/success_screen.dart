@@ -26,7 +26,7 @@ class SuccessScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: AppTitleWidget(
+            child: AuthTitleWidget(
                 title: 'Поздравляем, Жанибек!',
                 text: isNewPassword!
                     ? 'Новый пароль для входа доступа к вашему аккаунту создан.'

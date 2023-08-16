@@ -17,14 +17,14 @@ class ForgotPasswordScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
         child: Column(
           children: [
-            const AppTitleWidget(
+            const AuthTitleWidget(
                 title: 'Забыли пароль?',
                 text:
                     'Заполните все поля ниже, чтобы восстановить доступ к аккаунту.'),
             const SizedBox(
               height: 40,
             ),
-            const AppTextField(
+            const AuthTextField(
               title: 'Номер телефона',
             ),
             const Spacer(),

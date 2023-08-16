@@ -40,8 +40,10 @@ class AppFilledColorButton extends StatelessWidget with IgnoreDoubleTapMixin {
   /// обратный вызов при нажатии на виджет
   final GestureTapCallback? onTap;
 
+  /// используется когда нам не нужен child, исключительно текст.
   final String? text;
 
+  /// Задавать цвет текста.
   final Color? textColor;
 
   @override
