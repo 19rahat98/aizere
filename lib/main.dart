@@ -11,6 +11,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_persistent_keyboard_height/flutter_persistent_keyboard_height.dart';
 
+import 'di/di_locator.dart';
 import 'feature/bottom_navigation/presentation/cubit/change_index_cubit.dart';
 import 'router/router.dart';
 
@@ -29,7 +30,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final _appRouter = AppRouter();
+  final AppRouter appRouter = sl();
 
   MyApp({super.key});
 
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
               ],
               locale: localLanguageState.locale,
               supportedLocales: AppLocalizations.supportedLocales,
-              routerConfig: _appRouter.config(),
+              routerConfig: appRouter.config(),
 
               // персистент нав бардан кин MediaQuery.of(context).viewInsets.bottom стеми калад, выглядит иронично но решение тоже персистент фигня хахаха
               builder: (context, child) => PersistentKeyboardHeightProvider(

@@ -23,6 +23,7 @@ import 'package:aizere_app/feature/settings/start_settings/data/repository/setti
 import 'package:aizere_app/feature/settings/start_settings/domain/usecase/global_app_setting_usercase.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/data/pref/setting_speaker_global_data_source.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/data/repository/setting_speaker_global_repository.dart';
+import 'package:aizere_app/router/router.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,6 +36,7 @@ void initLocator() {
   _dataSourceModule();
   _repositoryModule();
   _useCaseModule();
+  _appRouter();
 }
 
 /// для общих зависимостей
@@ -86,6 +88,11 @@ void _repositoryModule() {
   sl.registerFactory(() => CoreGlobalSettingLauncherRepository());
   sl.registerFactory(() => CoreGlobalFavoritesRepository());
   sl.registerFactory(() => LibraryRepository());
+}
+
+
+void _appRouter() {
+  sl.registerFactory(() => AppRouter());
 }
 
 void _useCaseModule() async {
