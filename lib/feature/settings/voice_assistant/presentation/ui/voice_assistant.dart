@@ -60,7 +60,7 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (_) => const MainBottomBarWidget(),
+                builder: (_) => const MainBottomNavigationScreen(),
               ),
             );
           }
@@ -233,7 +233,8 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        context.l10n.holdTwoFingerToChangeVolume,
+                                        context
+                                            .l10n.holdTwoFingerToChangeVolume,
                                         style: AppTextStyle.body,
                                       ),
                                     ),
@@ -257,7 +258,8 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        context.l10n.pressThreeFingerToAizereVoice,
+                                        context
+                                            .l10n.pressThreeFingerToAizereVoice,
                                         style: AppTextStyle.body,
                                       ),
                                     ),

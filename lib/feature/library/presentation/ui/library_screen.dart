@@ -5,9 +5,11 @@ import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/library/presentation/ui/widgets/library_tab_bar.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+@RoutePage()
 class LibraryScreen extends StatefulWidget {
   const LibraryScreen({Key? key}) : super(key: key);
 
@@ -94,7 +96,7 @@ class _LibraryScreenState extends State<LibraryScreen>
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => SpeechSynthesisBuild(
+                          builder: (_) => const SpeechSynthesisBuildScreen(
                             text: '''
 Бір адам жас баласын жанына алды,
 Екеуі сайран етіп кетіп қалды.

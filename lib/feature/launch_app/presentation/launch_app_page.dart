@@ -40,7 +40,7 @@ class _LaunchAppScreenState extends State<LaunchAppScreen> {
         } else if (state is SettingsLaunchState) {
           return const ChooseLocale();
         } else if (state is LaunchAppCommonState) {
-          return const MainBottomBarWidget();
+          return const MainBottomNavigationScreen();
         }
 
         return const AppSplashScreen();

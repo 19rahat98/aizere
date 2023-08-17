@@ -10,6 +10,10 @@ class AppColors {
   static const monoGrey = Color(0xFFEDEDED);
   static const monoGrey1 = Color(0xFF8A8E99);
   static const semanticDanger = Color(0xFFFF403D);
+  static const ffEDEDED = Color(0xFFEDEDED);
+  static const ffABB0BC = Color(0xFFABB0BC);
+  static const ffE82C2C = Color(0xFFE82C2C);
+  static const ffF6F5FA = Color(0xFFF6F5FA);
 }
 
 class AppIcons {
@@ -38,6 +42,9 @@ class AppIcons {
   static const icRepeat = 'assets/svg/ic_repeate.svg';
   static const icHeartFilled = 'assets/svg/ic_heart_filled.svg';
   static const icMicrophone = 'assets/svg/ic_microphone.svg';
+  static const icAizere = 'assets/svg/ic_aizere.svg';
+  static const icPet = 'assets/svg/ic_pet.svg';
+  static const icSuccess = 'assets/svg/ic_success.svg';
 }
 
 class AppImages {
@@ -50,6 +57,12 @@ class AppTextStyle {
     fontSize: 13,
     color: AppColors.black,
     fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
+
+  static const TextStyle w600s17 = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w600,
     fontFamily: 'Inter',
   );
 
@@ -73,6 +86,11 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
+  static const TextStyle w400s16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
 
   static const TextStyle title1 = TextStyle(
     fontSize: 20,
@@ -87,16 +105,24 @@ class AppTextStyle {
     fontFamily: 'Inter',
     fontWeight: FontWeight.w700,
   );
+  static const TextStyle titleBig = TextStyle(
+    fontSize: 28,
+    color: AppColors.mainBlack,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w700,
+  );
 }
 
 class AppTheme {
   static ThemeData defaultTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.white,
     primarySwatch: Colors.blue,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     appBarTheme: AppBarTheme(
       color: Colors.deepOrange,
       //brightness: Brightness.light,
       elevation: 0,
+
       /// Задает цвет статус бара в зависимости от платформы
       systemOverlayStyle: Platform.isAndroid
           ? SystemUiOverlayStyle.light

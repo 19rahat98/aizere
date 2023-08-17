@@ -6,10 +6,12 @@ import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.
 import 'package:aizere_app/feature/settings/app_setting/presentation/ui/app_settings_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+@RoutePage()
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({Key? key}) : super(key: key);
 
@@ -111,7 +113,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => SpeechSynthesisBuild(
+                              builder: (_) => SpeechSynthesisBuildScreen(
                                 text: state.list[index],
                               ),
                             ),

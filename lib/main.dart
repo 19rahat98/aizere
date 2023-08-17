@@ -1,9 +1,7 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/feature/bottom_navigation/presentation/cubit/global_navigation_cubit.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/language_logic/presentation/cubit/local_language_cubit.dart';
-import 'package:aizere_app/feature/launch_app/presentation/launch_app_page.dart';
 import 'package:aizere_app/feature/library/presentation/cubit/library_screen_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +10,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_persistent_keyboard_height/flutter_persistent_keyboard_height.dart';
+
+import 'di/di_locator.dart';
+import 'feature/bottom_navigation/presentation/cubit/change_index_cubit.dart';
+import 'router/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +26,13 @@ void main() async {
 
   /// инициализация DI
   di_locator.initLocator();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter = sl();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +40,6 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<LocalLanguageCubit>(
           create: (context) => LocalLanguageCubit()..getLanguageCode(),
-        ),
-        BlocProvider<GlobalNavigationCubit>(
-          create: (context) => GlobalNavigationCubit(),
         ),
         BlocProvider<FavoritesCubit>(
           lazy: false,
@@ -48,11 +49,15 @@ class MyApp extends StatelessWidget {
           lazy: false,
           create: (context) => LibraryScreenCubit()..makeApiCall(),
         ),
+        BlocProvider(
+          lazy: false,
+          create: (_) => ChangeIndexCubit(),
+        )
       ],
       child: BlocBuilder<LocalLanguageCubit, LocalLanguageState>(
         builder: (context, localLanguageState) {
           if (localLanguageState is LanguageLoaded) {
-            return MaterialApp(
+            return MaterialApp.router(
               useInheritedMediaQuery: false,
               title: GlobalConstant.appName,
               theme: AppTheme.defaultTheme,
@@ -64,7 +69,9 @@ class MyApp extends StatelessWidget {
               ],
               locale: localLanguageState.locale,
               supportedLocales: AppLocalizations.supportedLocales,
-              home: const LaunchAppPage(),
+              routerConfig: appRouter.config(),
+
+              // персистент нав бардан кин MediaQuery.of(context).viewInsets.bottom стеми калад, выглядит иронично но решение тоже персистент фигня хахаха
               builder: (context, child) => PersistentKeyboardHeightProvider(
                 child: child!,
               ),

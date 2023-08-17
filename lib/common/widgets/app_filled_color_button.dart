@@ -3,7 +3,7 @@ import 'package:aizere_app/config/theme.dart';
 import 'package:flutter/material.dart';
 
 /// кнопка с заполненным цветом
-class AppFilledColorButton extends StatelessWidget  with IgnoreDoubleTapMixin {
+class AppFilledColorButton extends StatelessWidget with IgnoreDoubleTapMixin {
   AppFilledColorButton({
     Key? key,
     this.height,
@@ -14,6 +14,7 @@ class AppFilledColorButton extends StatelessWidget  with IgnoreDoubleTapMixin {
     this.padding,
     this.margin,
     this.color,
+    this.text, this.textColor,
   }) : super(key: key);
 
   /// дочерний элемент
@@ -39,6 +40,12 @@ class AppFilledColorButton extends StatelessWidget  with IgnoreDoubleTapMixin {
   /// обратный вызов при нажатии на виджет
   final GestureTapCallback? onTap;
 
+  /// используется когда нам не нужен child, исключительно текст.
+  final String? text;
+
+  /// Задавать цвет текста.
+  final Color? textColor;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,7 +58,7 @@ class AppFilledColorButton extends StatelessWidget  with IgnoreDoubleTapMixin {
         ),
       ),
       child: ElevatedButton(
-        onPressed: (){
+        onPressed: () {
           if (!isRedundantClick) {
             onTap?.call();
           }
@@ -64,9 +71,14 @@ class AppFilledColorButton extends StatelessWidget  with IgnoreDoubleTapMixin {
             borderRadius: BorderRadius.circular(borderRadiusRadii),
           ),
         ),
-        child: Center(
-          child: child,
-        ),
+        child: text != null
+            ? Center(
+                child: Text(
+                  text!,
+                  style: AppTextStyle.w600s17.copyWith(color: textColor ?? Colors.white),
+                ),
+              )
+            : child,
       ),
     );
   }
