@@ -3,6 +3,7 @@ import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -18,27 +19,26 @@ class RegistrationScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
         child: Column(
           children: [
-            const AuthTitleWidget(
-                title: 'Регистрация',
-                text:
-                    'Заполните все поля ниже, чтобы пользоваться функциями сервиса'),
+            AuthTitleWidget(
+                title: context.l10n.signUp,
+                text: context.l10n.fillAllFieldsSignUp),
             const SizedBox(
               height: 40,
             ),
-            const AuthTextField(
-              title: 'Имя',
+            AuthTextField(
+              title: context.l10n.name,
             ),
             const SizedBox(
               height: 24,
             ),
-            const AuthTextField(
-              title: 'Номер телефона',
+            AuthTextField(
+              title: context.l10n.phone,
             ),
             const SizedBox(
               height: 24,
             ),
-            const AuthTextField(
-              title: 'Пароль',
+            AuthTextField(
+              title: context.l10n.password,
             ),
             const SizedBox(
               height: 32,
@@ -46,15 +46,15 @@ class RegistrationScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'У вас есть аккаунт?',
+                 Text(
+                  context.l10n.haveAnAccount,
                   style: AppTextStyle.w600s17,
                 ),
                 AppTextButton(
                   onTap: () {
                     context.router.replace(const SignInRoute());
                   },
-                  text: 'Войти',
+                  text: context.l10n.enter,
                   style:
                       AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
                 ),
@@ -65,11 +65,10 @@ class RegistrationScreen extends StatelessWidget {
               onTap: () {
                 context.router.push(ConfirmationRoute());
               },
-              text: 'Продолжить',
+              text: context.l10n.continueText,
               padding: const EdgeInsets.symmetric(vertical: 16),
               color: AppColors.mainBlue,
             ),
-
           ],
         ),
       ),

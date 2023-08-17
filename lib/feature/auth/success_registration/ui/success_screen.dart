@@ -1,6 +1,7 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -27,10 +28,10 @@ class SuccessScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: AuthTitleWidget(
-                title: 'Поздравляем, Жанибек!',
+                title: '${context.l10n.congratulations}, Жанибек!',
                 text: isNewPassword!
-                    ? 'Новый пароль для входа доступа к вашему аккаунту создан.'
-                    : 'Доступные вам функционалы уже готовы к использованию. Начните задавать вопросы AIzere.'),
+                    ? context.l10n.forgotSuccessDescription
+                    : context.l10n.signUpSuccessDescription),
           ),
           const Spacer(),
           Padding(
@@ -39,7 +40,7 @@ class SuccessScreen extends StatelessWidget {
               onTap: () {
                 context.router.replace(SpeechSynthesisBuildRoute());
               },
-              text: 'Завершить',
+              text: context.l10n.finalize,
               padding: const EdgeInsets.symmetric(vertical: 16),
               color: AppColors.mainBlue,
             ),

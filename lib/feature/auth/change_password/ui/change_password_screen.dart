@@ -2,6 +2,7 @@ import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -17,21 +18,21 @@ class ChangePasswordScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
         child: Column(
           children: [
-            const AuthTitleWidget(
-                title: 'Новый пароль',
+            AuthTitleWidget(
+                title: context.l10n.newPassword,
                 text:
-                    'Придумайте новый пароль для входа доступа вашего аккаунта'),
+                    context.l10n.newPasswordDescription),
             const SizedBox(
               height: 40,
             ),
-            const AuthTextField(
-              title: 'Новый пароль',
+            AuthTextField(
+              title: context.l10n.newPassword,
             ),
             const SizedBox(
               height: 24,
             ),
-            const AuthTextField(
-              title: 'Повторить новый пароль',
+            AuthTextField(
+              title: context.l10n.repeatNewPassword,
             ),
             const SizedBox(
               height: 32,
@@ -41,7 +42,7 @@ class ChangePasswordScreen extends StatelessWidget {
               onTap: () {
                 context.router.replace(SuccessRoute(isNewPassword: true));
               },
-              text: 'Восстановить',
+              text: context.l10n.restore,
               padding: const EdgeInsets.symmetric(vertical: 16),
               color: AppColors.mainBlue,
             ),
@@ -51,7 +52,7 @@ class ChangePasswordScreen extends StatelessWidget {
             TextButton(
               onPressed: () => context.router.pop(),
               child: Text(
-                'Отменить',
+                context.l10n.cancel,
                 style: AppTextStyle.w600s17.copyWith(color: AppColors.black),
               ),
             )

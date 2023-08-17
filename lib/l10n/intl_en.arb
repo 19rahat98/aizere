@@ -56,5 +56,36 @@
   "aizereSynthesisThousandText": "AiZere - синтез текста на казахском языке до 1000 символов",
   "minimumButtonFriendlyUx": "AiZere - удобный интерфейс и минимум кнопок",
   "useVirtualSpeakers": "AiZere - воспроизведение текста с помощью виртуальных спикеров",
-  "librarySectionAndListenBooks": "Переходи в раздел Библиотека и слушай готовые аудиокниги на казахском языке"
+  "librarySectionAndListenBooks": "Переходи в раздел Библиотека и слушай готовые аудиокниги на казахском языке",
+  "forgotPassword": "Забыли пароль?",
+  "auth": "Авторизация",
+  "signUp": "Регистрация",
+  "fillAllFieldsAuth": "Заполните все поля ниже, чтобы войти в систему сервиса",
+  "fillAllFieldsSignUp": "Заполните все поля ниже, чтобы пользоваться функциями сервиса",
+  "fillAllFieldsForget": "Заполните все поля ниже, чтобы восстановить доступ к аккаунту.",
+  "phone": "Номер телефона",
+  "password": "пароль",
+  "dontHaveAnAccount": "У вас нет аккаунта? ",
+  "haveAnAccount": "У вас есть аккаунт? ",
+  "enter": "Войти",
+  "welcome": "Добро пожаловать в AIzere!",
+  "welcomeDescription": "Более миллионов человек уже используют AIzere, чтобы общаться с искусственным интелектом",
+  "name": "Имя",
+  "continueText": "Продолжить",
+  "confirmationCode": "Подтверждение кода",
+  "sendItBack": "Повторно отправить через: ",
+  "back": "Назад",
+  "confirmationDescription": "На ваш номер телефона отправлен 4 значный SMS код подтверждения. Введите код в поле ниже.",
+  "finalize": "Завершить",
+  "congratulations": "Поздравляем",
+  "signUpSuccessDescription": "Доступные вам функционалы уже готовы к использованию. Начните задавать вопросы AIzere.",
+  "forgotSuccessDescription": "Новый пароль для входа доступа к вашему аккаунту создан.",
+  "newPassword": "Новый пароль",
+  "repeatNewPassword": "Повторить новый пароль",
+  "restore": "Восстановить",
+  "cancel": "Отменить",
+  "newPasswordDescription": "Придумайте новый пароль для входа доступа к вашему аккаунту"
+
+
+
 }

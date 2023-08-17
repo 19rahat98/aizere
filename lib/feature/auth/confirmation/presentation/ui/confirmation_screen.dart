@@ -3,6 +3,7 @@ import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/auth/confirmation/presentation/cubit/timer_cubit.dart';
+import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -23,15 +24,15 @@ class ConfirmationScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
           child: Column(
             children: [
-              const AuthTitleWidget(
-                  title: 'Подтверждения кода',
+              AuthTitleWidget(
+                  title: context.l10n.confirmationCode,
                   text:
-                      'На ваш номер телефона отправлен 4 значный SMS код подтверждения. Введите код в поле ниже.'),
+                      context.l10n.confirmationDescription),
               const SizedBox(
                 height: 40,
               ),
-              const AuthTextField(
-                title: 'Код подтверждения',
+              AuthTextField(
+                title: context.l10n.confirmationCode,
               ),
               const SizedBox(
                 height: 32,
@@ -39,8 +40,8 @@ class ConfirmationScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Повторно отправить через: ',
+                   Text(
+                    context.l10n.sendItBack,
                     style: AppTextStyle.body,
                   ),
                   BlocBuilder<TimerCubit, int>(
@@ -62,7 +63,7 @@ class ConfirmationScreen extends StatelessWidget {
                       ? context.router.replace(const ChangePasswordRoute())
                       : context.router.replace(SuccessRoute());
                 },
-                text: 'Продолжить',
+                text: context.l10n.continueText,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 color: AppColors.mainBlue,
               ),
@@ -72,7 +73,7 @@ class ConfirmationScreen extends StatelessWidget {
               TextButton(
                 onPressed: () => context.router.pop(),
                 child: Text(
-                  'Назад',
+                  context.l10n.back,
                   style: AppTextStyle.w600s17.copyWith(color: AppColors.black),
                 ),
               )

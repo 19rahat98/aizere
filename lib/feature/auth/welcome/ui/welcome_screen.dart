@@ -1,6 +1,7 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +23,9 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const AuthTitleWidget(
-              title: 'Добро пожаловать в AIzere!',
-              text:
-                  'Более миллионов человек уже используют AIzere, чтобы общаться с искусственным интелектом',
+            AuthTitleWidget(
+              title: context.l10n.welcome,
+              text: context.l10n.welcomeDescription,
             ),
             const Spacer(),
             AppFilledColorButton(
@@ -36,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                 vertical: 16,
               ),
-              text: 'Регистрация',
+              text: context.l10n.signUp,
             ),
             const SizedBox(
               height: 20,
@@ -45,7 +45,7 @@ class WelcomeScreen extends StatelessWidget {
               onTap: () {
                 context.router.replace(const SignInRoute());
               },
-              text: 'Вход',
+              text: context.l10n.enter,
               color: AppColors.ffABB0BC,
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),

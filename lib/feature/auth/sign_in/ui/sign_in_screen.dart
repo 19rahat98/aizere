@@ -3,6 +3,7 @@ import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -21,21 +22,21 @@ class SignInScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const AuthTitleWidget(
-              title: 'Авторизация',
-              text: 'Заполните все поля ниже, чтобы войти в систему сервиса',
+            AuthTitleWidget(
+              title: context.l10n.auth,
+              text: context.l10n.fillAllFieldsAuth,
             ),
             const SizedBox(
               height: 40,
             ),
-            const AuthTextField(
-              title: 'Номер телефона',
+            AuthTextField(
+              title: context.l10n.phone,
             ),
             const SizedBox(
               height: 24,
             ),
-            const AuthTextField(
-              title: 'Пароль',
+            AuthTextField(
+              title: context.l10n.password,
             ),
             const SizedBox(
               height: 32,
@@ -43,8 +44,8 @@ class SignInScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'У вас нет аккаунта? ',
+                 Text(
+                  context.l10n.dontHaveAnAccount,
                   style: AppTextStyle.w600s17,
                 ),
                 AppTextButton(
@@ -53,7 +54,7 @@ class SignInScreen extends StatelessWidget {
                       const RegistrationRoute(),
                     );
                   },
-                  text: 'Регистрация',
+                  text: context.l10n.signUp,
                   style: AppTextStyle.w600s17.copyWith(
                     color: AppColors.mainBlue,
                   ),
@@ -67,7 +68,7 @@ class SignInScreen extends StatelessWidget {
                   SpeechSynthesisBuildRoute(),
                 );
               },
-              text: 'Войти',
+              text: context.l10n.enter,
               padding: const EdgeInsets.symmetric(vertical: 16),
               color: AppColors.mainBlue,
             ),
@@ -79,7 +80,7 @@ class SignInScreen extends StatelessWidget {
                 context.router.push(const ForgotPasswordRoute());
               },
               child: Text(
-                'Забыли пароль?',
+                context.l10n.forgotPassword,
                 style: AppTextStyle.w600s17.copyWith(
                   color: AppColors.black,
                 ),
