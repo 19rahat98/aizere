@@ -30,10 +30,11 @@ class AppCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: isSettings
             ? Row(
                 children: [
-                  CupertinoButton(
+                  IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () => context.router.pop,
-                    child: SvgPicture.asset(
+                    splashRadius: 20,
+                    icon: SvgPicture.asset(
                       AppIcons.icArrowLeft,
                       color: AppColors.black,
                       width: 20,
@@ -44,7 +45,7 @@ class AppCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     style: AppTextStyle.w600s22.copyWith(
                       color: AppColors.black,
                     ),
-                  )
+                  ),
                 ],
               )
             : Align(
