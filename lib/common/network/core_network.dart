@@ -8,7 +8,7 @@ import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-Future<Dio> createHttpClient(String baseUrl) async {
+Dio createHttpClient(String baseUrl) {
   final dio = Dio();
   dio.options.baseUrl = baseUrl;
   dio.options.connectTimeout = const Duration(seconds: 5);
