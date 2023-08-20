@@ -1,9 +1,9 @@
 import 'package:aizere_app/common/widgets/app_common_divider_widget.dart';
+import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
-import 'package:aizere_app/feature/settings/app_setting/presentation/ui/app_settings_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:auto_route/annotations.dart';
@@ -33,36 +33,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return ScreenWrapper(
       bottom: false,
-      backGround: AppColors.black,
-      appBar: AppBar(
-        backgroundColor: AppColors.black,
-        automaticallyImplyLeading: false,
-        title: SvgPicture.asset(
-          AppIcons.icLogo,
-          height: 24,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const AppSettingScreen(),
-                ),
-              );
-            },
-            splashRadius: 20,
-            constraints: const BoxConstraints(),
-            icon: SvgPicture.asset(
-              AppIcons.icInfoCircle,
-              colorFilter: const ColorFilter.mode(
-                Colors.white,
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-        ],
-      ),
+      appBar: AppCustomAppBar(title: context.l10n.favorite),
       body: ColoredBox(
         color: Colors.white,
         child: Column(

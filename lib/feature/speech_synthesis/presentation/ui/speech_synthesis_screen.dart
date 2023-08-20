@@ -71,9 +71,8 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
   Widget build(BuildContext context) {
     return ScreenWrapper(
       bottom: true,
-      appBar: const AppCustomAppBar(
-        isSettings: true,
-        title: 'Синтез речи',
+      appBar: AppCustomAppBar(
+        title: context.l10n.speechSynthesis,
       ),
       body: BlocBuilder<FavoritesCubit, FavoriteState>(
         builder: (context, favState) {
