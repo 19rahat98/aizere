@@ -1,7 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
-part 'change_index_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChangeIndexCubit extends Cubit<IndexState> {
   ChangeIndexCubit() : super(IndexState(0));
@@ -10,7 +7,6 @@ class ChangeIndexCubit extends Cubit<IndexState> {
     emit(IndexState(value));
   }
 }
-
 
 /// Обертка поверх int значения так как cubit не емитит одинаковые значения
 /// данная логика необходима для логики возврата на первый роут в рамках одного таба

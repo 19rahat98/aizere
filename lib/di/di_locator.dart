@@ -4,6 +4,8 @@ import 'package:aizere_app/common/constants/global_dio_constant.dart';
 import 'package:aizere_app/common/network/api_service.dart';
 import 'package:aizere_app/common/network/core_network.dart';
 import 'package:aizere_app/di/local_storage_servic.dart';
+import 'package:aizere_app/feature/auth/data/pref/auth_data_source.dart';
+import 'package:aizere_app/feature/auth/data/repository/auth_repository.dart';
 import 'package:aizere_app/feature/favorites/data/pref/favorite_global_data_source.dart';
 import 'package:aizere_app/feature/favorites/data/repository/favorites_global_repository.dart';
 import 'package:aizere_app/feature/language_logic/data/repositories/language_logic_repository_impl.dart';
@@ -24,6 +26,7 @@ import 'package:aizere_app/feature/settings/start_settings/domain/usecase/global
 import 'package:aizere_app/feature/settings/voice_assistant/data/pref/setting_speaker_global_data_source.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/data/repository/setting_speaker_global_repository.dart';
 import 'package:aizere_app/router/router.dart';
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -53,14 +56,14 @@ Future _localStorageModule() async {
 
 Future _apiServiceModule() async {
   //sl.registerLazySingleton(() => NetworkCall());
-  sl.registerSingletonAsync(
-    () => createHttpClient(GlobalDioConstant.apiBaseUrl),
+  sl.registerSingleton<Dio>(
+    createHttpClient(GlobalDioConstant.apiBaseUrl),
     instanceName: GlobalDioConstant.authorized,
   );
 
   sl.registerSingleton(
     ApiService(
-      sl.getAsync(
+      sl.get(
         instanceName: GlobalDioConstant.authorized,
       ),
     ),
@@ -75,6 +78,7 @@ Future<void> _dataSourceModule() async {
   sl.registerFactory(() => CoreGlobalSpeakerDataSource(sl.getAsync()));
   sl.registerFactory(() => CoreGlobalVoiceSpeedDataSource(sl.getAsync()));
   sl.registerFactory(() => CoreFavoriteDataSource(sl.getAsync()));
+  sl.registerFactory(() => AuthDataSource(sl.getAsync()));
 }
 
 /// для репозиторий
@@ -88,8 +92,8 @@ void _repositoryModule() {
   sl.registerFactory(() => CoreGlobalSettingLauncherRepository());
   sl.registerFactory(() => CoreGlobalFavoritesRepository());
   sl.registerFactory(() => LibraryRepository());
+  sl.registerFactory(() => AuthRepository());
 }
-
 
 void _appRouter() {
   sl.registerFactory(() => AppRouter());

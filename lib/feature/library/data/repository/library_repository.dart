@@ -4,7 +4,6 @@ import 'package:aizere_app/feature/library/data/model/class_composition_model.da
 import 'package:aizere_app/utils/http_call_utils.dart';
 
 class LibraryRepository {
-
   LibraryRepository() : _apiService = sl();
 
   final ApiService _apiService;
@@ -18,5 +17,4 @@ class LibraryRepository {
       },
     );
   }
-
 }
