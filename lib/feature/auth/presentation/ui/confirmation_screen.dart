@@ -2,7 +2,7 @@ import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/feature/auth/confirmation/presentation/cubit/timer_cubit.dart';
+import 'package:aizere_app/feature/auth/presentation/cubit/timer/timer_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
