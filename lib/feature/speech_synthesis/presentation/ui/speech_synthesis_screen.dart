@@ -73,6 +73,7 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
       bottom: true,
       appBar: AppCustomAppBar(
         title: context.l10n.speechSynthesis,
+
       ),
       body: BlocBuilder<FavoritesCubit, FavoriteState>(
         builder: (context, favState) {
