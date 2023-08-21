@@ -48,7 +48,7 @@ class RegistrationScreen extends StatelessWidget {
               children: [
                  Text(
                   context.l10n.haveAnAccount,
-                  style: AppTextStyle.w600s17,
+                  style: AppTextStyle.text,
                 ),
                 AppTextButton(
                   onTap: () {
@@ -56,7 +56,7 @@ class RegistrationScreen extends StatelessWidget {
                   },
                   text: context.l10n.enter,
                   style:
-                      AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
+                      AppTextStyle.text.copyWith(color: AppColors.mainBlue),
                 ),
               ],
             ),

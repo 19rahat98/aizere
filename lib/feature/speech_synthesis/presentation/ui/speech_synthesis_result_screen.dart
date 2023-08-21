@@ -1,20 +1,20 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
-import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_progess_idicator_button.dart';
 import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
+import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cubit.dart';
+import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_custom_app_bar.dart';
 import 'package:aizere_app/l10n/l10n.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class SpeechSynthesisResultScreen extends StatelessWidget {
@@ -69,43 +69,7 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
   Widget build(BuildContext context) {
     return ScreenWrapper(
       bottom: true,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leadingWidth: MediaQuery.of(context).size.width / 2,
-        leading: Row(
-          children: [
-            Row(
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () => context.router.pop,
-                  splashRadius: 20,
-                  icon: SvgPicture.asset(
-                    AppIcons.icArrowLeft,
-                    color: AppColors.black,
-                    width: 20,
-                  ),
-                ),
-                Text(
-                  context.l10n.back,
-                  style: AppTextStyle.w400s14.copyWith(
-                    color: AppColors.black,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'Сохранить',
-              style: AppTextStyle.w600s18,
-            ),
-          ),
-        ],
-      ),
+      appBar: const SynthesisCustomAppBar(),
       body: BlocConsumer<SpeechCubit, SpeechState>(
         listener: (context, state) {
           if (state is SpeechDownloadError) {
@@ -135,9 +99,146 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                 },
                 child: Column(
                   children: [
-                    const HBox(
-                      height: 40,
+                    Row(
+                      children: [
+                        Text(
+                          'Спикер',
+                          style: AppTextStyle.w400s16
+                              .copyWith(color: AppColors.ffABB0BC),
+                        ),
+                        const WBox(
+                          width: 16,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(
+                            4,
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                100,
+                              ),
+                              color: AppColors.mainBlue),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(
+                                  4,
+                                ),
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.ffF0F0F0),
+                                child: Image.asset(
+                                  AppIcons.icRaya,
+                                  width: 24,
+                                ),
+                              ),
+                              const WBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Алтын',
+                                style: AppTextStyle.text.copyWith(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const WBox(
+                                width: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.ffD8EBFF),
+                            child: const Icon(
+                              Icons.add,
+                              color: AppColors.mainBlue,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                    const Divider(
+                      height: 40,
+                      thickness: 1,
+                      color: AppColors.monoGrey,
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height / 2.5,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: AppColors.monoGrey),
+                        ),
+                      ),
+                      child: const SingleChildScrollView(
+                        child: Text(
+                          'Президентіміз Қасым-Жомарт Кемелұлы Тоқаевтың жолдауында айтылғандай, қазір білім сапасын арттыру, оның ішінде білім беру ұйымдарын цифрландыру мәселесіне ерекше көңіл бөліп отырПрезидентіміз Қасым-Жомарт Кемелұлы Тоқаевтың жолдауында айтылғандай, қазір білім сапасын арттыру, оның ішінде білім беру ұйымдарын цифрландыру мәселесіне ерекше көңіл бөліп отырПрезидентіміз Қасым-Жомарт Кемелұлы Тоқаевтың жолдауында айтылғандай, қазір білім сапасын арттыру, оның ішінде білім беру ұйымдарын цифрландыру мәселесіне ерекше көңіл бөліп отырПрезидентіміз Қасым-Жомарт Кемелұлы Тоқаевтың жолдауында айтылғандай, қазір білім сапасын арттыру, оның ішінде білім беру ұйымдарын цифрландыру мәселесіне ерекше көңіл бөліп отыр',
+                          style: AppTextStyle.body,
+                        ),
+                      ),
+                    ),
+                    const HBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        SvgPicture.asset(AppIcons.icClock),
+                        const WBox(
+                          width: 10,
+                        ),
+                        const Text('00:01:23')
+                      ],
+                    ),
+                    const HBox(
+                      height: 15,
+                    ),
+                    Container(
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            12,
+                          ),
+                          color: AppColors.ffF0F0F0),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 12,
+                      ),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            AppIcons.icPlayFilled,
+                            height: 35,
+                            color: AppColors.mainBlue,
+                          ),
+                          const WBox(
+                            width: 12,
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              decoration: BoxDecoration(
+                                color: AppColors.mainBlue,
+                                borderRadius: BorderRadius.circular(
+                                  8,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'Новый синтез',
+                          style: AppTextStyle.w600s18,
+                        ))
                   ],
                 ),
               ),

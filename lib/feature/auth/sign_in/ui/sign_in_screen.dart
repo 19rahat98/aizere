@@ -46,7 +46,7 @@ class SignInScreen extends StatelessWidget {
               children: [
                  Text(
                   context.l10n.dontHaveAnAccount,
-                  style: AppTextStyle.w600s17,
+                  style: AppTextStyle.text,
                 ),
                 AppTextButton(
                   onTap: () {
@@ -55,7 +55,7 @@ class SignInScreen extends StatelessWidget {
                     );
                   },
                   text: context.l10n.signUp,
-                  style: AppTextStyle.w600s17.copyWith(
+                  style: AppTextStyle.text.copyWith(
                     color: AppColors.mainBlue,
                   ),
                 ),
@@ -81,7 +81,7 @@ class SignInScreen extends StatelessWidget {
               },
               child: Text(
                 context.l10n.forgotPassword,
-                style: AppTextStyle.w600s17.copyWith(
+                style: AppTextStyle.text.copyWith(
                   color: AppColors.black,
                 ),
               ),

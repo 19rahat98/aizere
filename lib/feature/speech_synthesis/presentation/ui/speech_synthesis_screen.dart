@@ -12,7 +12,6 @@ import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cu
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_text_field.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -205,7 +204,6 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
 
     return AppFilledColorButton(
       onTap: () => context.router.push(SpeechSynthesisResultRoute()),
-
       width: 200,
       height: 54,
       color: AppColors.mainBlue,
@@ -219,4 +217,3 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
     );
   }
 }
-

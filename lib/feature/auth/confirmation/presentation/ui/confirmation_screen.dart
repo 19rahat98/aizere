@@ -74,7 +74,7 @@ class ConfirmationScreen extends StatelessWidget {
                 onPressed: () => context.router.pop(),
                 child: Text(
                   context.l10n.back,
-                  style: AppTextStyle.w600s17.copyWith(color: AppColors.black),
+                  style: AppTextStyle.text.copyWith(color: AppColors.black),
                 ),
               )
             ],
