@@ -134,7 +134,7 @@ static const TextStyle w500s15 = TextStyle(
     fontFamily: 'Inter',
     fontWeight: FontWeight.w700,
   );
-  static const TextStyle w600s22 = TextStyle(
+  static const TextStyle h3 = TextStyle(
     fontSize: 22,
     color: AppColors.mainBlack,
     fontFamily: 'Inter',
