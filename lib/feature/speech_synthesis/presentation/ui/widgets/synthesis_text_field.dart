@@ -57,9 +57,8 @@ class _SynthesisTextFieldState extends State<SynthesisTextField> {
           horizontal: 22,
         ),
         decoration: BoxDecoration(
-          color: AppColors.monoGrey,
-          borderRadius: BorderRadius.circular(12),
-        ),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(width: 2, color: AppColors.monoGrey)),
         child: Stack(
           fit: StackFit.expand,
           children: [

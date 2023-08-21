@@ -44,6 +44,7 @@ class AppIcons {
   static const icAizere = 'assets/svg/ic_aizere.svg';
   static const icPet = 'assets/svg/ic_pet.svg';
   static const icSuccess = 'assets/svg/ic_success.svg';
+  static const icNote = 'assets/svg/ic_note.svg';
 }
 
 class AppImages {
@@ -58,10 +59,27 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
+  static const TextStyle w400s14 = TextStyle(
+    fontSize: 14,
+    color: AppColors.black,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
 
   static const TextStyle w600s17 = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+  static const TextStyle w600s18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+
+static const TextStyle w500s15 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Inter',
   );
 

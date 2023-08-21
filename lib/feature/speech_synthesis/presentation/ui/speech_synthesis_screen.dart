@@ -4,15 +4,16 @@ import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_progess_idicator_button.dart';
 import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
-import 'package:aizere_app/common/widgets/app_text_button.dart';
+import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cubit.dart';
-import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_playback_line.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_text_field.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,7 +91,6 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
             buildWhen: (prev, current) => current is SpeechCommonState,
             builder: (context, state) {
               if (state is SpeechCommonState) {
-                final speed = state.speedSpeaker;
                 return Container(
                   padding: const EdgeInsets.only(
                     top: 24,
@@ -121,123 +121,50 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
                           },
                           controller: _textController,
                         ),
-                        SynthesisPlaybackLine(
-                          totalDuration: state.totalTime,
-                          initialPosition: state.initialTime,
+                        const HBox(
+                          height: 30,
                         ),
-                        const HBox(),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 6,
+                            horizontal: 12,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: AppColors.mainBlue,
+                            ),
+                            borderRadius: BorderRadius.circular(
+                              100,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(
+                                AppIcons.icNote,
+                              ),
+                              const WBox(
+                                width: 4,
+                              ),
+                              Text(
+                                context.l10n.paste,
+                                style: AppTextStyle.w500s15.copyWith(
+                                  color: AppColors.mainBlue,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        const HBox(
+                          height: 40,
+                        ),
                         buildButton(
                           state,
                           isConstrain: state.isContain,
                           favList: favState.list,
                         ),
                         const HBox(
-                          height: 30,
-                        ),
-                        Text(
-                          context.l10n.playbackSpeed,
-                          style: AppTextStyle.regular.copyWith(
-                            color: AppColors.black,
-                          ),
-                        ),
-                        const HBox(
-                          height: 12,
-                        ),
-                        Row(
-                          children: [
-                            Flexible(
-                              child: AppTextButton(
-                                onTap: () => _cubit.setSpeed(0.25),
-                                text: '0.25',
-                                isCenter: false,
-                                style: speed == 0.25
-                                    ? AppTextStyle.light.copyWith(
-                                        color: AppColors.mainBlue,
-                                        fontWeight: FontWeight.w600,
-                                      )
-                                    : AppTextStyle.light,
-                              ),
-                            ),
-                            Flexible(
-                              child: AppTextButton(
-                                onTap: () => _cubit.setSpeed(0.5),
-                                text: '0.5',
-                                isCenter: false,
-                                style: speed == 0.5
-                                    ? AppTextStyle.light.copyWith(
-                                        color: AppColors.mainBlue,
-                                        fontWeight: FontWeight.w600,
-                                      )
-                                    : AppTextStyle.light,
-                              ),
-                            ),
-                            Flexible(
-                              child: AppTextButton(
-                                onTap: () => _cubit.setSpeed(0.75),
-                                text: '0.75',
-                                isCenter: false,
-                                style: speed == 0.75
-                                    ? AppTextStyle.light.copyWith(
-                                        color: AppColors.mainBlue,
-                                        fontWeight: FontWeight.w600,
-                                      )
-                                    : AppTextStyle.light,
-                              ),
-                            ),
-                            AppTextButton(
-                              onTap: () => _cubit.setSpeed(1),
-                              isCenter: false,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
-                              text: context.l10n.usual,
-                              style: speed == 1
-                                  ? AppTextStyle.light.copyWith(
-                                      color: AppColors.mainBlue,
-                                      fontWeight: FontWeight.w600,
-                                    )
-                                  : AppTextStyle.light,
-                            ),
-                            Flexible(
-                              child: AppTextButton(
-                                onTap: () => _cubit.setSpeed(1.25),
-                                text: '1.25',
-                                isCenter: false,
-                                style: speed == 1.25
-                                    ? AppTextStyle.light.copyWith(
-                                        color: AppColors.mainBlue,
-                                        fontWeight: FontWeight.w600,
-                                      )
-                                    : AppTextStyle.light,
-                              ),
-                            ),
-                            Flexible(
-                              child: AppTextButton(
-                                onTap: () => _cubit.setSpeed(1.5),
-                                text: '1.5',
-                                isCenter: false,
-                                style: speed == 1.5
-                                    ? AppTextStyle.light.copyWith(
-                                        color: AppColors.mainBlue,
-                                        fontWeight: FontWeight.w600,
-                                      )
-                                    : AppTextStyle.light,
-                              ),
-                            ),
-                            Flexible(
-                              child: AppTextButton(
-                                onTap: () => _cubit.setSpeed(1.75),
-                                text: '1.75',
-                                isCenter: false,
-                                style: speed == 1.75
-                                    ? AppTextStyle.light.copyWith(
-                                        color: AppColors.mainBlue,
-                                        fontWeight: FontWeight.w600,
-                                      )
-                                    : AppTextStyle.light,
-                              ),
-                            ),
-                          ],
+                          height: 40,
                         ),
                       ],
                     ),
@@ -261,96 +188,24 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
     if (state.isLoading) {
       return const AppProgressIndicatorButton();
     } else if (state.playerState == 1) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: IconButton(
-              splashRadius: 100,
-              onPressed: () => _cubit.downloadRequisites(
-                _textController.text,
-                favList,
-              ),
-              constraints: const BoxConstraints(
-                minWidth: 64,
-                minHeight: 64,
-              ),
-              icon: SvgPicture.asset(
-                AppIcons.icRepeat,
-              ),
-            ),
-          ),
-          Expanded(
-            child: IconButton(
-              splashRadius: 100,
-              onPressed: _cubit.playAudio,
-              constraints: const BoxConstraints(
-                minWidth: 64,
-                minHeight: 64,
-              ),
-              icon: SvgPicture.asset(
-                AppIcons.icPlayFilled,
-              ),
-            ),
-          ),
-          Expanded(
-            child: FavoriteButton(
-              isConstrain: isConstrain,
-              controller: _textController,
-              changeFav: _cubit.removeFavoriteState,
-            ),
-          ),
-        ],
+      return AppFilledColorButton(
+        onTap: () => context.router.push(SpeechSynthesisResultRoute()),
+        color: AppColors.mainBlue,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        width: double.maxFinite,
+        text: 'Начать синтез',
       );
     } else if (state.playerState == 2) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: IconButton(
-              splashRadius: 100,
-              onPressed: () => _cubit.downloadRequisites(
-                _textController.text,
-                favList,
-              ),
-              constraints: const BoxConstraints(
-                minWidth: 64,
-                minHeight: 64,
-              ),
-              icon: SvgPicture.asset(
-                AppIcons.icRepeat,
-              ),
-            ),
-          ),
-          Expanded(
-            child: IconButton(
-              splashRadius: 100,
-              onPressed: _cubit.playAudio,
-              constraints: const BoxConstraints(
-                minWidth: 64,
-                minHeight: 64,
-              ),
-              icon: SvgPicture.asset(
-                AppIcons.icPause,
-              ),
-            ),
-          ),
-          Expanded(
-            child: FavoriteButton(
-              isConstrain: isConstrain,
-              controller: _textController,
-              changeFav: _cubit.removeFavoriteState,
-            ),
-          ),
-        ],
+      return AppFilledColorButton(
+        onTap: () => context.router.push(SpeechSynthesisResultRoute()),
+        text: 'Начать синтез',
+        padding: const EdgeInsets.symmetric(vertical: 16),
       );
     }
 
     return AppFilledColorButton(
-      onTap: () => _cubit.downloadRequisites(
-        _textController.text,
-        favList,
-      ),
+      onTap: () => context.router.push(SpeechSynthesisResultRoute()),
+
       width: 200,
       height: 54,
       color: AppColors.mainBlue,
@@ -365,45 +220,3 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
   }
 }
 
-class FavoriteButton extends StatelessWidget {
-  const FavoriteButton({
-    Key? key,
-    required this.changeFav,
-    required this.isConstrain,
-    required this.controller,
-  }) : super(key: key);
-
-  final bool isConstrain;
-  final Function(bool) changeFav;
-  final TextEditingController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      splashRadius: 100,
-      onPressed: () {
-        changeFav(!isConstrain);
-        if (isConstrain) {
-          context.read<FavoritesCubit>().removeFromFavorites(
-                controller.text,
-              );
-        } else {
-          context.read<FavoritesCubit>().addToFavorites(
-                controller.text,
-              );
-        }
-      },
-      constraints: const BoxConstraints(
-        minWidth: 64,
-        minHeight: 64,
-      ),
-      icon: SvgPicture.asset(
-        AppIcons.icHeart,
-        colorFilter: ColorFilter.mode(
-          isConstrain ? AppColors.mainBlack : AppColors.monoGrey,
-          BlendMode.srcIn,
-        ),
-      ),
-    );
-  }
-}

@@ -1,7 +1,6 @@
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/settings/app_setting/presentation/ui/app_settings_screen.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
