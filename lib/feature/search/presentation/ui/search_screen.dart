@@ -21,78 +21,75 @@ class SearchScreen extends StatelessWidget {
       appBar: AppCustomAppBar(title: context.l10n.search),
       body: ColoredBox(
         color: Colors.white,
-        child: Column(
+        child: ListView(
           children: [
             const HBox(
               height: 20,
             ),
             const AppSearchTextField(),
+            const HBox(
+              height: 32,
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 20,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      context.l10n.searchHistory,
-                      style: AppTextStyle.textButtonStyle,
-                    ),
-                  ),
-                  AppTextButton(
-                    onTap: () {},
-                    text: context.l10n.clear,
-                    style: AppTextStyle.regular.copyWith(
-                      color: AppColors.mainBlue,
-                    ),
-                  ),
-                ],
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'История поиска',
+                style: AppTextStyle.w600s18.copyWith(color: AppColors.black),
               ),
             ),
-            const AppCommonDividerWidget(),
-            Expanded(
-              child: ListView.separated(
+            const HBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'Включи и наслаждайся произведением казахской литературы',
+                style: AppTextStyle.w400s14.copyWith(color: AppColors.ffABB0BC),
+              ),
+            ),
+            ListView.separated(
+                padding: const EdgeInsets.symmetric(vertical: 40),
                 shrinkWrap: true,
-                itemCount: 3,
-                separatorBuilder: (_, __) => const AppCommonDividerWidget(),
-                itemBuilder: (context, index) => ListTile(
-                  title: Text(
-                    'Егіннің бастары',
-                    style: AppTextStyle.body.copyWith(
-                      fontWeight: FontWeight.w600,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Material(
+                    color: Colors.transparent,
+                    child: ListTile(
+                      onTap: () {},
+                      title: Text('Егіннің бастары',
+                          style: AppTextStyle.w600s16
+                              .copyWith(color: AppColors.black)),
+                      subtitle: Text(
+                        'Ахмет Байтұрсынұлы',
+                        style: AppTextStyle.w400s14
+                            .copyWith(color: AppColors.ffABB0BC),
+                      ),
+                      leading: Container(
+                        width: 60,
+                        decoration: BoxDecoration(
+                          color: AppColors.monoGrey,
+                          borderRadius: BorderRadius.circular(12),
+                          image: const DecorationImage(
+                              image: NetworkImage(
+                                'https://picsum.photos/1000/1000',
+                              ),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                      trailing: SvgPicture.asset(
+                        AppIcons.icPlayFilled,
+                        color: AppColors.mainBlue,
+                        width: 32,
+                        height: 32,
+                      ),
+                      dense: false,
                     ),
-                  ),
-                  subtitle: const Text(
-                    'Ахмет Байтұрсынұлы',
-                    style: AppTextStyle.regular,
-                  ),
-                  leading: Container(
-                    width: 48,
-                    height: 48,
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: AppColors.monoGrey,
-                      borderRadius: BorderRadius.circular(12),
+                  );
+                },
+                separatorBuilder: (c, i) => const HBox(
+                      height: 20,
                     ),
-                    child: SvgPicture.asset(
-                      AppIcons.icBook,
-                    ),
-                  ),
-                  trailing: SvgPicture.asset(
-                    AppIcons.icPlayFilled,
-                    color: AppColors.mainBlue,
-                    width: 32,
-                    height: 32,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 6,
-                    horizontal: 16,
-                  ),
-                  dense: false,
-                ),
-              ),
-            ),
+                itemCount: 3),
           ],
         ),
       ),

@@ -18,8 +18,11 @@ class AppSearchTextField extends StatelessWidget {
         horizontal: 16,
       ),
       decoration: BoxDecoration(
-        color: AppColors.monoGrey,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: AppColors.monoGrey,
+          width: 2,
+        ),
       ),
       child: TextField(
         style: AppTextStyle.body,
@@ -38,9 +41,6 @@ class AppSearchTextField extends StatelessWidget {
           suffixIconConstraints: const BoxConstraints(
             maxWidth: 24,
             maxHeight: 24,
-          ),
-          suffixIcon: SvgPicture.asset(
-            AppIcons.icMicrophone,
           ),
         ),
       ),
