@@ -118,6 +118,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
             ),
           ),
           ListView.separated(
+              padding: const EdgeInsets.symmetric(vertical: 40),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
