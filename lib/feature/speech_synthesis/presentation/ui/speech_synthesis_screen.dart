@@ -1,4 +1,5 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
+import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_progess_idicator_button.dart';
@@ -7,7 +8,6 @@ import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
-import 'package:aizere_app/feature/settings/app_setting/presentation/ui/app_settings_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_playback_line.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_text_field.dart';
@@ -71,32 +71,9 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
   Widget build(BuildContext context) {
     return ScreenWrapper(
       bottom: true,
-      backGround: AppColors.black,
-      appBar: AppBar(
-        backgroundColor: AppColors.black,
-        automaticallyImplyLeading: widget.text.isNotEmpty ? true : false,
-        title: SvgPicture.asset(
-          AppIcons.icLogo,
-          height: 24,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const AppSettingScreen(),
-                ),
-              );
-            },
-            splashRadius: 20,
-            constraints: const BoxConstraints(),
-            icon: SvgPicture.asset(
-              AppIcons.icInfoCircle,
-              color: Colors.white,
-            ),
-          ),
-        ],
+      appBar: AppCustomAppBar(
+        title: context.l10n.speechSynthesis,
+
       ),
       body: BlocBuilder<FavoritesCubit, FavoriteState>(
         builder: (context, favState) {

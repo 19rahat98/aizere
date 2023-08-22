@@ -1,10 +1,12 @@
 import 'package:aizere_app/common/widgets/app_common_divider_widget.dart';
+import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/common/widgets/app_search_textfield.dart';
 import 'package:aizere_app/common/widgets/app_sliver_header.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/library/presentation/ui/widgets/library_tab_bar.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
+import 'package:aizere_app/l10n/l10n.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,9 +36,8 @@ class _LibraryScreenState extends State<LibraryScreen>
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      top: true,
       bottom: false,
-      backGround: AppColors.black,
+      appBar: AppCustomAppBar(title: context.l10n.library),
       body: NestedScrollView(
         controller: _controller,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

@@ -84,7 +84,9 @@
   "repeatNewPassword": "Жаңа құпия сөзді қайта теріңіз",
   "restore": "Қалпына келтіру",
   "cancel": "Болдырмау",
-  "newPasswordDescription": "Сіздің аккаунтыңызға кіру үшін жаңа кілтсөз табыңыз"
+  "newPasswordDescription": "Сіздің аккаунтыңызға кіру үшін жаңа кілтсөз табыңыз",
+  "speechSynthesis": "Сөйлеу синтезі"
+
 
 
 

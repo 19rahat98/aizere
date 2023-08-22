@@ -10,7 +10,6 @@ class AppColors {
   static const monoGrey = Color(0xFFEDEDED);
   static const monoGrey1 = Color(0xFF8A8E99);
   static const semanticDanger = Color(0xFFFF403D);
-  static const ffEDEDED = Color(0xFFEDEDED);
   static const ffABB0BC = Color(0xFFABB0BC);
   static const ffE82C2C = Color(0xFFE82C2C);
   static const ffF6F5FA = Color(0xFFF6F5FA);
@@ -110,6 +109,12 @@ class AppTextStyle {
     color: AppColors.mainBlack,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w700,
+  );
+  static const TextStyle h3 = TextStyle(
+    fontSize: 22,
+    color: AppColors.mainBlack,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600,
   );
 }
 
