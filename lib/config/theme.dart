@@ -58,9 +58,27 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
+  static const TextStyle w400s14 = TextStyle(
+    fontSize: 14,
+    color: AppColors.black,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
 
   static const TextStyle w600s17 = TextStyle(
     fontSize: 17,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+
+  static const TextStyle w600s18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+
+  static const TextStyle w600s16 = TextStyle(
+    fontSize: 16,
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter',
   );
@@ -88,6 +106,11 @@ class AppTextStyle {
   static const TextStyle w400s16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
+ static const TextStyle w500s16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Inter',
   );
 
