@@ -114,59 +114,121 @@ class _LibraryScreenState extends State<LibraryScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               'Включи и наслаждайся произведением казахской литературы',
-              style: AppTextStyle.w400s14.copyWith(
-                color: AppColors.ffABB0BC,
-              ),
+              style: AppTextStyle.w400s14.copyWith(color: AppColors.ffABB0BC),
             ),
           ),
           ListView.separated(
-            itemCount: 5,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Material(
-                color: Colors.transparent,
-                child: ListTile(
-                  onTap: () {},
-                  title: Text(
-                    'Егіннің бастары',
-                    style: AppTextStyle.title.copyWith(
-                      color: AppColors.black,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Material(
+                  color: Colors.transparent,
+                  child: ListTile(
+                    onTap: () {},
+                    title: Text('Егіннің бастары',
+                        style: AppTextStyle.w600s16
+                            .copyWith(color: AppColors.black)),
+                    subtitle: Text(
+                      'Ахмет Байтұрсынұлы',
+                      style: AppTextStyle.w400s14
+                          .copyWith(color: AppColors.ffABB0BC),
                     ),
-                  ),
-                  subtitle: Text(
-                    'Ахмет Байтұрсынұлы',
-                    style: AppTextStyle.w400s14.copyWith(
-                      color: AppColors.ffABB0BC,
-                    ),
-                  ),
-                  leading: Container(
-                    width: 60,
-                    decoration: BoxDecoration(
-                      color: AppColors.monoGrey,
-                      borderRadius: BorderRadius.circular(12),
-                      image: const DecorationImage(
-                        image: NetworkImage(
-                          'https://picsum.photos/1000/1000',
-                        ),
-                        fit: BoxFit.cover,
+                    leading: Container(
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: AppColors.monoGrey,
+                        borderRadius: BorderRadius.circular(12),
+                        image: const DecorationImage(
+                            image: NetworkImage(
+                              'https://picsum.photos/1000/1000',
+                            ),
+                            fit: BoxFit.cover),
                       ),
                     ),
+                    trailing: SvgPicture.asset(
+                      AppIcons.icPlayFilled,
+                      color: AppColors.mainBlue,
+                      width: 32,
+                      height: 32,
+                    ),
+                    dense: false,
                   ),
-                  trailing: SvgPicture.asset(
-                    AppIcons.icPlayFilled,
-                    color: AppColors.mainBlue,
-                    width: 32,
-                    height: 32,
+                );
+              },
+              separatorBuilder: (c, i) => const HBox(
+                    height: 20,
                   ),
-                  dense: false,
-                ),
-              );
-            },
-            separatorBuilder: (c, i) => const HBox(height: 20),
-          )
+              itemCount: 5)
         ],
       ),
     );
   }
 }
+
+// ColoredBox
+// (
+// color: Colors.white,
+// child: TabBarView(
+// controller: _tabController,
+// children: List.generate(
+// 11,
+// (index) => ListView.separated(
+// itemCount: 15,
+// shrinkWrap: true,
+// padding: const EdgeInsets.only(
+// top: 64,
+// ),
+// separatorBuilder: (_, __) => const AppCommonDividerWidget(),
+// itemBuilder: (context, index) => Material(
+// color: Colors.transparent,
+// child: ListTile(
+// onTap: () {
+// Navigator.push(
+// context,
+// MaterialPageRoute(
+// builder: (_) => const SpeechSynthesisBuildScreen(
+// text:
+// 'Бір адам жас баласын жанына алды, Екеуі сайран етіп кетіп қалды. Қыдырып әрлі-берлі жүрді дағы, Егінші егін еккен жерге барды.',
+// ),
+// ),
+// );
+// },
+// title: Text(
+// 'Егіннің бастары',
+// style: AppTextStyle.body.copyWith(
+// fontWeight: FontWeight.w600,
+// ),
+// ),
+// subtitle: const Text(
+// 'Ахмет Байтұрсынұлы',
+// style: AppTextStyle.regular,
+// ),
+// leading: Container(
+// width: 48,
+// height: 48,
+// padding: const EdgeInsets.all(12),
+// decoration: BoxDecoration(
+// color: AppColors.monoGrey,
+// borderRadius: BorderRadius.circular(12),
+// ),
+// child: SvgPicture.asset(
+// AppIcons.icBook,
+// ),
+// ),
+// trailing: SvgPicture.asset(
+// AppIcons.icPlayFilled,
+// color: AppColors.mainBlue,
+// width: 32,
+// height: 32,
+// ),
+// contentPadding: const EdgeInsets.symmetric(
+// vertical: 6,
+// horizontal: 16,
+// ),
+// dense: false,
+// ),
+// ),
+// ),
+// ),
+// ),
+// ),
