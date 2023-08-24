@@ -1,15 +1,12 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
-import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
+import 'package:aizere_app/common/widgets/app_common_divider_widget.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
-import 'package:aizere_app/common/widgets/app_progess_idicator_button.dart';
 import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_custom_app_bar.dart';
-import 'package:aizere_app/l10n/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,14 +18,16 @@ class SpeechSynthesisResultScreen extends StatelessWidget {
   const SpeechSynthesisResultScreen({
     Key? key,
     this.text = GlobalConstant.empty,
+    required this.cubit,
   }) : super(key: key);
 
   final String text;
+  final SpeechCubit cubit;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SpeechCubit>(
-      create: (_) => SpeechCubit()..initCubit(),
+    return BlocProvider.value(
+      value: cubit,
       child: SpeechSynthesisResult(
         text: text,
       ),
@@ -51,17 +50,12 @@ class SpeechSynthesisResult extends StatefulWidget {
 class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
   late SpeechCubit _cubit;
 
-  late TextEditingController _textController;
-
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.light,
     );
     _cubit = context.read<SpeechCubit>();
-    _textController = TextEditingController(
-      text: widget.text,
-    );
     super.initState();
   }
 
@@ -77,8 +71,6 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
               title: state.error,
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          } else if (state is SpeechSuccessDownloaded) {
-            context.read<FavoritesCubit>().loadFavorites();
           }
         },
         buildWhen: (prev, current) => current is SpeechCommonState,
@@ -136,7 +128,7 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                                 width: 10,
                               ),
                               Text(
-                                'Алтын',
+                                'Айзере',
                                 style: AppTextStyle.text.copyWith(
                                   color: Colors.white,
                                 ),
@@ -156,7 +148,7 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                                 shape: BoxShape.circle,
                                 color: AppColors.ffD8EBFF),
                             child: const Icon(
-                              Icons.add,
+                              Icons.favorite_border,
                               color: AppColors.mainBlue,
                             ),
                           ),
@@ -169,19 +161,17 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                       color: AppColors.monoGrey,
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height / 2.5,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: AppColors.monoGrey),
-                        ),
-                      ),
-                      child: const SingleChildScrollView(
+                      height: 320,
+                      alignment: Alignment.topLeft,
+                      decoration: const BoxDecoration(),
+                      child: SingleChildScrollView(
                         child: Text(
-                          'Президентіміз Қасым-Жомарт Кемелұлы Тоқаевтың жолдауында айтылғандай, қазір білім сапасын арттыру, оның ішінде білім беру ұйымдарын цифрландыру мәселесіне ерекше көңіл бөліп отырПрезидентіміз Қасым-Жомарт Кемелұлы Тоқаевтың жолдауында айтылғандай, қазір білім сапасын арттыру, оның ішінде білім беру ұйымдарын цифрландыру мәселесіне ерекше көңіл бөліп отырПрезидентіміз Қасым-Жомарт Кемелұлы Тоқаевтың жолдауында айтылғандай, қазір білім сапасын арттыру, оның ішінде білім беру ұйымдарын цифрландыру мәселесіне ерекше көңіл бөліп отырПрезидентіміз Қасым-Жомарт Кемелұлы Тоқаевтың жолдауында айтылғандай, қазір білім сапасын арттыру, оның ішінде білім беру ұйымдарын цифрландыру мәселесіне ерекше көңіл бөліп отыр',
+                          widget.text,
                           style: AppTextStyle.body,
                         ),
                       ),
                     ),
+                    const AppCommonDividerWidget(),
                     const HBox(
                       height: 20,
                     ),
@@ -191,7 +181,9 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                         const WBox(
                           width: 10,
                         ),
-                        const Text('00:01:23')
+                        Text(
+                          formatTime(state.totalTime),
+                        )
                       ],
                     ),
                     const HBox(
@@ -210,10 +202,32 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                       ),
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            AppIcons.icPlayFilled,
-                            height: 35,
-                            color: AppColors.mainBlue,
+                          IconButton(
+                            onPressed: _cubit.playAudio,
+                            icon: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  50,
+                                ),
+                                color: AppColors.mainBlue,
+                              ),
+                              padding: const EdgeInsets.all(
+                                4,
+                              ),
+                              child: Icon(
+                                state.playerState == 1
+                                    ? Icons.play_arrow
+                                    : Icons.pause,
+                                color: Colors.white,
+                              ),
+                            ),
+                            // icon: state.playerState == 1
+                            //     ? SvgPicture.asset(
+                            //   AppIcons.icPlayFilled,
+                            //   height: 35,
+                            //   color: AppColors.mainBlue,
+                            // ) : Icon(Icons.pause),
+                            // onPressed: _cubit.playAudio,
                           ),
                           const WBox(
                             width: 12,
@@ -234,11 +248,12 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                     ),
                     const Spacer(),
                     TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'Новый синтез',
-                          style: AppTextStyle.w600s18,
-                        ))
+                      onPressed: () {},
+                      child: const Text(
+                        'Новый синтез',
+                        style: AppTextStyle.w600s18,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -250,48 +265,59 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
       ),
     );
   }
-
-  Widget buildButton(
-    SpeechCommonState state, {
-    bool isConstrain = false,
-    required List<String> favList,
-  }) {
-    if (state.isLoading) {
-      return const AppProgressIndicatorButton();
-    } else if (state.playerState == 1) {
-      return AppFilledColorButton(
-        onTap: _cubit.playAudio,
-        color: AppColors.mainBlue,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        width: double.maxFinite,
-        text: 'Начать синтез',
-      );
-    } else if (state.playerState == 2) {
-      return AppFilledColorButton(
-        onTap: _cubit.playAudio,
-        text: 'Начать синтез',
-        padding: const EdgeInsets.symmetric(vertical: 16),
-      );
-    }
-
-    return AppFilledColorButton(
-      onTap: () => _cubit.downloadRequisites(
-        _textController.text,
-        favList,
-      ),
-      width: 200,
-      height: 54,
-      color: AppColors.mainBlue,
-      borderRadiusRadii: 100,
-      child: Text(
-        context.l10n.start,
-        style: AppTextStyle.textButtonStyle.copyWith(
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
 }
+
+String formatTime(int seconds) {
+  int hours = seconds ~/ 3600;
+  int minutes = (seconds % 3600) ~/ 60;
+  int remainingSeconds = seconds % 60;
+
+  String formattedHours = hours.toString().padLeft(2, '0');
+  String formattedMinutes = minutes.toString().padLeft(2, '0');
+  String formattedSeconds = remainingSeconds.toString().padLeft(2, '0');
+
+  return '$formattedHours:$formattedMinutes:$formattedSeconds';
+}
+
+//   Widget buildButton(
+//     SpeechCommonState state, {
+//     bool isConstrain = false,
+//   }) {
+//     if (state.isLoading) {
+//       return const AppProgressIndicatorButton();
+//     } else if (state.playerState == 1) {
+//       return AppFilledColorButton(
+//         onTap: _cubit.playAudio,
+//         color: AppColors.mainBlue,
+//         padding: const EdgeInsets.symmetric(vertical: 16),
+//         width: double.maxFinite,
+//         text: 'Начать синтез',
+//       );
+//     } else if (state.playerState == 2) {
+//       return AppFilledColorButton(
+//         onTap: _cubit.playAudio,
+//         text: 'Начать синтез',
+//         padding: const EdgeInsets.symmetric(vertical: 16),
+//       );
+//     }
+//
+//     return AppFilledColorButton(
+//       onTap: () => _cubit.downloadRequisites(
+//         _textController.text,
+//       ),
+//       width: 200,
+//       height: 54,
+//       color: AppColors.mainBlue,
+//       borderRadiusRadii: 100,
+//       child: Text(
+//         context.l10n.start,
+//         style: AppTextStyle.textButtonStyle.copyWith(
+//           color: Colors.white,
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 //  Widget buildButton(
 //     SpeechCommonState state, {

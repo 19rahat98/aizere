@@ -98,11 +98,11 @@ class SpeechCubit extends Cubit<SpeechState> {
   }
 
   /// скачиваем реквизиты карты
-  void downloadRequisites(String text, List<String> listFav) async {
+  void downloadRequisites(String text) async {
     requestPermission(
       permission: Permission.storage,
       onGrantedPermission: () async {
-        await request(text, listFav);
+        await request(text);
       },
       onDenied: () {
         emit(SpeechDownloadError('Permission error'));
@@ -140,7 +140,7 @@ class SpeechCubit extends Cubit<SpeechState> {
     ));
   }
 
-  Future<void> request(String text, List<String> listFav) async {
+  Future<void> request(String text) async {
     final state = getCommonState();
     emit(
       state.copyWith(
@@ -160,11 +160,9 @@ class SpeechCubit extends Cubit<SpeechState> {
       await responseFile.writeAsBytes(requestBytes);
       _filePath = responseFile.path;
       await player.setFilePath(_filePath);
-      final isContain = listFav.contains(text);
       emit(SpeechSuccessDownloaded());
       emit(
         state.copyWith(
-          isContain: isContain,
           isLoading: false,
           playerState: 1,
           totalTime: _totalTime,
@@ -183,19 +181,20 @@ class SpeechCubit extends Cubit<SpeechState> {
           playerState: 0,
         ),
       );
+      rethrow;
     }
   }
 
   Future<Uint8List> doRequest(String text, {int? speaker}) async {
     var request = http.MultipartRequest(
       'POST',
-      //Uri.parse('http://20.121.195.17:5000/tts'),
-      Uri.parse("https://aizere.azure-api.net/old/tts"),
+      Uri.parse("http://185.22.65.38:8000/tts/"),
     );
+    request.headers.addAll(
+        {'Authorization': 'Token d03ac9bf2cd7878d9e72af742462a61aea7f1ef3'});
     request.fields.addAll(
       {
         'text': text,
-        'speaker': speaker?.toString() ?? '1',
       },
     );
 

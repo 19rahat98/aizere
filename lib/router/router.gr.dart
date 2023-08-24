@@ -116,13 +116,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SpeechSynthesisResultRoute.name: (routeData) {
-      final args = routeData.argsAs<SpeechSynthesisResultRouteArgs>(
-          orElse: () => const SpeechSynthesisResultRouteArgs());
+      final args = routeData.argsAs<SpeechSynthesisResultRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: SpeechSynthesisResultScreen(
           key: args.key,
           text: args.text,
+          cubit: args.cubit,
         ),
       );
     },
@@ -412,12 +412,14 @@ class SpeechSynthesisResultRoute
   SpeechSynthesisResultRoute({
     Key? key,
     String text = GlobalConstant.empty,
+    required SpeechCubit cubit,
     List<PageRouteInfo>? children,
   }) : super(
           SpeechSynthesisResultRoute.name,
           args: SpeechSynthesisResultRouteArgs(
             key: key,
             text: text,
+            cubit: cubit,
           ),
           initialChildren: children,
         );
@@ -432,15 +434,18 @@ class SpeechSynthesisResultRouteArgs {
   const SpeechSynthesisResultRouteArgs({
     this.key,
     this.text = GlobalConstant.empty,
+    required this.cubit,
   });
 
   final Key? key;
 
   final String text;
 
+  final SpeechCubit cubit;
+
   @override
   String toString() {
-    return 'SpeechSynthesisResultRouteArgs{key: $key, text: $text}';
+    return 'SpeechSynthesisResultRouteArgs{key: $key, text: $text, cubit: $cubit}';
   }
 }
 
