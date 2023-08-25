@@ -3,7 +3,7 @@ import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
-class SynthesisTextField extends StatefulWidget {
+class SynthesisTextField extends StatelessWidget {
   const SynthesisTextField({
     Key? key,
     this.onClear,
@@ -18,16 +18,6 @@ class SynthesisTextField extends StatefulWidget {
   final TextEditingController controller;
 
   @override
-  State<SynthesisTextField> createState() => _SynthesisTextFieldState();
-}
-
-class _SynthesisTextFieldState extends State<SynthesisTextField> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -38,8 +28,8 @@ class _SynthesisTextFieldState extends State<SynthesisTextField> {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(width: 2, color: AppColors.monoGrey)),
       child: TextField(
-        enabled: widget.canEdit,
-        controller: widget.controller,
+        enabled: canEdit,
+        controller: controller,
         style: AppTextStyle.body,
         maxLines: null,
         decoration: InputDecoration(
