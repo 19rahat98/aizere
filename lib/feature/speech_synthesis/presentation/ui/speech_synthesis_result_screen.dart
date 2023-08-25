@@ -242,7 +242,7 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                     ),
                     const Spacer(),
                     TextButton(
-                      onPressed:() => context.router.pop(),
+                      onPressed: () => context.router.pop(),
                       child: const Text(
                         'Новый синтез',
                         style: AppTextStyle.w600s18,
@@ -260,4 +260,3 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
     );
   }
 }
-
