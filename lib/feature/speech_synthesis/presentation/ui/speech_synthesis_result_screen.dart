@@ -1,4 +1,5 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
+import 'package:aizere_app/common/core/extensions.dart';
 import 'package:aizere_app/common/widgets/app_common_divider_widget.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
@@ -182,7 +183,7 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                           width: 10,
                         ),
                         Text(
-                          formatTime(state.totalTime),
+                          state.totalTime.formatTime(),
                         )
                       ],
                     ),
@@ -221,13 +222,6 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                                 color: Colors.white,
                               ),
                             ),
-                            // icon: state.playerState == 1
-                            //     ? SvgPicture.asset(
-                            //   AppIcons.icPlayFilled,
-                            //   height: 35,
-                            //   color: AppColors.mainBlue,
-                            // ) : Icon(Icons.pause),
-                            // onPressed: _cubit.playAudio,
                           ),
                           const WBox(
                             width: 12,
@@ -267,96 +261,3 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
   }
 }
 
-String formatTime(int seconds) {
-  int hours = seconds ~/ 3600;
-  int minutes = (seconds % 3600) ~/ 60;
-  int remainingSeconds = seconds % 60;
-
-  String formattedHours = hours.toString().padLeft(2, '0');
-  String formattedMinutes = minutes.toString().padLeft(2, '0');
-  String formattedSeconds = remainingSeconds.toString().padLeft(2, '0');
-
-  return '$formattedHours:$formattedMinutes:$formattedSeconds';
-}
-
-//   Widget buildButton(
-//     SpeechCommonState state, {
-//     bool isConstrain = false,
-//   }) {
-//     if (state.isLoading) {
-//       return const AppProgressIndicatorButton();
-//     } else if (state.playerState == 1) {
-//       return AppFilledColorButton(
-//         onTap: _cubit.playAudio,
-//         color: AppColors.mainBlue,
-//         padding: const EdgeInsets.symmetric(vertical: 16),
-//         width: double.maxFinite,
-//         text: 'Начать синтез',
-//       );
-//     } else if (state.playerState == 2) {
-//       return AppFilledColorButton(
-//         onTap: _cubit.playAudio,
-//         text: 'Начать синтез',
-//         padding: const EdgeInsets.symmetric(vertical: 16),
-//       );
-//     }
-//
-//     return AppFilledColorButton(
-//       onTap: () => _cubit.downloadRequisites(
-//         _textController.text,
-//       ),
-//       width: 200,
-//       height: 54,
-//       color: AppColors.mainBlue,
-//       borderRadiusRadii: 100,
-//       child: Text(
-//         context.l10n.start,
-//         style: AppTextStyle.textButtonStyle.copyWith(
-//           color: Colors.white,
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-//  Widget buildButton(
-//     SpeechCommonState state, {
-//     bool isConstrain = false,
-//     required List<String> favList,
-//   }) {
-//     if (state.isLoading) {
-//       return const AppProgressIndicatorButton();
-//     } else if (state.playerState == 1) {
-//       return AppFilledColorButton(
-//         onTap: _cubit.playAudio,
-//         color: AppColors.mainBlue,
-//         padding: const EdgeInsets.symmetric(vertical: 16),
-//         width: double.maxFinite,
-//         text: 'Начать синтез',
-//       );
-//     } else if (state.playerState == 2) {
-//       return AppFilledColorButton(
-//         onTap: _cubit.playAudio,
-//         text: 'Начать синтез',
-//         padding: const EdgeInsets.symmetric(vertical: 16),
-//       );
-//     }
-//
-//     return AppFilledColorButton(
-//       onTap: () => _cubit.downloadRequisites(
-//         _textController.text,
-//         favList,
-//       ),
-//       width: 200,
-//       height: 54,
-//       color: AppColors.mainBlue,
-//       borderRadiusRadii: 100,
-//       child: Text(
-//         context.l10n.start,
-//         style: AppTextStyle.textButtonStyle.copyWith(
-//           color: Colors.white,
-//         ),
-//       ),
-//     );
-//   }
-// }

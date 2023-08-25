@@ -191,7 +191,7 @@ class SpeechCubit extends Cubit<SpeechState> {
       Uri.parse("http://185.22.65.38:8000/tts/"),
     );
     request.headers.addAll(
-        {'Authorization': 'Token d03ac9bf2cd7878d9e72af742462a61aea7f1ef3'});
+        {'Authorization': 'Token 0b8dee37be7188af8ea9b91c6b1e87176d60c7c6'});
     request.fields.addAll(
       {
         'text': text,
