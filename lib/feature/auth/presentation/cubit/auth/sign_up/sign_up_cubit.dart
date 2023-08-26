@@ -28,7 +28,7 @@ class SignUpCubit extends Cubit<SignUpState> with CoreRequestWorkedMixin {
 
   void emailConfirmation(String username, String code) async {
     await launchWithError(
-      request: _authRepository.(username, code),
+      request: _authRepository.emailConfirmation(username, code),
       resultData: (data) {
         emit(SignUpSuccessState());
       },
