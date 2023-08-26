@@ -1,4 +1,5 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
+import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
@@ -16,37 +17,40 @@ class RegistrationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Column(
           children: [
+            HBox(
+              height: MediaQuery.of(context).size.height / 20,
+            ),
             AuthTitleWidget(
                 title: context.l10n.signUp,
                 text: context.l10n.fillAllFieldsSignUp),
-            const SizedBox(
+            const HBox(
               height: 40,
             ),
             AuthTextField(
               title: context.l10n.name,
             ),
-            const SizedBox(
+            const HBox(
               height: 24,
             ),
             AuthTextField(
               title: context.l10n.phone,
             ),
-            const SizedBox(
+            const HBox(
               height: 24,
             ),
             AuthTextField(
               title: context.l10n.password,
             ),
-            const SizedBox(
+            const HBox(
               height: 32,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 Text(
+                Text(
                   context.l10n.haveAnAccount,
                   style: AppTextStyle.text,
                 ),

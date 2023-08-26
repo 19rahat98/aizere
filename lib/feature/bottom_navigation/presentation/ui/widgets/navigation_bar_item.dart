@@ -11,17 +11,17 @@ class NavigationBarItem extends StatelessWidget {
 
   const NavigationBarItem(
       {Key? key,
-        required this.title,
-        required this.icon,
-        this.isSelected = false,
-        required this.changeIndex,
-        required this.index})
+      required this.title,
+      required this.icon,
+      this.isSelected = false,
+      required this.changeIndex,
+      required this.index})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(8),
       child: InkWell(
         onTap: () => changeIndex(index),
         splashColor: Colors.transparent,

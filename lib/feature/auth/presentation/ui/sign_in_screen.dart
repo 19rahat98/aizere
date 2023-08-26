@@ -3,7 +3,7 @@ import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_in_cubit.dart';
+import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_in/sign_in_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -76,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       style: AppTextStyle.w600s17,
                     ),
                     AppTextButton(
-                      onTap: () {},
+                      onTap: () => context.router.replace(const RegistrationRoute()),
                       text: context.l10n.signUp,
                       style: AppTextStyle.w600s17.copyWith(
                         color: AppColors.mainBlue,
