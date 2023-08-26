@@ -17,3 +17,4 @@ class SignInCommonState extends SignInState {
 class SignInSuccessState extends SignInState {}
 
 class SignInFailureState extends SignInState {}
+

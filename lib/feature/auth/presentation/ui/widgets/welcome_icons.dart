@@ -10,7 +10,9 @@ class WelcomeIcons extends StatelessWidget {
     return Column(
       children: [
         SvgPicture.asset(AppIcons.icAizere),
-        const SizedBox(height: 40,),
+        const SizedBox(
+          height: 20,
+        ),
         SvgPicture.asset(AppIcons.icPet),
       ],
     );

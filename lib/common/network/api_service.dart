@@ -27,6 +27,16 @@ class ApiService {
     );
   }
 
+  Future<Response> emailConfirmation(String username, String code) {
+    return _httpClient.post(
+      'mail-code/',
+      data: {
+        'username': username,
+        'code': code,
+      },
+    );
+  }
+
   Future<Response> signIn(String username, String password) {
     return _httpClient.post(
       'auth/login/',
