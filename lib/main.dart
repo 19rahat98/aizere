@@ -1,5 +1,6 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_up/sign_up_cubit.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/language_logic/presentation/cubit/local_language_cubit.dart';
 import 'package:aizere_app/feature/library/presentation/cubit/library_screen_cubit.dart';
@@ -48,6 +49,10 @@ class MyApp extends StatelessWidget {
         BlocProvider<LibraryScreenCubit>(
           lazy: false,
           create: (context) => LibraryScreenCubit()..makeApiCall(),
+        ),
+        BlocProvider(
+          lazy: false,
+          create: (context) => SignUpCubit(),
         ),
         BlocProvider(
           lazy: false,
