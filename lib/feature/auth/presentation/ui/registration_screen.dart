@@ -4,76 +4,97 @@ import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_up/sign_up_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class RegistrationScreen extends StatelessWidget {
+class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
 
   @override
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  final username = TextEditingController();
+  final password = TextEditingController();
+  final name = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: Column(
-          children: [
-            HBox(
-              height: MediaQuery.of(context).size.height / 20,
-            ),
-            AuthTitleWidget(
-                title: context.l10n.signUp,
-                text: context.l10n.fillAllFieldsSignUp),
-            const HBox(
-              height: 40,
-            ),
-            AuthTextField(
-              title: context.l10n.name,
-            ),
-            const HBox(
-              height: 24,
-            ),
-            AuthTextField(
-              title: context.l10n.phone,
-            ),
-            const HBox(
-              height: 24,
-            ),
-            AuthTextField(
-              title: context.l10n.password,
-            ),
-            const HBox(
-              height: 32,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  context.l10n.haveAnAccount,
-                  style: AppTextStyle.w600s17,
-                ),
-                AppTextButton(
-                  onTap: () {
-                    context.router.replace(const SignInRoute());
-                  },
-                  text: context.l10n.enter,
-                  style:
-                      AppTextStyle.w600s17.copyWith(color: AppColors.mainBlue),
-                ),
-              ],
-            ),
-            const Spacer(),
-            AppFilledColorButton(
-              onTap: () {
-                context.router.push(ConfirmationRoute());
-              },
-              text: context.l10n.continueText,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              color: AppColors.mainBlue,
-            ),
-          ],
+    return BlocListener<SignUpCubit, SignUpState>(
+      listener: (context, state) {
+        if (state is SignUpSuccessState) {
+          context.router.push(ConfirmationRoute());
+        }
+      },
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: Column(
+            children: [
+              HBox(
+                height: MediaQuery.of(context).size.height / 20,
+              ),
+              AuthTitleWidget(
+                  title: context.l10n.signUp,
+                  text: context.l10n.fillAllFieldsSignUp),
+              const HBox(
+                height: 40,
+              ),
+              AuthTextField(
+                title: context.l10n.name,
+                controller: name,
+              ),
+              const HBox(
+                height: 24,
+              ),
+              AuthTextField(
+                title: context.l10n.phone,
+                controller: username,
+              ),
+              const HBox(
+                height: 24,
+              ),
+              AuthTextField(
+                title: context.l10n.password,
+                controller: password,
+              ),
+              const HBox(
+                height: 32,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    context.l10n.haveAnAccount,
+                    style: AppTextStyle.w600s17,
+                  ),
+                  AppTextButton(
+                    onTap: () => context.router.replace(
+                      const SignInRoute(),
+                    ),
+                    text: context.l10n.enter,
+                    style: AppTextStyle.w600s17
+                        .copyWith(color: AppColors.mainBlue),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              AppFilledColorButton(
+                onTap: () => context
+                    .read<SignUpCubit>()
+                    .signUp(username.text, password.text, name.text),
+                text: context.l10n.continueText,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                color: AppColors.mainBlue,
+              ),
+            ],
+          ),
         ),
       ),
     );
