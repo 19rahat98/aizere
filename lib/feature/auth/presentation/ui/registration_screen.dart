@@ -29,12 +29,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccessState) {
-          context.router.push(ConfirmationRoute());
+          context.router.push(
+            ConfirmationRoute(username: username.text, name: name.text),
+          );
         }
       },
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          padding: const EdgeInsets.symmetric(
+            vertical: 20,
+            horizontal: 20,
+          ),
           child: Column(
             children: [
               HBox(
@@ -49,13 +54,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               AuthTextField(
                 title: context.l10n.name,
                 controller: name,
+                hintText: context.l10n.exampleAizere,
               ),
               const HBox(
                 height: 24,
               ),
               AuthTextField(
-                title: context.l10n.phone,
+                title: context.l10n.mail,
                 controller: username,
+                hintText: context.l10n.enterMail,
               ),
               const HBox(
                 height: 24,
@@ -63,6 +70,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               AuthTextField(
                 title: context.l10n.password,
                 controller: password,
+                hintText: context.l10n.enterPassword,
               ),
               const HBox(
                 height: 32,
@@ -72,23 +80,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 children: [
                   Text(
                     context.l10n.haveAnAccount,
-                    style: AppTextStyle.w600s17,
+                    style: AppTextStyle.heading,
                   ),
                   AppTextButton(
                     onTap: () => context.router.replace(
                       const SignInRoute(),
                     ),
                     text: context.l10n.enter,
-                    style: AppTextStyle.w600s17
+                    style: AppTextStyle.heading
                         .copyWith(color: AppColors.mainBlue),
                   ),
                 ],
               ),
               const Spacer(),
               AppFilledColorButton(
-                onTap: () => context
-                    .read<SignUpCubit>()
-                    .signUp(username.text, password.text, name.text),
+                onTap: () {
+                  context
+                      .read<SignUpCubit>()
+                      .signUp(username.text, password.text, name.text);
+                },
                 text: context.l10n.continueText,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 color: AppColors.mainBlue,

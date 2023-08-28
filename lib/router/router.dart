@@ -13,6 +13,7 @@ import 'package:aizere_app/feature/search/presentation/ui/search_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_download/speech_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_result_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
+import 'package:aizere_app/feature/splash/ui/splash_screen.dart';
 import 'package:aizere_app/router/empty/empty_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
@@ -25,14 +26,14 @@ part 'router.gr.dart';
 class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(path: '/auth', page: WelcomeRoute.page, initial: true),
+        AutoRoute(page: AppSplashRoute.page, initial: true),
+        AutoRoute(path: '/auth', page: WelcomeRoute.page),
         AutoRoute(page: RegistrationRoute.page),
         AutoRoute(page: ConfirmationRoute.page),
         AutoRoute(page: SuccessRoute.page),
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: ForgotPasswordRoute.page),
         AutoRoute(page: ChangePasswordRoute.page),
-
         AutoRoute(
           page: MainBottomNavigationRoute.page,
           children: [

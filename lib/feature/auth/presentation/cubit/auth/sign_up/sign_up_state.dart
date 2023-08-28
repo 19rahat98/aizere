@@ -18,4 +18,8 @@ class SignUpCommonState extends SignUpState {
 
 class SignUpSuccessState extends SignUpState {}
 
+
 class SignUpFailureState extends SignUpState {}
+
+class EmailConfirmSuccessState extends SignUpState {}
+

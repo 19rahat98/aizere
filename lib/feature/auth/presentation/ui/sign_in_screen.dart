@@ -29,14 +29,10 @@ class _SignInScreenState extends State<SignInScreen> {
       create: (context) => SignInCubit(),
       child: BlocListener<SignInCubit, SignInState>(
         listener: (context, state) {
-          // TODO: implement listener
           if (state is SignInSuccessState) {
             context.router.replace(
-              const RegistrationRoute(),
+              SpeechSynthesisBuildRoute(),
             );
-          }
-          if (state is SignInFailureState) {
-            print('ERRROR');
           }
         },
         child: Scaffold(
@@ -55,8 +51,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 40,
                 ),
                 AuthTextField(
-                  title: context.l10n.phone,
+                  title: context.l10n.mail,
                   controller: username,
+                  hintText: context.l10n.enterMail,
                 ),
                 const SizedBox(
                   height: 24,
@@ -64,6 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 AuthTextField(
                   title: context.l10n.password,
                   controller: password,
+                  hintText: context.l10n.enterPassword,
                 ),
                 const SizedBox(
                   height: 32,
@@ -73,12 +71,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   children: [
                     Text(
                       context.l10n.dontHaveAnAccount,
-                      style: AppTextStyle.w600s17,
+                      style: AppTextStyle.heading,
                     ),
                     AppTextButton(
-                      onTap: () => context.router.replace(const RegistrationRoute()),
+                      onTap: () =>
+                          context.router.replace(const RegistrationRoute()),
                       text: context.l10n.signUp,
-                      style: AppTextStyle.w600s17.copyWith(
+                      style: AppTextStyle.heading.copyWith(
                         color: AppColors.mainBlue,
                       ),
                     ),
@@ -113,7 +112,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   },
                   child: Text(
                     context.l10n.forgotPassword,
-                    style: AppTextStyle.w600s17.copyWith(
+                    style: AppTextStyle.heading.copyWith(
                       color: AppColors.black,
                     ),
                   ),
