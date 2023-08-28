@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 
 /// Textfield который имеет title над собой. Нужен чтобы показать то что данные в textfield Required
 class AuthTextField extends StatelessWidget {
+  const AuthTextField(
+      {super.key,
+      this.controller,
+      required this.title,
+      this.hintText,
+      this.maxLength});
+
   final String? title;
   final TextEditingController? controller;
-
-  const AuthTextField({
-    super.key,
-    this.controller,
-    required this.title,
-  });
+  final String? hintText;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +25,13 @@ class AuthTextField extends StatelessWidget {
           child: Text.rich(
             TextSpan(
               children: [
-                TextSpan(text: title ?? '', style: AppTextStyle.w400s16),
+                TextSpan(
+                    text: title ?? '',
+                    style: AppTextStyle.light.copyWith(fontSize: 16)),
                 TextSpan(
                   text: '*',
-                  style:
-                      AppTextStyle.w400s16.copyWith(color: AppColors.ffE82C2C),
+                  style: AppTextStyle.light
+                      .copyWith(color: AppColors.errorRed, fontSize: 16),
                 ),
               ],
             ),
@@ -38,12 +43,17 @@ class AuthTextField extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: AppColors.ffF6F5FA),
+              color: AppColors.lavender),
           child: TextField(
             controller: controller,
-            decoration: const InputDecoration(
+            maxLength: maxLength,
+            decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(horizontal: 15),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+              counterText: '',
+              hintText: hintText,
+              hintStyle: AppTextStyle.light
+                  .copyWith(fontSize: 14, color: AppColors.grayBlue),
             ),
           ),
         ),

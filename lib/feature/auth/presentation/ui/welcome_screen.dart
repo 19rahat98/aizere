@@ -51,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
                 context.router.replace(const SignInRoute());
               },
               text: context.l10n.enter,
-              color: AppColors.ffABB0BC,
+              color: AppColors.grayBlue,
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
           ],

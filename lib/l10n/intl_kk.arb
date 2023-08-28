@@ -74,7 +74,6 @@
   "continueText": "Жалғастыру",
   "confirmationCode": "Растау коды",
   "sendItBack": "Қайта жіберу арқылы: ",
-  "back": "Артқа",
   "confirmationDescription": "Сіздің телефон нөміріңізге 4 саннан тұратын SMS растау коды жіберілді. Төмендегі өріске кодты енгізіңіз.",
   "finalize": "Аяқтау",
   "congratulations": "Құттықтаймыз",
@@ -85,6 +84,10 @@
   "restore": "Қалпына келтіру",
   "cancel": "Болдырмау",
   "newPasswordDescription": "Сіздің аккаунтыңызға кіру үшін жаңа кілтсөз табыңыз",
+  "mail": "Электрондық пошта",
+  "enterMail": "Эл. пошта мекенжайын енгізіңіз",
+  "enterPassword": "Құпия сөзді енгізіңіз",
+  "exampleAizere": "Мысалы: Айзере",
   "speechSynthesis": "Сөйлеу синтезі",
   "newSynthes" : "Жаңа синтез",
   "speaker" : "Спикер"

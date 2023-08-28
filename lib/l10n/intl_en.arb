@@ -74,7 +74,6 @@
   "continueText": "Продолжить",
   "confirmationCode": "Подтверждение кода",
   "sendItBack": "Повторно отправить через: ",
-  "back": "Назад",
   "confirmationDescription": "На ваш номер телефона отправлен 4 значный SMS код подтверждения. Введите код в поле ниже.",
   "finalize": "Завершить",
   "congratulations": "Поздравляем",
@@ -85,6 +84,10 @@
   "restore": "Восстановить",
   "cancel": "Отменить",
   "newPasswordDescription": "Придумайте новый пароль для входа доступа к вашему аккаунту",
+  "mail": "Электрондық пошта",
+  "enterMail": "Введите адрес эл. почты",
+  "enterPassword": "Введите пароль",
+  "exampleAizere": "Например: Айзере",
   "speechSynthesis": "Синтез речи",
   "newSynthes" : "Новый синтез",
   "speaker" : "Спикер"

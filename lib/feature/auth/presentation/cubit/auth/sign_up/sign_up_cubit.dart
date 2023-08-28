@@ -1,3 +1,4 @@
+
 import 'package:aizere_app/di/di_locator.dart';
 import 'package:aizere_app/feature/auth/data/repository/auth_repository.dart';
 import 'package:aizere_app/mixins/request_worker_mixin.dart';
@@ -30,7 +31,7 @@ class SignUpCubit extends Cubit<SignUpState> with CoreRequestWorkedMixin {
     await launchWithError(
       request: _authRepository.emailConfirmation(username, code),
       resultData: (data) {
-        emit(SignUpSuccessState());
+        emit(EmailConfirmSuccessState());
       },
       loading: (isLoading) => emit(SignUpCommonState(isLoading: true)),
       errorData: (errorData) {

@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AizereEmptyScreen(),
       );
     },
+    AppSplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AppSplashScreen(),
+      );
+    },
     ChangePasswordRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -35,6 +41,8 @@ abstract class _$AppRouter extends RootStackRouter {
         child: ConfirmationScreen(
           key: args.key,
           isForgotPass: args.isForgotPass,
+          username: args.username,
+          name: args.name,
         ),
       );
     },
@@ -134,6 +142,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: SuccessScreen(
           key: args.key,
           isNewPassword: args.isNewPassword,
+          name: args.name,
         ),
       );
     },
@@ -161,6 +170,20 @@ class AizereEmptyRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [AppSplashScreen]
+class AppSplashRoute extends PageRouteInfo<void> {
+  const AppSplashRoute({List<PageRouteInfo>? children})
+      : super(
+          AppSplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AppSplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [ChangePasswordScreen]
 class ChangePasswordRoute extends PageRouteInfo<void> {
   const ChangePasswordRoute({List<PageRouteInfo>? children})
@@ -180,12 +203,16 @@ class ConfirmationRoute extends PageRouteInfo<ConfirmationRouteArgs> {
   ConfirmationRoute({
     Key? key,
     bool? isForgotPass = false,
+    String? username,
+    String? name,
     List<PageRouteInfo>? children,
   }) : super(
           ConfirmationRoute.name,
           args: ConfirmationRouteArgs(
             key: key,
             isForgotPass: isForgotPass,
+            username: username,
+            name: name,
           ),
           initialChildren: children,
         );
@@ -200,15 +227,21 @@ class ConfirmationRouteArgs {
   const ConfirmationRouteArgs({
     this.key,
     this.isForgotPass = false,
+    this.username,
+    this.name,
   });
 
   final Key? key;
 
   final bool? isForgotPass;
 
+  final String? username;
+
+  final String? name;
+
   @override
   String toString() {
-    return 'ConfirmationRouteArgs{key: $key, isForgotPass: $isForgotPass}';
+    return 'ConfirmationRouteArgs{key: $key, isForgotPass: $isForgotPass, username: $username, name: $name}';
   }
 }
 
@@ -455,12 +488,14 @@ class SuccessRoute extends PageRouteInfo<SuccessRouteArgs> {
   SuccessRoute({
     Key? key,
     bool? isNewPassword = false,
+    String? name,
     List<PageRouteInfo>? children,
   }) : super(
           SuccessRoute.name,
           args: SuccessRouteArgs(
             key: key,
             isNewPassword: isNewPassword,
+            name: name,
           ),
           initialChildren: children,
         );
@@ -475,15 +510,18 @@ class SuccessRouteArgs {
   const SuccessRouteArgs({
     this.key,
     this.isNewPassword = false,
+    this.name,
   });
 
   final Key? key;
 
   final bool? isNewPassword;
 
+  final String? name;
+
   @override
   String toString() {
-    return 'SuccessRouteArgs{key: $key, isNewPassword: $isNewPassword}';
+    return 'SuccessRouteArgs{key: $key, isNewPassword: $isNewPassword, name: $name}';
   }
 }
 

@@ -20,25 +20,23 @@ class ForgotPasswordScreen extends StatelessWidget {
           children: [
             AuthTitleWidget(
                 title: context.l10n.forgotPassword,
-                text:
-                    context.l10n.fillAllFieldsForget),
+                text: context.l10n.fillAllFieldsForget),
             const SizedBox(
               height: 40,
             ),
             AuthTextField(
-              title: context.l10n.phone,
+              title: context.l10n.mail,
+              hintText: context.l10n.enterMail,
             ),
             const Spacer(),
             AppFilledColorButton(
-              onTap: (){
+              onTap: () {
                 context.router.replace(ConfirmationRoute(isForgotPass: true));
-
               },
               text: context.l10n.confirmationCode,
               padding: const EdgeInsets.symmetric(vertical: 16),
               color: AppColors.mainBlue,
             )
-
           ],
         ),
       ),

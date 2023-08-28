@@ -53,7 +53,7 @@ class ChangePasswordScreen extends StatelessWidget {
               onPressed: () => context.router.pop(),
               child: Text(
                 context.l10n.cancel,
-                style: AppTextStyle.text.copyWith(color: AppColors.black),
+                style: AppTextStyle.heading.copyWith(color: AppColors.black),
               ),
             )
           ],
