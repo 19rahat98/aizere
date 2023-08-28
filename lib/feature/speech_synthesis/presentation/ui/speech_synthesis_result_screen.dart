@@ -157,12 +157,10 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                       ],
                     ),
                     const Divider(
-                      height: 40,
                       thickness: 1,
                       color: AppColors.monoGrey,
                     ),
                     Container(
-                      height: 320,
                       alignment: Alignment.topLeft,
                       decoration: const BoxDecoration(),
                       child: SingleChildScrollView(

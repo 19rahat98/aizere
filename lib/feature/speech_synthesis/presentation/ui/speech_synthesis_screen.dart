@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 @RoutePage()
 class SpeechSynthesisBuildScreen extends StatelessWidget {
@@ -60,24 +59,11 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.light,
     );
-    _requestStoragePermission();
     _cubit = context.read<SpeechCubit>();
     _textController = TextEditingController(
       text: widget.text,
     );
     super.initState();
-  }
-
-  Future<void> _requestStoragePermission() async {
-    var status = await Permission.storage.request();
-
-    if (status.isGranted) {
-      print("Storage permission granted");
-    } else if (status.isDenied) {
-      print("Storage permission denied");
-    } else if (status.isPermanentlyDenied) {
-      print("Storage permission permanently denied");
-    }
   }
 
   @override
@@ -98,7 +84,9 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
           if (state is SpeechSuccessDownloaded) {
             context.router.push(
               SpeechSynthesisResultRoute(
-                  text: _textController.text, cubit: _cubit),
+                text: _textController.text,
+                cubit: _cubit,
+              ),
             );
           }
         },
@@ -106,12 +94,7 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
         builder: (context, state) {
           if (state is SpeechCommonState) {
             return SingleChildScrollView(
-              padding: const EdgeInsets.only(
-                top: 24,
-                left: 20,
-                right: 20,
-                bottom: 10,
-              ),
+              padding: const EdgeInsets.fromLTRB(20, 24, 20, 10),
               child: Column(
                 children: [
                   SizedBox(
@@ -195,9 +178,7 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
     }
 
     return AppFilledColorButton(
-      onTap: () {
-        _cubit.downloadRequisites(_textController.text);
-      },
+      onTap: () => _cubit.downloadRequisites(_textController.text),
       width: 200,
       height: 54,
       color: AppColors.mainBlue,

@@ -100,7 +100,7 @@ class SpeechCubit extends Cubit<SpeechState> {
   /// скачиваем реквизиты карты
   void downloadRequisites(String text) async {
     requestPermission(
-      permission: Permission.storage,
+      permission: Platform.isIOS ? Permission.storage : Permission.audio,
       onGrantedPermission: () async {
         await request(text);
       },
