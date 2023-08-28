@@ -24,7 +24,7 @@ class CustomNavigationBar extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         border: Border(
-          top: BorderSide(color: AppColors.ffEDEDED),
+          top: BorderSide(color: AppColors.monoGrey),
         ),
       ),
       child: Row(

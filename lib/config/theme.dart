@@ -10,10 +10,9 @@ class AppColors {
   static const monoGrey = Color(0xFFEDEDED);
   static const monoGrey1 = Color(0xFF8A8E99);
   static const semanticDanger = Color(0xFFFF403D);
-  static const ffEDEDED = Color(0xFFEDEDED);
-  static const ffABB0BC = Color(0xFFABB0BC);
-  static const ffE82C2C = Color(0xFFE82C2C);
-  static const ffF6F5FA = Color(0xFFF6F5FA);
+  static const grayBlue = Color(0xFFABB0BC);
+  static const errorRed = Color(0xFFE82C2C);
+  static const lavender = Color(0xFFF6F5FA);
 }
 
 class AppIcons {
@@ -60,7 +59,7 @@ class AppTextStyle {
     fontFamily: 'Inter',
   );
 
-  static const TextStyle w600s17 = TextStyle(
+  static const TextStyle heading = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter',
@@ -83,11 +82,6 @@ class AppTextStyle {
   static const TextStyle regular = TextStyle(
     fontSize: 15,
     color: AppColors.monoGrey1,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Inter',
-  );
-  static const TextStyle w400s16 = TextStyle(
-    fontSize: 16,
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );

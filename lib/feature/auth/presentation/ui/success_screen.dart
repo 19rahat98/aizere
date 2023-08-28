@@ -9,9 +9,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({super.key, this.isNewPassword = false});
+  const SuccessScreen({super.key, this.isNewPassword = false, this.name});
 
   final bool? isNewPassword;
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class SuccessScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: AuthTitleWidget(
-                title: '${context.l10n.congratulations}, Жанибек!',
+                title: '${context.l10n.congratulations}, $name!',
                 text: isNewPassword!
                     ? context.l10n.forgotSuccessDescription
                     : context.l10n.signUpSuccessDescription),

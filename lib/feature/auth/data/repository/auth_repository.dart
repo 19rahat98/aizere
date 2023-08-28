@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:aizere_app/common/network/api_service.dart';
 import 'package:aizere_app/di/di_locator.dart';
@@ -13,7 +12,7 @@ class AuthRepository {
   final ApiService _apiService;
   final AuthDataSource _dataSource;
 
-  Future<String> signUp(
+  Future<void> signUp(
     String username,
     String password,
     String firstName,
@@ -24,12 +23,7 @@ class AuthRepository {
           password,
           firstName,
         ),
-        (response) {
-          final token = response['token'];
-          _dataSource.saveToken(token);
-          log(response.toString());
-          return token;
-        },
+        (response) {},
       );
 
   Future<String> emailConfirmation(
@@ -44,7 +38,6 @@ class AuthRepository {
         (response) {
           final token = response['token'];
           _dataSource.saveToken(token);
-          log(response.toString());
           return token;
         },
       );
@@ -52,7 +45,6 @@ class AuthRepository {
   Future<String> signIn(String username, String password) async => safeApiCall(
         _apiService.signIn(username, password),
         (response) {
-          log(response.toString());
 
           final token = response['token'];
           _dataSource.saveToken(token);

@@ -75,7 +75,7 @@ class AppFilledColorButton extends StatelessWidget with IgnoreDoubleTapMixin {
             ? Center(
                 child: Text(
                   text!,
-                  style: AppTextStyle.w600s17.copyWith(color: textColor ?? Colors.white),
+                  style: AppTextStyle.heading.copyWith(color: textColor ?? Colors.white),
                 ),
               )
             : child,
