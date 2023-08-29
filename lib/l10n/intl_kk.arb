@@ -74,7 +74,7 @@
   "continueText": "Жалғастыру",
   "confirmationCode": "Растау коды",
   "sendItBack": "Қайта жіберу арқылы: ",
-  "confirmationDescription": "Сіздің телефон нөміріңізге 4 саннан тұратын SMS растау коды жіберілді. Төмендегі өріске кодты енгізіңіз.",
+  "confirmationDescription": "Электрондық поштаңызға 4 таңбалы растау коды жіберілді. Төмендегі өріске кодты енгізіңіз.",
   "finalize": "Аяқтау",
   "congratulations": "Құттықтаймыз",
   "signUpSuccessDescription": "Сізге қол жетімді функциялар қол жетімді. AIzere-ге сұрау қою бастаңыз",
@@ -87,11 +87,10 @@
   "mail": "Электрондық пошта",
   "enterMail": "Эл. пошта мекенжайын енгізіңіз",
   "enterPassword": "Құпия сөзді енгізіңіз",
-  "exampleAizere": "Мысалы: Айзере",
-  "speechSynthesis": "Сөйлеу синтезі",
   "newSynthes" : "Жаңа синтез",
-  "speaker" : "Спикер"
-
+  "speaker" : "Спикер",
+  "exampleAizere": "Мысалы: Айзере",
+  "speechSynthesis": "Сөйлеу синтезі"
 
 
 

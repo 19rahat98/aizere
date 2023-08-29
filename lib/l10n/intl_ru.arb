@@ -90,7 +90,9 @@
   "mail": "Электронная почта",
   "enterMail": "Введите адрес эл. почты",
   "enterPassword": "Введите пароль",
-  "exampleAizere": "Например: Айзере"
+  "exampleAizere": "Например: Айзере",
+  "speechSynthesis": "Синтез речи"
+
 
 
 
