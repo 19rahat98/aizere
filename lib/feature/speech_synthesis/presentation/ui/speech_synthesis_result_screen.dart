@@ -160,13 +160,15 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                       thickness: 1,
                       color: AppColors.monoGrey,
                     ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      decoration: const BoxDecoration(),
-                      child: SingleChildScrollView(
-                        child: Text(
-                          widget.text,
-                          style: AppTextStyle.body,
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.topLeft,
+                        decoration: const BoxDecoration(),
+                        child: SingleChildScrollView(
+                          child: Text(
+                            widget.text,
+                            style: AppTextStyle.body,
+                          ),
                         ),
                       ),
                     ),
@@ -238,7 +240,6 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                         ],
                       ),
                     ),
-                    const Spacer(),
                     TextButton(
                       onPressed: () => context.router.pop(),
                       child: const Text(

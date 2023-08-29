@@ -93,12 +93,11 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
         buildWhen: (prev, current) => current is SpeechCommonState,
         builder: (context, state) {
           if (state is SpeechCommonState) {
-            return SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 24, 20, 10),
+            return Padding(
+              padding: EdgeInsets.all(20),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 400,
+                  Expanded(
                     child: SynthesisTextField(
                       onTap: () {
                         FocusScope.of(context).requestFocus(FocusNode());
@@ -149,14 +148,11 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
                     ),
                   ),
                   const HBox(
-                    height: 40,
+                    height: 20,
                   ),
                   buildButton(
                     state,
                     isConstrain: state.isContain,
-                  ),
-                  const HBox(
-                    height: 40,
                   ),
                 ],
               ),
