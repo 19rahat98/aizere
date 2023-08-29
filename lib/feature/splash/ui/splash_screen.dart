@@ -25,10 +25,12 @@ class _AppSplashScreenState extends State<AppSplashScreen> {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(GlobalPrefConstant.prefAccessToken);
 
-    if (token != null) {
-      context.router.replace(SpeechSynthesisBuildRoute());
-    } else {
-      context.router.replace(const SignInRoute());
+    if (context.mounted) {
+      if (token != null) {
+        context.router.replace(SpeechSynthesisBuildRoute());
+      } else {
+        context.router.replace(const WelcomeRoute());
+      }
     }
   }
 
