@@ -13,6 +13,7 @@ class AppColors {
   static const grayBlue = Color(0xFFABB0BC);
   static const errorRed = Color(0xFFE82C2C);
   static const lavender = Color(0xFFF6F5FA);
+  static const lightGrey = Color(0xFFffF0F0F0);
 }
 
 class AppIcons {
