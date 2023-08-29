@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:aizere_app/common/constants/global_constant.dart';
+import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/di/di_locator.dart';
 import 'package:aizere_app/feature/settings/select_speaker/data/repository/setting_speaker_global_repository.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/data/repository/setting_speaker_global_repository.dart';
@@ -25,6 +26,12 @@ class SpeechCubit extends Cubit<SpeechState> {
   final CoreGlobalSettingSpeakerRepository _speakerRepository;
   final CoreGlobalSpeakerSpeedRepository _speakerSpeedRepository;
 
+  int get playerState => (state as SpeechCommonState).playerState;
+
+  String get playPauseIconAsset {
+    return playerState == 1 ? AppIcons.icPlay : AppIcons.icStop;
+  }
+
   final player = AudioPlayer();
 
   String _filePath = GlobalConstant.empty;
@@ -47,8 +54,43 @@ class SpeechCubit extends Cubit<SpeechState> {
         speedSpeaker: _speakerSpeed,
       ),
     );
+    listenPlayer();
   }
 
+  Future<void> listenPlayer() async {
+    player.bufferedPositionStream.listen((event) {
+      final state = getCommonState();
+      _totalTime = event.inSeconds;
+      emit(
+        state.copyWith(
+          totalTime: _totalTime,
+          initialTime: _initialTime,
+        ),
+      );
+    });
+    player.positionStream.listen((event) {
+      final state = getCommonState();
+      _initialTime = event.inSeconds;
+      emit(
+        state.copyWith(
+          totalTime: _totalTime,
+          initialTime: _initialTime,
+        ),
+      );
+    });
+    player.processingStateStream.listen((event) async {
+      if (event == ProcessingState.completed) {
+        final state = getCommonState();
+        player.stop();
+        await player.setFilePath(_filePath);
+        emit(
+          state.copyWith(
+            playerState: 1,
+          ),
+        );
+      }
+    });
+  }
 
   Future<void> setSpeed(double speed) async {
     final state = getCommonState();
@@ -78,7 +120,32 @@ class SpeechCubit extends Cubit<SpeechState> {
     );
   }
 
+  Future<void> playAudio() async {
+    final state = getCommonState();
+    if (player.playing) {
+      player.pause();
+      emit(state.copyWith(
+        playerState: 1,
+      ));
+    } else {
+      player.setSpeed(_speakerSpeed);
+      player.play();
+      emit(state.copyWith(
+        playerState: 2,
+      ));
+    }
+  }
 
+  void stopAudio() {
+    final state = getCommonState();
+    player.stop();
+    _initialTime = 0;
+    emit(state.copyWith(
+      isLoading: false,
+      playerState: 0,
+      initialTime: _initialTime,
+    ));
+  }
 
   Future<void> request(String text) async {
     final state = getCommonState();

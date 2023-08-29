@@ -200,11 +200,7 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                         IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: _cubit.playAudio,
-                          icon: SvgPicture.asset(
-                            state.playerState == 1
-                                ? AppIcons.icPlay
-                                : AppIcons.icStop,
-                          ),
+                          icon: SvgPicture.asset(_cubit.playPauseIconAsset),
                         ),
                         const WBox(
                           width: 12,
