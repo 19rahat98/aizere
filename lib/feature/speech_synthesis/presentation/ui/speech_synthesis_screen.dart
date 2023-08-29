@@ -7,7 +7,7 @@ import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cubit.dart';
+import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_download/speech_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_text_field.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
@@ -56,9 +56,6 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
 
   @override
   void initState() {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.light,
-    );
     _cubit = context.read<SpeechCubit>();
     _textController = TextEditingController(
       text: widget.text,

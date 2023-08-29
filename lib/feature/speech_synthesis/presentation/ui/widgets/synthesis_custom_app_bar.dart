@@ -27,8 +27,8 @@ class SynthesisCustomAppBar extends StatelessWidget
         leadingWidth: MediaQuery.of(context).size.width / 2,
         leading: Row(
           children: [
-            GestureDetector(
-              onTap: () => context.router.pop(),
+            TextButton(
+              onPressed: () => context.router.pop(),
               child: Row(
                 children: [
                   SvgPicture.asset(

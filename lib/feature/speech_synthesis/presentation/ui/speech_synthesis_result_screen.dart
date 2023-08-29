@@ -6,11 +6,11 @@ import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_cubit.dart';
+import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_download/speech_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_custom_app_bar.dart';
+import 'package:aizere_app/l10n/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -53,9 +53,6 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
 
   @override
   void initState() {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.light,
-    );
     _cubit = context.read<SpeechCubit>();
     super.initState();
   }
@@ -85,170 +82,155 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                 bottom: 10,
               ),
               color: Colors.white,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onVerticalDragDown: (_) {
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Спикер',
-                          style: AppTextStyle.w400s16
-                              .copyWith(color: AppColors.ffABB0BC),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        context.l10n.speaker,
+                        style: AppTextStyle.w400s16
+                            .copyWith(color: AppColors.ffABB0BC),
+                      ),
+                      const WBox(
+                        width: 16,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(
+                          4,
                         ),
-                        const WBox(
-                          width: 16,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(
-                            4,
-                          ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                100,
-                              ),
-                              color: AppColors.mainBlue),
-                          child: Row(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(
-                                  4,
-                                ),
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.ffF0F0F0),
-                                child: Image.asset(
-                                  AppIcons.icRaya,
-                                  width: 24,
-                                ),
-                              ),
-                              const WBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Айзере',
-                                style: AppTextStyle.text.copyWith(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              const WBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.ffD8EBFF),
-                            child: const Icon(
-                              Icons.favorite_border,
-                              color: AppColors.mainBlue,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              100,
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: AppColors.monoGrey,
-                    ),
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        decoration: const BoxDecoration(),
-                        child: SingleChildScrollView(
-                          child: Text(
-                            widget.text,
-                            style: AppTextStyle.body,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const AppCommonDividerWidget(),
-                    const HBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        SvgPicture.asset(AppIcons.icClock),
-                        const WBox(
-                          width: 10,
-                        ),
-                        Text(
-                          state.totalTime.formatTime(),
-                        )
-                      ],
-                    ),
-                    const HBox(
-                      height: 15,
-                    ),
-                    Container(
-                      width: double.maxFinite,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            12,
-                          ),
-                          color: AppColors.ffF0F0F0),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 12,
-                      ),
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: _cubit.playAudio,
-                            icon: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  50,
-                                ),
-                                color: AppColors.mainBlue,
-                              ),
+                            color: AppColors.mainBlue),
+                        child: Row(
+                          children: [
+                            Container(
                               padding: const EdgeInsets.all(
                                 4,
                               ),
-                              child: Icon(
-                                state.playerState == 1
-                                    ? Icons.play_arrow
-                                    : Icons.pause,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.ffF0F0F0,
+                              ),
+                              child: Image.asset(
+                                AppIcons.icRaya,
+                                width: 24,
+                              ),
+                            ),
+                            const WBox(
+                              width: 10,
+                            ),
+                            Text(
+                              context.l10n.aizere,
+                              style: AppTextStyle.text.copyWith(
                                 color: Colors.white,
                               ),
                             ),
-                          ),
-                          const WBox(
-                            width: 12,
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 20),
-                              decoration: BoxDecoration(
-                                color: AppColors.mainBlue,
-                                borderRadius: BorderRadius.circular(
-                                  8,
-                                ),
-                              ),
+                            const WBox(
+                              width: 10,
                             ),
-                          )
-                        ],
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.ffD8EBFF),
+                          child: const Icon(
+                            Icons.favorite_border,
+                            color: AppColors.mainBlue,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Divider(
+                    thickness: 1,
+                    color: AppColors.monoGrey,
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      decoration: const BoxDecoration(),
+                      child: SingleChildScrollView(
+                        child: Text(
+                          widget.text,
+                          style: AppTextStyle.body,
+                        ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () => context.router.pop(),
-                      child: const Text(
-                        'Новый синтез',
-                        style: AppTextStyle.w600s18,
+                  ),
+                  const AppCommonDividerWidget(),
+                  const HBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(AppIcons.icClock),
+                      const WBox(
+                        width: 10,
                       ),
-                    )
-                  ],
-                ),
+                      Text(
+                        state.totalTime.formatTime(),
+                      )
+                    ],
+                  ),
+                  const HBox(
+                    height: 15,
+                  ),
+                  Container(
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        12,
+                      ),
+                      color: AppColors.ffF0F0F0,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 12,
+                    ),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: _cubit.playAudio,
+                          icon: SvgPicture.asset(
+                            state.playerState == 1
+                                ? AppIcons.icPlay
+                                : AppIcons.icStop,
+                          ),
+                        ),
+                        const WBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            decoration: BoxDecoration(
+                              color: AppColors.mainBlue,
+                              borderRadius: BorderRadius.circular(
+                                8,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => context.router.pop(),
+                    child: Text(
+                      context.l10n.newSynthes,
+                      style: AppTextStyle.w600s18,
+                    ),
+                  )
+                ],
               ),
             );
           }

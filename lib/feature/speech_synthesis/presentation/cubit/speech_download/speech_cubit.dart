@@ -47,43 +47,8 @@ class SpeechCubit extends Cubit<SpeechState> {
         speedSpeaker: _speakerSpeed,
       ),
     );
-    listenPlayer();
   }
 
-  Future<void> listenPlayer() async {
-    player.bufferedPositionStream.listen((event) {
-      final state = getCommonState();
-      _totalTime = event.inSeconds;
-      emit(
-        state.copyWith(
-          totalTime: _totalTime,
-          initialTime: _initialTime,
-        ),
-      );
-    });
-    player.positionStream.listen((event) {
-      final state = getCommonState();
-      _initialTime = event.inSeconds;
-      emit(
-        state.copyWith(
-          totalTime: _totalTime,
-          initialTime: _initialTime,
-        ),
-      );
-    });
-    player.processingStateStream.listen((event) async {
-      if (event == ProcessingState.completed) {
-        final state = getCommonState();
-        player.stop();
-        await player.setFilePath(_filePath);
-        emit(
-          state.copyWith(
-            playerState: 1,
-          ),
-        );
-      }
-    });
-  }
 
   Future<void> setSpeed(double speed) async {
     final state = getCommonState();
@@ -97,7 +62,7 @@ class SpeechCubit extends Cubit<SpeechState> {
     );
   }
 
-  /// скачиваем реквизиты карты
+  /// запрашиваем разрешение на запись и чтение памяти
   void downloadRequisites(String text) async {
     requestPermission(
       permission: Platform.isIOS ? Permission.storage : Permission.audio,
@@ -113,32 +78,7 @@ class SpeechCubit extends Cubit<SpeechState> {
     );
   }
 
-  Future<void> playAudio() async {
-    final state = getCommonState();
-    if (player.playing) {
-      player.pause();
-      emit(state.copyWith(
-        playerState: 1,
-      ));
-    } else {
-      player.setSpeed(_speakerSpeed);
-      player.play();
-      emit(state.copyWith(
-        playerState: 2,
-      ));
-    }
-  }
 
-  void stopAudio() {
-    final state = getCommonState();
-    player.stop();
-    _initialTime = 0;
-    emit(state.copyWith(
-      isLoading: false,
-      playerState: 0,
-      initialTime: _initialTime,
-    ));
-  }
 
   Future<void> request(String text) async {
     final state = getCommonState();

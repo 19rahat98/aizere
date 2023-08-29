@@ -85,7 +85,11 @@
   "restore": "Қалпына келтіру",
   "cancel": "Болдырмау",
   "newPasswordDescription": "Сіздің аккаунтыңызға кіру үшін жаңа кілтсөз табыңыз",
-  "speechSynthesis": "Сөйлеу синтезі"
+  "speechSynthesis": "Сөйлеу синтезі",
+  "newSynthes" : "Жаңа синтез",
+  "speaker" : "Спикер"
+
+
 
 
 

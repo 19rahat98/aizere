@@ -49,6 +49,8 @@ class AppIcons {
   static const icNote = 'assets/svg/ic_note.svg';
   static const icRaya = 'assets/images/ic_raya.png';
   static const icClock = 'assets/svg/ic_clock.svg';
+  static const icPlay = 'assets/svg/ic_play.svg';
+  static const icStop = 'assets/svg/ic_stop.svg';
 }
 
 class AppImages {
