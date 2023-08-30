@@ -85,7 +85,10 @@
   "restore": "Восстановить",
   "cancel": "Отменить",
   "newPasswordDescription": "Придумайте новый пароль для входа доступа к вашему аккаунту",
-  "speechSynthesis": "Синтез речи"
+  "speechSynthesis": "Синтез речи",
+  "newSynthes" : "Новый синтез",
+  "speaker" : "Спикер"
+
 
 
 

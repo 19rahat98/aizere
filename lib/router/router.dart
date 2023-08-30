@@ -10,6 +10,8 @@ import 'package:aizere_app/feature/bottom_navigation/presentation/ui/main_bottom
 import 'package:aizere_app/feature/favorites/presentation/ui/favorites_screen.dart';
 import 'package:aizere_app/feature/library/presentation/ui/library_screen.dart';
 import 'package:aizere_app/feature/search/presentation/ui/search_screen.dart';
+import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_download/speech_cubit.dart';
+import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_result_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
 import 'package:aizere_app/router/empty/empty_screen.dart';
 import 'package:auto_route/auto_route.dart';
@@ -36,6 +38,7 @@ class AppRouter extends _$AppRouter {
           children: [
             AutoRoute(page: AizereEmptyRoute.page, children: [
               AutoRoute(path: 'aizere', page: SpeechSynthesisBuildRoute.page),
+              AutoRoute(page: SpeechSynthesisResultRoute.page),
             ]),
             AutoRoute(page: SearchEmptyRoute.page, children: [
               AutoRoute(path: 'search', page: SearchRoute.page),

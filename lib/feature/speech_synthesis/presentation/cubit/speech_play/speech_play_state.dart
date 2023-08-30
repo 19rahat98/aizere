@@ -1,14 +1,11 @@
-part of 'speech_cubit.dart';
+part of 'speech_play_cubit.dart';
 
 @immutable
-abstract class SpeechState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
+abstract class SpeechPlayState {}
 
-class SpeechInitial extends SpeechState {}
+class SpeechPlayInitial extends SpeechPlayState {}
 
-class SpeechCommonState extends SpeechState {
+class SpeechCommonState extends SpeechPlayState {
   final int speakerId;
   final bool isLoading;
   final bool isContain;
@@ -59,11 +56,3 @@ class SpeechCommonState extends SpeechState {
         speedSpeaker,
       ];
 }
-
-class SpeechDownloadError extends SpeechState {
-  final String error;
-
-  SpeechDownloadError(this.error);
-}
-
-class SpeechSuccessDownloaded extends SpeechState {}

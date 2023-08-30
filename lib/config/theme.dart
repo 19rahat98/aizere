@@ -13,6 +13,8 @@ class AppColors {
   static const ffABB0BC = Color(0xFFABB0BC);
   static const ffE82C2C = Color(0xFFE82C2C);
   static const ffF6F5FA = Color(0xFFF6F5FA);
+  static const ffF0F0F0 = Color(0xFFF0F0F0);
+  static const ffD8EBFF = Color(0xFFD8EBFF);
 }
 
 class AppIcons {
@@ -44,6 +46,11 @@ class AppIcons {
   static const icAizere = 'assets/svg/ic_aizere.svg';
   static const icPet = 'assets/svg/ic_pet.svg';
   static const icSuccess = 'assets/svg/ic_success.svg';
+  static const icNote = 'assets/svg/ic_note.svg';
+  static const icRaya = 'assets/images/ic_raya.png';
+  static const icClock = 'assets/svg/ic_clock.svg';
+  static const icPlay = 'assets/svg/ic_play.svg';
+  static const icStop = 'assets/svg/ic_stop.svg';
 }
 
 class AppImages {
@@ -58,10 +65,27 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
+  static const TextStyle w400s14 = TextStyle(
+    fontSize: 14,
+    color: AppColors.black,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
 
-  static const TextStyle w600s17 = TextStyle(
+  static const TextStyle text = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+  static const TextStyle w600s18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+
+static const TextStyle w500s15 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Inter',
   );
 

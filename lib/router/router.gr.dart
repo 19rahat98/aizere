@@ -115,6 +115,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    SpeechSynthesisResultRoute.name: (routeData) {
+      final args = routeData.argsAs<SpeechSynthesisResultRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SpeechSynthesisResultScreen(
+          key: args.key,
+          text: args.text,
+          cubit: args.cubit,
+        ),
+      );
+    },
     SuccessRoute.name: (routeData) {
       final args = routeData.argsAs<SuccessRouteArgs>(
           orElse: () => const SuccessRouteArgs());
@@ -391,6 +402,50 @@ class SpeechSynthesisBuildRouteArgs {
   @override
   String toString() {
     return 'SpeechSynthesisBuildRouteArgs{key: $key, text: $text}';
+  }
+}
+
+/// generated route for
+/// [SpeechSynthesisResultScreen]
+class SpeechSynthesisResultRoute
+    extends PageRouteInfo<SpeechSynthesisResultRouteArgs> {
+  SpeechSynthesisResultRoute({
+    Key? key,
+    String text = GlobalConstant.empty,
+    required SpeechCubit cubit,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SpeechSynthesisResultRoute.name,
+          args: SpeechSynthesisResultRouteArgs(
+            key: key,
+            text: text,
+            cubit: cubit,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'SpeechSynthesisResultRoute';
+
+  static const PageInfo<SpeechSynthesisResultRouteArgs> page =
+      PageInfo<SpeechSynthesisResultRouteArgs>(name);
+}
+
+class SpeechSynthesisResultRouteArgs {
+  const SpeechSynthesisResultRouteArgs({
+    this.key,
+    this.text = GlobalConstant.empty,
+    required this.cubit,
+  });
+
+  final Key? key;
+
+  final String text;
+
+  final SpeechCubit cubit;
+
+  @override
+  String toString() {
+    return 'SpeechSynthesisResultRouteArgs{key: $key, text: $text, cubit: $cubit}';
   }
 }
 
