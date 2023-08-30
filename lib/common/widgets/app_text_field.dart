@@ -1,3 +1,4 @@
+import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class AuthTextField extends StatelessWidget {
       this.hintText,
       this.maxLength});
 
-  final String? title;
+  final String title;
   final TextEditingController? controller;
   final String? hintText;
   final int? maxLength;
@@ -26,8 +27,11 @@ class AuthTextField extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                    text: title ?? '',
-                    style: AppTextStyle.light.copyWith(fontSize: 16)),
+                  text: title,
+                  style: AppTextStyle.light.copyWith(
+                    fontSize: 16,
+                  ),
+                ),
                 TextSpan(
                   text: '*',
                   style: AppTextStyle.light
@@ -50,7 +54,7 @@ class AuthTextField extends StatelessWidget {
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-              counterText: '',
+              counterText: GlobalConstant.empty,
               hintText: hintText,
               hintStyle: AppTextStyle.light
                   .copyWith(fontSize: 14, color: AppColors.grayBlue),

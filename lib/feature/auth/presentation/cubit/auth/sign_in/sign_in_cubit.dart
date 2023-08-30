@@ -21,7 +21,7 @@ class SignInCubit extends Cubit<SignInState> with CoreRequestWorkedMixin {
       },
       loading: (isLoading) => emit(SignInCommonState(isLoading: true)),
       errorData: (errorData) {
-        emit(SignInFailureState());
+        emit(SignInFailureState(errorData.toString()));
       },
     );
   }

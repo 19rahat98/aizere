@@ -11,6 +11,8 @@ abstract class UseCaseNonParam<Result>{
 }
 
 
+
+
 class NoParams extends Equatable{
   @override
   List<Object?> get props => throw UnimplementedError();

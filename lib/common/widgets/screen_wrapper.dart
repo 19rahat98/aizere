@@ -29,6 +29,7 @@ class ScreenWrapper extends StatelessWidget {
             body: body,
             appBar: appBar,
             backgroundColor: backGround ?? Colors.white,
+
           ),
         ),
       ),

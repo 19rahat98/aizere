@@ -3,6 +3,7 @@ import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
+import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_up/sign_up_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
@@ -20,9 +21,17 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  final username = TextEditingController();
-  final password = TextEditingController();
-  final name = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +39,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       listener: (context, state) {
         if (state is SignUpSuccessState) {
           context.router.push(
-            ConfirmationRoute(username: username.text, name: name.text),
+            ConfirmationRoute(username: usernameController.text, name: nameController.text),
           );
         }
       },
-      child: Scaffold(
+      child: ScreenWrapper(
         body: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 20,
@@ -53,7 +62,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               AuthTextField(
                 title: context.l10n.name,
-                controller: name,
+                controller: nameController,
                 hintText: context.l10n.exampleAizere,
               ),
               const HBox(
@@ -61,7 +70,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               AuthTextField(
                 title: context.l10n.mail,
-                controller: username,
+                controller: usernameController,
                 hintText: context.l10n.enterMail,
               ),
               const HBox(
@@ -69,7 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               AuthTextField(
                 title: context.l10n.password,
-                controller: password,
+                controller: passwordController,
                 hintText: context.l10n.enterPassword,
               ),
               const HBox(
@@ -97,7 +106,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 onTap: () {
                   context
                       .read<SignUpCubit>()
-                      .signUp(username.text, password.text, name.text);
+                      .signUp(usernameController.text, passwordController.text, nameController.text);
                 },
                 text: context.l10n.continueText,
                 padding: const EdgeInsets.symmetric(vertical: 16),

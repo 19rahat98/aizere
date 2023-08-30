@@ -2,6 +2,7 @@ import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
+import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_in/sign_in_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
@@ -19,8 +20,15 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final username = TextEditingController();
-  final password = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
             );
           }
         },
-        child: Scaffold(
+        child: ScreenWrapper(
           body: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 60,
@@ -52,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 AuthTextField(
                   title: context.l10n.mail,
-                  controller: username,
+                  controller: usernameController,
                   hintText: context.l10n.enterMail,
                 ),
                 const SizedBox(
@@ -60,7 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 AuthTextField(
                   title: context.l10n.password,
-                  controller: password,
+                  controller: passwordController,
                   hintText: context.l10n.enterPassword,
                 ),
                 const SizedBox(
@@ -89,12 +97,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     if (state is SignInCommonState && state.isLoading) {
                       return const CircularProgressIndicator();
                     }
-
                     return AppFilledColorButton(
                       onTap: () {
                         context.read<SignInCubit>().signIn(
-                              username.text,
-                              password.text,
+                              usernameController.text,
+                              passwordController.text,
                             );
                       },
                       text: context.l10n.enter,

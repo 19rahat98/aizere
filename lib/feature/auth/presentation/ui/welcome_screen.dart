@@ -15,46 +15,51 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: Column(
-          children: [
-            HBox(
-              height: MediaQuery.of(context).size.height / 20,
+    return ColoredBox(
+      color: Colors.white,
+      child: SafeArea(
+        bottom: false,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            child: Column(
+              children: [
+                const Center(
+                  child: WelcomeIcons(),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                AuthTitleWidget(
+                  title: context.l10n.welcome,
+                  text: context.l10n.welcomeDescription,
+                ),
+                const Spacer(),
+                AppFilledColorButton(
+                  onTap: () {
+                    context.router.push(const RegistrationRoute());
+                  },
+                  color: AppColors.mainBlue,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                  ),
+                  text: context.l10n.signUp,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                AppFilledColorButton(
+                  onTap: () {
+                    context.router.replace(const SignInRoute());
+                  },
+                  text: context.l10n.enter,
+                  color: AppColors.grayBlue,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
+              ],
             ),
-            const Center(child: WelcomeIcons()),
-            const SizedBox(
-              height: 30,
-            ),
-            AuthTitleWidget(
-              title: context.l10n.welcome,
-              text: context.l10n.welcomeDescription,
-            ),
-            const Spacer(),
-            AppFilledColorButton(
-              onTap: () {
-                context.router.push(const RegistrationRoute());
-              },
-              color: AppColors.mainBlue,
-              padding: const EdgeInsets.symmetric(
-                vertical: 16,
-              ),
-              text: context.l10n.signUp,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            AppFilledColorButton(
-              onTap: () {
-                context.router.replace(const SignInRoute());
-              },
-              text: context.l10n.enter,
-              color: AppColors.grayBlue,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-            ),
-          ],
+          ),
         ),
       ),
     );

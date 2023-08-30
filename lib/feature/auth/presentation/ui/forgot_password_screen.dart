@@ -1,6 +1,7 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
+import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
@@ -13,7 +14,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScreenWrapper(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
         child: Column(

@@ -1,6 +1,7 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
+import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_up/sign_up_cubit.dart';
 import 'package:aizere_app/feature/auth/presentation/cubit/timer/timer_cubit.dart';
@@ -24,7 +25,13 @@ class ConfirmationScreen extends StatefulWidget {
 }
 
 class _ConfirmationScreenState extends State<ConfirmationScreen> {
-  final code = TextEditingController();
+  final codeController = TextEditingController();
+
+  @override
+  void dispose() {
+    codeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +45,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
             );
           }
         },
-        child: Scaffold(
+        child: ScreenWrapper(
           body: Padding(
             padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
             child: Column(
@@ -51,7 +58,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                 ),
                 AuthTextField(
                   title: context.l10n.confirmationCode,
-                  controller: code,
+                  controller: codeController,
                   maxLength: 4,
                 ),
                 const SizedBox(
@@ -81,9 +88,8 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                   onTap: () {
                     widget.isForgotPass!
                         ? context.router.replace(const ChangePasswordRoute())
-                        : context
-                            .read<SignUpCubit>()
-                            .emailConfirmation(widget.username!, code.text);
+                        : context.read<SignUpCubit>().emailConfirmation(
+                            widget.username!, codeController.text);
                   },
                   text: context.l10n.continueText,
                   padding: const EdgeInsets.symmetric(vertical: 16),

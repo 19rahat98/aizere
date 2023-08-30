@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 class ApiService {
   ApiService(this._httpClient);
 
+  /// Библиотека которая позволяет нам кидать http запросы
   final Dio _httpClient;
 
   Future<Response> getClassLib(param) async {
@@ -12,6 +13,7 @@ class ApiService {
     );
   }
 
+  /// Метод для отправки данных пользователя и кода подтверждения, чтобы в дальнейшем подтвердить код и зарегистрироваться
   Future<Response> signUp(
     String username,
     String password,
@@ -27,6 +29,7 @@ class ApiService {
     );
   }
 
+  /// Метод для проверки полученного кода.
   Future<Response> emailConfirmation(String username, String code) {
     return _httpClient.post(
       'mail-code/',

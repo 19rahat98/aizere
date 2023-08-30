@@ -1,6 +1,7 @@
 import 'package:aizere_app/common/constants/global_pref_constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// класс нужен для функций сохранения токена после авторизации и регистрации
 class AuthDataSource {
   const AuthDataSource(this._sharedPreferences);
 
