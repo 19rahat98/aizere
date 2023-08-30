@@ -80,6 +80,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MainBottomNavigationScreen(),
       );
     },
+    PlayerRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PlayerScreen(),
+      );
+    },
     RegistrationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -295,6 +301,20 @@ class MainBottomNavigationRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MainBottomNavigationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PlayerScreen]
+class PlayerRoute extends PageRouteInfo<void> {
+  const PlayerRoute({List<PageRouteInfo>? children})
+      : super(
+          PlayerRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PlayerRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
