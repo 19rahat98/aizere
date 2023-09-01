@@ -22,6 +22,7 @@ class AppColors {
 }
 
 class AppIcons {
+
   static const icLogo = 'assets/svg/logo.svg';
   static const icEllipse = 'assets/svg/ic_ellipse.svg';
   static const icSmallEllipse = 'assets/svg/ic_small_ellipse.svg';
@@ -44,7 +45,6 @@ class AppIcons {
   static const icLoader = 'assets/svg/ic_loader.svg';
   static const icTrash = 'assets/svg/ic_trash.svg';
   static const icPause = 'assets/svg/ic_pause_filled.svg';
-  static const icRepeat = 'assets/svg/ic_repeate.svg';
   static const icHeartFilled = 'assets/svg/ic_heart_filled.svg';
   static const icMicrophone = 'assets/svg/ic_microphone.svg';
   static const icAizere = 'assets/svg/ic_aizere.svg';
@@ -59,6 +59,14 @@ class AppIcons {
   static const icStop = 'assets/svg/ic_stop.svg';
   static const icVisibilityOffPassword = 'assets/svg/ic_visibility_off_password.svg';
   static const icVisibilityPassword = 'assets/svg/ic_visibility_password.svg';
+  static const icSettings = 'assets/svg/ic_settings.svg';
+  static const icImport = 'assets/svg/ic_import.svg';
+  static const icShuffle = 'assets/svg/ic_shuffle.svg';
+  static const icRepeat = 'assets/svg/ic_repeat.svg';
+  static const icPrevious = 'assets/svg/ic_previous.svg';
+  static const icNext = 'assets/svg/ic_next.svg';
+  static const icShare = 'assets/svg/ic_share.svg';
+
 }
 
 class AppImages {
@@ -123,7 +131,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
- static const TextStyle w500s16 = TextStyle(
+  static const TextStyle w500s16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     fontFamily: 'Inter',

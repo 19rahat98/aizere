@@ -1,5 +1,7 @@
 import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/router/router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,7 +13,7 @@ class AppPlayerListTile extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () => context.router.push(const PlayerRoute()),
         child: Row(
           children: [
             Container(
