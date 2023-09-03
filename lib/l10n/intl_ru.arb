@@ -19,7 +19,6 @@
   "speakerOnlyKazakh": "Спикеры только на казахском языке",
   "raya": "Рая",
   "iseke": "Исеке",
-  "back": "Назад",
   "keepContinue": "Продолжить",
   "voiceAssistant": "Голосовой помощник",
   "aizereVoiceTextOnScreen": "AizereVoice произносит названия объектов на экране. Вы можете управлять функцией AizereVoice с помощью простого набора жестов.",
@@ -91,12 +90,9 @@
   "enterMail": "Введите адрес эл. почты",
   "enterPassword": "Введите пароль",
   "exampleAizere": "Например: Айзере",
-  "speechSynthesis": "Синтез речи"
-
-
-
-
-
+  "speechSynthesis": "Синтез речи",
+  "logout": "Выйти",
+  "errorMessage": "Произошла ошибка, повторите попытку позже"
 
 
 }

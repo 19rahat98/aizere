@@ -16,4 +16,10 @@ class AuthDataSource {
     final prefs = await _sharedPreferences;
     return prefs.getString(GlobalPrefConstant.prefAccessToken);
   }
+
+  Future<bool> removeToken() async {
+    final prefs = await _sharedPreferences;
+
+    return await prefs.remove(GlobalPrefConstant.prefAccessToken);
+  }
 }

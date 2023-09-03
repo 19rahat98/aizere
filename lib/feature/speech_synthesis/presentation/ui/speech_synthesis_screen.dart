@@ -13,7 +13,6 @@ import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -30,9 +29,7 @@ class SpeechSynthesisBuildScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SpeechCubit>(
       create: (_) => SpeechCubit()..initCubit(),
-      child: SpeechSynthesis(
-        text: text,
-      ),
+      child: SpeechSynthesis(text: text),
     );
   }
 }
@@ -92,7 +89,7 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
         builder: (context, state) {
           if (state is SpeechCommonState) {
             return Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
                   Expanded(

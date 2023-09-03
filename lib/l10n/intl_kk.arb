@@ -90,8 +90,9 @@
   "newSynthes" : "Жаңа синтез",
   "speaker" : "Спикер",
   "exampleAizere": "Мысалы: Айзере",
-  "speechSynthesis": "Сөйлеу синтезі"
-
+  "speechSynthesis": "Сөйлеу синтезі",
+  "logout": "Шығу",
+  "errorMessage": "Произошла ошибка, повторите попытку позже"
 
 
 

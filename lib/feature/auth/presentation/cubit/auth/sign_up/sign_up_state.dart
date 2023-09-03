@@ -1,7 +1,5 @@
 part of 'sign_up_cubit.dart';
 
-
-
 abstract class SignUpState extends Equatable {
   @override
   List<Object?> get props => [];
@@ -18,8 +16,13 @@ class SignUpCommonState extends SignUpState {
 
 class SignUpSuccessState extends SignUpState {}
 
+class SignUpFailureState extends SignUpState {
+  SignUpFailureState({this.errorMessage});
 
-class SignUpFailureState extends SignUpState {}
+  final String? errorMessage;
+
+  @override
+  List<Object> get props => [errorMessage ?? 0];
+}
 
 class EmailConfirmSuccessState extends SignUpState {}
-

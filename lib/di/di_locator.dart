@@ -92,6 +92,7 @@ void _repositoryModule() {
   sl.registerFactory(() => CoreGlobalSettingLauncherRepository());
   sl.registerFactory(() => CoreGlobalFavoritesRepository());
   sl.registerFactory(() => LibraryRepository());
+  sl.registerFactory(() => CoreGlobalOnboardingRepository());
   sl.registerFactory(() => AuthRepository());
 }
 
@@ -105,5 +106,6 @@ void _useCaseModule() async {
   sl.registerFactory(GlobalMakeSettingApplicationUseCase.new);
   sl.registerFactory(GlobalRegisterConfigureAppUseCase.new);
   sl.registerFactory(GetDefaultLanguageCode.new);
+  sl.registerFactory(GlobalCheckTokenConstrainUseCase.new);
   sl.registerFactory(GetClassLibraryUseCase.new);
 }

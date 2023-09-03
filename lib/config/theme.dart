@@ -164,9 +164,8 @@ class AppTheme {
     primarySwatch: Colors.blue,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     appBarTheme: AppBarTheme(
-      color: Colors.deepOrange,
-      //brightness: Brightness.light,
       elevation: 0,
+      color: Colors.deepOrange,
 
       /// Задает цвет статус бара в зависимости от платформы
       systemOverlayStyle: Platform.isAndroid
