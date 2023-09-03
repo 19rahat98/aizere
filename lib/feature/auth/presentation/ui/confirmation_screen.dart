@@ -1,6 +1,9 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
+import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
+import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
+import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_up/sign_up_cubit.dart';
 import 'package:aizere_app/feature/auth/presentation/cubit/timer/timer_cubit.dart';
@@ -40,13 +43,19 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
             context.router.replace(
               SuccessRoute(name: widget.name),
             );
+          } else if (state is SignUpFailureState) {
+            final snackBar = errorSnackBar(
+              title: state.errorMessage ?? context.l10n.errorMessage,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
         },
-        child: Scaffold(
+        child: ScreenWrapper(
           body: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
             child: Column(
               children: [
+                const HBox(height: 16),
                 AuthTitleWidget(
                   title: context.l10n.confirmationCode,
                   text: context.l10n.confirmationDescription,
@@ -84,8 +93,8 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                 const Spacer(),
                 AppFilledColorButton(
                   onTap: onTapButton,
-                  text: context.l10n.continueText,
                   padding: const EdgeInsets.symmetric(vertical: 16),
+                  text: context.l10n.continueText,
                   color: AppColors.mainBlue,
                 ),
                 const SizedBox(
@@ -95,8 +104,9 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                   onPressed: () => context.router.pop(),
                   child: Text(
                     context.l10n.back,
-                    style:
-                        AppTextStyle.heading.copyWith(color: AppColors.black),
+                    style: AppTextStyle.heading.copyWith(
+                      color: AppColors.black,
+                    ),
                   ),
                 )
               ],

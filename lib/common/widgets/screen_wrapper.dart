@@ -5,7 +5,7 @@ class ScreenWrapper extends StatelessWidget {
   const ScreenWrapper({
     Key? key,
     required this.body,
-    this.backGround,
+    this.backgroundColor,
     this.appBar,
     this.top = true,
     this.bottom = true,
@@ -14,13 +14,13 @@ class ScreenWrapper extends StatelessWidget {
   final bool top;
   final bool bottom;
   final Widget body;
-  final Color? backGround;
+  final Color? backgroundColor;
   final PreferredSizeWidget? appBar;
 
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: backGround ?? Colors.white,
+      color: backgroundColor ?? Colors.white,
       child: KeyboardDismisser(
         child: SafeArea(
           top: top,
@@ -28,7 +28,7 @@ class ScreenWrapper extends StatelessWidget {
           child: Scaffold(
             body: body,
             appBar: appBar,
-            backgroundColor: backGround ?? Colors.white,
+            backgroundColor: backgroundColor ?? Colors.white,
           ),
         ),
       ),

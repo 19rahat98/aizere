@@ -55,6 +55,8 @@ class AppIcons {
   static const icClock = 'assets/svg/ic_clock.svg';
   static const icPlay = 'assets/svg/ic_play.svg';
   static const icStop = 'assets/svg/ic_stop.svg';
+  static const icVisibilityOffPassword = 'assets/svg/ic_visibility_off_password.svg';
+  static const icVisibilityPassword = 'assets/svg/ic_visibility_password.svg';
 }
 
 class AppImages {

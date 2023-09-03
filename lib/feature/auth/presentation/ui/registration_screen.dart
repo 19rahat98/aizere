@@ -4,6 +4,7 @@ import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
+import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_up/sign_up_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
@@ -40,48 +41,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       },
-      child: Scaffold(
+      child: ScreenWrapper(
         body: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 20,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
           child: Column(
             children: [
-              HBox(
-                height: MediaQuery.of(context).size.height / 20,
-              ),
+              const HBox(height: 16),
               AuthTitleWidget(
                 title: context.l10n.signUp,
                 text: context.l10n.fillAllFieldsSignUp,
               ),
-              const HBox(
-                height: 40,
-              ),
+              const HBox(height: 40),
               AuthTextField(
                 title: context.l10n.name,
                 controller: name,
                 hintText: context.l10n.exampleAizere,
               ),
-              const HBox(
-                height: 24,
-              ),
+              const HBox(height: 24),
               AuthTextField(
                 title: context.l10n.mail,
                 controller: username,
                 hintText: context.l10n.enterMail,
               ),
-              const HBox(
-                height: 24,
-              ),
+              const HBox(height: 24),
               AuthTextField(
                 title: context.l10n.password,
+                isPassword: true,
                 controller: password,
                 hintText: context.l10n.enterPassword,
               ),
-              const HBox(
-                height: 32,
-              ),
+              const HBox(height: 32),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -99,15 +88,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ],
               ),
               const Spacer(),
-              AppFilledColorButton(
-                onTap: () => context.read<SignUpCubit>().signUp(
-                      username.text,
-                      password.text,
-                      name.text,
-                    ),
-                text: context.l10n.continueText,
-                color: AppColors.mainBlue,
-                padding: const EdgeInsets.symmetric(vertical: 16),
+              BlocBuilder<SignUpCubit, SignUpState>(
+                builder: (context, state) {
+                  if (state is SignUpCommonState && state.isLoading) {
+                    return const CircularProgressIndicator();
+                  }
+
+                  return AppFilledColorButton(
+                    onTap: () => context.read<SignUpCubit>().signUp(
+                          username.text,
+                          password.text,
+                          name.text,
+                        ),
+                    text: context.l10n.continueText,
+                    color: AppColors.mainBlue,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                  );
+                },
               ),
             ],
           ),

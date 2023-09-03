@@ -36,7 +36,7 @@ class AppSettingScreen extends StatelessWidget {
           ),
         ),
       ),
-      backGround: AppColors.black,
+      backgroundColor: AppColors.black,
       body: LayoutBuilder(builder: (context, constraints) {
         return SingleChildScrollView(
           child: ConstrainedBox(
