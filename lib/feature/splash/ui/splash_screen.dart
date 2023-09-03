@@ -18,9 +18,21 @@ class AppSplashScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is AppSplashAuthenticated) {
             context.router.replace(SpeechSynthesisBuildRoute());
-          } else if (state is AppSplashUnauthenticated) {
+          }
+          if (state is AppSplashUnauthenticated) {
             context.router.replace(const WelcomeRoute());
           }
+          if (state is FirstLaunchState) {
+            context.router.replace(const OnboardingRoute());
+          }
+          if (state is SettingsLaunchState) {
+            context.router.replace(ChooseLocaleRoute());
+          }
+          if (state is LaunchAppCommonState) {
+            context.router.replace(const WelcomeRoute());
+          }
+          //
+          // return const AppSplashScreen();
         },
         child: Scaffold(
           backgroundColor: AppColors.mainBlue,

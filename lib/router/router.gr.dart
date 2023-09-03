@@ -33,6 +33,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ChangePasswordScreen(),
       );
     },
+    ChooseLocaleRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseLocaleRouteArgs>(
+          orElse: () => const ChooseLocaleRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ChooseLocaleScreen(
+          key: args.key,
+          isStartSetting: args.isStartSetting,
+        ),
+      );
+    },
     ConfirmationRoute.name: (routeData) {
       final args = routeData.argsAs<ConfirmationRouteArgs>(
           orElse: () => const ConfirmationRouteArgs());
@@ -86,6 +97,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MainBottomNavigationScreen(),
+      );
+    },
+    OnboardingRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OnboardingScreen(),
       );
     },
     RegistrationRoute.name: (routeData) {
@@ -184,6 +201,44 @@ class ChangePasswordRoute extends PageRouteInfo<void> {
   static const String name = 'ChangePasswordRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ChooseLocaleScreen]
+class ChooseLocaleRoute extends PageRouteInfo<ChooseLocaleRouteArgs> {
+  ChooseLocaleRoute({
+    Key? key,
+    bool isStartSetting = true,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ChooseLocaleRoute.name,
+          args: ChooseLocaleRouteArgs(
+            key: key,
+            isStartSetting: isStartSetting,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ChooseLocaleRoute';
+
+  static const PageInfo<ChooseLocaleRouteArgs> page =
+      PageInfo<ChooseLocaleRouteArgs>(name);
+}
+
+class ChooseLocaleRouteArgs {
+  const ChooseLocaleRouteArgs({
+    this.key,
+    this.isStartSetting = true,
+  });
+
+  final Key? key;
+
+  final bool isStartSetting;
+
+  @override
+  String toString() {
+    return 'ChooseLocaleRouteArgs{key: $key, isStartSetting: $isStartSetting}';
+  }
 }
 
 /// generated route for
@@ -328,6 +383,20 @@ class MainBottomNavigationRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MainBottomNavigationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OnboardingScreen]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute({List<PageRouteInfo>? children})
+      : super(
+          OnboardingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OnboardingRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

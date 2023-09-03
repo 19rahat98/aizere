@@ -7,8 +7,12 @@ import 'package:aizere_app/feature/onboarding/ui/widgets/onboarding_third_step.d
 import 'package:aizere_app/feature/onboarding/ui/widgets/ondoaring_first_step.dart';
 import 'package:aizere_app/feature/settings/choose_local/presentation/ui/choose_locale_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:aizere_app/router/router.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
 
@@ -91,14 +95,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     }
     return AppTextButton(
-      onTap: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const ChooseLocale(),
-          ),
-        );
-      },
+      onTap: () => context.router.replace(
+        ChooseLocaleRoute(),
+      ),
       text: context.l10n.start,
     );
   }

@@ -9,11 +9,13 @@ import 'package:aizere_app/feature/language_logic/presentation/cubit/local_langu
 import 'package:aizere_app/feature/settings/choose_local/presentation/cubit/setting_app_local_cubit.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/presentation/ui/voice_assistant.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChooseLocale extends StatelessWidget {
-  const ChooseLocale({
+@RoutePage()
+class ChooseLocaleScreen extends StatelessWidget {
+  const ChooseLocaleScreen({
     Key? key,
     this.isStartSetting = true,
   }) : super(key: key);
@@ -24,15 +26,15 @@ class ChooseLocale extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SettingAppLocalCubit>(
       create: (_) => SettingAppLocalCubit()..initCubit(),
-      child: ChooseLocaleScreen(
+      child: ChooseLocale(
         isStartSetting: isStartSetting,
       ),
     );
   }
 }
 
-class ChooseLocaleScreen extends StatefulWidget {
-  const ChooseLocaleScreen({
+class ChooseLocale extends StatefulWidget {
+  const ChooseLocale({
     Key? key,
     this.isStartSetting = true,
   }) : super(key: key);
@@ -40,10 +42,10 @@ class ChooseLocaleScreen extends StatefulWidget {
   final bool isStartSetting;
 
   @override
-  State<ChooseLocaleScreen> createState() => _ChooseLocaleState();
+  State<ChooseLocale> createState() => _ChooseLocaleState();
 }
 
-class _ChooseLocaleState extends State<ChooseLocaleScreen> {
+class _ChooseLocaleState extends State<ChooseLocale> {
   late SettingAppLocalCubit _cubit;
 
   @override

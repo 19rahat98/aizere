@@ -7,6 +7,8 @@ import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/ui/main_bottom_navigation_widget.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/presentation/cubit/voice_assistant_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:aizere_app/router/router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -57,11 +59,8 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
       body: BlocConsumer<VoiceAssistantCubit, VoiceAssistantState>(
         listener: (context, state) {
           if (state is SuccessAppConfigured) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const MainBottomNavigationScreen(),
-              ),
+            context.router.replace(
+              const WelcomeRoute(),
             );
           }
         },

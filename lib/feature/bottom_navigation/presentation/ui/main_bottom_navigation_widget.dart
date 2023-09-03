@@ -36,7 +36,8 @@ class _MainBottomNavigationScreenState
         return MultiBlocListener(
           listeners: [
             BlocListener<ChangeIndexCubit, IndexState>(
-              listenWhen: (previous, current) => previous.value == current.value,
+              listenWhen: (previous, current) =>
+                  previous.value == current.value,
               listener: (context, state) {
                 if (context.router.canPop()) {
                   context.router.popTop();
@@ -44,7 +45,8 @@ class _MainBottomNavigationScreenState
               },
             ),
             BlocListener<ChangeIndexCubit, IndexState>(
-              listenWhen: (previous, current) => previous.value != current.value,
+              listenWhen: (previous, current) =>
+                  previous.value != current.value,
               listener: (context, state) {
                 tabsRouter.setActiveIndex(state.value);
               },

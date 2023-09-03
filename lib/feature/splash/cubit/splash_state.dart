@@ -16,3 +16,11 @@ class AppSplashAuthenticated extends SplashState {
 class AppSplashUnauthenticated extends SplashState {
   const AppSplashUnauthenticated();
 }
+
+class LaunchAppInitial extends SplashState {}
+
+class FirstLaunchState extends SplashState {}
+
+class SettingsLaunchState extends SplashState {}
+
+class LaunchAppCommonState extends SplashState {}

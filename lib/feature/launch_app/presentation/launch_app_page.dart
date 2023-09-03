@@ -2,6 +2,7 @@ import 'package:aizere_app/feature/bottom_navigation/presentation/ui/main_bottom
 import 'package:aizere_app/feature/onboarding/ui/cubit/launch_app_cubit.dart';
 import 'package:aizere_app/feature/onboarding/ui/onboarding_screen.dart';
 import 'package:aizere_app/feature/settings/choose_local/presentation/ui/choose_locale_screen.dart';
+import 'package:aizere_app/feature/splash/cubit/splash_cubit.dart';
 import 'package:aizere_app/feature/splash/ui/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,8 @@ class LaunchAppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LaunchAppCubit>(
-      create: (_) => LaunchAppCubit()..checkOnboardignStatus(),
+    return BlocProvider<SplashCubit>(
+      create: (_) => SplashCubit()..checkOnboardignStatus(),
       child: const LaunchAppScreen(),
     );
   }
@@ -27,10 +28,9 @@ class LaunchAppScreen extends StatefulWidget {
 }
 
 class _LaunchAppScreenState extends State<LaunchAppScreen> {
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LaunchAppCubit, LaunchAppState>(
+    return BlocConsumer<SplashCubit, SplashState>(
       listener: (context, state) {
         print(state);
       },
