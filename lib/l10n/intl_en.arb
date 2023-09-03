@@ -88,10 +88,11 @@
   "enterMail": "Введите адрес эл. почты",
   "enterPassword": "Введите пароль",
   "newSynthes" : "Новый синтез",
-  "speaker" : "Спикер"
-
-
-
+  "speaker" : "Спикер",
+  "exampleAizere": "Например: Айзере",
+  "speechSynthesis": "Синтез речи",
+  "logout": "Шығу",
+  "errorMessage": "Произошла ошибка, повторите попытку позже"
 
 
 }

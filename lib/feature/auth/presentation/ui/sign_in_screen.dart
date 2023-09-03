@@ -37,10 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
         },
         child: Scaffold(
           body: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 60,
-              horizontal: 20,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
             child: Column(
               children: [
                 AuthTitleWidget(
@@ -91,12 +88,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     }
 
                     return AppFilledColorButton(
-                      onTap: () {
-                        context.read<SignInCubit>().signIn(
-                              username.text,
-                              password.text,
-                            );
-                      },
+                      onTap: () => context.read<SignInCubit>().signIn(
+                            username.text,
+                            password.text,
+                          ),
                       text: context.l10n.enter,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       color: AppColors.mainBlue,
@@ -107,9 +102,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 20,
                 ),
                 TextButton(
-                  onPressed: () {
-                    context.router.push(const ForgotPasswordRoute());
-                  },
+                  onPressed: () => context.router.push(
+                    const ForgotPasswordRoute(),
+                  ),
                   child: Text(
                     context.l10n.forgotPassword,
                     style: AppTextStyle.heading.copyWith(
@@ -123,5 +118,12 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    username.dispose();
+    password.dispose();
+    super.dispose();
   }
 }

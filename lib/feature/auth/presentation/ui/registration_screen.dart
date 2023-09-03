@@ -1,5 +1,6 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
+import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
@@ -32,6 +33,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           context.router.push(
             ConfirmationRoute(username: username.text, name: name.text),
           );
+        } else if (state is SignUpFailureState) {
+          final snackBar = errorSnackBar(
+            title: state.errorMessage ?? context.l10n.errorMessage,
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       },
       child: Scaffold(
@@ -46,8 +52,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: MediaQuery.of(context).size.height / 20,
               ),
               AuthTitleWidget(
-                  title: context.l10n.signUp,
-                  text: context.l10n.fillAllFieldsSignUp),
+                title: context.l10n.signUp,
+                text: context.l10n.fillAllFieldsSignUp,
+              ),
               const HBox(
                 height: 40,
               ),
@@ -83,30 +90,37 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     style: AppTextStyle.heading,
                   ),
                   AppTextButton(
-                    onTap: () => context.router.replace(
-                      const SignInRoute(),
-                    ),
+                    onTap: () => context.router.replace(const SignInRoute()),
                     text: context.l10n.enter,
-                    style: AppTextStyle.heading
-                        .copyWith(color: AppColors.mainBlue),
+                    style: AppTextStyle.heading.copyWith(
+                      color: AppColors.mainBlue,
+                    ),
                   ),
                 ],
               ),
               const Spacer(),
               AppFilledColorButton(
-                onTap: () {
-                  context
-                      .read<SignUpCubit>()
-                      .signUp(username.text, password.text, name.text);
-                },
+                onTap: () => context.read<SignUpCubit>().signUp(
+                      username.text,
+                      password.text,
+                      name.text,
+                    ),
                 text: context.l10n.continueText,
-                padding: const EdgeInsets.symmetric(vertical: 16),
                 color: AppColors.mainBlue,
+                padding: const EdgeInsets.symmetric(vertical: 16),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    name.dispose();
+    username.dispose();
+    password.dispose();
+    super.dispose();
   }
 }

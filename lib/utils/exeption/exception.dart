@@ -29,3 +29,38 @@ enum HttpTypeError {
   notInternetConnection,
   http,
 }
+
+class GlobalAuthException implements Exception {
+  GlobalAuthException({
+    this.json,
+    this.message,
+    this.code = 500,
+    this.httpTypeError = HttpTypeError.http,
+  });
+
+  factory GlobalAuthException.fromJson(Map<String, dynamic> json, int code) {
+    try {
+      return GlobalAuthException(
+        json: json,
+        code: code,
+        message: json['error'] as String?,
+      );
+    } catch (e) {
+      throw 'e';
+    }
+  }
+
+  List<String>? get email =>
+      (json?['username'] as List?)?.map((item) => item.toString()).toList();
+
+  List<String>? get password =>
+      (json?['password'] as List?)?.map((item) => item.toString()).toList();
+
+  List<String>? get name =>
+      (json?['first_name'] as List?)?.map((item) => item.toString()).toList();
+
+  final int code;
+  final String? message;
+  final HttpTypeError httpTypeError;
+  final Map<String, dynamic>? json;
+}

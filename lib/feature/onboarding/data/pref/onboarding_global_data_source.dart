@@ -9,8 +9,8 @@ class CoreGlobalOnBoardingDataSource {
 
   /// подтверждаем что пользователь ранее заходил в приложение
   Future<void> confirmBeforeOpenApplication() async {
-    final _prefs = await _sharedPreferences;
-    await _prefs.setBool(
+    final prefs = await _sharedPreferences;
+    await prefs.setBool(
       GlobalPrefConstant.isBeforeViewOnboarding,
       true,
     );
@@ -18,7 +18,7 @@ class CoreGlobalOnBoardingDataSource {
 
   /// получаем флаг был ли пользовтель ранее в приложении
   Future<bool> get isBeforeOpenApplication async {
-    final _prefs = await _sharedPreferences;
-    return _prefs.getBool(GlobalPrefConstant.isBeforeViewOnboarding) ?? false;
+    final prefs = await _sharedPreferences;
+    return prefs.getBool(GlobalPrefConstant.isBeforeViewOnboarding) ?? false;
   }
 }

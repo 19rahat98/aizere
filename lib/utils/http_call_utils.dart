@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:aizere_app/common/constants/global_constant.dart';
-import 'package:aizere_app/common/constants/global_network_constant.dart';
 import 'package:aizere_app/common/core/error/error_data.dart';
 import 'package:aizere_app/utils/exeption/exception.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -12,7 +11,7 @@ typedef ResponseJson<T> = T Function(Map<String, dynamic>);
 /// функция для получения пользователькой ошибка
 /// [dynamic] ошибка в виде json
 /// [String] ошибка по умалчанию
-typedef ErrorResponsePrinter<T> = HttpRequestException<T> Function(Map<String, dynamic>, String, int);
+typedef ErrorResponsePrinter<T> = Exception Function(Map<String, dynamic>, int);
 
 /// вызов безопасно http функцию с обработкой пользовтелькой ошибки, а также обратный вызов для работы с
 /// локальной базов в лучае какой либо ошибки
@@ -115,7 +114,6 @@ Future<T> safeApiCallWithError<T, V>(
       final data = ex.response?.data;
       throw errorResponsePrinter.call(
         data,
-        _handleDioErrorType(ex),
         ex.response?.statusCode ?? GlobalConstant.negative,
       );
     }
@@ -128,10 +126,10 @@ Future<T> safeApiCallWithError<T, V>(
 /// T отвер сервера
 /// V ответ сервера в виде ошибки
 Future<void> safeApiVoidCallWithError<V>(
-    Future<Response> response,
-    ErrorResponsePrinter<V> errorResponsePrinter, {
-      bool? isTest,
-    }) async {
+  Future<Response> response,
+  ErrorResponsePrinter<V> errorResponsePrinter, {
+  bool? isTest,
+}) async {
   await _makeThrowInternetConnection(isTest ?? false);
   try {
     await response;
@@ -141,7 +139,6 @@ Future<void> safeApiVoidCallWithError<V>(
       final data = ex.response?.data;
       throw errorResponsePrinter.call(
         data,
-        _handleDioErrorType(ex),
         ex.response?.statusCode ?? GlobalConstant.negative,
       );
     }
@@ -179,7 +176,8 @@ Future<HttpRequestException<String>?> _makeThrowInternetConnection(
 /// проверка интернет соеденения
 Future<bool> _checkInternetConnection() async {
   var connectivityResult = await (Connectivity().checkConnectivity());
-  if (connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi) {
+  if (connectivityResult == ConnectivityResult.mobile ||
+      connectivityResult == ConnectivityResult.wifi) {
     return true;
   }
   return false;
@@ -189,7 +187,6 @@ Future<bool> _checkInternetConnection() async {
 /// [DioErrorType] ошибка
 String _handleDioErrorType(DioError ex, [Map<String, dynamic>? data]) {
   switch (ex.type) {
-    //case DioErrorType.connectTimeout:
     case DioErrorType.sendTimeout:
     case DioErrorType.receiveTimeout:
       {
@@ -197,14 +194,12 @@ String _handleDioErrorType(DioError ex, [Map<String, dynamic>? data]) {
       }
     default:
       {
-        // if (ex.message.contains(GlobalNetworkConstant.socketException)) {
-        //   return "Ошибка соеденения";
-        // }
-        return data != null ? ErrorData.fromJson(data).message : "Ошибка сервера";
+        return data != null
+            ? ErrorData.fromJson(data).message
+            : "Ошибка сервера";
       }
   }
 }
-
 
 Future<T> safeApiCallListData<T>(
   Future<Response> response,
