@@ -16,5 +16,8 @@ class SignInCommonState extends SignInState {
 
 class SignInSuccessState extends SignInState {}
 
-class SignInFailureState extends SignInState {}
+class SignInFailureState extends SignInState {
+  SignInFailureState(this.errorMassage);
 
+  final String errorMassage;
+}

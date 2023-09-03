@@ -1,3 +1,4 @@
+import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
@@ -31,7 +32,12 @@ class ForgotPasswordScreen extends StatelessWidget {
             const Spacer(),
             AppFilledColorButton(
               onTap: () {
-                context.router.replace(ConfirmationRoute(isForgotPass: true));
+                context.router.replace(
+                  ConfirmationRoute(
+                    isForgotPass: true,
+                    username: GlobalConstant.empty,
+                  ),
+                );
               },
               text: context.l10n.confirmationCode,
               padding: const EdgeInsets.symmetric(vertical: 16),

@@ -12,12 +12,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class ConfirmationScreen extends StatefulWidget {
-  const ConfirmationScreen(
-      {super.key, this.isForgotPass = false, this.username, this.name});
+  const ConfirmationScreen({
+    super.key,
+    this.name,
+    required this.username,
+    this.isForgotPass = false,
+  });
 
-  final bool? isForgotPass;
-  final String? username;
   final String? name;
+  final String username;
+  final bool isForgotPass;
 
   @override
   State<ConfirmationScreen> createState() => _ConfirmationScreenState();
@@ -44,8 +48,9 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
             child: Column(
               children: [
                 AuthTitleWidget(
-                    title: context.l10n.confirmationCode,
-                    text: context.l10n.confirmationDescription),
+                  title: context.l10n.confirmationCode,
+                  text: context.l10n.confirmationDescription,
+                ),
                 const SizedBox(
                   height: 40,
                 ),
@@ -78,13 +83,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                 ),
                 const Spacer(),
                 AppFilledColorButton(
-                  onTap: () {
-                    widget.isForgotPass!
-                        ? context.router.replace(const ChangePasswordRoute())
-                        : context
-                            .read<SignUpCubit>()
-                            .emailConfirmation(widget.username!, code.text);
-                  },
+                  onTap: onTapButton,
                   text: context.l10n.continueText,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   color: AppColors.mainBlue,
@@ -106,5 +105,19 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
         ),
       ),
     );
+  }
+
+  void onTapButton() {
+    if (widget.isForgotPass) {
+      context.router.replace(const ChangePasswordRoute());
+    } else {
+      context.read<SignUpCubit>().emailConfirmation(widget.username, code.text);
+    }
+  }
+
+  @override
+  void dispose() {
+    code.dispose();
+    super.dispose();
   }
 }

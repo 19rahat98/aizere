@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChangeIndexCubit extends Cubit<IndexState> {
-  ChangeIndexCubit() : super(IndexState(0));
+class NavigatorCubit extends Cubit<IndexState> {
+  NavigatorCubit() : super(IndexState(0));
 
   void changeState(int value) {
     emit(IndexState(value));

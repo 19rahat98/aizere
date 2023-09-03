@@ -13,7 +13,7 @@ class AppColors {
   static const grayBlue = Color(0xFFABB0BC);
   static const errorRed = Color(0xFFE82C2C);
   static const lavender = Color(0xFFF6F5FA);
-  static const lightGrey = Color(0xFFffF0F0F0);
+  static const lightGrey = Color(0xFFF0F0F0);
   static const ffABB0BC = Color(0xFFABB0BC);
   static const ffE82C2C = Color(0xFFE82C2C);
   static const ffF6F5FA = Color(0xFFF6F5FA);
@@ -55,8 +55,6 @@ class AppIcons {
   static const icClock = 'assets/svg/ic_clock.svg';
   static const icPlay = 'assets/svg/ic_play.svg';
   static const icStop = 'assets/svg/ic_stop.svg';
-  static const icClock = 'assets/svg/ic_clock.svg';
-  static const icNote = 'assets/svg/ic_note.svg';
 }
 
 class AppImages {
@@ -142,7 +140,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
     fontFamily: 'Inter',
   );
-
 
   static const TextStyle w400s16 = TextStyle(
     fontSize: 16,
