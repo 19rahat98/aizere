@@ -89,6 +89,18 @@ static const TextStyle w500s15 = TextStyle(
     fontFamily: 'Inter',
   );
 
+  static const TextStyle w600s18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+
+  static const TextStyle w600s16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+
   static const TextStyle textButtonStyle = TextStyle(
     fontSize: 17,
     color: AppColors.mainBlack,
@@ -112,6 +124,11 @@ static const TextStyle w500s15 = TextStyle(
   static const TextStyle w400s16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
+ static const TextStyle w500s16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Inter',
   );
 
