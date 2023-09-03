@@ -114,51 +114,57 @@ class _LibraryScreenState extends State<LibraryScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               'Включи и наслаждайся произведением казахской литературы',
-              style: AppTextStyle.w400s14.copyWith(color: AppColors.ffABB0BC),
+              style: AppTextStyle.w400s14.copyWith(
+                color: AppColors.ffABB0BC,
+              ),
             ),
           ),
           ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Material(
-                  color: Colors.transparent,
-                  child: ListTile(
-                    onTap: () {},
-                    title: Text('Егіннің бастары',
-                        style: AppTextStyle.w600s16
-                            .copyWith(color: AppColors.black)),
-                    subtitle: Text(
-                      'Ахмет Байтұрсынұлы',
-                      style: AppTextStyle.w400s14
-                          .copyWith(color: AppColors.ffABB0BC),
+            itemCount: 5,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Material(
+                color: Colors.transparent,
+                child: ListTile(
+                  onTap: () {},
+                  title: Text(
+                    'Егіннің бастары',
+                    style: AppTextStyle.title.copyWith(
+                      color: AppColors.black,
                     ),
-                    leading: Container(
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: AppColors.monoGrey,
-                        borderRadius: BorderRadius.circular(12),
-                        image: const DecorationImage(
-                            image: NetworkImage(
-                              'https://picsum.photos/1000/1000',
-                            ),
-                            fit: BoxFit.cover),
+                  ),
+                  subtitle: Text(
+                    'Ахмет Байтұрсынұлы',
+                    style: AppTextStyle.w400s14.copyWith(
+                      color: AppColors.ffABB0BC,
+                    ),
+                  ),
+                  leading: Container(
+                    width: 60,
+                    decoration: BoxDecoration(
+                      color: AppColors.monoGrey,
+                      borderRadius: BorderRadius.circular(12),
+                      image: const DecorationImage(
+                        image: NetworkImage(
+                          'https://picsum.photos/1000/1000',
+                        ),
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    trailing: SvgPicture.asset(
-                      AppIcons.icPlayFilled,
-                      color: AppColors.mainBlue,
-                      width: 32,
-                      height: 32,
-                    ),
-                    dense: false,
                   ),
-                );
-              },
-              separatorBuilder: (c, i) => const HBox(
-                    height: 20,
+                  trailing: SvgPicture.asset(
+                    AppIcons.icPlayFilled,
+                    color: AppColors.mainBlue,
+                    width: 32,
+                    height: 32,
                   ),
-              itemCount: 5)
+                  dense: false,
+                ),
+              );
+            },
+            separatorBuilder: (c, i) => const HBox(height: 20),
+          )
         ],
       ),
     );

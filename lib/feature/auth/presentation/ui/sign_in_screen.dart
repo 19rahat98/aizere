@@ -1,4 +1,5 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
+import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
@@ -29,7 +30,10 @@ class _SignInScreenState extends State<SignInScreen> {
       create: (context) => SignInCubit(),
       child: BlocListener<SignInCubit, SignInState>(
         listener: (context, state) {
-          if (state is SignInSuccessState) {
+          if (state is SignInFailureState) {
+            final snackBar = errorSnackBar(title: state.errorMassage);
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          } else if (state is SignInSuccessState) {
             context.router.replace(
               SpeechSynthesisBuildRoute(),
             );

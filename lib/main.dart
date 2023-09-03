@@ -47,16 +47,13 @@ class MyApp extends StatelessWidget {
           create: (context) => FavoritesCubit()..loadFavorites(),
         ),
         BlocProvider<LibraryScreenCubit>(
-          lazy: false,
           create: (context) => LibraryScreenCubit()..makeApiCall(),
         ),
         BlocProvider(
-          lazy: false,
           create: (context) => SignUpCubit(),
         ),
         BlocProvider(
-          lazy: false,
-          create: (_) => ChangeIndexCubit(),
+          create: (_) => NavigatorCubit(),
         )
       ],
       child: BlocBuilder<LocalLanguageCubit, LocalLanguageState>(

@@ -35,7 +35,7 @@ class _MainBottomNavigationScreenState
       bottomNavigationBuilder: (context, tabsRouter) {
         return MultiBlocListener(
           listeners: [
-            BlocListener<ChangeIndexCubit, IndexState>(
+            BlocListener<NavigatorCubit, IndexState>(
               listenWhen: (previous, current) => previous.value == current.value,
               listener: (context, state) {
                 if (context.router.canPop()) {
@@ -43,7 +43,7 @@ class _MainBottomNavigationScreenState
                 }
               },
             ),
-            BlocListener<ChangeIndexCubit, IndexState>(
+            BlocListener<NavigatorCubit, IndexState>(
               listenWhen: (previous, current) => previous.value != current.value,
               listener: (context, state) {
                 tabsRouter.setActiveIndex(state.value);
@@ -51,8 +51,8 @@ class _MainBottomNavigationScreenState
             ),
           ],
           child: CustomNavigationBar(
-            selectedIndex: context.watch<ChangeIndexCubit>().state.value,
-            changeIndex: context.read<ChangeIndexCubit>().changeState,
+            selectedIndex: context.watch<NavigatorCubit>().state.value,
+            changeIndex: context.read<NavigatorCubit>().changeState,
           ),
         );
       },

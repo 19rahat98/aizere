@@ -11,10 +11,7 @@ class LibraryRepository {
   Future<ClassComposition> getClassLib(params) async {
     return await safeApiCall<dynamic>(
       _apiService.getClassLib(params),
-      (response) {
-        print(response);
-        return ClassComposition.fromJson(response);
-      },
+      ClassComposition.fromJson,
     );
   }
 }

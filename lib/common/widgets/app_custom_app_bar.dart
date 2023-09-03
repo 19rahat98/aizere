@@ -44,14 +44,14 @@ class AppCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () => context.router.pop(),
             splashRadius: 20,
             icon: SvgPicture.asset(
+              width: 20,
               AppIcons.icArrowLeft,
               color: AppColors.black,
-              width: 20,
             ),
           ),
           Text(
             title,
-            style: AppTextStyle.h3.copyWith(
+            style: AppTextStyle.heading.copyWith(
               color: AppColors.black,
             ),
           ),
@@ -62,7 +62,7 @@ class AppCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         alignment: Alignment.centerLeft,
         child: Text(
           title,
-          style: AppTextStyle.h3.copyWith(color: AppColors.black),
+          style: AppTextStyle.heading.copyWith(color: AppColors.black),
         ),
       );
     }
@@ -88,9 +88,9 @@ class AppCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ];
-    } else {
-      return null;
     }
+
+    return null;
   }
 
   @override

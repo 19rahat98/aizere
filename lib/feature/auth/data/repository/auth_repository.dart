@@ -30,13 +30,15 @@ class AuthRepository {
         GlobalAuthException.fromJson,
       );
 
-  Future<String> signIn(String username, String password) async => safeApiCall(
+  Future<String> signIn(String username, String password) async =>
+      safeApiCallWithError<String, GlobalAuthException>(
         _apiService.signIn(username, password),
         (response) {
           final token = response['token'];
           _dataSource.saveToken(token);
           return token;
         },
+        GlobalAuthException.fromJson,
       );
 
   Future<bool> logOut() async => _dataSource.removeToken();

@@ -35,7 +35,8 @@ abstract class _$AppRouter extends RootStackRouter {
     },
     ConfirmationRoute.name: (routeData) {
       final args = routeData.argsAs<ConfirmationRouteArgs>(
-          orElse: () => const ConfirmationRouteArgs());
+        orElse: () => const ConfirmationRouteArgs(username: ''),
+      );
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ConfirmationScreen(
@@ -202,9 +203,9 @@ class ChangePasswordRoute extends PageRouteInfo<void> {
 class ConfirmationRoute extends PageRouteInfo<ConfirmationRouteArgs> {
   ConfirmationRoute({
     Key? key,
-    bool? isForgotPass = false,
-    String? username,
     String? name,
+    required String username,
+    bool isForgotPass = false,
     List<PageRouteInfo>? children,
   }) : super(
           ConfirmationRoute.name,
@@ -226,16 +227,16 @@ class ConfirmationRoute extends PageRouteInfo<ConfirmationRouteArgs> {
 class ConfirmationRouteArgs {
   const ConfirmationRouteArgs({
     this.key,
+    required this.username,
     this.isForgotPass = false,
-    this.username,
     this.name,
   });
 
   final Key? key;
 
-  final bool? isForgotPass;
+  final bool isForgotPass;
 
-  final String? username;
+  final String username;
 
   final String? name;
 
