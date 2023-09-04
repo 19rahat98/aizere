@@ -9,11 +9,15 @@ import 'package:aizere_app/feature/language_logic/presentation/cubit/local_langu
 import 'package:aizere_app/feature/settings/choose_local/presentation/cubit/setting_app_local_cubit.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/presentation/ui/voice_assistant.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:aizere_app/router/router.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChooseLocale extends StatelessWidget {
-  const ChooseLocale({
+@RoutePage()
+class ChooseLocaleScreen extends StatelessWidget {
+  const ChooseLocaleScreen({
     Key? key,
     this.isStartSetting = true,
   }) : super(key: key);
@@ -24,15 +28,15 @@ class ChooseLocale extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SettingAppLocalCubit>(
       create: (_) => SettingAppLocalCubit()..initCubit(),
-      child: ChooseLocaleScreen(
+      child: ChooseLocale(
         isStartSetting: isStartSetting,
       ),
     );
   }
 }
 
-class ChooseLocaleScreen extends StatefulWidget {
-  const ChooseLocaleScreen({
+class ChooseLocale extends StatefulWidget {
+  const ChooseLocale({
     Key? key,
     this.isStartSetting = true,
   }) : super(key: key);
@@ -40,10 +44,10 @@ class ChooseLocaleScreen extends StatefulWidget {
   final bool isStartSetting;
 
   @override
-  State<ChooseLocaleScreen> createState() => _ChooseLocaleState();
+  State<ChooseLocale> createState() => _ChooseLocaleState();
 }
 
-class _ChooseLocaleState extends State<ChooseLocaleScreen> {
+class _ChooseLocaleState extends State<ChooseLocale> {
   late SettingAppLocalCubit _cubit;
 
   @override
@@ -111,32 +115,44 @@ class _ChooseLocaleState extends State<ChooseLocaleScreen> {
                           children: [
                             Expanded(
                               child: AppFilledColorButton(
-                                onTap: () => _cubit.changeLocal(2),
+                                onTap: () => _cubit.changeLocal(1),
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 18,
                                 ),
-                                color: isKazakh
+                                border: true,
+                                borderColor: !isKazakh
                                     ? AppColors.mainBlue
                                     : AppColors.monoGrey,
+                                color: Colors.transparent,
                                 child: Text(
-                                  context.l10n.kazakh,
-                                  style: getButtonTextStyle(isKazakh),
+                                  context.l10n.russian,
+                                  style: getButtonTextStyle(!isKazakh).copyWith(
+                                    color: !isKazakh
+                                        ? AppColors.mainBlue
+                                        : AppColors.black,
+                                  ),
                                 ),
                               ),
                             ),
                             const WBox(),
                             Expanded(
                               child: AppFilledColorButton(
-                                onTap: () => _cubit.changeLocal(1),
+                                onTap: () => _cubit.changeLocal(2),
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 18,
                                 ),
-                                color: !isKazakh
+                                border: true,
+                                borderColor: isKazakh
                                     ? AppColors.mainBlue
                                     : AppColors.monoGrey,
+                                color: Colors.transparent,
                                 child: Text(
-                                  context.l10n.russian,
-                                  style: getButtonTextStyle(!isKazakh),
+                                  context.l10n.kazakh,
+                                  style: getButtonTextStyle(isKazakh).copyWith(
+                                    color: isKazakh
+                                        ? AppColors.mainBlue
+                                        : AppColors.black,
+                                  ),
                                 ),
                               ),
                             ),
@@ -148,6 +164,15 @@ class _ChooseLocaleState extends State<ChooseLocaleScreen> {
                   const HBox(),
                   buildFloatButton(),
                   const HBox(),
+                  SizedBox(
+                    width: 200,
+                    child: AppTextButton(
+                      onTap: () => context.router.pop(),
+                      text: context.l10n.back,
+                      style: AppTextStyle.textButtonStyle
+                          .copyWith(color: AppColors.mainBlue),
+                    ),
+                  ),
                 ],
               ),
             );
@@ -162,17 +187,14 @@ class _ChooseLocaleState extends State<ChooseLocaleScreen> {
   Widget buildFloatButton() {
     if (widget.isStartSetting) {
       return AppFilledColorButton(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => const VoiceAssistant(),
-            ),
-          );
-        },
+        onTap: () => context.router.push(
+          VoiceAssistantRoute(),
+        ),
+        width: double.maxFinite,
         padding: const EdgeInsets.symmetric(
           vertical: 16,
         ),
+        color: AppColors.mainBlue,
         child: Text(
           context.l10n.keepContinue,
           style: AppTextStyle.textButtonStyle.copyWith(
@@ -183,7 +205,7 @@ class _ChooseLocaleState extends State<ChooseLocaleScreen> {
     }
 
     return AppTextButton(
-      onTap: () => Navigator.pop(context),
+      onTap: () => context.router.pop(),
       text: context.l10n.back,
       style: AppTextStyle.textButtonStyle,
     );
