@@ -1,5 +1,7 @@
 import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
+import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_title_widget.dart';
+import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:aizere_app/router/router.dart';
@@ -14,20 +16,30 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScreenWrapper(
+      backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Column(
           children: [
-            const Center(child: WelcomeIcons()),
+            const HBox(
+              height: 32,
+            ),
+            const Expanded(
+              child: Center(
+                child: WelcomeIcons(),
+              ),
+            ),
             const SizedBox(
-              height: 30,
+              height: 36,
             ),
             AuthTitleWidget(
               title: context.l10n.welcome,
               text: context.l10n.welcomeDescription,
             ),
-            const Spacer(),
+            const HBox(
+              height: 40,
+            ),
             AppFilledColorButton(
               onTap: () {
                 context.router.push(const RegistrationRoute());
@@ -38,15 +50,15 @@ class WelcomeScreen extends StatelessWidget {
               ),
               text: context.l10n.signUp,
             ),
-            const SizedBox(
+            const HBox(
               height: 20,
             ),
             AppFilledColorButton(
-              onTap: () {
-                context.router.replace(const SignInRoute());
-              },
+              onTap: () => context.router.replace(
+                const SignInRoute(),
+              ),
               text: context.l10n.enter,
-              color: AppColors.ffABB0BC,
+              color: AppColors.grayBlue,
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
           ],

@@ -15,8 +15,6 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState>
 
   final GetClassLibraryUseCase _getClassLibraryUseCase;
 
-  bool _isLoading = false;
-
   void makeApiCall() async {
     final classLib = ClassLibParamEntity(grade: 2, page: 1);
     final request = _getClassLibraryUseCase.execute(classLib);
@@ -29,15 +27,6 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState>
       errorData: (errorData) {
         emit(LibraryScreenFailedState());
       },
-      loading: (isLoading) => _isLoading = isLoading,
     );
-  }
-
-  LibraryScreenCommonState _getCommonState() {
-    if (state is LibraryScreenCommonState) {
-      return state as LibraryScreenCommonState;
-    }
-
-    return const LibraryScreenCommonState().copyWith();
   }
 }

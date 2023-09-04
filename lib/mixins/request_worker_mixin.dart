@@ -12,8 +12,6 @@ mixin CoreRequestWorkedMixin {
   /// Timer для запроса
   Timer? _timer;
 
-  final String _defaultError = 'Произошла ошибка';
-
   /// показывает сообщение об ошибке с возможность передачи http кода
   /// [_errorMessage] сообщение об ошибке
   /// [code] http код ошибки
@@ -27,7 +25,7 @@ mixin CoreRequestWorkedMixin {
 
   /// показывает сообщение об ошибке при cбое самого приложения
   /// [_errorMessage] сообщение об ошибке
-  Function(String errorMessage)? showErrorExceptionCallback;
+  Function(String? errorMessage)? showErrorExceptionCallback;
 
   /// функиця безопастно запускает запрос без обработки пользовательской
   ///  ошибки(выводиться ошибки в стандартных полях предусмотренные сервером)
@@ -64,12 +62,12 @@ mixin CoreRequestWorkedMixin {
   /// [resultData] callback успешном результате
   /// [errorData]  callback при ошибке
   void launchDelayWithError<T, V extends HttpRequestException<V>>(
-      int delay, {
-        required Future<T> request,
-        CoreLoadingData? loading,
-        CoreResultData<T>? resultData,
-        required Function(V) errorData,
-      }) {
+    int delay, {
+    required Future<T> request,
+    CoreLoadingData? loading,
+    CoreResultData<T>? resultData,
+    required Function(V) errorData,
+  }) {
     _delay(delay, () async {
       loading?.call(true);
       try {
@@ -111,14 +109,13 @@ mixin CoreRequestWorkedMixin {
     }
   }
 
-
   /// функиця безопастно запускает запрос c обработкой пользовательской
   ///  ошибки для авторизованных юзеров
   /// [request] запрос принимает фнкция useCase
   /// [loading] callback функция информирующая старт загрузки
   /// [resultData] callback успешном результате
   /// [errorData]  callback при ошибке
-  /*Future<void> launchWithAuthError<T, V>({
+  Future<void> launchWithAuthError<T, V>({
     required Future<T> request,
     CoreLoadingData? loading,
     CoreResultData<T>? resultData,
@@ -136,7 +133,7 @@ mixin CoreRequestWorkedMixin {
       loading?.call(false);
       _makeException<V>(s, errorData);
     }
-  }*/
+  }
 
   /// функиця безопастно запускает запрос без обработки пользовательской
   /// ошибки(выводиться ошибки в стандартных полях предусмотренные сервером)
@@ -146,12 +143,12 @@ mixin CoreRequestWorkedMixin {
   /// [resultData] callback успешном результате
   /// [errorData]  callback при ошибке
   void launchDelay<T>(
-      int delay, {
-        required Future<T> request,
-        CoreLoadingData? loading,
-        CoreResultData<T>? resultData,
-        required CoreResultData<String> errorData,
-      }) {
+    int delay, {
+    required Future<T> request,
+    CoreLoadingData? loading,
+    CoreResultData<T>? resultData,
+    required CoreResultData<String> errorData,
+  }) {
     _delay(delay, () async {
       loading?.call(true);
       try {
@@ -174,9 +171,9 @@ mixin CoreRequestWorkedMixin {
 
   /// отображает http ошибки
   void _makeHttpException<T>(
-      HttpRequestException ex,
-      CoreResultData<T> errorData,
-      ) {
+    HttpRequestException ex,
+    CoreResultData<T> errorData,
+  ) {
     if (ex.httpTypeError == HttpTypeError.notInternetConnection) {
       showErrorInternetConnection?.call(
         ex.message ?? GlobalConstant.empty,
@@ -193,7 +190,6 @@ mixin CoreRequestWorkedMixin {
       return;
     }
 
-
     if (ex.httpTypeError == HttpTypeError.http) {
       showErrorHttpCallback?.call(
         ex.message ?? GlobalConstant.empty,
@@ -204,13 +200,13 @@ mixin CoreRequestWorkedMixin {
   }
 
   /// отображает auth http ошибки
-  /*void _makeAuthHttpException<T>(
-      GlobalAuthException ex,
-      CoreResultData<T> errorData,
-      ) {
+  void _makeAuthHttpException<T>(
+    GlobalAuthException ex,
+    CoreResultData<T> errorData,
+  ) {
     if (ex.httpTypeError == HttpTypeError.notInternetConnection) {
       showErrorInternetConnection?.call(
-        ex.message ?? CoreConstant.empty,
+        ex.message ?? GlobalConstant.empty,
       );
     }
 
@@ -221,12 +217,12 @@ mixin CoreRequestWorkedMixin {
 
     if (ex.httpTypeError == HttpTypeError.http) {
       showErrorHttpCallback?.call(
-        ex.message ?? CoreConstant.empty,
+        ex.message ?? GlobalConstant.empty,
         ex.code,
       );
       return;
     }
-  }*/
+  }
 
   /// функция запускает таймер на определенное время
   void _delay(int delay, Function() run) {
@@ -240,6 +236,6 @@ mixin CoreRequestWorkedMixin {
 
   /// отображает различные исключения
   void _makeException<T>(dynamic ex, CoreResultData<T> errorData) {
-    showErrorExceptionCallback?.call(_defaultError);
+    showErrorExceptionCallback?.call(null);
   }
 }

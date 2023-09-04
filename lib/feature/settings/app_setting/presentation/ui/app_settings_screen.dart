@@ -1,11 +1,15 @@
 import 'package:aizere_app/common/widgets/app_common_divider_widget.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_up/sign_up_cubit.dart';
 import 'package:aizere_app/feature/settings/choose_local/presentation/ui/choose_locale_screen.dart';
 import 'package:aizere_app/feature/settings/select_speaker/presentation/ui/choose_speaker.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/presentation/ui/voice_assistant.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:aizere_app/router/router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppSettingScreen extends StatelessWidget {
@@ -32,7 +36,7 @@ class AppSettingScreen extends StatelessWidget {
           ),
         ),
       ),
-      backGround: AppColors.black,
+      backgroundColor: AppColors.black,
       body: LayoutBuilder(builder: (context, constraints) {
         return SingleChildScrollView(
           child: ConstrainedBox(
@@ -203,6 +207,47 @@ class AppSettingScreen extends StatelessWidget {
                                 child: Center(
                                   child: SvgPicture.asset(
                                     AppIcons.icVoiceCircle,
+                                  ),
+                                ),
+                              ),
+                              trailing: SvgPicture.asset(
+                                AppIcons.icArrowRight,
+                                color: AppColors.black,
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(
+                                vertical: 6,
+                                horizontal: 16,
+                              ),
+                              dense: false,
+                            ),
+                          ),
+                          const AppCommonDividerWidget(),
+                          Material(
+                            type: MaterialType.transparency,
+                            child: ListTile(
+                              onTap: () {
+                                context.read<SignUpCubit>().logOut();
+                                context.router.replace(
+                                  const AppSplashRoute(),
+                                );
+                              },
+                              title: Text(
+                                context.l10n.logout,
+                                style: AppTextStyle.regular.copyWith(
+                                  color: AppColors.black,
+                                ),
+                              ),
+                              leading: Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: AppColors.monoGrey,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Center(
+                                  child: SvgPicture.asset(
+                                    AppIcons.icNote,
+                                    color: AppColors.black,
                                   ),
                                 ),
                               ),

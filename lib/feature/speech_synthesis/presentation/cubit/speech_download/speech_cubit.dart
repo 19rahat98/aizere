@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/di/di_locator.dart';
+import 'package:aizere_app/feature/auth/data/pref/auth_data_source.dart';
 import 'package:aizere_app/feature/settings/select_speaker/data/repository/setting_speaker_global_repository.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/data/repository/setting_speaker_global_repository.dart';
 import 'package:aizere_app/utils/permition_request.dart';
@@ -21,8 +22,10 @@ class SpeechCubit extends Cubit<SpeechState> {
   SpeechCubit()
       : _speakerRepository = sl(),
         _speakerSpeedRepository = sl(),
+        _dataSource = sl(),
         super(SpeechInitial());
 
+  final AuthDataSource _dataSource;
   final CoreGlobalSettingSpeakerRepository _speakerRepository;
   final CoreGlobalSpeakerSpeedRepository _speakerSpeedRepository;
 
@@ -178,9 +181,7 @@ class SpeechCubit extends Cubit<SpeechState> {
       );
     } catch (e) {
       emit(
-        SpeechDownloadError(
-          e.toString(),
-        ),
+        SpeechDownloadError('Повторите попытку позже'),
       );
       emit(
         state.copyWith(
@@ -188,22 +189,17 @@ class SpeechCubit extends Cubit<SpeechState> {
           playerState: 0,
         ),
       );
-      rethrow;
     }
   }
 
   Future<Uint8List> doRequest(String text, {int? speaker}) async {
+    final authToken = await _dataSource.token;
     var request = http.MultipartRequest(
       'POST',
       Uri.parse("http://185.22.65.38:8000/tts/"),
     );
-    request.headers.addAll(
-        {'Authorization': 'Token 0b8dee37be7188af8ea9b91c6b1e87176d60c7c6'});
-    request.fields.addAll(
-      {
-        'text': text,
-      },
-    );
+    request.headers.addAll({'Authorization': 'Token $authToken'});
+    request.fields.addAll({'text': text});
 
     http.Response response = await http.Response.fromStream(
       await request.send(),

@@ -1,5 +1,6 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/auth/presentation/cubit/auth/sign_up/sign_up_cubit.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:aizere_app/feature/language_logic/presentation/cubit/local_language_cubit.dart';
 import 'package:aizere_app/feature/library/presentation/cubit/library_screen_cubit.dart';
@@ -46,12 +47,13 @@ class MyApp extends StatelessWidget {
           create: (context) => FavoritesCubit()..loadFavorites(),
         ),
         BlocProvider<LibraryScreenCubit>(
-          lazy: false,
           create: (context) => LibraryScreenCubit()..makeApiCall(),
         ),
         BlocProvider(
-          lazy: false,
-          create: (_) => ChangeIndexCubit(),
+          create: (context) => SignUpCubit(),
+        ),
+        BlocProvider(
+          create: (_) => NavigatorCubit(),
         )
       ],
       child: BlocBuilder<LocalLanguageCubit, LocalLanguageState>(
@@ -61,6 +63,7 @@ class MyApp extends StatelessWidget {
               useInheritedMediaQuery: false,
               title: GlobalConstant.appName,
               theme: AppTheme.defaultTheme,
+              darkTheme: AppTheme.defaultTheme,
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -70,8 +73,6 @@ class MyApp extends StatelessWidget {
               locale: localLanguageState.locale,
               supportedLocales: AppLocalizations.supportedLocales,
               routerConfig: appRouter.config(),
-
-              // персистент нав бардан кин MediaQuery.of(context).viewInsets.bottom стеми калад, выглядит иронично но решение тоже персистент фигня хахаха
               builder: (context, child) => PersistentKeyboardHeightProvider(
                 child: child!,
               ),

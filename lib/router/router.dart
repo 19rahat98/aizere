@@ -1,11 +1,11 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
-import 'package:aizere_app/feature/auth/change_password/ui/change_password_screen.dart';
-import 'package:aizere_app/feature/auth/confirmation/presentation/ui/confirmation_screen.dart';
-import 'package:aizere_app/feature/auth/forgot/ui/forgot_password_screen.dart';
-import 'package:aizere_app/feature/auth/registration/ui/registration_screen.dart';
-import 'package:aizere_app/feature/auth/sign_in/ui/sign_in_screen.dart';
-import 'package:aizere_app/feature/auth/success_registration/ui/success_screen.dart';
-import 'package:aizere_app/feature/auth/welcome/ui/welcome_screen.dart';
+import 'package:aizere_app/feature/auth/presentation/ui/change_password_screen.dart';
+import 'package:aizere_app/feature/auth/presentation/ui/confirmation_screen.dart';
+import 'package:aizere_app/feature/auth/presentation/ui/forgot_password_screen.dart';
+import 'package:aizere_app/feature/auth/presentation/ui/registration_screen.dart';
+import 'package:aizere_app/feature/auth/presentation/ui/sign_in_screen.dart';
+import 'package:aizere_app/feature/auth/presentation/ui/success_screen.dart';
+import 'package:aizere_app/feature/auth/presentation/ui/welcome_screen.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/ui/main_bottom_navigation_widget.dart';
 import 'package:aizere_app/feature/favorites/presentation/ui/favorites_screen.dart';
 import 'package:aizere_app/feature/library/presentation/ui/library_screen.dart';
@@ -13,6 +13,7 @@ import 'package:aizere_app/feature/search/presentation/ui/search_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_download/speech_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_result_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
+import 'package:aizere_app/feature/splash/ui/splash_screen.dart';
 import 'package:aizere_app/router/empty/empty_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
@@ -25,14 +26,14 @@ part 'router.gr.dart';
 class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(path: '/auth', page: WelcomeRoute.page, initial: true),
+        AutoRoute(page: AppSplashRoute.page, initial: true),
+        AutoRoute(path: '/auth', page: WelcomeRoute.page),
         AutoRoute(page: RegistrationRoute.page),
         AutoRoute(page: ConfirmationRoute.page),
         AutoRoute(page: SuccessRoute.page),
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: ForgotPasswordRoute.page),
         AutoRoute(page: ChangePasswordRoute.page),
-
         AutoRoute(
           page: MainBottomNavigationRoute.page,
           children: [

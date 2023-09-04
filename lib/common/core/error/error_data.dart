@@ -3,6 +3,7 @@ class ErrorData {
 
   ErrorData(this.message);
 
-  factory ErrorData.fromJson(Map<String, dynamic> map) =>
-      ErrorData(map['message'] ?? map['error'] ?? map['detail']);
+  factory ErrorData.fromJson(Map<String, dynamic> map) => ErrorData(
+        map['message'] ?? map['error'] ?? map['detail'] ?? map,
+      );
 }

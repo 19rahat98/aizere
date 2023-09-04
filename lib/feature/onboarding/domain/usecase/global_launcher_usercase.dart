@@ -53,9 +53,24 @@ class GlobalRegisterViewOnboardingUseCase
 
   final CoreGlobalOnboardingLauncherRepository _launcherRepository;
 
-
   @override
   Future<void> execute() async {
     return _launcherRepository.confirmBeforeOpenApplication();
+  }
+}
+
+/// Праверка на то что есть ли у юзера токен
+class GlobalCheckTokenConstrainUseCase
+    extends CoreFutureNoneParamUseCase<bool> {
+  GlobalCheckTokenConstrainUseCase() : _launcherRepository = sl();
+
+  final CoreGlobalOnboardingRepository _launcherRepository;
+
+  @override
+  Future<bool> execute() async {
+    /// запрашиваем, авторизован ли пользователь в приложении
+    final isBeforeOpenApplication = await _launcherRepository.isHaveAuthToken;
+
+    return isBeforeOpenApplication;
   }
 }
