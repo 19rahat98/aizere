@@ -16,7 +16,9 @@ class AppPlayerListTile extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () => context.router.push(const PlayerRoute()),
+        onTap: () => context.router.push(
+          PlayerRoute(classComposition: classComposition!),
+        ),
         child: Row(
           children: [
             Container(

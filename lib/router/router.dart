@@ -8,6 +8,7 @@ import 'package:aizere_app/feature/auth/success_registration/ui/success_screen.d
 import 'package:aizere_app/feature/auth/welcome/ui/welcome_screen.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/ui/main_bottom_navigation_widget.dart';
 import 'package:aizere_app/feature/favorites/presentation/ui/favorites_screen.dart';
+import 'package:aizere_app/feature/library/data/model/class_composition_model.dart';
 import 'package:aizere_app/feature/library/presentation/ui/library_screen.dart';
 import 'package:aizere_app/feature/player/ui/player_screen.dart';
 import 'package:aizere_app/feature/search/presentation/ui/search_screen.dart';

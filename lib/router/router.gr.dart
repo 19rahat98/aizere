@@ -81,9 +81,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     PlayerRoute.name: (routeData) {
+      final args = routeData.argsAs<PlayerRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const PlayerScreen(),
+        child: PlayerScreen(
+          key: args.key,
+          classComposition: args.classComposition,
+        ),
       );
     },
     RegistrationRoute.name: (routeData) {
@@ -307,16 +311,39 @@ class MainBottomNavigationRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [PlayerScreen]
-class PlayerRoute extends PageRouteInfo<void> {
-  const PlayerRoute({List<PageRouteInfo>? children})
-      : super(
+class PlayerRoute extends PageRouteInfo<PlayerRouteArgs> {
+  PlayerRoute({
+    Key? key,
+    required ClassComposition classComposition,
+    List<PageRouteInfo>? children,
+  }) : super(
           PlayerRoute.name,
+          args: PlayerRouteArgs(
+            key: key,
+            classComposition: classComposition,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'PlayerRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<PlayerRouteArgs> page = PageInfo<PlayerRouteArgs>(name);
+}
+
+class PlayerRouteArgs {
+  const PlayerRouteArgs({
+    this.key,
+    required this.classComposition,
+  });
+
+  final Key? key;
+
+  final ClassComposition classComposition;
+
+  @override
+  String toString() {
+    return 'PlayerRouteArgs{key: $key, classComposition: $classComposition}';
+  }
 }
 
 /// generated route for
