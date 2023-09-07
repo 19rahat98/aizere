@@ -43,11 +43,10 @@ class MyApp extends StatelessWidget {
           create: (context) => LocalLanguageCubit()..getLanguageCode(),
         ),
         BlocProvider<FavoritesCubit>(
-          lazy: false,
           create: (context) => FavoritesCubit()..loadFavorites(),
         ),
         BlocProvider<LibraryScreenCubit>(
-          create: (context) => LibraryScreenCubit()..makeApiCall(),
+          create: (context) => LibraryScreenCubit()..fetchLibrary(),
         ),
         BlocProvider(
           create: (context) => SignUpCubit(),

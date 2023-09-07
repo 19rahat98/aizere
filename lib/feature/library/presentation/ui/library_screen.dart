@@ -3,9 +3,12 @@ import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_player_list_tile.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/library/data/model/class_composition_model.dart';
+import 'package:aizere_app/feature/library/presentation/cubit/library_screen_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class LibraryScreen extends StatefulWidget {
@@ -17,77 +20,88 @@ class LibraryScreen extends StatefulWidget {
 
 class _LibraryScreenState extends State<LibraryScreen> {
   List<int> itemList = List.generate(11, (index) => index);
-  int selectedItemIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppCustomAppBar(title: context.l10n.library),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(
-          vertical: 20,
-        ),
-        children: [
-          SizedBox(
-            height: 40,
-            child: ListView.separated(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                final isItemSelected = index == selectedItemIndex;
-                return AppCategoryWidget(
-                  label: '${index + 1}',
-                  text: 'класс',
-                  isSelected: isItemSelected,
-                  onTap: () {
-                    setState(
-                      () {
-                        selectedItemIndex = index;
-                      },
+      body: BlocBuilder<LibraryScreenCubit, LibraryScreenState>(
+        builder: (context, state) {
+          if (state is LibraryScreenCommonState) {
+            return ListView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(
+                vertical: 20,
+              ),
+              children: [
+                SizedBox(
+                  height: 40,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return AppCategoryWidget(
+                        label: '${index + 1}',
+                        text: 'класс',
+                        isSelected: state.grade == index,
+                        onTap: () {
+                          context
+                              .read<LibraryScreenCubit>()
+                              .fetchLibrary(index);
+                        },
+                      );
+                    },
+                    separatorBuilder: (c, i) => const SizedBox(
+                      width: 8,
+                    ),
+                    itemCount: itemList.length,
+                  ),
+                ),
+                const HBox(
+                  height: 32,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Все произведение',
+                    style:
+                        AppTextStyle.w600s18.copyWith(color: AppColors.black),
+                  ),
+                ),
+                const HBox(
+                  height: 8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Включи и наслаждайся произведением казахской литературы',
+                    style: AppTextStyle.w400s14
+                        .copyWith(color: AppColors.ffABB0BC),
+                  ),
+                ),
+                ListView.separated(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return AppPlayerListTile(
+                      classComposition: state.classCompositions?[index],
                     );
                   },
-                );
-              },
-              separatorBuilder: (c, i) => const SizedBox(
-                width: 8,
-              ),
-              itemCount: itemList.length,
-            ),
-          ),
-          const HBox(
-            height: 32,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'Все произведение',
-              style: AppTextStyle.w600s18.copyWith(color: AppColors.black),
-            ),
-          ),
-          const HBox(
-            height: 8,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'Включи и наслаждайся произведением казахской литературы',
-              style: AppTextStyle.w400s14.copyWith(color: AppColors.ffABB0BC),
-            ),
-          ),
-          ListView.separated(
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return const AppPlayerListTile();
-              },
-              separatorBuilder: (c, i) => const HBox(
+                  separatorBuilder: (c, i) => const HBox(
                     height: 30,
                   ),
-              itemCount: 10),
-        ],
+                  itemCount: state.classCompositions!.length,
+                ),
+              ],
+            );
+          }
+          {
+            return Text(state.toString());
+          }
+        },
       ),
     );
   }

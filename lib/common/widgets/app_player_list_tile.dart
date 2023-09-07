@@ -1,12 +1,15 @@
 import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/library/data/model/class_composition_model.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppPlayerListTile extends StatelessWidget {
-  const AppPlayerListTile({super.key});
+  const AppPlayerListTile({super.key, this.classComposition});
+
+  final ClassComposition? classComposition;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +25,8 @@ class AppPlayerListTile extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.monoGrey,
                 borderRadius: BorderRadius.circular(12),
-                image: const DecorationImage(
-                  image: NetworkImage('https://picsum.photos/1000/1000'),
+                image: DecorationImage(
+                  image: NetworkImage(classComposition!.img ?? ''),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -35,13 +38,13 @@ class AppPlayerListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Егіннің бастары',
+                  classComposition!.title.toString(),
                   style: AppTextStyle.w600s16.copyWith(
                     color: AppColors.black,
                   ),
                 ),
                 Text(
-                  'Ахмет Байтұрсынұлы',
+                  classComposition!.name!,
                   style: AppTextStyle.w400s14.copyWith(
                     color: AppColors.ffABB0BC,
                   ),

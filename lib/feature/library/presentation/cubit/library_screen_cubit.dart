@@ -15,18 +15,24 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState>
 
   final GetClassLibraryUseCase _getClassLibraryUseCase;
 
-  void makeApiCall() async {
-    final classLib = ClassLibParamEntity(grade: 2, page: 1);
+  bool _isLoading = false;
+
+  void fetchLibrary([int grade = 0]) async {
+    final classLib = ClassLibParamEntity(grade + 1);
     final request = _getClassLibraryUseCase.execute(classLib);
 
     await launchWithError(
       request: request,
       resultData: (result) {
-        emit(LibraryScreenCommonState(classCompositions: [result]));
+        emit(LibraryScreenCommonState(
+          classCompositions: result,
+          grade: grade,
+        ));
       },
       errorData: (errorData) {
         emit(LibraryScreenFailedState());
       },
+      loading: (isLoading) => _isLoading = isLoading,
     );
   }
 }

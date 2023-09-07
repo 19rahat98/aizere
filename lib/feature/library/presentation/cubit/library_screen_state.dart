@@ -8,10 +8,14 @@ abstract class LibraryScreenState extends Equatable {
 }
 
 class LibraryScreenCommonState extends LibraryScreenState {
-  const LibraryScreenCommonState(
-      {this.classCompositions, this.isLoading = false});
+  const LibraryScreenCommonState({
+    this.classCompositions,
+    this.grade = 0,
+    this.isLoading = false,
+  });
 
   final bool isLoading;
+  final int grade;
   final List<ClassComposition>? classCompositions;
 
   LibraryScreenCommonState copyWith({
@@ -25,10 +29,7 @@ class LibraryScreenCommonState extends LibraryScreenState {
   }
 
   @override
-  List<Object?> get props => [
-        isLoading,
-        classCompositions
-      ];
+  List<Object?> get props => [isLoading, classCompositions, grade];
 }
 
 class LibraryScreenFailedState extends LibraryScreenState {}

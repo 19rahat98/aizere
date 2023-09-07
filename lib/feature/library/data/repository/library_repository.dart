@@ -8,10 +8,15 @@ class LibraryRepository {
 
   final ApiService _apiService;
 
-  Future<ClassComposition> getClassLib(params) async {
-    return await safeApiCall<dynamic>(
+  Future<List<ClassComposition>> getClassLib(params) async {
+    return safeApiCallListData(
       _apiService.getClassLib(params),
-      ClassComposition.fromJson,
+      (response) {
+        final List<ClassComposition> classCompositions = response
+            .map((data) => ClassComposition.fromJson(data))
+            .toList();
+        return classCompositions;
+      },
     );
   }
 }

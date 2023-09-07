@@ -7,10 +7,15 @@ class ApiService {
 
   Future<Response> getClassLib(param) async {
     return _httpClient.post<dynamic>(
-      '/kazlibrary/get_texts',
+      '/get-book-by-class/',
       data: param,
     );
   }
+
+  /* return _httpClient.post<dynamic>(
+      '/kazlibrary/get_texts',
+      data: param,
+    );*/
 
   Future<Response> signUp(
     String username,
