@@ -50,6 +50,8 @@ class AppIcons {
   static const icAizere = 'assets/svg/ic_aizere.svg';
   static const icPet = 'assets/svg/ic_pet.svg';
   static const icSuccess = 'assets/svg/ic_success.svg';
+  static const icGlasses = 'assets/svg/ic_glasses.svg';
+  static const icLetters = 'assets/svg/ic_letters.svg';
   static const icNote = 'assets/svg/ic_note.svg';
   static const icRaya = 'assets/images/ic_raya.png';
   static const icClock = 'assets/svg/ic_clock.svg';

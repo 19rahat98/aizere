@@ -33,17 +33,32 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ChangePasswordScreen(),
       );
     },
-    ConfirmationRoute.name: (routeData) {
-      final args = routeData.argsAs<ConfirmationRouteArgs>(
-        orElse: () => const ConfirmationRouteArgs(username: ''),
+    ChooseInterfaceRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ChooseInterfaceScreen(),
       );
+    },
+    ChooseLocaleRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseLocaleRouteArgs>(
+          orElse: () => const ChooseLocaleRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ChooseLocaleScreen(
+          key: args.key,
+          isStartSetting: args.isStartSetting,
+        ),
+      );
+    },
+    ConfirmationRoute.name: (routeData) {
+      final args = routeData.argsAs<ConfirmationRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ConfirmationScreen(
           key: args.key,
-          isForgotPass: args.isForgotPass,
-          username: args.username,
           name: args.name,
+          username: args.username,
+          isForgotPass: args.isForgotPass,
         ),
       );
     },
@@ -87,6 +102,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MainBottomNavigationScreen(),
+      );
+    },
+    OnboardingRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OnboardingScreen(),
       );
     },
     RegistrationRoute.name: (routeData) {
@@ -142,8 +163,19 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: SuccessScreen(
           key: args.key,
-          isNewPassword: args.isNewPassword,
           name: args.name,
+          isNewPassword: args.isNewPassword,
+        ),
+      );
+    },
+    VoiceAssistantRoute.name: (routeData) {
+      final args = routeData.argsAs<VoiceAssistantRouteArgs>(
+          orElse: () => const VoiceAssistantRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: VoiceAssistantScreen(
+          key: args.key,
+          isStartSetting: args.isStartSetting,
         ),
       );
     },
@@ -199,6 +231,58 @@ class ChangePasswordRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ChooseInterfaceScreen]
+class ChooseInterfaceRoute extends PageRouteInfo<void> {
+  const ChooseInterfaceRoute({List<PageRouteInfo>? children})
+      : super(
+          ChooseInterfaceRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ChooseInterfaceRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ChooseLocaleScreen]
+class ChooseLocaleRoute extends PageRouteInfo<ChooseLocaleRouteArgs> {
+  ChooseLocaleRoute({
+    Key? key,
+    bool isStartSetting = true,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ChooseLocaleRoute.name,
+          args: ChooseLocaleRouteArgs(
+            key: key,
+            isStartSetting: isStartSetting,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ChooseLocaleRoute';
+
+  static const PageInfo<ChooseLocaleRouteArgs> page =
+      PageInfo<ChooseLocaleRouteArgs>(name);
+}
+
+class ChooseLocaleRouteArgs {
+  const ChooseLocaleRouteArgs({
+    this.key,
+    this.isStartSetting = true,
+  });
+
+  final Key? key;
+
+  final bool isStartSetting;
+
+  @override
+  String toString() {
+    return 'ChooseLocaleRouteArgs{key: $key, isStartSetting: $isStartSetting}';
+  }
+}
+
+/// generated route for
 /// [ConfirmationScreen]
 class ConfirmationRoute extends PageRouteInfo<ConfirmationRouteArgs> {
   ConfirmationRoute({
@@ -211,9 +295,9 @@ class ConfirmationRoute extends PageRouteInfo<ConfirmationRouteArgs> {
           ConfirmationRoute.name,
           args: ConfirmationRouteArgs(
             key: key,
-            isForgotPass: isForgotPass,
-            username: username,
             name: name,
+            username: username,
+            isForgotPass: isForgotPass,
           ),
           initialChildren: children,
         );
@@ -227,22 +311,22 @@ class ConfirmationRoute extends PageRouteInfo<ConfirmationRouteArgs> {
 class ConfirmationRouteArgs {
   const ConfirmationRouteArgs({
     this.key,
+    this.name,
     required this.username,
     this.isForgotPass = false,
-    this.name,
   });
 
   final Key? key;
 
-  final bool isForgotPass;
+  final String? name;
 
   final String username;
 
-  final String? name;
+  final bool isForgotPass;
 
   @override
   String toString() {
-    return 'ConfirmationRouteArgs{key: $key, isForgotPass: $isForgotPass, username: $username, name: $name}';
+    return 'ConfirmationRouteArgs{key: $key, name: $name, username: $username, isForgotPass: $isForgotPass}';
   }
 }
 
@@ -340,6 +424,20 @@ class MainBottomNavigationRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MainBottomNavigationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OnboardingScreen]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute({List<PageRouteInfo>? children})
+      : super(
+          OnboardingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OnboardingRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -488,15 +586,15 @@ class SpeechSynthesisResultRouteArgs {
 class SuccessRoute extends PageRouteInfo<SuccessRouteArgs> {
   SuccessRoute({
     Key? key,
-    bool? isNewPassword = false,
     String? name,
+    bool? isNewPassword = false,
     List<PageRouteInfo>? children,
   }) : super(
           SuccessRoute.name,
           args: SuccessRouteArgs(
             key: key,
-            isNewPassword: isNewPassword,
             name: name,
+            isNewPassword: isNewPassword,
           ),
           initialChildren: children,
         );
@@ -510,19 +608,57 @@ class SuccessRoute extends PageRouteInfo<SuccessRouteArgs> {
 class SuccessRouteArgs {
   const SuccessRouteArgs({
     this.key,
-    this.isNewPassword = false,
     this.name,
+    this.isNewPassword = false,
   });
 
   final Key? key;
 
-  final bool? isNewPassword;
-
   final String? name;
+
+  final bool? isNewPassword;
 
   @override
   String toString() {
-    return 'SuccessRouteArgs{key: $key, isNewPassword: $isNewPassword, name: $name}';
+    return 'SuccessRouteArgs{key: $key, name: $name, isNewPassword: $isNewPassword}';
+  }
+}
+
+/// generated route for
+/// [VoiceAssistantScreen]
+class VoiceAssistantRoute extends PageRouteInfo<VoiceAssistantRouteArgs> {
+  VoiceAssistantRoute({
+    Key? key,
+    bool isStartSetting = true,
+    List<PageRouteInfo>? children,
+  }) : super(
+          VoiceAssistantRoute.name,
+          args: VoiceAssistantRouteArgs(
+            key: key,
+            isStartSetting: isStartSetting,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'VoiceAssistantRoute';
+
+  static const PageInfo<VoiceAssistantRouteArgs> page =
+      PageInfo<VoiceAssistantRouteArgs>(name);
+}
+
+class VoiceAssistantRouteArgs {
+  const VoiceAssistantRouteArgs({
+    this.key,
+    this.isStartSetting = true,
+  });
+
+  final Key? key;
+
+  final bool isStartSetting;
+
+  @override
+  String toString() {
+    return 'VoiceAssistantRouteArgs{key: $key, isStartSetting: $isStartSetting}';
   }
 }
 

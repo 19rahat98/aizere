@@ -7,12 +7,15 @@ import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/ui/main_bottom_navigation_widget.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/presentation/cubit/voice_assistant_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:aizere_app/router/router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class VoiceAssistant extends StatelessWidget {
-  const VoiceAssistant({
+@RoutePage()
+class VoiceAssistantScreen extends StatelessWidget {
+  const VoiceAssistantScreen({
     Key? key,
     this.isStartSetting = true,
   }) : super(key: key);
@@ -23,15 +26,15 @@ class VoiceAssistant extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => VoiceAssistantCubit()..initCubit(),
-      child: VoiceAssistantScreen(
+      child: VoiceAssistant(
         isStartSetting: isStartSetting,
       ),
     );
   }
 }
 
-class VoiceAssistantScreen extends StatefulWidget {
-  const VoiceAssistantScreen({
+class VoiceAssistant extends StatefulWidget {
+  const VoiceAssistant({
     Key? key,
     this.isStartSetting = true,
   }) : super(key: key);
@@ -39,10 +42,10 @@ class VoiceAssistantScreen extends StatefulWidget {
   final bool isStartSetting;
 
   @override
-  State<VoiceAssistantScreen> createState() => _VoiceAssistantState();
+  State<VoiceAssistant> createState() => _VoiceAssistantState();
 }
 
-class _VoiceAssistantState extends State<VoiceAssistantScreen> {
+class _VoiceAssistantState extends State<VoiceAssistant> {
   late VoiceAssistantCubit _cubit;
 
   @override
@@ -272,10 +275,17 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
                           if (widget.isStartSetting) ...[
                             const HBox(),
                             AppFilledColorButton(
-                              onTap: _cubit.setApplicationConfiguredState,
+                              onTap: () {
+                                _cubit.setApplicationConfiguredState;
+                                context.router.replace(
+                                  const OnboardingRoute(),
+                                );
+                              },
                               padding: const EdgeInsets.symmetric(
                                 vertical: 16,
                               ),
+                              width: double.maxFinite,
+                              color: AppColors.mainBlue,
                               child: Text(
                                 context.l10n.keepContinue,
                                 style: AppTextStyle.textButtonStyle.copyWith(
@@ -285,10 +295,14 @@ class _VoiceAssistantState extends State<VoiceAssistantScreen> {
                             ),
                           ],
                           const HBox(),
-                          AppTextButton(
-                            onTap: () => Navigator.pop(context),
-                            text: context.l10n.back,
-                            style: AppTextStyle.textButtonStyle,
+                          SizedBox(
+                            width: 200,
+                            child: AppTextButton(
+                              onTap: () => Navigator.pop(context),
+                              text: context.l10n.back,
+                              style: AppTextStyle.textButtonStyle
+                                  .copyWith(color: AppColors.mainBlue),
+                            ),
                           ),
                           const HBox(),
                         ],

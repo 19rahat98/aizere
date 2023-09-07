@@ -14,7 +14,9 @@ class AppFilledColorButton extends StatelessWidget with IgnoreDoubleTapMixin {
     this.padding,
     this.margin,
     this.color,
-    this.text, this.textColor,
+    this.text,
+    this.textColor,
+    this.border = false, this.borderColor,
   }) : super(key: key);
 
   /// дочерний элемент
@@ -46,6 +48,12 @@ class AppFilledColorButton extends StatelessWidget with IgnoreDoubleTapMixin {
   /// Задавать цвет текста.
   final Color? textColor;
 
+  /// Границы кнопки
+  final bool? border;
+
+  /// цвет границы кнопки
+  final Color? borderColor;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,6 +64,8 @@ class AppFilledColorButton extends StatelessWidget with IgnoreDoubleTapMixin {
         borderRadius: BorderRadius.all(
           Radius.circular(borderRadiusRadii),
         ),
+        border:
+            border! ? Border.all(width: 2, color: borderColor!) : null,
       ),
       child: ElevatedButton(
         onPressed: () {
@@ -75,7 +85,8 @@ class AppFilledColorButton extends StatelessWidget with IgnoreDoubleTapMixin {
             ? Center(
                 child: Text(
                   text!,
-                  style: AppTextStyle.heading.copyWith(color: textColor ?? Colors.white),
+                  style: AppTextStyle.heading
+                      .copyWith(color: textColor ?? Colors.white),
                 ),
               )
             : child,

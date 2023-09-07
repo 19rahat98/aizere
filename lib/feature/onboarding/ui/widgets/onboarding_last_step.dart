@@ -4,6 +4,8 @@ import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/settings/choose_local/presentation/ui/choose_locale_screen.dart';
 import 'package:aizere_app/l10n/l10n.dart';
+import 'package:aizere_app/router/router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -45,14 +47,9 @@ class OnboardingLastStep extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: AppTextButton(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const ChooseLocale(),
-                        ),
-                      );
-                    },
+                    onTap: () => context.router.replace(
+                      const WelcomeRoute(),
+                    ),
                     text: context.l10n.skip,
                     isCenter: false,
                     style: AppTextStyle.textButtonStyle.copyWith(
@@ -87,7 +84,6 @@ class OnboardingLastStep extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(
                     horizontal: 6,
                   ),
-
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
