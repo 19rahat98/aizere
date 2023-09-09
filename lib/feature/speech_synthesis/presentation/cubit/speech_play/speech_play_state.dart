@@ -1,58 +1,50 @@
 part of 'speech_play_cubit.dart';
 
 @immutable
-abstract class SpeechPlayState {}
+abstract class SpeechPlayState extends Equatable {}
 
-class SpeechPlayInitial extends SpeechPlayState {}
+class SpeechPlayInitial extends SpeechPlayState {
+  @override
+  List<Object?> get props => [];
+}
 
-class SpeechCommonState extends SpeechPlayState {
-  final int speakerId;
-  final bool isLoading;
-  final bool isContain;
+class SpeechPlayCommonState extends SpeechPlayState {
   final int playerState;
   final double speedSpeaker;
 
   final int totalTime;
   final int initialTime;
 
-  SpeechCommonState copyWith({
+  SpeechPlayCommonState copyWith({
     int? totalTime,
     int? initialTime,
-    int? speakerId,
     int? playerState,
-    bool? isLoading,
-    bool? isContain,
     double? speedSpeaker,
   }) {
-    return SpeechCommonState(
-      isContain: isContain ?? this.isContain,
+    return SpeechPlayCommonState(
       totalTime: totalTime ?? this.totalTime,
       initialTime: initialTime ?? this.initialTime,
-      isLoading: isLoading ?? this.isLoading,
       playerState: playerState ?? this.playerState,
-      speakerId: speakerId ?? this.speakerId,
       speedSpeaker: speedSpeaker ?? this.speedSpeaker,
     );
   }
 
-  SpeechCommonState({
+  SpeechPlayCommonState({
     this.totalTime = 0,
     this.initialTime = 0,
-    this.playerState = 0,
-    required this.isLoading,
-    required this.isContain,
-    required this.speakerId,
+    this.playerState = 1,
     required this.speedSpeaker,
   });
+
+  String get playPauseIconAsset {
+    return playerState == 2 ? AppIcons.icStop : AppIcons.icPlay;
+  }
 
   @override
   List<Object?> get props => [
         initialTime,
         totalTime,
         playerState,
-        isLoading,
-        isContain,
-        speakerId,
         speedSpeaker,
       ];
 }

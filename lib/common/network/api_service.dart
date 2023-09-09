@@ -12,6 +12,19 @@ class AuthorizedApiService {
       data: param,
     );
   }
+
+  Future<Response> getSynthesisAudio({required FormData param}) async {
+    return _httpClient.post<dynamic>(
+      'tts/',
+      data: param,
+      options: Options(
+        followRedirects: false,
+        responseType: ResponseType.bytes,
+        sendTimeout: const Duration(minutes: 5),
+        receiveTimeout: const Duration(minutes: 5),
+      ),
+    );
+  }
 }
 
 /// сервис для неавторизованной зоны
@@ -19,11 +32,6 @@ class ApiService {
   ApiService(this._httpClient);
 
   final Dio _httpClient;
-
-  /* return _httpClient.post<dynamic>(
-      '/kazlibrary/get_texts',
-      data: param,
-    );*/
 
   Future<Response> signUp(
     String username,

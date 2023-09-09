@@ -25,6 +25,7 @@ import 'package:aizere_app/feature/settings/start_settings/data/repository/setti
 import 'package:aizere_app/feature/settings/start_settings/domain/usecase/global_app_setting_usercase.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/data/pref/setting_speaker_global_data_source.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/data/repository/setting_speaker_global_repository.dart';
+import 'package:aizere_app/feature/speech_synthesis/data/repository/synthesis_repository.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -32,9 +33,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
-void initLocator() {
+Future<void> initLocator() async {
   _appRouter();
-  _commonModule();
+  await _commonModule();
   _localStorageModule();
   _apiServiceModule();
   _dataSourceModule();
@@ -44,7 +45,7 @@ void initLocator() {
 }
 
 /// для общих зависимостей
-void _commonModule() async {
+Future<void> _commonModule() async {
   /// Shared preferences
   final sharedPreferences = SharedPreferences.getInstance();
   sl.registerSingletonAsync(() => sharedPreferences);
@@ -54,7 +55,7 @@ Future _localStorageModule() async {
   sl.registerSingleton<LocalStorageService>(await LocalStorageService().init());
 }
 
-Future _apiServiceModule() async {
+void _apiServiceModule() {
   sl.registerSingleton<Dio>(
     createHttpClient(GlobalDioConstant.apiBaseUrl),
   );
@@ -87,6 +88,7 @@ void _repositoryModule() {
   sl.registerFactory(() => CoreGlobalFavoritesRepository());
   sl.registerFactory(() => LibraryRepository());
   sl.registerFactory(() => CoreGlobalOnboardingRepository());
+  sl.registerFactory(() => SynthesisRepository());
   sl.registerFactory(() => AuthRepository());
 }
 

@@ -94,15 +94,15 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     ),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: state.classCompositions?.length ?? 0,
+                    separatorBuilder: (c, i) => const HBox(
+                      height: 30,
+                    ),
                     itemBuilder: (context, index) {
                       return AppPlayerListTile(
                         index: index,
                         classCompositions: state.classCompositions!,
                       );
                     },
-                    separatorBuilder: (c, i) => const HBox(
-                      height: 30,
-                    ),
                   ),
                 ],
               ),
