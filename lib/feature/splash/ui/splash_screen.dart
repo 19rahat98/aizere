@@ -18,7 +18,7 @@ class AppSplashScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is FirstLaunchState) {
             context.router.replace(
-              const WelcomeRoute(),
+              const OnboardingRoute(),
             );
           } else if (state is LaunchAppCommonState) {
             context.router.replace(
