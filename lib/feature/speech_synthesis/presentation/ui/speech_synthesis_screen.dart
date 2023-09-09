@@ -66,7 +66,6 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
       bottom: true,
       appBar: AppCustomAppBar(
         title: context.l10n.speechSynthesis,
-
       ),
       body: BlocConsumer<SpeechCubit, SpeechState>(
         listener: (context, state) {
@@ -80,7 +79,7 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
             context.router.push(
               SpeechSynthesisResultRoute(
                 text: _textController.text,
-                cubit: _cubit,
+                audioPath: state.audioPath,
               ),
             );
           }
@@ -96,15 +95,10 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
                     child: SynthesisTextField(
                       onTap: () {
                         FocusScope.of(context).requestFocus(FocusNode());
-                        _cubit.downloadRequisites(
-                          _textController.text,
-                        );
+                        _cubit.downloadRequisites(_textController.text);
                       },
                       canEdit: !state.isLoading,
-                      onClear: () {
-                        _cubit.stopAudio();
-                        _textController.clear();
-                      },
+                      onClear: _textController.clear,
                       controller: _textController,
                     ),
                   ),
@@ -147,10 +141,7 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
                   const HBox(
                     height: 20,
                   ),
-                  buildButton(
-                    state,
-                    isConstrain: state.isContain,
-                  ),
+                  buildButton(state),
                 ],
               ),
             );
@@ -162,10 +153,7 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
     );
   }
 
-  Widget buildButton(
-    SpeechCommonState state, {
-    bool isConstrain = false,
-  }) {
+  Widget buildButton(SpeechCommonState state) {
     if (state.isLoading) {
       return const AppProgressIndicatorButton();
     }

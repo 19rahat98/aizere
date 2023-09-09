@@ -1,230 +1,113 @@
 import 'dart:io';
 
 import 'package:aizere_app/common/constants/global_constant.dart';
-import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/di/di_locator.dart';
-import 'package:aizere_app/feature/auth/data/pref/auth_data_source.dart';
 import 'package:aizere_app/feature/settings/select_speaker/data/repository/setting_speaker_global_repository.dart';
-import 'package:aizere_app/feature/settings/voice_assistant/data/repository/setting_speaker_global_repository.dart';
+import 'package:aizere_app/feature/speech_synthesis/data/repository/synthesis_repository.dart';
 import 'package:aizere_app/utils/permition_request.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:http/http.dart' as http;
 
 part 'speech_state.dart';
 
 class SpeechCubit extends Cubit<SpeechState> {
+  /// Инициализация с репозиториями и начальным состоянием
   SpeechCubit()
-      : _speakerRepository = sl(),
-        _speakerSpeedRepository = sl(),
-        _dataSource = sl(),
+      : _speakerSetting = sl(),
+        _synthesisRepository = sl(),
         super(SpeechInitial());
 
-  final AuthDataSource _dataSource;
-  final CoreGlobalSettingSpeakerRepository _speakerRepository;
-  final CoreGlobalSpeakerSpeedRepository _speakerSpeedRepository;
+  final SynthesisRepository _synthesisRepository;
+  final CoreGlobalSettingSpeakerRepository _speakerSetting;
 
-  int get playerState => (state as SpeechCommonState).playerState;
-
-  String get playPauseIconAsset {
-    return playerState == 1 ? AppIcons.icPlay : AppIcons.icStop;
-  }
-
-  final player = AudioPlayer();
-
+  /// Локальные переменные для хранения настроек и путей
+  int _speakerId = 0;
   String _filePath = GlobalConstant.empty;
 
-  int _speakerId = 0;
-  double _speakerSpeed = 1;
-
-  int _totalTime = 0;
-  int _initialTime = 0;
-
-  Dio dio = Dio();
-
+  /// Инициализация Cubit: устанавливает начальное состояние и загружает настройки
   Future<void> initCubit() async {
-    final state = getCommonState();
-    _speakerId = await _speakerRepository.selectedSpeaker;
-    _speakerSpeed = await _speakerSpeedRepository.selectedSpeaker;
-    emit(
-      state.copyWith(
-        speakerId: _speakerId,
-        speedSpeaker: _speakerSpeed,
-      ),
-    );
-    listenPlayer();
+    final state = _getCommonState();
+    _speakerId = await _speakerSetting.selectedSpeaker;
+    emit(state.copyWith(speakerId: _speakerId));
   }
 
-  Future<void> listenPlayer() async {
-    player.bufferedPositionStream.listen((event) {
-      final state = getCommonState();
-      _totalTime = event.inSeconds;
-      emit(
-        state.copyWith(
-          totalTime: _totalTime,
-          initialTime: _initialTime,
-        ),
-      );
-    });
-    player.positionStream.listen((event) {
-      final state = getCommonState();
-      _initialTime = event.inSeconds;
-      emit(
-        state.copyWith(
-          totalTime: _totalTime,
-          initialTime: _initialTime,
-        ),
-      );
-    });
-    player.processingStateStream.listen((event) async {
-      if (event == ProcessingState.completed) {
-        final state = getCommonState();
-        player.stop();
-        await player.setFilePath(_filePath);
-        emit(
-          state.copyWith(
-            playerState: 1,
-          ),
-        );
-      }
-    });
-  }
-
-  Future<void> setSpeed(double speed) async {
-    final state = getCommonState();
-    _speakerSpeed = speed;
-    player.setSpeed(_speakerSpeed);
-    await _speakerSpeedRepository.setAppLocal(speed);
-    emit(
-      state.copyWith(
-        speedSpeaker: speed,
-      ),
-    );
-  }
-
-  /// запрашиваем разрешение на запись и чтение памяти
+  /// Запрашивает разрешения для доступа к файлам и записи аудио
   void downloadRequisites(String text) async {
     requestPermission(
       permission: Platform.isIOS ? Permission.storage : Permission.audio,
       onGrantedPermission: () async {
-        await request(text);
+        final tempDir = Platform.isIOS
+            ? await getApplicationDocumentsDirectory()
+            : await getExternalStorageDirectory();
+        await request(text, tempDir?.path);
       },
-      onDenied: () {
-        emit(SpeechDownloadError('Permission error'));
-      },
-      onDeniedForever: () {
-        emit(SpeechDownloadError('Permission error'));
-      },
+      onDenied: () => _handlePermissionError(),
+      onDeniedForever: () => _handlePermissionError(),
     );
   }
 
-  Future<void> playAudio() async {
-    final state = getCommonState();
-    if (player.playing) {
-      player.pause();
-      emit(state.copyWith(
-        playerState: 1,
-      ));
-    } else {
-      player.setSpeed(_speakerSpeed);
-      player.play();
-      emit(state.copyWith(
-        playerState: 2,
-      ));
-    }
+  void _handlePermissionError() {
+    emit(SpeechDownloadError('Permission error'));
   }
 
-  void stopAudio() {
-    final state = getCommonState();
-    player.stop();
-    _initialTime = 0;
-    emit(state.copyWith(
-      isLoading: false,
-      playerState: 0,
-      initialTime: _initialTime,
-    ));
-  }
-
-  Future<void> request(String text) async {
-    final state = getCommonState();
-    emit(
-      state.copyWith(
-        isLoading: true,
-        playerState: 2,
-      ),
-    );
+  /// Запрашивает аудиофайл, сохраняет его и инициализирует проигрыватель.
+  ///
+  /// [text] - текст для синтеза звука.
+  /// [path] - путь для сохранения аудиофайла (если указан).
+  Future<void> request(String text, String? path) async {
+    /// Получение начального состояния
+    final initialState = _getCommonState();
+    _setLoadingState(initialState);
 
     try {
-      final requestBytes = await doRequest(text, speaker: _speakerId);
-      var tempDir = Platform.isIOS
-          ? await getApplicationDocumentsDirectory()
-          : await getExternalStorageDirectory();
-      final fileName = DateTime.now().microsecondsSinceEpoch;
-      final pathFile = "${tempDir?.path}/${fileName}Aizere.wav";
-      File responseFile = File(pathFile);
-      await responseFile.writeAsBytes(requestBytes);
-      _filePath = responseFile.path;
-      await player.setFilePath(_filePath);
-      emit(SpeechSuccessDownloaded());
-      emit(
-        state.copyWith(
-          isLoading: false,
-          playerState: 1,
-          totalTime: _totalTime,
-          initialTime: _initialTime,
-        ),
-      );
+      /// Подготовка параметров для запроса аудиофайла
+      final params = {'text': text};
+
+      /// Запрос аудиофайла и сохранение его в указанном пути
+      _filePath =
+          await _synthesisRepository.getSynthesisAudioPath(params, path);
+
+      /// Установка пути файла для проигрывателя
+      //await player.setFilePath(_filePath);
+
+      /// Уведомление об успешной загрузке и установке начального состояния
+      _setSuccessState(initialState);
     } catch (e) {
-      emit(
-        SpeechDownloadError('Повторите попытку позже'),
-      );
-      emit(
-        state.copyWith(
-          isLoading: false,
-          playerState: 0,
-        ),
-      );
+      _setErrorState(initialState);
     }
   }
 
-  Future<Uint8List> doRequest(String text, {int? speaker}) async {
-    final authToken = await _dataSource.token;
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse("http://185.22.65.38:8000/tts/"),
-    );
-    request.headers.addAll({'Authorization': 'Token $authToken'});
-    request.fields.addAll({'text': text});
-
-    http.Response response = await http.Response.fromStream(
-      await request.send(),
-    );
-    return response.bodyBytes;
+  /// Установка состояния загрузки
+  void _setLoadingState(SpeechCommonState state) {
+    emit(state.copyWith(isLoading: true));
   }
 
-  void removeFavoriteState(value) {
-    final state = getCommonState();
+  /// Установка успешного состояния
+  void _setSuccessState(SpeechCommonState state) {
+    emit(SpeechSuccessDownloaded(_filePath));
     emit(state.copyWith(
-      isContain: value,
+      isLoading: false,
     ));
   }
 
-  SpeechCommonState getCommonState() {
+  /// Установка состояния ошибки
+  void _setErrorState(SpeechCommonState state) {
+    emit(SpeechDownloadError('Повторите попытку позже'));
+    emit(state.copyWith(
+      isLoading: false,
+    ));
+  }
+
+  SpeechCommonState _getCommonState() {
     if (state is SpeechCommonState) {
       return state as SpeechCommonState;
     }
     return SpeechCommonState(
       isLoading: false,
-      isContain: false,
-      totalTime: _totalTime,
-      initialTime: _initialTime,
       speakerId: _speakerId,
-      speedSpeaker: _speakerSpeed,
     );
   }
 }

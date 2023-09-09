@@ -2,11 +2,10 @@ import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/common/core/extensions.dart';
 import 'package:aizere_app/common/widgets/app_common_divider_widget.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
-import 'package:aizere_app/common/widgets/app_snack_bar_widget.dart';
 import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_download/speech_cubit.dart';
+import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_play/speech_play_cubit.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/widgets/synthesis_custom_app_bar.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:auto_route/auto_route.dart';
@@ -18,20 +17,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SpeechSynthesisResultScreen extends StatelessWidget {
   const SpeechSynthesisResultScreen({
     Key? key,
+    required this.audioPath,
     this.text = GlobalConstant.empty,
-    required this.cubit,
   }) : super(key: key);
 
   final String text;
-  final SpeechCubit cubit;
+  final String audioPath;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: cubit,
-      child: SpeechSynthesisResult(
-        text: text,
-      ),
+    return BlocProvider<SpeechPlayCubit>(
+      create: (_) => SpeechPlayCubit()..initCubit(audioPath),
+      child: SpeechSynthesisResult(text: text),
     );
   }
 }
@@ -49,11 +46,11 @@ class SpeechSynthesisResult extends StatefulWidget {
 }
 
 class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
-  late SpeechCubit _cubit;
+  late SpeechPlayCubit _cubit;
 
   @override
   void initState() {
-    _cubit = context.read<SpeechCubit>();
+    _cubit = context.read<SpeechPlayCubit>();
     super.initState();
   }
 
@@ -62,18 +59,10 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
     return ScreenWrapper(
       bottom: true,
       appBar: const SynthesisCustomAppBar(),
-      body: BlocConsumer<SpeechCubit, SpeechState>(
-        listener: (context, state) {
-          if (state is SpeechDownloadError) {
-            final snackBar = errorSnackBar(
-              title: state.error,
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          }
-        },
-        buildWhen: (prev, current) => current is SpeechCommonState,
+      body: BlocBuilder<SpeechPlayCubit, SpeechPlayState>(
+        buildWhen: (prev, current) => current is SpeechPlayCommonState,
         builder: (context, state) {
-          if (state is SpeechCommonState) {
+          if (state is SpeechPlayCommonState) {
             return Container(
               padding: const EdgeInsets.only(
                 top: 24,
@@ -200,7 +189,9 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                         IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: _cubit.playAudio,
-                          icon: SvgPicture.asset(_cubit.playPauseIconAsset),
+                          icon: SvgPicture.asset(
+                            state.playPauseIconAsset,
+                          ),
                         ),
                         const WBox(
                           width: 12,
