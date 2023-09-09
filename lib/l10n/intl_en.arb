@@ -74,7 +74,6 @@
   "continueText": "Продолжить",
   "confirmationCode": "Подтверждение кода",
   "sendItBack": "Повторно отправить через: ",
-  "back": "Назад",
   "confirmationDescription": "На ваш номер телефона отправлен 4 значный SMS код подтверждения. Введите код в поле ниже.",
   "finalize": "Завершить",
   "congratulations": "Поздравляем",
@@ -94,12 +93,12 @@
   "speechSynthesis": "Синтез речи",
   "logout": "Шығу",
   "errorMessage": "Произошла ошибка, повторите попытку позже",
-  "exampleAizere": "Например: Айзере",
   "chooseInterface": "Выберите тип интерфейса",
   "interfaceDescription": "В зависимости от вашего выбора интерфейс будет изменён, но вы можете в любое время изменить в настройках.",
   "chooseType": "Выбрать тип",
   "standart": "Стандартный",
-  "specialCapabilities": "Специальные возможности"
+  "specialCapabilities": "Специальные возможности",
+  "speed": "Синтез речи"
 
 
 

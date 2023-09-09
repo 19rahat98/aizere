@@ -44,11 +44,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         label: '${index + 1}',
                         text: 'класс',
                         isSelected: state.grade == index,
-                        onTap: () {
-                          context
-                              .read<LibraryScreenCubit>()
-                              .fetchLibrary(index);
-                        },
+                        onTap: () => context
+                            .read<LibraryScreenCubit>()
+                            .fetchLibrary(index),
                       );
                     },
                     separatorBuilder: (c, i) => const SizedBox(
@@ -61,27 +59,35 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   height: 32,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
                   child: Text(
                     'Все произведение',
-                    style:
-                        AppTextStyle.w600s18.copyWith(color: AppColors.black),
+                    style: AppTextStyle.w600s18.copyWith(
+                      color: AppColors.black,
+                    ),
                   ),
                 ),
                 const HBox(
                   height: 8,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
                   child: Text(
                     'Включи и наслаждайся произведением казахской литературы',
-                    style: AppTextStyle.w400s14
-                        .copyWith(color: AppColors.ffABB0BC),
+                    style: AppTextStyle.w400s14.copyWith(
+                      color: AppColors.ffABB0BC,
+                    ),
                   ),
                 ),
                 ListView.separated(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 40,
+                    horizontal: 20,
+                  ),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {

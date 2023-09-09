@@ -31,6 +31,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   @override
   void initState() {
     index = widget.initialIndex;
+
     super.initState();
   }
 
@@ -190,9 +191,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           onPressed: () =>
                               context.read<PlayerCubit>().playAudio(),
                           icon: SvgPicture.asset(
-                            state.playerState == 1
-                                ? AppIcons.icPlayFilled
-                                : AppIcons.icPause,
+                            context.read<PlayerCubit>().playPauseIconAsset,
                             color: AppColors.mainBlue,
                           ),
                           iconSize: 45,
@@ -224,6 +223,27 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     const HBox(
                       height: 10,
                     ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     IconButton(
+                    //       onPressed: () {},
+                    //       splashRadius: 20,
+                    //       icon: SvgPicture.asset(
+                    //         AppIcons.icImport,
+                    //       ),
+                    //     ),
+                    //     TextButton(
+                    //       onPressed: () {},
+                    //       child: Text(
+                    //         context.l10n.speed,
+                    //         style: AppTextStyle.w400s16.copyWith(
+                    //           color: AppColors.black,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     Row(
                       children: List.generate(
                         speedValues.length,
