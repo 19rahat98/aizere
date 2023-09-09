@@ -1,7 +1,6 @@
 import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/di/di_locator.dart';
-import 'package:aizere_app/feature/settings/select_speaker/data/repository/setting_speaker_global_repository.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/data/repository/setting_speaker_global_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -10,103 +9,79 @@ import 'package:just_audio/just_audio.dart';
 
 part 'speech_play_state.dart';
 
+/// Кубит для проигрование аудио синтеза
 class SpeechPlayCubit extends Cubit<SpeechPlayState> {
+  /// Инициализация с репозиториями и начальным состоянием
   SpeechPlayCubit()
-      : _speakerDataSource = sl(),
-        _speakerSpeedDataSource = sl(),
+      : _speakerSpeedDataSource = sl(),
         super(SpeechPlayInitial());
 
-  final CoreGlobalSettingSpeakerRepository _speakerDataSource;
+  final _player = AudioPlayer();
   final CoreGlobalSpeakerSpeedRepository _speakerSpeedDataSource;
 
-  int _speakerId = 0;
+  int _initialTime = 0;
   double _speakerSpeed = 1;
-  final player = AudioPlayer();
   String _filePath = GlobalConstant.empty;
 
-  int _totalTime = 0;
-  int _initialTime = 0;
-
+  /// Инициализация Cubit'а
   Future<void> initCubit(String audioPath) async {
-    final state = getCommonState();
-
-    _speakerId = await _speakerDataSource.selectedSpeaker;
     _speakerSpeed = await _speakerSpeedDataSource.selectedSpeaker;
-    await player.setFilePath(_filePath = audioPath);
-    player.setSpeed(_speakerSpeed);
-    emit(
-      state.copyWith(
-        speakerId: _speakerId,
-        speedSpeaker: _speakerSpeed,
-        totalTime: _totalTime = player.duration?.inSeconds ?? 0,
-      ),
-    );
-    listenPlayer();
+    await _player.setFilePath(audioPath);
+    _player.setSpeed(_speakerSpeed);
+    _filePath = audioPath;
+    _setupPlayerListeners();
+    _updateCommonState();
   }
 
-  Future<void> listenPlayer() async {
-    final state = getCommonState();
-    player.positionStream.listen(
-      (event) {
-        emit(
-          state.copyWith(
-            initialTime: _initialTime = event.inSeconds,
-          ),
-        );
-      },
-    );
+  /// Установка слушателей для плеера
+  void _setupPlayerListeners() {
+    _player.positionStream.listen((event) {
+      _initialTime = event.inSeconds;
+      _updateCommonState(initialTime: _initialTime);
+    });
 
-    player.processingStateStream.listen(
-      (event) async {
-        if (event == ProcessingState.completed) {
-          final state = getCommonState();
-          player.stop();
-          await player.setFilePath(_filePath);
-          emit(
-            state.copyWith(playerState: 1, initialTime: _initialTime = 0),
-          );
-        }
-      },
-    );
+    _player.processingStateStream.listen((event) async {
+      if (event == ProcessingState.completed) {
+        _player.stop();
+        await _player.setFilePath(_filePath);
+        _updateCommonState(initialTime: 0);
+      }
+    });
   }
 
+  /// Воспроизведение аудио
   Future<void> playAudio() async {
-    final state = getCommonState();
-    late int playStatus;
-    if (player.playing) {
-      player.pause();
-      playStatus = 1;
+    if (_player.playing) {
+      _player.pause();
     } else {
-      player.play();
-      playStatus = 2;
+      _player.play();
     }
-    emit(state.copyWith(
-      playerState: playStatus,
-    ));
+    _updateCommonState();
   }
 
+  /// Остановка аудио
   void stopAudio() {
-    final state = getCommonState();
-    player.stop();
+    _player.stop();
     _initialTime = 0;
-    emit(state.copyWith(
+    _updateCommonState(
       isLoading: false,
-      playerState: 0,
       initialTime: _initialTime,
-    ));
+    );
   }
 
-  SpeechPlayCommonState getCommonState() {
-    if (state is SpeechPlayCommonState) {
-      return state as SpeechPlayCommonState;
-    }
-    return SpeechPlayCommonState(
-      isLoading: false,
-      isContain: false,
-      totalTime: _totalTime,
-      speakerId: _speakerId,
-      initialTime: _initialTime,
-      speedSpeaker: _speakerSpeed,
+  /// Обновление состояния
+  void _updateCommonState({
+    bool? isLoading,
+    int? initialTime,
+    double? speedSpeaker,
+  }) {
+    emit(
+      SpeechPlayCommonState(
+        playerState: _player.playing ? 2 : 1,
+        initialTime: initialTime ?? _initialTime,
+        speedSpeaker: speedSpeaker ?? _speakerSpeed,
+        totalTime: _player.duration?.inSeconds ?? 60,
+      ),
     );
   }
 }

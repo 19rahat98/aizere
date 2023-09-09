@@ -122,20 +122,6 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                         ),
                       ),
                       const Spacer(),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.ffD8EBFF,
-                          ),
-                          child: const Icon(
-                            Icons.favorite_border,
-                            color: AppColors.mainBlue,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                   const Divider(
@@ -197,16 +183,14 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                           width: 12,
                         ),
                         Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            decoration: BoxDecoration(
-                              color: AppColors.mainBlue,
-                              borderRadius: BorderRadius.circular(
-                                8,
-                              ),
-                            ),
+                          child: Slider(
+                            onChanged: (value) {},
+                            max: state.totalTime.toDouble(),
+                            value: state.initialTime.toDouble(),
+                            inactiveColor: AppColors.monoGrey,
+                            label: state.initialTime.toString(),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -226,5 +210,11 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _cubit.stopAudio();
+    super.dispose();
   }
 }

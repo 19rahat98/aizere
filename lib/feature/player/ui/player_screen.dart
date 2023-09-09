@@ -1,3 +1,4 @@
+import 'package:aizere_app/common/core/extensions.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_text_button.dart';
 import 'package:aizere_app/common/widgets/app_wbox_widget.dart';
@@ -148,13 +149,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          formatTime((state).initialTime),
+                          state.initialTime.formatTime(),
                           style: AppTextStyle.light.copyWith(
                             color: AppColors.black,
                           ),
                         ),
                         Text(
-                          formatTime((state).totalTime),
+                          state.totalTime.formatTime(),
                           style: AppTextStyle.light.copyWith(
                             color: AppColors.black,
                           ),
@@ -367,14 +368,4 @@ class SynthesisCustomAppBar extends StatelessWidget
 
   @override
   Size get preferredSize => AppBar().preferredSize;
-}
-
-String formatTime(int timeInSeconds) {
-  final minutes = timeInSeconds ~/ 60;
-  final seconds = timeInSeconds % 60;
-  final formattedMinutes = minutes.toString().padLeft(
-        2,
-      );
-  final formattedSeconds = seconds.toString().padLeft(2, '0');
-  return '$formattedMinutes:$formattedSeconds';
 }
