@@ -41,12 +41,14 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: ForgotPasswordRoute.page),
         AutoRoute(page: ChangePasswordRoute.page),
         AutoRoute(page: OnboardingRoute.page),
+        AutoRoute(page: SpeechSynthesisResultRoute.page),
         AutoRoute(
           page: MainBottomNavigationRoute.page,
           children: [
             AutoRoute(
               page: AizereEmptyRoute.page,
               children: [
+                AutoRoute(page: SpeechSynthesisResultRoute.page),
                 AutoRoute(path: 'aizere', page: SpeechSynthesisBuildRoute.page),
               ],
             ),

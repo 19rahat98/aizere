@@ -97,14 +97,11 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                         width: 16,
                       ),
                       Container(
-                        padding: const EdgeInsets.all(
-                          4,
-                        ),
+                        padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              100,
-                            ),
-                            color: AppColors.mainBlue),
+                          color: AppColors.mainBlue,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
                         child: Row(
                           children: [
                             Container(
@@ -141,8 +138,9 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                         icon: Container(
                           padding: const EdgeInsets.all(4),
                           decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.ffD8EBFF),
+                            shape: BoxShape.circle,
+                            color: AppColors.ffD8EBFF,
+                          ),
                           child: const Icon(
                             Icons.favorite_border,
                             color: AppColors.mainBlue,
