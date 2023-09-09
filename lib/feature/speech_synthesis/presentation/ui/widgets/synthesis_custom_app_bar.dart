@@ -41,7 +41,8 @@ class SynthesisCustomAppBar extends StatelessWidget
                   ),
                   Text(
                     context.l10n.back,
-                    style: AppTextStyle.w400s14.copyWith(
+                    style: AppTextStyle.body.copyWith(
+                      fontSize: 14,
                       color: AppColors.black,
                     ),
                   ),
@@ -55,7 +56,7 @@ class SynthesisCustomAppBar extends StatelessWidget
             onPressed: () {},
             child: const Text(
               'Сохранить',
-              style: AppTextStyle.w600s18,
+              style: AppTextStyle.heading,
             ),
           ),
         ],

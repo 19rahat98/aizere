@@ -76,7 +76,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             ),
             child: Text(
               itemList[selectedItemIndex],
-              style: AppTextStyle.w600s18.copyWith(color: AppColors.black),
+              style: AppTextStyle.heading.copyWith(
+                fontSize: 18,
+                color: AppColors.black,
+              ),
             ),
           ),
           const HBox(
@@ -86,24 +89,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               'Включи и наслаждайся произведением казахской литературы',
-              style: AppTextStyle.w400s14.copyWith(color: AppColors.ffABB0BC),
+              style: AppTextStyle.body.copyWith(
+                fontSize: 14,
+                color: AppColors.ffABB0BC,
+              ),
             ),
           ),
-          // ListView.separated(
-          //   padding: const EdgeInsets.symmetric(
-          //     vertical: 40,
-          //     horizontal: 20,
-          //   ),
-          //   shrinkWrap: true,
-          //   physics: const NeverScrollableScrollPhysics(),
-          //   itemBuilder: (context, index) {
-          //     return const AppPlayerListTile();
-          //   },
-          //   separatorBuilder: (c, i) => const HBox(
-          //     height: 30,
-          //   ),
-          //   itemCount: 2,
-          // ),
         ],
       ),
     );

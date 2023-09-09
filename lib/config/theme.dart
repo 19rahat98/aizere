@@ -22,7 +22,6 @@ class AppColors {
 }
 
 class AppIcons {
-
   static const icLogo = 'assets/svg/logo.svg';
   static const icEllipse = 'assets/svg/ic_ellipse.svg';
   static const icSmallEllipse = 'assets/svg/ic_small_ellipse.svg';
@@ -57,7 +56,8 @@ class AppIcons {
   static const icClock = 'assets/svg/ic_clock.svg';
   static const icPlay = 'assets/svg/ic_play.svg';
   static const icStop = 'assets/svg/ic_stop.svg';
-  static const icVisibilityOffPassword = 'assets/svg/ic_visibility_off_password.svg';
+  static const icVisibilityOffPassword =
+      'assets/svg/ic_visibility_off_password.svg';
   static const icVisibilityPassword = 'assets/svg/ic_visibility_password.svg';
   static const icSettings = 'assets/svg/ic_settings.svg';
   static const icImport = 'assets/svg/ic_import.svg';
@@ -66,7 +66,6 @@ class AppIcons {
   static const icPrevious = 'assets/svg/ic_previous.svg';
   static const icNext = 'assets/svg/ic_next.svg';
   static const icShare = 'assets/svg/ic_share.svg';
-
 }
 
 class AppImages {
@@ -81,27 +80,9 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
-  static const TextStyle w400s14 = TextStyle(
-    fontSize: 14,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Inter',
-  );
 
   static const TextStyle heading = TextStyle(
     fontSize: 17,
-    fontWeight: FontWeight.w600,
-    fontFamily: 'Inter',
-  );
-
-  static const TextStyle w600s18 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-    fontFamily: 'Inter',
-  );
-
-  static const TextStyle w600s16 = TextStyle(
-    fontSize: 16,
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter',
   );
@@ -126,16 +107,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
-  static const TextStyle w400s16 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Inter',
-  );
-  static const TextStyle w500s16 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-    fontFamily: 'Inter',
-  );
 
   static const TextStyle title1 = TextStyle(
     fontSize: 20,
@@ -150,48 +121,11 @@ class AppTextStyle {
     fontFamily: 'Inter',
     fontWeight: FontWeight.w700,
   );
-  static const TextStyle titleBig = TextStyle(
-    fontSize: 28,
-    color: AppColors.mainBlack,
-    fontFamily: 'Inter',
-    fontWeight: FontWeight.w700,
-  );
-
-  static const TextStyle w400s14 = TextStyle(
-    fontSize: 14,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Inter',
-  );
 
   static const TextStyle text = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter',
-  );
-  static const TextStyle w600s18 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-    fontFamily: 'Inter',
-  );
-
-  static const TextStyle w500s15 = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.w500,
-    fontFamily: 'Inter',
-  );
-
-  static const TextStyle w400s16 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Inter',
-  );
-
-  static const TextStyle w600s22 = TextStyle(
-    fontSize: 22,
-    color: AppColors.mainBlack,
-    fontFamily: 'Inter',
-    fontWeight: FontWeight.w600,
   );
 }
 

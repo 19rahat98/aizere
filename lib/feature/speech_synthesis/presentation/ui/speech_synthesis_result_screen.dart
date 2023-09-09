@@ -88,8 +88,10 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                     children: [
                       Text(
                         context.l10n.speaker,
-                        style: AppTextStyle.w400s16
-                            .copyWith(color: AppColors.ffABB0BC),
+                        style: AppTextStyle.body.copyWith(
+                          color: AppColors.ffABB0BC,
+                          fontSize: 14,
+                        ),
                       ),
                       const WBox(
                         width: 16,
@@ -223,7 +225,7 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                     onPressed: () => context.router.pop(),
                     child: Text(
                       context.l10n.newSynthes,
-                      style: AppTextStyle.w600s18,
+                      style: AppTextStyle.heading,
                     ),
                   )
                 ],

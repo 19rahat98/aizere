@@ -33,28 +33,21 @@ class SearchScreen extends StatelessWidget {
             ),
             Text(
               'История поиска',
-              style: AppTextStyle.w600s18.copyWith(color: AppColors.black),
+              style: AppTextStyle.heading.copyWith(
+                fontSize: 18,
+                color: AppColors.black,
+              ),
             ),
             const HBox(
               height: 8,
             ),
             Text(
               'Включи и наслаждайся произведением казахской литературы',
-              style: AppTextStyle.w400s14.copyWith(color: AppColors.ffABB0BC),
+              style: AppTextStyle.body.copyWith(
+                fontSize: 14,
+                color: AppColors.ffABB0BC,
+              ),
             ),
-            // ListView.separated(
-            //     padding: const EdgeInsets.symmetric(
-            //       vertical: 40,
-            //     ),
-            //     shrinkWrap: true,
-            //     physics: const NeverScrollableScrollPhysics(),
-            //     itemBuilder: (context, index) {
-            //       return const AppPlayerListTile();
-            //     },
-            //     separatorBuilder: (c, i) => const HBox(
-            //           height: 30,
-            //         ),
-            //     itemCount: 2),
           ],
         ),
       ),

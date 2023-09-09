@@ -18,7 +18,7 @@ class AuthTitleWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextStyle.titleBig,
+          style: AppTextStyle.title.copyWith(fontSize: 28),
           textAlign: TextAlign.center,
         ),
         const SizedBox(

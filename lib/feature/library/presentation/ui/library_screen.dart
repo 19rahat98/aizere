@@ -64,7 +64,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   ),
                   child: Text(
                     'Все произведение',
-                    style: AppTextStyle.w600s18.copyWith(
+                    style: AppTextStyle.heading.copyWith(
+                      fontSize: 18,
                       color: AppColors.black,
                     ),
                   ),
@@ -78,7 +79,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   ),
                   child: Text(
                     'Включи и наслаждайся произведением казахской литературы',
-                    style: AppTextStyle.w400s14.copyWith(
+                    style: AppTextStyle.body.copyWith(
+                      fontSize: 14,
                       color: AppColors.ffABB0BC,
                     ),
                   ),
