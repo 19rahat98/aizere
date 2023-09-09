@@ -3,7 +3,6 @@ import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
 import 'package:aizere_app/common/widgets/app_player_list_tile.dart';
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/feature/library/data/model/class_composition_model.dart';
 import 'package:aizere_app/feature/library/presentation/cubit/library_screen_cubit.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:auto_route/annotations.dart';
@@ -87,7 +86,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return AppPlayerListTile(
-                      classComposition: state.classCompositions?[index],
+                      index: index,
+                      classCompositions: state.classCompositions!,
                     );
                   },
                   separatorBuilder: (c, i) => const HBox(

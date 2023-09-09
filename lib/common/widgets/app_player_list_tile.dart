@@ -7,9 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppPlayerListTile extends StatelessWidget {
-  const AppPlayerListTile({super.key, this.classComposition});
+  const AppPlayerListTile({
+    super.key,
+    required this.index,
+    required this.classCompositions,
+  });
 
-  final ClassComposition? classComposition;
+  final int index;
+  final List<ClassComposition> classCompositions;
+
+  ClassComposition get classComposition => classCompositions[index];
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,10 @@ class AppPlayerListTile extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: () => context.router.push(
-          PlayerRoute(classComposition: classComposition!),
+          PlayerRoute(
+            initialIndex: index,
+            classCompositions: classCompositions,
+          ),
         ),
         child: Row(
           children: [
@@ -28,7 +38,7 @@ class AppPlayerListTile extends StatelessWidget {
                 color: AppColors.monoGrey,
                 borderRadius: BorderRadius.circular(12),
                 image: DecorationImage(
-                  image: NetworkImage(classComposition!.img ?? ''),
+                  image: NetworkImage(classComposition.img ?? ''),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -40,13 +50,13 @@ class AppPlayerListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  classComposition!.title.toString(),
+                  classComposition.title.toString(),
                   style: AppTextStyle.w600s16.copyWith(
                     color: AppColors.black,
                   ),
                 ),
                 Text(
-                  classComposition!.name!,
+                  classComposition.name!,
                   style: AppTextStyle.w400s14.copyWith(
                     color: AppColors.ffABB0BC,
                   ),

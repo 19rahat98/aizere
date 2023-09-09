@@ -7,7 +7,6 @@ import 'package:aizere_app/feature/settings/voice_assistant/data/repository/sett
 import 'package:aizere_app/utils/permition_request.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:just_audio/just_audio.dart';
@@ -227,5 +226,9 @@ class PlayerCubit extends Cubit<PlayerState> {
       initialTime: _initialTime,
       speedSpeaker: _speakerSpeed,
     );
+  }
+
+  void resetCubit() {
+    emit(PlayerInitial());
   }
 }

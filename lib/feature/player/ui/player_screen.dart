@@ -12,27 +12,51 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class PlayerScreen extends StatefulWidget {
-  final ClassComposition classComposition;
+  final int initialIndex;
+  final List<ClassComposition> classCompositions;
 
-  const PlayerScreen({super.key, required this.classComposition});
+  const PlayerScreen({
+    super.key,
+    required this.initialIndex,
+    required this.classCompositions,
+  });
 
   @override
   State<PlayerScreen> createState() => _PlayerScreenState();
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
-  double _currentSliderValue = 0;
-  late PlayerCubit _cubit;
-  double speed = 1.0;
+  late int index;
+
+  @override
+  void initState() {
+    index = widget.initialIndex;
+    super.initState();
+  }
+
+  ClassComposition get classComposition => widget.classCompositions[index];
+
+  bool get isFirst => index == 0;
+
+  bool get isLast => widget.classCompositions.length == index + 1;
 
   @override
   Widget build(BuildContext context) {
+    final Map<double, String> speedValues = {
+      0.25: '0.25',
+      0.5: '0.5',
+      0.75: '0.75',
+      1: context.l10n.usual,
+      1.25: '1.25',
+      1.5: '1.5',
+      1.75: '1.75',
+    };
+
     return BlocProvider(
       lazy: false,
-      create: (context) =>
-          PlayerCubit()..initCubit(widget.classComposition.link!),
-      child: Builder(builder: (context) {
-        return BlocBuilder<PlayerCubit, PlayerState>(builder: (context, state) {
+      create: (context) => PlayerCubit()..initCubit(classComposition.link!),
+      child: BlocBuilder<PlayerCubit, PlayerState>(
+        builder: (context, state) {
           if (state is PlayerCommonState) {
             return Scaffold(
               appBar: const SynthesisCustomAppBar(),
@@ -61,7 +85,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     Row(
                       children: [
                         Text(
-                          'Егіннің бастары',
+                          classComposition.title ?? '',
                           style: AppTextStyle.w600s18.copyWith(
                             color: Colors.black,
                             fontSize: 20,
@@ -84,7 +108,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                       ],
                     ),
                     Text(
-                      'Ахмет Байтұрсынұлы',
+                      classComposition.name ?? '',
                       style: AppTextStyle.light.copyWith(
                         color: AppColors.monoGrey1,
                       ),
@@ -104,15 +128,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           overlayColor: Colors.transparent,
                         ),
                         child: Slider(
-                          value: _currentSliderValue,
+                          value: state.initialTime.toDouble(),
                           min: 0,
                           max: state.totalTime.toDouble(),
                           inactiveColor: AppColors.monoGrey,
-                          label: _currentSliderValue.round().toString(),
+                          label: state.initialTime.toString(),
                           onChanged: (double value) {
-                            setState(() {
-                              _currentSliderValue = value;
-                            });
                             context.read<PlayerCubit>().seekToPosition(value);
                           },
                         ),
@@ -147,8 +168,23 @@ class _PlayerScreenState extends State<PlayerScreen> {
                         SvgPicture.asset(
                           AppIcons.icShuffle,
                         ),
-                        SvgPicture.asset(
-                          AppIcons.icPrevious,
+                        IconButton(
+                          onPressed: !isFirst
+                              ? () {
+                                  setState(() {
+                                    index--;
+                                  });
+                                  context.read<PlayerCubit>()
+                                    ..resetCubit()
+                                    ..initCubit(classComposition.link!);
+                                }
+                              : null,
+                          icon: SvgPicture.asset(
+                            AppIcons.icPrevious,
+                            color: isFirst
+                                ? AppColors.monoGrey
+                                : AppColors.mainBlue,
+                          ),
                         ),
                         IconButton(
                           onPressed: () =>
@@ -162,8 +198,23 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           iconSize: 45,
                           splashRadius: 1,
                         ),
-                        SvgPicture.asset(
-                          AppIcons.icNext,
+                        IconButton(
+                          onPressed: !isLast
+                              ? () {
+                                  setState(() {
+                                    index++;
+                                  });
+                                  context.read<PlayerCubit>()
+                                    ..resetCubit()
+                                    ..initCubit(classComposition.link!);
+                                }
+                              : null,
+                          icon: SvgPicture.asset(
+                            AppIcons.icNext,
+                            color: isLast
+                                ? AppColors.monoGrey
+                                : AppColors.mainBlue,
+                          ),
                         ),
                         SvgPicture.asset(
                           AppIcons.icRepeat,
@@ -174,123 +225,22 @@ class _PlayerScreenState extends State<PlayerScreen> {
                       height: 10,
                     ),
                     Row(
-                      children: [
-                        Flexible(
-                          child: AppTextButton(
-                            onTap: () => _cubit.setSpeed(0.25),
-                            text: '0.25',
-                            isCenter: false,
-                            style: speed == 0.25
-                                ? AppTextStyle.light.copyWith(
-                                    color: AppColors.mainBlue,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                : AppTextStyle.light,
-                          ),
-                        ),
-                        Flexible(
-                          child: AppTextButton(
-                            onTap: () => _cubit.setSpeed(0.5),
-                            text: '0.5',
-                            isCenter: false,
-                            style: speed == 0.5
-                                ? AppTextStyle.light.copyWith(
-                                    color: AppColors.mainBlue,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                : AppTextStyle.light,
-                          ),
-                        ),
-                        Flexible(
-                          child: AppTextButton(
-                            onTap: () => _cubit.setSpeed(0.75),
-                            text: '0.75',
-                            isCenter: false,
-                            style: speed == 0.75
-                                ? AppTextStyle.light.copyWith(
-                                    color: AppColors.mainBlue,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                : AppTextStyle.light,
-                          ),
-                        ),
-                        AppTextButton(
-                          onTap: () => _cubit.setSpeed(1),
-                          isCenter: false,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                          ),
-                          text: context.l10n.usual,
-                          style: speed == 1
-                              ? AppTextStyle.light.copyWith(
-                                  color: AppColors.mainBlue,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              : AppTextStyle.light,
-                        ),
-                        Flexible(
-                          child: AppTextButton(
-                            onTap: () => _cubit.setSpeed(1.25),
-                            text: '1.25',
-                            isCenter: false,
-                            style: speed == 1.25
-                                ? AppTextStyle.light.copyWith(
-                                    color: AppColors.mainBlue,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                : AppTextStyle.light,
-                          ),
-                        ),
-                        Flexible(
-                          child: AppTextButton(
-                            onTap: () => _cubit.setSpeed(1.5),
-                            text: '1.5',
-                            isCenter: false,
-                            style: speed == 1.5
-                                ? AppTextStyle.light.copyWith(
-                                    color: AppColors.mainBlue,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                : AppTextStyle.light,
-                          ),
-                        ),
-                        Flexible(
-                          child: AppTextButton(
-                            onTap: () => _cubit.setSpeed(1.75),
-                            text: '1.75',
-                            isCenter: false,
-                            style: speed == 1.75
-                                ? AppTextStyle.light.copyWith(
-                                    color: AppColors.mainBlue,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                : AppTextStyle.light,
-                          ),
-                        ),
-                      ],
+                      children: List.generate(
+                        speedValues.length,
+                        (index) {
+                          final speed = speedValues.entries.elementAt(index);
+                          return Flexible(
+                            flex: speed.key == 1 ? 0 : 1,
+                            child: _buildSpeed(
+                              context,
+                              speed.key,
+                              speed.value,
+                              state.speedSpeaker,
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     IconButton(
-                    //       onPressed: () {},
-                    //       splashRadius: 20,
-                    //       icon: SvgPicture.asset(
-                    //         AppIcons.icImport,
-                    //       ),
-                    //     ),
-                    //     TextButton(
-                    //       onPressed: () {},
-                    //       child: Text(
-                    //         'Скорость',
-                    //         style: AppTextStyle.w400s16.copyWith(
-                    //           color: AppColors.black,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //
-                    //   ],
-                    // ),
                     const HBox(
                       height: 20,
                     ),
@@ -304,10 +254,28 @@ class _PlayerScreenState extends State<PlayerScreen> {
               state.toString(),
             );
           }
-        });
-      }),
+        },
+      ),
     );
   }
+
+  Widget _buildSpeed(
+    BuildContext context,
+    double value,
+    String title,
+    double currentSpeed,
+  ) =>
+      AppTextButton(
+        onTap: () => context.read<PlayerCubit>().setSpeed(value),
+        text: title,
+        isCenter: false,
+        style: currentSpeed == value
+            ? AppTextStyle.light.copyWith(
+                color: AppColors.mainBlue,
+                fontWeight: FontWeight.w600,
+              )
+            : AppTextStyle.light,
+      );
 }
 
 class SynthesisCustomAppBar extends StatelessWidget

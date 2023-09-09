@@ -1,7 +1,6 @@
 import 'package:aizere_app/common/widgets/app_category_widget.dart';
 import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
-import 'package:aizere_app/common/widgets/app_player_list_tile.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
@@ -90,21 +89,21 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               style: AppTextStyle.w400s14.copyWith(color: AppColors.ffABB0BC),
             ),
           ),
-          ListView.separated(
-            padding: const EdgeInsets.symmetric(
-              vertical: 40,
-              horizontal: 20,
-            ),
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return const AppPlayerListTile();
-            },
-            separatorBuilder: (c, i) => const HBox(
-              height: 30,
-            ),
-            itemCount: 2,
-          ),
+          // ListView.separated(
+          //   padding: const EdgeInsets.symmetric(
+          //     vertical: 40,
+          //     horizontal: 20,
+          //   ),
+          //   shrinkWrap: true,
+          //   physics: const NeverScrollableScrollPhysics(),
+          //   itemBuilder: (context, index) {
+          //     return const AppPlayerListTile();
+          //   },
+          //   separatorBuilder: (c, i) => const HBox(
+          //     height: 30,
+          //   ),
+          //   itemCount: 2,
+          // ),
         ],
       ),
     );

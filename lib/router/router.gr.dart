@@ -86,7 +86,8 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: PlayerScreen(
           key: args.key,
-          classComposition: args.classComposition,
+          initialIndex: args.initialIndex,
+          classCompositions: args.classCompositions,
         ),
       );
     },
@@ -314,13 +315,15 @@ class MainBottomNavigationRoute extends PageRouteInfo<void> {
 class PlayerRoute extends PageRouteInfo<PlayerRouteArgs> {
   PlayerRoute({
     Key? key,
-    required ClassComposition classComposition,
+    required int initialIndex,
+    required List<ClassComposition> classCompositions,
     List<PageRouteInfo>? children,
   }) : super(
           PlayerRoute.name,
           args: PlayerRouteArgs(
             key: key,
-            classComposition: classComposition,
+            initialIndex: initialIndex,
+            classCompositions: classCompositions,
           ),
           initialChildren: children,
         );
@@ -333,16 +336,19 @@ class PlayerRoute extends PageRouteInfo<PlayerRouteArgs> {
 class PlayerRouteArgs {
   const PlayerRouteArgs({
     this.key,
-    required this.classComposition,
+    required this.initialIndex,
+    required this.classCompositions,
   });
 
   final Key? key;
 
-  final ClassComposition classComposition;
+  final int initialIndex;
+
+  final List<ClassComposition> classCompositions;
 
   @override
   String toString() {
-    return 'PlayerRouteArgs{key: $key, classComposition: $classComposition}';
+    return 'PlayerRouteArgs{key: $key, initialIndex: $initialIndex, classCompositions: $classCompositions}';
   }
 }
 

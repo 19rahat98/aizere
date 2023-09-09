@@ -35,6 +35,7 @@ class AppTextButton extends StatelessWidget {
           text,
           style: style ?? AppTextStyle.textButtonStyle,
           textAlign: TextAlign.center,
+          maxLines: 1,
         ),
       );
     }
@@ -42,6 +43,7 @@ class AppTextButton extends StatelessWidget {
       text,
       style: style ?? AppTextStyle.textButtonStyle,
       textAlign: TextAlign.center,
+      maxLines: 1,
     );
   }
 }

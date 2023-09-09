@@ -15,7 +15,6 @@ class PlayerCommonState extends PlayerState {
   final bool isContain;
   final int playerState;
   final double speedSpeaker;
-
   final int totalTime;
   final int initialTime;
 
