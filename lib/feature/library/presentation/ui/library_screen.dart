@@ -27,84 +27,88 @@ class _LibraryScreenState extends State<LibraryScreen> {
       body: BlocBuilder<LibraryScreenCubit, LibraryScreenState>(
         builder: (context, state) {
           if (state is LibraryScreenCommonState) {
-            return SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(
-                vertical: 20,
-              ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 40,
-                    child: ListView.separated(
+            return RefreshIndicator(
+              onRefresh: () async {
+                return context.read<LibraryScreenCubit>().fetchLibrary();
+              },
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: ListView.separated(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return AppCategoryWidget(
+                            label: '${index + 1}',
+                            text: 'класс',
+                            isSelected: state.grade == index,
+                            onTap: () => context
+                                .read<LibraryScreenCubit>()
+                                .fetchLibrary(index),
+                          );
+                        },
+                        separatorBuilder: (c, i) => const SizedBox(
+                          width: 8,
+                        ),
+                        itemCount: itemList.length,
+                      ),
+                    ),
+                    const HBox(
+                      height: 32,
+                    ),
+                    Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        'Все произведение',
+                        style: AppTextStyle.heading.copyWith(
+                          fontSize: 18,
+                          color: AppColors.black,
+                        ),
+                      ),
+                    ),
+                    const HBox(
+                      height: 8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Text(
+                        'Включи и наслаждайся произведением казахской литературы',
+                        style: AppTextStyle.body.copyWith(
+                          fontSize: 14,
+                          color: AppColors.ffABB0BC,
+                        ),
+                      ),
+                    ),
+                    ListView.separated(
                       shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 40,
+                        horizontal: 20,
+                      ),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state.classCompositions?.length ?? 0,
+                      separatorBuilder: (c, i) => const HBox(
+                        height: 30,
+                      ),
                       itemBuilder: (context, index) {
-                        return AppCategoryWidget(
-                          label: '${index + 1}',
-                          text: 'класс',
-                          isSelected: state.grade == index,
-                          onTap: () => context
-                              .read<LibraryScreenCubit>()
-                              .fetchLibrary(index),
+                        return AppPlayerListTile(
+                          index: index,
+                          classCompositions: state.classCompositions!,
                         );
                       },
-                      separatorBuilder: (c, i) => const SizedBox(
-                        width: 8,
-                      ),
-                      itemCount: itemList.length,
                     ),
-                  ),
-                  const HBox(
-                    height: 32,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    child: Text(
-                      'Все произведение',
-                      style: AppTextStyle.heading.copyWith(
-                        fontSize: 18,
-                        color: AppColors.black,
-                      ),
-                    ),
-                  ),
-                  const HBox(
-                    height: 8,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    child: Text(
-                      'Включи и наслаждайся произведением казахской литературы',
-                      style: AppTextStyle.body.copyWith(
-                        fontSize: 14,
-                        color: AppColors.ffABB0BC,
-                      ),
-                    ),
-                  ),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 40,
-                      horizontal: 20,
-                    ),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: state.classCompositions?.length ?? 0,
-                    separatorBuilder: (c, i) => const HBox(
-                      height: 30,
-                    ),
-                    itemBuilder: (context, index) {
-                      return AppPlayerListTile(
-                        index: index,
-                        classCompositions: state.classCompositions!,
-                      );
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }

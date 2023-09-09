@@ -1,9 +1,11 @@
 import 'package:aizere_app/common/widgets/app_category_widget.dart';
 import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
+import 'package:aizere_app/common/widgets/app_player_list_tile.dart';
 import 'package:aizere_app/common/widgets/screen_wrapper.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/favorites/presentation/cubit/favorites_cubit.dart';
+import 'package:aizere_app/feature/library/data/model/class_composition_model.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
@@ -94,6 +96,45 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 color: AppColors.ffABB0BC,
               ),
             ),
+          ),
+          BlocBuilder<FavoritesCubit, FavoriteState>(
+            buildWhen: (_, state) => state is FavoriteCommonState,
+            builder: (context, state) {
+              if (state is FavoriteCommonState) {
+                return ListView.separated(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 40,
+                    horizontal: 20,
+                  ),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: state.list.length,
+                  separatorBuilder: (c, i) => const HBox(
+                    height: 30,
+                  ),
+                  itemBuilder: (context, index) {
+                    return AppPlayerListTile(
+                      index: index,
+                      classCompositions: state.list
+                          .map(
+                            (e) => ClassComposition(
+                              grade: e.grade,
+                              title: e.title,
+                              name: e.name,
+                              id: e.id,
+                              link: e.link,
+                              img: e.img,
+                              textSynthesis: e.textSynthesis,
+                            ),
+                          )
+                          .toList(),
+                    );
+                  },
+                );
+              }
+
+              return const SizedBox();
+            },
           ),
         ],
       ),

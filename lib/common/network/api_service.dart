@@ -6,6 +6,17 @@ class AuthorizedApiService {
 
   final Dio _httpClient;
 
+  Future<Response> getFavoritesList() async {
+    return _httpClient.post<dynamic>('get-my-fav/');
+  }
+
+  Future<Response> addToFavoritesList(Map<String, dynamic> param) async {
+    return _httpClient.post<dynamic>(
+      'add-book-to-fav/',
+      data: param,
+    );
+  }
+
   Future<Response> getClassLib(param) async {
     return _httpClient.post<dynamic>(
       'get-book-by-class/',

@@ -8,6 +8,7 @@ import 'package:aizere_app/feature/auth/data/pref/auth_data_source.dart';
 import 'package:aizere_app/feature/auth/data/repository/auth_repository.dart';
 import 'package:aizere_app/feature/favorites/data/pref/favorite_global_data_source.dart';
 import 'package:aizere_app/feature/favorites/data/repository/favorites_global_repository.dart';
+import 'package:aizere_app/feature/favorites/data/repository/favorites_repository.dart';
 import 'package:aizere_app/feature/language_logic/data/repositories/language_logic_repository_impl.dart';
 import 'package:aizere_app/feature/language_logic/domain/usecase/get_default_language_code_use_case.dart';
 import 'package:aizere_app/feature/library/data/repository/library_repository.dart';
@@ -90,6 +91,7 @@ void _repositoryModule() {
   sl.registerFactory(() => CoreGlobalOnboardingRepository());
   sl.registerFactory(() => SynthesisRepository());
   sl.registerFactory(() => AuthRepository());
+  sl.registerFactory(() => FavoritesRepository());
 }
 
 void _appRouter() {

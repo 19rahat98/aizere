@@ -1,39 +1,64 @@
+import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/di/di_locator.dart';
-import 'package:aizere_app/feature/favorites/data/repository/favorites_global_repository.dart';
+import 'package:aizere_app/feature/favorites/data/repository/favorites_repository.dart';
+import 'package:aizere_app/feature/favorites/domain/entity/composition_entity.dart';
+import 'package:aizere_app/mixins/request_worker_mixin.dart';
+import 'package:aizere_app/utils/exeption/exception.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'favorite_state.dart';
 
-class FavoritesCubit extends Cubit<FavoriteState> {
+class FavoritesCubit extends Cubit<FavoriteState> with CoreRequestWorkedMixin {
   FavoritesCubit()
       : _repository = sl(),
-        super(FavoriteState([]));
+        super(FavoriteInitState());
 
-  final CoreGlobalFavoritesRepository _repository;
-  late List<String> favList;
+  late List<CompositionEntity> favList;
+  final FavoritesRepository _repository;
 
-  Future<void> addToFavorites(String item) async {
-    favList.add(item);
-    await _saveFavorites();
+  Future<void> addToFavorites(int id) async {
+    final request = _repository.addCompositionToFavList(id);
+
+    await launchWithError<void, HttpRequestException>(
+      request: request,
+      loading: (state) => emit(
+        FavoriteInitState(),
+      ),
+      resultData: (result) {
+        loadFavorites();
+      },
+      errorData: (errorData) {
+        emit(
+          FavoriteErrorState(errorData.message ?? GlobalConstant.empty),
+        );
+      },
+    );
   }
-  Future<void> removeFromFavorites(String item) async {
-    favList.remove(item);
-    await _saveFavorites();
-  }
 
-  Future<void> removeAll() async {
-    favList.clear();
-    await _saveFavorites();
-  }
-
-  Future<void> _saveFavorites() async {
-    await _repository.writeDataToSP(favList);
-    emit(FavoriteState(favList));
+  Future<void> removeFromFavorites(int id) async {
+    await _repository.addCompositionToFavList(id);
+    await loadFavorites();
   }
 
   Future<void> loadFavorites() async {
-    favList = await _repository.getFavList;
-    emit(FavoriteState(favList));
+    final request = _repository.getFavoritesList();
+
+    await launchWithError<List<CompositionEntity>, HttpRequestException>(
+      request: request,
+      loading: (state) => emit(
+        FavoriteInitState(),
+      ),
+      resultData: (result) {
+        emit(
+          FavoriteCommonState(list: result),
+        );
+      },
+      errorData: (errorData) {
+        emit(
+          FavoriteErrorState(errorData.message ?? GlobalConstant.empty),
+        );
+      },
+    );
   }
 }

@@ -8,6 +8,9 @@ import 'package:dio/dio.dart';
 /// функция для получения резултата
 typedef ResponseJson<T> = T Function(Map<String, dynamic>);
 
+/// функция для списка обьектов
+typedef ResponseListJson<T> = T Function(List<dynamic>);
+
 /// функция для получения пользователькой ошибка
 /// [dynamic] ошибка в виде json
 /// [String] ошибка по умалчанию
@@ -33,6 +36,32 @@ Future<T> safeApiCallWithDataBase<T>({
       if (dataBaseValue?.isEmpty ?? false) {
         return onResult.call(dataBaseValue!);
       }
+      final data = ex.response?.data;
+      final message = _handleDioErrorType(ex, data);
+      throw HttpRequestException<String>(
+        message: message,
+        code: ex.response?.statusCode ?? GlobalConstant.negative,
+        httpTypeError: HttpTypeError.http,
+      );
+    }
+    throw _throwDefaultError(ex);
+  }
+}
+
+/// вызов безопасно http функцию с обработкой пользовтелькой ошибки
+/// [T] отвер сервера
+Future<T> safeApiCallList<T>(
+  Future<Response> response,
+  ResponseListJson<T> jsonCall, {
+  bool? isTest,
+}) async {
+  await _makeThrowInternetConnection(isTest ?? false);
+  try {
+    final result = await response;
+    final json = result.data;
+    return jsonCall.call(json);
+  } catch (ex) {
+    if (ex is DioError) {
       final data = ex.response?.data;
       final message = _handleDioErrorType(ex, data);
       throw HttpRequestException<String>(
@@ -198,28 +227,5 @@ String _handleDioErrorType(DioError ex, [Map<String, dynamic>? data]) {
             ? ErrorData.fromJson(data).message
             : "Ошибка сервера";
       }
-  }
-}
-
-Future<T> safeApiCallListData<T>(
-  Future<Response> response,
-  T Function(List<dynamic>) jsonCall, {
-  bool? isTest,
-}) async {
-  try {
-    final result = await response;
-    final json = result.data;
-    return jsonCall.call(json);
-  } catch (ex) {
-    if (ex is DioError) {
-      final data = ex.response?.data;
-      final message = _handleDioErrorType(ex, data);
-      throw HttpRequestException<String>(
-        message: message,
-        code: ex.response?.statusCode ?? GlobalConstant.negative,
-        httpTypeError: HttpTypeError.http,
-      );
-    }
-    throw _throwDefaultError(ex);
   }
 }
