@@ -6,7 +6,7 @@ import 'package:aizere_app/utils/http_call_utils.dart';
 class LibraryRepository {
   LibraryRepository() : _apiService = sl();
 
-  final ApiService _apiService;
+  final AuthorizedApiService _apiService;
 
   Future<List<ClassComposition>> getClassLib(params) async {
     return safeApiCallListData(

@@ -48,4 +48,8 @@ class AuthRepository {
 
   /// Метод для выхода пользователя из системы
   Future<bool> logOut() async => _dataSource.removeToken();
+
+  Future<String> refreshToken() async {
+    return '';
+  }
 }

@@ -33,17 +33,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 void initLocator() {
+  _appRouter();
   _commonModule();
   _localStorageModule();
   _apiServiceModule();
   _dataSourceModule();
   _repositoryModule();
+  _registerAuthorizedHttpClient();
   _useCaseModule();
-  _appRouter();
 }
 
 /// для общих зависимостей
-// ignore: avoid_void_async
 void _commonModule() async {
   /// Shared preferences
   final sharedPreferences = SharedPreferences.getInstance();
@@ -55,18 +55,12 @@ Future _localStorageModule() async {
 }
 
 Future _apiServiceModule() async {
-  //sl.registerLazySingleton(() => NetworkCall());
   sl.registerSingleton<Dio>(
     createHttpClient(GlobalDioConstant.apiBaseUrl),
-    instanceName: GlobalDioConstant.authorized,
   );
 
   sl.registerSingleton(
-    ApiService(
-      sl.get(
-        instanceName: GlobalDioConstant.authorized,
-      ),
-    ),
+    ApiService(sl.get()),
   );
 }
 
@@ -108,4 +102,18 @@ void _useCaseModule() async {
   sl.registerFactory(GetDefaultLanguageCode.new);
   sl.registerFactory(GlobalCheckTokenConstrainUseCase.new);
   sl.registerFactory(GetClassLibraryUseCase.new);
+}
+
+void _registerAuthorizedHttpClient() {
+  sl.registerSingleton<Dio>(
+    createAuthorizedHttpClient(GlobalDioConstant.apiBaseUrl),
+    instanceName: GlobalDioConstant.authorized,
+  );
+
+  /// для авторизованной зоны
+  sl.registerSingleton(
+    AuthorizedApiService(
+      sl.get(instanceName: GlobalDioConstant.authorized),
+    ),
+  );
 }

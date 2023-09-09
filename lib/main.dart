@@ -31,9 +31,9 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final AppRouter appRouter = sl();
-
   MyApp({super.key});
+
+  final AppRouter appRouter = sl();
 
   @override
   Widget build(BuildContext context) {

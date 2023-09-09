@@ -27,158 +27,91 @@ class _LibraryScreenState extends State<LibraryScreen> {
       body: BlocBuilder<LibraryScreenCubit, LibraryScreenState>(
         builder: (context, state) {
           if (state is LibraryScreenCommonState) {
-            return ListView(
+            return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(
                 vertical: 20,
               ),
-              children: [
-                SizedBox(
-                  height: 40,
-                  child: ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 40,
+                    child: ListView.separated(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return AppCategoryWidget(
+                          label: '${index + 1}',
+                          text: 'класс',
+                          isSelected: state.grade == index,
+                          onTap: () => context
+                              .read<LibraryScreenCubit>()
+                              .fetchLibrary(index),
+                        );
+                      },
+                      separatorBuilder: (c, i) => const SizedBox(
+                        width: 8,
+                      ),
+                      itemCount: itemList.length,
+                    ),
+                  ),
+                  const HBox(
+                    height: 32,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Text(
+                      'Все произведение',
+                      style: AppTextStyle.heading.copyWith(
+                        fontSize: 18,
+                        color: AppColors.black,
+                      ),
+                    ),
+                  ),
+                  const HBox(
+                    height: 8,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Text(
+                      'Включи и наслаждайся произведением казахской литературы',
+                      style: AppTextStyle.body.copyWith(
+                        fontSize: 14,
+                        color: AppColors.ffABB0BC,
+                      ),
+                    ),
+                  ),
+                  ListView.separated(
                     shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 40,
+                      horizontal: 20,
+                    ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: state.classCompositions?.length ?? 0,
                     itemBuilder: (context, index) {
-                      return AppCategoryWidget(
-                        label: '${index + 1}',
-                        text: 'класс',
-                        isSelected: state.grade == index,
-                        onTap: () => context
-                            .read<LibraryScreenCubit>()
-                            .fetchLibrary(index),
+                      return AppPlayerListTile(
+                        index: index,
+                        classCompositions: state.classCompositions!,
                       );
                     },
-                    separatorBuilder: (c, i) => const SizedBox(
-                      width: 8,
-                    ),
-                    itemCount: itemList.length,
-                  ),
-                ),
-                const HBox(
-                  height: 32,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Text(
-                    'Все произведение',
-                    style: AppTextStyle.heading.copyWith(
-                      fontSize: 18,
-                      color: AppColors.black,
+                    separatorBuilder: (c, i) => const HBox(
+                      height: 30,
                     ),
                   ),
-                ),
-                const HBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Text(
-                    'Включи и наслаждайся произведением казахской литературы',
-                    style: AppTextStyle.body.copyWith(
-                      fontSize: 14,
-                      color: AppColors.ffABB0BC,
-                    ),
-                  ),
-                ),
-                ListView.separated(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 40,
-                    horizontal: 20,
-                  ),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return AppPlayerListTile(
-                      index: index,
-                      classCompositions: state.classCompositions!,
-                    );
-                  },
-                  separatorBuilder: (c, i) => const HBox(
-                    height: 30,
-                  ),
-                  itemCount: state.classCompositions!.length,
-                ),
-              ],
+                ],
+              ),
             );
           }
-          {
-            return Text(state.toString());
-          }
+
+          return Text(state.toString());
         },
       ),
     );
   }
 }
-
-// ColoredBox
-// (
-// color: Colors.white,
-// child: TabBarView(
-// controller: _tabController,
-// children: List.generate(
-// 11,
-// (index) => ListView.separated(
-// itemCount: 15,
-// shrinkWrap: true,
-// padding: const EdgeInsets.only(
-// top: 64,
-// ),
-// separatorBuilder: (_, __) => const AppCommonDividerWidget(),
-// itemBuilder: (context, index) => Material(
-// color: Colors.transparent,
-// child: ListTile(
-// onTap: () {
-// Navigator.push(
-// context,
-// MaterialPageRoute(
-// builder: (_) => const SpeechSynthesisBuildScreen(
-// text:
-// 'Бір адам жас баласын жанына алды, Екеуі сайран етіп кетіп қалды. Қыдырып әрлі-берлі жүрді дағы, Егінші егін еккен жерге барды.',
-// ),
-// ),
-// );
-// },
-// title: Text(
-// 'Егіннің бастары',
-// style: AppTextStyle.body.copyWith(
-// fontWeight: FontWeight.w600,
-// ),
-// ),
-// subtitle: const Text(
-// 'Ахмет Байтұрсынұлы',
-// style: AppTextStyle.regular,
-// ),
-// leading: Container(
-// width: 48,
-// height: 48,
-// padding: const EdgeInsets.all(12),
-// decoration: BoxDecoration(
-// color: AppColors.monoGrey,
-// borderRadius: BorderRadius.circular(12),
-// ),
-// child: SvgPicture.asset(
-// AppIcons.icBook,
-// ),
-// ),
-// trailing: SvgPicture.asset(
-// AppIcons.icPlayFilled,
-// color: AppColors.mainBlue,
-// width: 32,
-// height: 32,
-// ),
-// contentPadding: const EdgeInsets.symmetric(
-// vertical: 6,
-// horizontal: 16,
-// ),
-// dense: false,
-// ),
-// ),
-// ),
-// ),
-// ),
-// ),

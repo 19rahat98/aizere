@@ -17,13 +17,9 @@ class AppSplashScreen extends StatelessWidget {
       child: BlocListener<LaunchAppCubit, LaunchAppState>(
         listener: (context, state) {
           if (state is FirstLaunchState) {
-            context.router.replace(
-              const OnboardingRoute(),
-            );
+            context.router.replace(const OnboardingRoute());
           } else if (state is LaunchAppCommonState) {
-            context.router.replace(
-              SpeechSynthesisBuildRoute(),
-            );
+            context.router.replace(SpeechSynthesisBuildRoute());
           }
         },
         child: Scaffold(
