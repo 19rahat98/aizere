@@ -31,9 +31,9 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final AppRouter appRouter = sl();
-
   MyApp({super.key});
+
+  final AppRouter appRouter = sl();
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +43,10 @@ class MyApp extends StatelessWidget {
           create: (context) => LocalLanguageCubit()..getLanguageCode(),
         ),
         BlocProvider<FavoritesCubit>(
-          lazy: false,
           create: (context) => FavoritesCubit()..loadFavorites(),
         ),
         BlocProvider<LibraryScreenCubit>(
-          create: (context) => LibraryScreenCubit()..makeApiCall(),
+          create: (context) => LibraryScreenCubit()..fetchLibrary(),
         ),
         BlocProvider(
           create: (context) => SignUpCubit(),

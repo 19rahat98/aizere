@@ -1,6 +1,6 @@
 class GlobalNetworkConstant {
   static const authorization = 'Authorization';
-  static const bearer = 'Bearer';
+  static const bearer = 'Token';
   static const fcmToken = 'fcmToken';
   static const fingerprint = 'fingerprint';
 

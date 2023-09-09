@@ -6,12 +6,17 @@ import 'package:aizere_app/utils/http_call_utils.dart';
 class LibraryRepository {
   LibraryRepository() : _apiService = sl();
 
-  final ApiService _apiService;
+  final AuthorizedApiService _apiService;
 
-  Future<ClassComposition> getClassLib(params) async {
-    return await safeApiCall<dynamic>(
+  Future<List<ClassComposition>> getClassLib(params) async {
+    return safeApiCallListData(
       _apiService.getClassLib(params),
-      ClassComposition.fromJson,
+      (response) {
+        final List<ClassComposition> classCompositions = response
+            .map((data) => ClassComposition.fromJson(data))
+            .toList();
+        return classCompositions;
+      },
     );
   }
 }

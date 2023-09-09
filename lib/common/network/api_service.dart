@@ -1,16 +1,29 @@
 import 'package:dio/dio.dart';
 
-class ApiService {
-  ApiService(this._httpClient);
+/// сервис для авторизованной зоны
+class AuthorizedApiService {
+  AuthorizedApiService(this._httpClient);
 
   final Dio _httpClient;
 
   Future<Response> getClassLib(param) async {
     return _httpClient.post<dynamic>(
-      '/kazlibrary/get_texts',
+      'get-book-by-class/',
       data: param,
     );
   }
+}
+
+/// сервис для неавторизованной зоны
+class ApiService {
+  ApiService(this._httpClient);
+
+  final Dio _httpClient;
+
+  /* return _httpClient.post<dynamic>(
+      '/kazlibrary/get_texts',
+      data: param,
+    );*/
 
   Future<Response> signUp(
     String username,

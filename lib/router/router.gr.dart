@@ -110,6 +110,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const OnboardingScreen(),
       );
     },
+    PlayerRoute.name: (routeData) {
+      final args = routeData.argsAs<PlayerRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: PlayerScreen(
+          key: args.key,
+          initialIndex: args.initialIndex,
+          classCompositions: args.classCompositions,
+        ),
+      );
+    },
     RegistrationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -440,6 +451,48 @@ class OnboardingRoute extends PageRouteInfo<void> {
   static const String name = 'OnboardingRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PlayerScreen]
+class PlayerRoute extends PageRouteInfo<PlayerRouteArgs> {
+  PlayerRoute({
+    Key? key,
+    required int initialIndex,
+    required List<ClassComposition> classCompositions,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PlayerRoute.name,
+          args: PlayerRouteArgs(
+            key: key,
+            initialIndex: initialIndex,
+            classCompositions: classCompositions,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'PlayerRoute';
+
+  static const PageInfo<PlayerRouteArgs> page = PageInfo<PlayerRouteArgs>(name);
+}
+
+class PlayerRouteArgs {
+  const PlayerRouteArgs({
+    this.key,
+    required this.initialIndex,
+    required this.classCompositions,
+  });
+
+  final Key? key;
+
+  final int initialIndex;
+
+  final List<ClassComposition> classCompositions;
+
+  @override
+  String toString() {
+    return 'PlayerRouteArgs{key: $key, initialIndex: $initialIndex, classCompositions: $classCompositions}';
+  }
 }
 
 /// generated route for

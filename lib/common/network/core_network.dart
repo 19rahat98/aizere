@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:aizere_app/common/network/app_default_interceptor.dart';
+import 'package:aizere_app/common/network/bearer_token_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +15,6 @@ Dio createHttpClient(String baseUrl) {
   dio.options.connectTimeout = const Duration(seconds: 5);
   dio.options.receiveTimeout = const Duration(seconds: 5);
   dio.options.contentType = "application/json";
-
 
   dio.interceptors.add(
     AppDefaultHeaderInterceptor(),
@@ -28,6 +28,34 @@ Dio createHttpClient(String baseUrl) {
       ),
     );
   }
+
+  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+      (HttpClient client) {
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    return client;
+  };
+
+  return dio;
+}
+
+Dio createAuthorizedHttpClient(String baseUrl) {
+  final dio = Dio();
+  dio.options.baseUrl = baseUrl;
+  dio.options.connectTimeout = const Duration(seconds: 5);
+  dio.options.receiveTimeout = const Duration(seconds: 5);
+  dio.options.contentType = "application/json";
+
+  dio.interceptors.add(AppDefaultHeaderInterceptor());
+  if (kDebugMode) {
+    dio.interceptors.add(
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+      ),
+    );
+  }
+  dio.interceptors.add(BearerTokenInterceptor(dio));
 
   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
       (HttpClient client) {

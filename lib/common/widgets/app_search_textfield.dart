@@ -2,7 +2,6 @@ import 'package:aizere_app/common/constants/global_constant.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class AppSearchTextField extends StatelessWidget {
   const AppSearchTextField({Key? key}) : super(key: key);
@@ -10,16 +9,16 @@ class AppSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 20,
-      ),
       padding: const EdgeInsets.symmetric(
         vertical: 6,
         horizontal: 16,
       ),
       decoration: BoxDecoration(
-        color: AppColors.monoGrey,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: AppColors.monoGrey,
+          width: 2,
+        ),
       ),
       child: TextField(
         style: AppTextStyle.body,
@@ -38,9 +37,6 @@ class AppSearchTextField extends StatelessWidget {
           suffixIconConstraints: const BoxConstraints(
             maxWidth: 24,
             maxHeight: 24,
-          ),
-          suffixIcon: SvgPicture.asset(
-            AppIcons.icMicrophone,
           ),
         ),
       ),

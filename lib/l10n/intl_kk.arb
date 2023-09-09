@@ -74,8 +74,7 @@
   "continueText": "Жалғастыру",
   "confirmationCode": "Растау коды",
   "sendItBack": "Қайта жіберу арқылы: ",
-  "back": "Артқа",
-  "confirmationDescription": "Электрондық поштаңызға 4 таңбалы растау коды жіберілді. Төмендегі өріске кодты енгізіңіз.",
+  "confirmationDescription": "Сіздің телефон нөміріңізге 4 саннан тұратын SMS растау коды жіберілді. Төмендегі өріске кодты енгізіңіз.",
   "finalize": "Аяқтау",
   "congratulations": "Құттықтаймыз",
   "signUpSuccessDescription": "Сізге қол жетімді функциялар қол жетімді. AIzere-ге сұрау қою бастаңыз",
@@ -90,8 +89,6 @@
   "enterPassword": "Құпия сөзді енгізіңіз",
   "newSynthes" : "Жаңа синтез",
   "speaker" : "Спикер",
-  "exampleAizere": "Мысалы: Айзере",
-  "speechSynthesis": "Сөйлеу синтезі",
   "logout": "Шығу",
   "errorMessage": "Произошла ошибка, повторите попытку позже",
   "exampleAizere": "Мысалы: Айзере",
@@ -99,7 +96,9 @@
   "interfaceDescription": "Таңдауыңызға байланысты интерфейс өзгереді, бірақ оны кез келген уақытта параметрлерде өзгертуге болады.",
   "chooseType": "Түрді таңдаңыз",
   "standart": "Стандартты\n",
-  "specialCapabilities": "Ерекше\nқабілеттер"
+  "specialCapabilities": "Ерекше\nқабілеттер",
+  "speechSynthesis": "Сөйлеу синтезі",
+  "speed": "Жылдамдық"
 
 
 

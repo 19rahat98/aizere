@@ -44,7 +44,6 @@ class AppIcons {
   static const icLoader = 'assets/svg/ic_loader.svg';
   static const icTrash = 'assets/svg/ic_trash.svg';
   static const icPause = 'assets/svg/ic_pause_filled.svg';
-  static const icRepeat = 'assets/svg/ic_repeate.svg';
   static const icHeartFilled = 'assets/svg/ic_heart_filled.svg';
   static const icMicrophone = 'assets/svg/ic_microphone.svg';
   static const icAizere = 'assets/svg/ic_aizere.svg';
@@ -57,8 +56,16 @@ class AppIcons {
   static const icClock = 'assets/svg/ic_clock.svg';
   static const icPlay = 'assets/svg/ic_play.svg';
   static const icStop = 'assets/svg/ic_stop.svg';
-  static const icVisibilityOffPassword = 'assets/svg/ic_visibility_off_password.svg';
+  static const icVisibilityOffPassword =
+      'assets/svg/ic_visibility_off_password.svg';
   static const icVisibilityPassword = 'assets/svg/ic_visibility_password.svg';
+  static const icSettings = 'assets/svg/ic_settings.svg';
+  static const icImport = 'assets/svg/ic_import.svg';
+  static const icShuffle = 'assets/svg/ic_shuffle.svg';
+  static const icRepeat = 'assets/svg/ic_repeat.svg';
+  static const icPrevious = 'assets/svg/ic_previous.svg';
+  static const icNext = 'assets/svg/ic_next.svg';
+  static const icShare = 'assets/svg/ic_share.svg';
 }
 
 class AppImages {
@@ -114,48 +121,11 @@ class AppTextStyle {
     fontFamily: 'Inter',
     fontWeight: FontWeight.w700,
   );
-  static const TextStyle titleBig = TextStyle(
-    fontSize: 28,
-    color: AppColors.mainBlack,
-    fontFamily: 'Inter',
-    fontWeight: FontWeight.w700,
-  );
-
-  static const TextStyle w400s14 = TextStyle(
-    fontSize: 14,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Inter',
-  );
 
   static const TextStyle text = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter',
-  );
-  static const TextStyle w600s18 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-    fontFamily: 'Inter',
-  );
-
-  static const TextStyle w500s15 = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.w500,
-    fontFamily: 'Inter',
-  );
-
-  static const TextStyle w400s16 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Inter',
-  );
-
-  static const TextStyle w600s22 = TextStyle(
-    fontSize: 22,
-    color: AppColors.mainBlack,
-    fontFamily: 'Inter',
-    fontWeight: FontWeight.w600,
   );
 }
 

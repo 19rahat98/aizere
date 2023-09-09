@@ -135,8 +135,10 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
                         ),
                         Text(
                           context.l10n.paste,
-                          style: AppTextStyle.w500s15.copyWith(
+                          style: AppTextStyle.text.copyWith(
+                            fontSize: 15,
                             color: AppColors.mainBlue,
+                            fontWeight: FontWeight.w500,
                           ),
                         )
                       ],
