@@ -78,7 +78,7 @@ class _SpeechSynthesisResultState extends State<SpeechSynthesisResult> {
                       Text(
                         context.l10n.speaker,
                         style: AppTextStyle.body.copyWith(
-                          color: AppColors.ffABB0BC,
+                          color: AppColors.grayBlue,
                           fontSize: 14,
                         ),
                       ),

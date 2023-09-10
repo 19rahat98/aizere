@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AccountDetailsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AccountDetailsScreen(),
+      );
+    },
     AizereEmptyRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -60,6 +66,12 @@ abstract class _$AppRouter extends RootStackRouter {
           username: args.username,
           isForgotPass: args.isForgotPass,
         ),
+      );
+    },
+    DeleteAccountRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DeleteAccountScreen(),
       );
     },
     EmptyRoute.name: (routeData) {
@@ -121,6 +133,20 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ProfileEmptyRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProfileEmptyScreen(),
+      );
+    },
+    ProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileRouteArgs>(
+          orElse: () => const ProfileRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProfileScreen(key: args.key),
+      );
+    },
     RegistrationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -179,6 +205,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    SupportRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SupportScreen(),
+      );
+    },
     VoiceAssistantRoute.name: (routeData) {
       final args = routeData.argsAs<VoiceAssistantRouteArgs>(
           orElse: () => const VoiceAssistantRouteArgs());
@@ -197,6 +229,20 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AccountDetailsScreen]
+class AccountDetailsRoute extends PageRouteInfo<void> {
+  const AccountDetailsRoute({List<PageRouteInfo>? children})
+      : super(
+          AccountDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AccountDetailsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -339,6 +385,20 @@ class ConfirmationRouteArgs {
   String toString() {
     return 'ConfirmationRouteArgs{key: $key, name: $name, username: $username, isForgotPass: $isForgotPass}';
   }
+}
+
+/// generated route for
+/// [DeleteAccountScreen]
+class DeleteAccountRoute extends PageRouteInfo<void> {
+  const DeleteAccountRoute({List<PageRouteInfo>? children})
+      : super(
+          DeleteAccountRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DeleteAccountRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -492,6 +552,49 @@ class PlayerRouteArgs {
   @override
   String toString() {
     return 'PlayerRouteArgs{key: $key, initialIndex: $initialIndex, classCompositions: $classCompositions}';
+  }
+}
+
+/// generated route for
+/// [ProfileEmptyScreen]
+class ProfileEmptyRoute extends PageRouteInfo<void> {
+  const ProfileEmptyRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileEmptyRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileEmptyRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<ProfileRouteArgs> {
+  ProfileRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProfileRoute.name,
+          args: ProfileRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
+
+  static const PageInfo<ProfileRouteArgs> page =
+      PageInfo<ProfileRouteArgs>(name);
+}
+
+class ProfileRouteArgs {
+  const ProfileRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ProfileRouteArgs{key: $key}';
   }
 }
 
@@ -675,6 +778,20 @@ class SuccessRouteArgs {
   String toString() {
     return 'SuccessRouteArgs{key: $key, name: $name, isNewPassword: $isNewPassword}';
   }
+}
+
+/// generated route for
+/// [SupportScreen]
+class SupportRoute extends PageRouteInfo<void> {
+  const SupportRoute({List<PageRouteInfo>? children})
+      : super(
+          SupportRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SupportRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

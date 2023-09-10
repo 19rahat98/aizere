@@ -14,8 +14,7 @@ class AppColors {
   static const errorRed = Color(0xFFE82C2C);
   static const lavender = Color(0xFFF6F5FA);
   static const lightGrey = Color(0xFFF0F0F0);
-  static const ffABB0BC = Color(0xFFABB0BC);
-  static const ffE82C2C = Color(0xFFE82C2C);
+  static const red = Color(0xFFE82C2C);
   static const ffF6F5FA = Color(0xFFF6F5FA);
   static const ffF0F0F0 = Color(0xFFF0F0F0);
   static const ffD8EBFF = Color(0xFFD8EBFF);
@@ -66,11 +65,21 @@ class AppIcons {
   static const icPrevious = 'assets/svg/ic_previous.svg';
   static const icNext = 'assets/svg/ic_next.svg';
   static const icShare = 'assets/svg/ic_share.svg';
+  static const icPerson = 'assets/svg/ic_person.svg';
+  static const icWarning = 'assets/svg/ic_warning.svg';
+  static const icStar = 'assets/svg/ic_star.svg';
+  static const icProfileAdd = 'assets/svg/ic_profile_add.svg';
+  static const icGear = 'assets/svg/ic_gear.svg';
+  static const icBell = 'assets/svg/ic_bell.svg';
+  static const icInstagram = 'assets/svg/ic_instagram.svg';
+  static const icSms = 'assets/svg/ic_sms.svg';
+  static const icQuestion = 'assets/svg/ic_question.svg';
 }
 
 class AppImages {
   static const icRaya = 'assets/images/ic_raya.png';
   static const icIseke = 'assets/images/ic_iseke.png';
+  static const delete = 'assets/images/delete.png';
 }
 
 class AppTextStyle {

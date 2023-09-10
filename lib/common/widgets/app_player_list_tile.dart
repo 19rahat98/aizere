@@ -59,7 +59,7 @@ class AppPlayerListTile extends StatelessWidget {
                 Text(
                   classComposition.name!,
                   style: AppTextStyle.body.copyWith(
-                    color: AppColors.ffABB0BC,
+                    color: AppColors.grayBlue,
                   ),
                 ),
               ],
