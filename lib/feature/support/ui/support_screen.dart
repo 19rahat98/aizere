@@ -1,7 +1,7 @@
 import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/profile/ui/widgets/tile_category_widget.dart';
-import 'package:aizere_app/router/router.dart';
+import 'package:aizere_app/utils/extensions/list_extension.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +31,7 @@ class SupportScreen extends StatelessWidget {
         'Общее',
         [AppIcons.icQuestion, AppIcons.icSms],
         ['Вопросы и ответы', 'Связаться с нами'],
-        [null, null],
+        [null] * 2,
+        [null] * 2,
       );
 }

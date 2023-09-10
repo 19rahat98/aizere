@@ -33,6 +33,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AppSplashScreen(),
       );
     },
+    ChangeLanguageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ChangeLanguageScreen(),
+      );
+    },
     ChangePasswordRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -165,6 +171,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SearchScreen(),
       );
     },
+    SettingsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SettingsScreen(),
+      );
+    },
     SignInRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -269,6 +281,20 @@ class AppSplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AppSplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ChangeLanguageScreen]
+class ChangeLanguageRoute extends PageRouteInfo<void> {
+  const ChangeLanguageRoute({List<PageRouteInfo>? children})
+      : super(
+          ChangeLanguageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ChangeLanguageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -636,6 +662,20 @@ class SearchRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SearchRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute({List<PageRouteInfo>? children})
+      : super(
+          SettingsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

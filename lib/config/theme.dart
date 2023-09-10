@@ -15,7 +15,7 @@ class AppColors {
   static const lavender = Color(0xFFF6F5FA);
   static const lightGrey = Color(0xFFF0F0F0);
   static const red = Color(0xFFE82C2C);
-  static const ffF6F5FA = Color(0xFFF6F5FA);
+  static const grey = Color(0xFFF6F5FA);
   static const ffF0F0F0 = Color(0xFFF0F0F0);
   static const ffD8EBFF = Color(0xFFD8EBFF);
 }
@@ -74,6 +74,12 @@ class AppIcons {
   static const icInstagram = 'assets/svg/ic_instagram.svg';
   static const icSms = 'assets/svg/ic_sms.svg';
   static const icQuestion = 'assets/svg/ic_question.svg';
+  static const icDocument = 'assets/svg/ic_document.svg';
+  static const icFaceId = 'assets/svg/ic_face_id.svg';
+  static const icLamp = 'assets/svg/ic_lamp.svg';
+  static const icMusic = 'assets/svg/ic_music.svg';
+  static const icVoiceSquare = 'assets/svg/ic_voice_square.svg';
+  static const icTick = 'assets/svg/ic_tick.svg';
 }
 
 class AppImages {

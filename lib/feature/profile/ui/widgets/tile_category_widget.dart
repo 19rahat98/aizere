@@ -8,14 +8,17 @@ class TileCategoryWidgetData {
     this.icons,
     this.options,
     this.actions,
+    this.trailings ,
   ) {
     assert(options.length == icons.length);
     assert(options.length == actions.length);
+    assert(options.length == trailings.length);
   }
 
   final String title;
   final List<String> icons;
   final List<String> options;
+  final List<Widget?> trailings;
   final List<void Function()?> actions;
 }
 
@@ -23,10 +26,8 @@ class TileCategoryWidget extends StatelessWidget {
   const TileCategoryWidget({
     super.key,
     required this.data,
-    this.widget,
   });
 
-  final Widget? widget;
   final TileCategoryWidgetData data;
 
   @override
@@ -73,7 +74,7 @@ class TileCategoryWidget extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    widget ?? SvgPicture.asset(AppIcons.icArrowRight)
+                    data.trailings[index] ?? SvgPicture.asset(AppIcons.icArrowRight)
                   ],
                 ),
               ),

@@ -9,6 +9,7 @@ import 'package:aizere_app/feature/auth/presentation/ui/sign_in_screen.dart';
 import 'package:aizere_app/feature/auth/presentation/ui/success_screen.dart';
 import 'package:aizere_app/feature/auth/presentation/ui/welcome_screen.dart';
 import 'package:aizere_app/feature/bottom_navigation/presentation/ui/main_bottom_navigation_widget.dart';
+import 'package:aizere_app/feature/change_language/ui/change_language_screen.dart';
 import 'package:aizere_app/feature/favorites/presentation/ui/favorites_screen.dart';
 import 'package:aizere_app/feature/library/data/model/class_composition_model.dart';
 import 'package:aizere_app/feature/library/presentation/ui/library_screen.dart';
@@ -19,7 +20,7 @@ import 'package:aizere_app/feature/search/presentation/ui/search_screen.dart';
 import 'package:aizere_app/feature/settings/choose_interface/ui/choose_interface_screen.dart';
 import 'package:aizere_app/feature/settings/choose_local/presentation/ui/choose_locale_screen.dart';
 import 'package:aizere_app/feature/settings/voice_assistant/presentation/ui/voice_assistant.dart';
-import 'package:aizere_app/feature/speech_synthesis/presentation/cubit/speech_download/speech_cubit.dart';
+import 'package:aizere_app/feature/settings_screen/ui/settings_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_result_screen.dart';
 import 'package:aizere_app/feature/speech_synthesis/presentation/ui/speech_synthesis_screen.dart';
 import 'package:aizere_app/feature/splash/ui/splash_screen.dart';
@@ -84,6 +85,8 @@ class AppRouter extends _$AppRouter {
                 AutoRoute(page: AccountDetailsRoute.page),
                 AutoRoute(page: DeleteAccountRoute.page),
                 AutoRoute(page: SupportRoute.page),
+                AutoRoute(page: SettingsRoute.page),
+                AutoRoute(page: ChangeLanguageRoute.page),
               ],
             ),
           ],
