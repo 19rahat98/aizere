@@ -15,8 +15,6 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState>
 
   final GetClassLibraryUseCase _getClassLibraryUseCase;
 
-  bool _isLoading = false;
-
   void fetchLibrary([int grade = 0]) async {
     final classLib = ClassLibParamEntity(grade + 1);
     final request = _getClassLibraryUseCase.execute(classLib);
@@ -32,7 +30,6 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState>
       errorData: (errorData) {
         emit(LibraryScreenFailedState());
       },
-      loading: (isLoading) => _isLoading = isLoading,
     );
   }
 }

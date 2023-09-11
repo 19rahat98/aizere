@@ -1,15 +1,33 @@
 part of 'favorites_cubit.dart';
 
-class FavoriteState extends Equatable {
-  FavoriteState(this.list);
+abstract class FavoriteState extends Equatable {}
 
-  final List<String> list;
-  final index = DateTime.now().microsecondsSinceEpoch;
+class FavoriteInitState extends FavoriteState {
+  @override
+  List<Object?> get props => [];
+}
 
+class FavoriteErrorState extends FavoriteState {
+  FavoriteErrorState(this.errorMessage);
+
+  final String errorMessage;
+
+  @override
+  List<Object?> get props => [];
+}
+
+class FavoriteCommonState extends FavoriteState {
+  FavoriteCommonState({
+    this.list = const [],
+    this.isLoading = false,
+  });
+
+  final bool isLoading;
+  final List<CompositionEntity> list;
 
   @override
   List<Object?> get props => [
         list,
-        index,
+        isLoading,
       ];
 }

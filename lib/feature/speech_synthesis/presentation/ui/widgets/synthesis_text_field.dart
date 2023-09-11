@@ -8,13 +8,11 @@ class SynthesisTextField extends StatelessWidget {
     Key? key,
     this.onClear,
     this.canEdit = true,
-    this.onTap,
     required this.controller,
   }) : super(key: key);
 
   final bool canEdit;
   final Function()? onClear;
-  final Function()? onTap;
   final TextEditingController controller;
 
   @override
@@ -25,8 +23,9 @@ class SynthesisTextField extends StatelessWidget {
         horizontal: 22,
       ),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(width: 2, color: AppColors.monoGrey)),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(width: 2, color: AppColors.monoGrey),
+      ),
       child: TextField(
         enabled: canEdit,
         controller: controller,

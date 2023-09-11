@@ -9,7 +9,7 @@ class LibraryRepository {
   final AuthorizedApiService _apiService;
 
   Future<List<ClassComposition>> getClassLib(params) async {
-    return safeApiCallListData(
+    return safeApiCallList(
       _apiService.getClassLib(params),
       (response) {
         final List<ClassComposition> classCompositions = response

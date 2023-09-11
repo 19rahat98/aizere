@@ -1,13 +1,21 @@
 class ClassComposition {
   int? grade;
   String? title;
-  String? bodyText;
   String? name;
   int? id;
   String? link;
   String? img;
+  String? textSynthesis;
 
-  ClassComposition({this.grade, this.title});
+  ClassComposition({
+    this.grade,
+    this.title,
+    this.id,
+    this.name,
+    this.link,
+    this.img,
+    this.textSynthesis,
+  });
 
   ClassComposition.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -16,6 +24,7 @@ class ClassComposition {
     name = json['author_ru'];
     grade = json['class_number'];
     img = json['img'];
+    textSynthesis = json['text_ru'];
   }
 
   Map<String, dynamic> toJson() {
