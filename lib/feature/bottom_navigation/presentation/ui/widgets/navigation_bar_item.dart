@@ -5,15 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class NavigationBarItem extends StatelessWidget {
   const NavigationBarItem({
     Key? key,
-    required this.title,
     required this.icon,
+    required this.index,
     this.isSelected = false,
     required this.changeIndex,
-    required this.index,
   }) : super(key: key);
 
   final int index;
-  final String title;
   final String icon;
   final bool isSelected;
   final void Function(int) changeIndex;

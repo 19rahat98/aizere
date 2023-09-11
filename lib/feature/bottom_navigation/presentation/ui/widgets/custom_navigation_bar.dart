@@ -1,5 +1,4 @@
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'navigation_bar_item.dart';
