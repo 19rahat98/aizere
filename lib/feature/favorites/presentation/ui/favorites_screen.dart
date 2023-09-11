@@ -93,7 +93,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               'Включи и наслаждайся произведением казахской литературы',
               style: AppTextStyle.body.copyWith(
                 fontSize: 14,
-                color: AppColors.ffABB0BC,
+                color: AppColors.grayBlue,
               ),
             ),
           ),

@@ -36,7 +36,7 @@ class _AppCategoryWidgetState extends State<AppCategoryWidget> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: widget.isSelected ? AppColors.mainBlue : AppColors.ffABB0BC,
+                color: widget.isSelected ? AppColors.mainBlue : AppColors.grayBlue,
                 borderRadius: BorderRadius.circular(4),
               ),
               padding: const EdgeInsets.symmetric(

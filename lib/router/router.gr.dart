@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AccountDetailsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AccountDetailsScreen(),
+      );
+    },
     AizereEmptyRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -25,6 +31,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const AppSplashScreen(),
+      );
+    },
+    ChangeLanguageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ChangeLanguageScreen(),
       );
     },
     ChangePasswordRoute.name: (routeData) {
@@ -60,6 +72,12 @@ abstract class _$AppRouter extends RootStackRouter {
           username: args.username,
           isForgotPass: args.isForgotPass,
         ),
+      );
+    },
+    DeleteAccountRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DeleteAccountScreen(),
       );
     },
     EmptyRoute.name: (routeData) {
@@ -104,6 +122,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MainBottomNavigationScreen(),
       );
     },
+    NotificationsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const NotificationsScreen(),
+      );
+    },
     OnboardingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -119,6 +143,20 @@ abstract class _$AppRouter extends RootStackRouter {
           initialIndex: args.initialIndex,
           classCompositions: args.classCompositions,
         ),
+      );
+    },
+    ProfileEmptyRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProfileEmptyScreen(),
+      );
+    },
+    ProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileRouteArgs>(
+          orElse: () => const ProfileRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProfileScreen(key: args.key),
       );
     },
     RegistrationRoute.name: (routeData) {
@@ -137,6 +175,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SearchScreen(),
+      );
+    },
+    SettingsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SettingsScreen(),
       );
     },
     SignInRoute.name: (routeData) {
@@ -179,6 +223,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    SupportRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SupportScreen(),
+      );
+    },
     VoiceAssistantRoute.name: (routeData) {
       final args = routeData.argsAs<VoiceAssistantRouteArgs>(
           orElse: () => const VoiceAssistantRouteArgs());
@@ -197,6 +247,20 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AccountDetailsScreen]
+class AccountDetailsRoute extends PageRouteInfo<void> {
+  const AccountDetailsRoute({List<PageRouteInfo>? children})
+      : super(
+          AccountDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AccountDetailsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -223,6 +287,20 @@ class AppSplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AppSplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ChangeLanguageScreen]
+class ChangeLanguageRoute extends PageRouteInfo<void> {
+  const ChangeLanguageRoute({List<PageRouteInfo>? children})
+      : super(
+          ChangeLanguageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ChangeLanguageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -342,6 +420,20 @@ class ConfirmationRouteArgs {
 }
 
 /// generated route for
+/// [DeleteAccountScreen]
+class DeleteAccountRoute extends PageRouteInfo<void> {
+  const DeleteAccountRoute({List<PageRouteInfo>? children})
+      : super(
+          DeleteAccountRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DeleteAccountRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [EmptyScreen]
 class EmptyRoute extends PageRouteInfo<void> {
   const EmptyRoute({List<PageRouteInfo>? children})
@@ -440,6 +532,20 @@ class MainBottomNavigationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NotificationsScreen]
+class NotificationsRoute extends PageRouteInfo<void> {
+  const NotificationsRoute({List<PageRouteInfo>? children})
+      : super(
+          NotificationsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NotificationsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [OnboardingScreen]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})
@@ -496,6 +602,49 @@ class PlayerRouteArgs {
 }
 
 /// generated route for
+/// [ProfileEmptyScreen]
+class ProfileEmptyRoute extends PageRouteInfo<void> {
+  const ProfileEmptyRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileEmptyRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileEmptyRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<ProfileRouteArgs> {
+  ProfileRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProfileRoute.name,
+          args: ProfileRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
+
+  static const PageInfo<ProfileRouteArgs> page =
+      PageInfo<ProfileRouteArgs>(name);
+}
+
+class ProfileRouteArgs {
+  const ProfileRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ProfileRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
 /// [RegistrationScreen]
 class RegistrationRoute extends PageRouteInfo<void> {
   const RegistrationRoute({List<PageRouteInfo>? children})
@@ -533,6 +682,20 @@ class SearchRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SearchRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute({List<PageRouteInfo>? children})
+      : super(
+          SettingsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -675,6 +838,20 @@ class SuccessRouteArgs {
   String toString() {
     return 'SuccessRouteArgs{key: $key, name: $name, isNewPassword: $isNewPassword}';
   }
+}
+
+/// generated route for
+/// [SupportScreen]
+class SupportRoute extends PageRouteInfo<void> {
+  const SupportRoute({List<PageRouteInfo>? children})
+      : super(
+          SupportRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SupportRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

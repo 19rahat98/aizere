@@ -27,6 +27,7 @@ class _MainBottomNavigationScreenState
         const SearchRoute(),
         const FavoritesRoute(),
         const LibraryRoute(),
+        ProfileRoute(),
       ],
       lazyLoad: false,
       homeIndex: 0,

@@ -85,7 +85,7 @@ class _SearchScreenBuilderState extends State<SearchScreenBuilder> {
                           'Включи и наслаждайся произведением казахской литературы',
                           style: AppTextStyle.body.copyWith(
                             fontSize: 14,
-                            color: AppColors.ffABB0BC,
+                            color: AppColors.grayBlue,
                           ),
                         ),
                         ListView.separated(
@@ -147,7 +147,7 @@ class _SearchScreenBuilderState extends State<SearchScreenBuilder> {
                       'Включи и наслаждайся произведением казахской литературы',
                       style: AppTextStyle.body.copyWith(
                         fontSize: 14,
-                        color: AppColors.ffABB0BC,
+                        color: AppColors.grayBlue,
                       ),
                     ),
                   ],

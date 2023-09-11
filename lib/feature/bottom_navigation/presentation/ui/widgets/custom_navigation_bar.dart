@@ -1,5 +1,4 @@
 import 'package:aizere_app/config/theme.dart';
-import 'package:aizere_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'navigation_bar_item.dart';
@@ -14,12 +13,13 @@ class CustomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> map = {
-      context.l10n.aizere: AppIcons.icAizereBottom,
-      context.l10n.toFind: AppIcons.icSearch,
-      context.l10n.favorite: AppIcons.icHeart,
-      context.l10n.library: AppIcons.icLibrary,
-    };
+    List icons = [
+      AppIcons.icAizereBottom,
+      AppIcons.icSearch,
+      AppIcons.icHeart,
+      AppIcons.icLibrary,
+      AppIcons.icPerson,
+    ];
 
     return Container(
       padding: const EdgeInsets.only(bottom: 16),
@@ -31,12 +31,11 @@ class CustomNavigationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List.generate(
-          map.length,
+          icons.length,
           (index) => NavigationBarItem(
             index: index,
             isSelected: selectedIndex == index,
-            icon: map.values.elementAt(index),
-            title: map.keys.elementAt(index),
+            icon: icons.elementAt(index),
             changeIndex: changeIndex,
           ),
         ),
