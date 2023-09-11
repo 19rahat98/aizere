@@ -24,6 +24,10 @@ class AuthorizedApiService {
     );
   }
 
+  Future<Response> searchBooksByName(param) async {
+    return _httpClient.post<dynamic>('get-book-search/', data: param);
+  }
+
   Future<Response> getSynthesisAudio({required FormData param}) async {
     return _httpClient.post<dynamic>(
       'tts/',

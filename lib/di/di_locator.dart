@@ -17,6 +17,8 @@ import 'package:aizere_app/feature/onboarding/data/pref/onboarding_global_data_s
 import 'package:aizere_app/feature/onboarding/data/repository/global_settings_repositpry.dart';
 import 'package:aizere_app/feature/onboarding/data/repository/onboarding_launcher_global_repository.dart';
 import 'package:aizere_app/feature/onboarding/domain/usecase/global_launcher_usercase.dart';
+import 'package:aizere_app/feature/search/data/repository/search_repository.dart';
+import 'package:aizere_app/feature/search/domain/use_case/search_book_by_name_use_case.dart';
 import 'package:aizere_app/feature/settings/choose_local/data/pref/setting_locla_global_data_source.dart';
 import 'package:aizere_app/feature/settings/choose_local/data/repository/setting_local_global_repository.dart';
 import 'package:aizere_app/feature/settings/select_speaker/data/pref/setting_speaker_global_data_source.dart';
@@ -91,6 +93,7 @@ void _repositoryModule() {
   sl.registerFactory(() => CoreGlobalOnboardingRepository());
   sl.registerFactory(() => SynthesisRepository());
   sl.registerFactory(() => AuthRepository());
+  sl.registerFactory(() => SearchRepository());
   sl.registerFactory(() => FavoritesRepository());
 }
 
@@ -106,6 +109,7 @@ void _useCaseModule() async {
   sl.registerFactory(GetDefaultLanguageCode.new);
   sl.registerFactory(GlobalCheckTokenConstrainUseCase.new);
   sl.registerFactory(GetClassLibraryUseCase.new);
+  sl.registerFactory(SearchBookByNameUseCase.new);
 }
 
 void _registerAuthorizedHttpClient() {
