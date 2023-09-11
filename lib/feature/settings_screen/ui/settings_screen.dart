@@ -52,7 +52,7 @@ class SettingsScreen extends StatelessWidget {
           [
             null,
             null,
-            () => context.router.push(const NotificationsRoute()),
+            null,
             null,
             null,
             () => context.router.push(const ChangeLanguageRoute()),

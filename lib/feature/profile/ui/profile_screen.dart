@@ -20,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(
           vertical: 24,
+
         ),
         physics: const BouncingScrollPhysics(),
         children:
@@ -31,36 +32,65 @@ class ProfileScreen extends StatelessWidget {
   List<TileCategoryWidgetData> _options(BuildContext context) => [
         TileCategoryWidgetData(
           'Личное',
-          [AppIcons.icPerson, AppIcons.icBell, AppIcons.icGear],
-          ['Детали аккаунта', 'Уведомления', 'Настройки'],
+          [
+            AppIcons.icPerson,
+            AppIcons.icBell,
+            AppIcons.icGear,
+          ],
+          [
+            'Детали аккаунта',
+            'Уведомления',
+            'Настройки',
+          ],
           [
             () => context.router.push(
                   const AccountDetailsRoute(),
                 ),
-            null,
-            () => context.router.push(SettingsRoute()),
+            () => context.router.push(
+                  const NotificationsRoute(),
+                ),
+            () => context.router.push(
+                  const SettingsRoute(),
+                ),
           ],
           [null] * 3,
         ),
         TileCategoryWidgetData(
           'Сообщество',
-          [AppIcons.icProfileAdd],
-          ['Пригласить друга'],
+          [
+            AppIcons.icProfileAdd,
+          ],
+          [
+            'Пригласить друга',
+          ],
           [null],
           [null],
         ),
         TileCategoryWidgetData(
-            'Поддержи нас',
-            [AppIcons.icInstagram, AppIcons.icStar],
-            ['Подписаться на Instagram', 'Оценить приложение'],
-            [null] * 2,
-            [null] * 2),
+          'Поддержи нас',
+          [
+            AppIcons.icInstagram,
+            AppIcons.icStar,
+          ],
+          [
+            'Подписаться на Instagram',
+            'Оценить приложение',
+          ],
+          [null] * 2,
+          [null] * 2,
+        ),
         TileCategoryWidgetData(
           'Есть вопросы?',
-          [AppIcons.icWarning],
-          ['Центр поддержки'],
           [
-            () => context.router.push(const SupportRoute()),
+            AppIcons.icWarning,
+          ],
+          [
+            'Центр поддержки',
+          ],
+          [
+            () => context.router.push(
+                  const SupportRoute(),
+                ),
           ],
           [null],
         ),
