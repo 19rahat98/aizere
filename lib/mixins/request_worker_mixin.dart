@@ -10,7 +10,7 @@ typedef CoreLoadingData = void Function(bool isLoading);
 
 mixin CoreRequestWorkedMixin {
   /// Timer для запроса
-  Timer? _timer;
+  Timer? timer;
 
   /// показывает сообщение об ошибке с возможность передачи http кода
   /// [_errorMessage] сообщение об ошибке
@@ -139,34 +139,23 @@ mixin CoreRequestWorkedMixin {
   /// ошибки(выводиться ошибки в стандартных полях предусмотренные сервером)
   /// [delay] время задержки запроса
   /// [request] запрос принимает фнкция useCase
-  /// [loading] callback функция информирующая старт загрузки
-  /// [resultData] callback успешном результате
-  /// [errorData]  callback при ошибке
-  void launchDelay<T>(
+  void launchDelay(
     int delay, {
-    required Future<T> request,
-    CoreLoadingData? loading,
-    CoreResultData<T>? resultData,
-    required CoreResultData<String> errorData,
+    required Function() request,
+    required Function() onLoading,
   }) {
-    _delay(delay, () async {
-      loading?.call(true);
-      try {
-        final result = await request;
-        loading?.call(false);
-        resultData?.call(result);
-      } on HttpRequestException catch (ex) {
-        loading?.call(false);
-        _makeHttpException<String>(ex, errorData);
-      } catch (ex) {
-        loading?.call(false);
-        _makeException<String>(ex, errorData);
-      }
-    });
+    if (timer?.isActive ?? false) {
+      timer?.cancel();
+    } else {
+      onLoading.call();
+      timer = Timer(Duration(milliseconds: delay), () {
+        request.call();
+      });
+    }
   }
 
   void clear() {
-    _timer = null;
+    timer = null;
   }
 
   /// отображает http ошибки
@@ -226,10 +215,10 @@ mixin CoreRequestWorkedMixin {
 
   /// функция запускает таймер на определенное время
   void _delay(int delay, Function() run) {
-    if (_timer != null) {
-      _timer!.cancel();
+    if (timer != null) {
+      timer!.cancel();
     }
-    _timer = Timer(Duration(milliseconds: delay), () {
+    timer = Timer(Duration(milliseconds: delay), () {
       run();
     });
   }
