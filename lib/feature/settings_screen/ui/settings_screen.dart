@@ -1,5 +1,6 @@
 import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
 import 'package:aizere_app/config/theme.dart';
+import 'package:aizere_app/feature/notifications/ui/notifications_screen.dart';
 import 'package:aizere_app/feature/profile/ui/widgets/tile_category_widget.dart';
 import 'package:aizere_app/router/router.dart';
 import 'package:auto_route/annotations.dart';
@@ -51,7 +52,7 @@ class SettingsScreen extends StatelessWidget {
           [
             null,
             null,
-            null,
+            () => context.router.push(const NotificationsRoute()),
             null,
             null,
             () => context.router.push(const ChangeLanguageRoute()),

@@ -80,6 +80,7 @@ class AppIcons {
   static const icMusic = 'assets/svg/ic_music.svg';
   static const icVoiceSquare = 'assets/svg/ic_voice_square.svg';
   static const icTick = 'assets/svg/ic_tick.svg';
+  static const icNotificationPet = 'assets/svg/ic_notification_pet.svg';
 }
 
 class AppImages {

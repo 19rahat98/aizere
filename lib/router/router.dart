@@ -13,6 +13,7 @@ import 'package:aizere_app/feature/change_language/ui/change_language_screen.dar
 import 'package:aizere_app/feature/favorites/presentation/ui/favorites_screen.dart';
 import 'package:aizere_app/feature/library/data/model/class_composition_model.dart';
 import 'package:aizere_app/feature/library/presentation/ui/library_screen.dart';
+import 'package:aizere_app/feature/notifications/ui/notifications_screen.dart';
 import 'package:aizere_app/feature/onboarding/ui/onboarding_screen.dart';
 import 'package:aizere_app/feature/player/ui/player_screen.dart';
 import 'package:aizere_app/feature/profile/ui/profile_screen.dart';
@@ -87,6 +88,7 @@ class AppRouter extends _$AppRouter {
                 AutoRoute(page: SupportRoute.page),
                 AutoRoute(page: SettingsRoute.page),
                 AutoRoute(page: ChangeLanguageRoute.page),
+                AutoRoute(page: NotificationsRoute.page),
               ],
             ),
           ],
