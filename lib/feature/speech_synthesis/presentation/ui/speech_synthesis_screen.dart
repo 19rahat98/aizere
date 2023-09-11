@@ -93,10 +93,6 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
                 children: [
                   Expanded(
                     child: SynthesisTextField(
-                      onTap: () {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        _cubit.downloadRequisites(_textController.text);
-                      },
                       canEdit: !state.isLoading,
                       onClear: _textController.clear,
                       controller: _textController,
@@ -159,7 +155,17 @@ class _SpeechSynthesisState extends State<SpeechSynthesis> {
     }
 
     return AppFilledColorButton(
-      onTap: () => _cubit.downloadRequisites(_textController.text),
+      onTap: () {
+        if (_textController.text.trim().isNotEmpty) {
+          FocusScope.of(context).unfocus();
+          _cubit.downloadRequisites(_textController.text);
+        } else {
+          final snackBar = errorSnackBar(
+            title: 'Поле обязательно для заполнения',
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      },
       width: 200,
       height: 54,
       color: AppColors.mainBlue,

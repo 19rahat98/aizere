@@ -22,6 +22,7 @@ class CustomNavigationBar extends StatelessWidget {
     };
 
     return Container(
+      padding: const EdgeInsets.only(bottom: 16),
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(color: AppColors.monoGrey),
