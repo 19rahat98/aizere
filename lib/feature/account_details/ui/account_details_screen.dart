@@ -1,14 +1,8 @@
 import 'package:aizere_app/common/widgets/app_custom_app_bar.dart';
-import 'package:aizere_app/common/widgets/app_filled_color_button.dart';
-import 'package:aizere_app/common/widgets/app_hbox_widget.dart';
-import 'package:aizere_app/common/widgets/app_search_textfield.dart';
-import 'package:aizere_app/common/widgets/app_text_field.dart';
 import 'package:aizere_app/config/theme.dart';
 import 'package:aizere_app/feature/account_details/ui/widgets/change_info_widget.dart';
 import 'package:aizere_app/feature/account_details/ui/widgets/settings_dialog_widget.dart';
-import 'package:aizere_app/feature/account_details/ui/widgets/settings_textfield.dart';
 import 'package:aizere_app/router/router.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +13,10 @@ class AccountDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppCustomAppBar(title: 'Детали аккаунта', isSettings: true),
+      appBar: const AppCustomAppBar(
+        isSettings: true,
+        title: 'Детали аккаунта',
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 24,
@@ -34,22 +31,22 @@ class AccountDetailsScreen extends StatelessWidget {
                   title: 'Имя',
                   text: 'John Doe',
                   onPressed: () async {
-                    final newName = await showDialog(
+                    await showDialog(
                       context: context,
-                      builder: (BuildContext context) => SettingsDialogWidget(
+                      builder: (BuildContext context) =>
+                          const SettingsDialogWidget(
                         title: 'Изменить имя',
                         textFields: ['Введите имя'],
                         buttonText: 'Сохранить',
                       ),
                     );
-                    print(newName);
                   },
                 ),
                 ChangeInfoWidget(
                   title: 'Номер телефона',
                   text: '+7 (747) 777-77-77',
                   onPressed: () async {
-                    final newName = await showDialog(
+                    await showDialog(
                       context: context,
                       builder: (BuildContext context) =>
                           const SettingsDialogWidget(
@@ -58,7 +55,6 @@ class AccountDetailsScreen extends StatelessWidget {
                         buttonText: 'Сохранить',
                       ),
                     );
-                    print(newName);
                   },
                 ),
                 ChangeInfoWidget(

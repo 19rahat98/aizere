@@ -17,7 +17,6 @@ class AppCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -26,46 +25,40 @@ class AppCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       child: AppBar(
-        leadingWidth: MediaQuery.of(context).size.width / 1.5,
+        centerTitle: false,
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         leading: buildLeading(context),
         actions: buildActions(context),
+        title: isSettings
+            ? Text(
+                title,
+                style: AppTextStyle.heading.copyWith(
+                  color: AppColors.black,
+                ),
+              )
+            : Text(
+                title,
+                style: AppTextStyle.heading.copyWith(color: AppColors.black),
+              ),
       ),
     );
   }
 
-  Widget buildLeading(BuildContext context) {
+  Widget? buildLeading(BuildContext context) {
     if (isSettings) {
-      return Row(
-        children: [
-          IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () => context.router.pop(),
-            splashRadius: 20,
-            icon: SvgPicture.asset(
-              width: 20,
-              AppIcons.icArrowLeft,
-              color: AppColors.black,
-            ),
-          ),
-          Text(
-            title,
-            style: AppTextStyle.heading.copyWith(
-              color: AppColors.black,
-            ),
-          ),
-        ],
-      );
-    } else {
-      return Align(
-        alignment: Alignment.centerLeft,
-        child: Text(
-          title,
-          style: AppTextStyle.heading.copyWith(color: AppColors.black),
+      return IconButton(
+        padding: EdgeInsets.zero,
+        onPressed: () => context.router.pop(),
+        splashRadius: 20,
+        icon: SvgPicture.asset(
+          width: 20,
+          AppIcons.icArrowLeft,
+          color: AppColors.black,
         ),
       );
     }
+    return null;
   }
 
   List<Widget>? buildActions(BuildContext context) {
