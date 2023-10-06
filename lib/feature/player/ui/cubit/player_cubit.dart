@@ -104,22 +104,24 @@ class PlayerCubit extends Cubit<PlayerState> {
   }
 
   /// запрашиваем разрешение на запись и чтение памяти
-  void downloadRequisites(String url) async {
+  void downloadRequisites(
+    String url, {
+    Permission? permission,
+  }) async {
     requestPermission(
-      permission: Platform.isIOS ? Permission.storage : Permission.audio,
+      permission: permission ??
+          (Platform.isIOS ? Permission.storage : Permission.audio),
       onGrantedPermission: () async {
         await request(url);
       },
-      onDenied: () {
-        emit(PlayerDownloadError('Permission error'));
-      },
-      onDeniedForever: () {
-        emit(PlayerDownloadError('Permission error'));
-      },
+      onDenied: () => permission == null
+          ? downloadRequisites(url, permission: Permission.storage)
+          : emit(PlayerDownloadError('Permission error')),
+      onDeniedForever: () => emit(
+        PlayerDownloadError('Permission error'),
+      ),
     );
   }
-
-
 
   Future<void> playAudio() async {
     final state = getCommonState();

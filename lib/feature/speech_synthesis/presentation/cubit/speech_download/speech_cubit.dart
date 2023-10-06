@@ -35,16 +35,22 @@ class SpeechCubit extends Cubit<SpeechState> {
   }
 
   /// Запрашивает разрешения для доступа к файлам и записи аудио
-  void downloadRequisites(String text) async {
+  void downloadRequisites(
+    String text, {
+    Permission? permission,
+  }) async {
     requestPermission(
-      permission: Platform.isIOS ? Permission.storage : Permission.audio,
+      permission: permission ??
+          (Platform.isIOS ? Permission.storage : Permission.audio),
       onGrantedPermission: () async {
         final tempDir = Platform.isIOS
             ? await getApplicationDocumentsDirectory()
             : await getExternalStorageDirectory();
         await request(text, tempDir?.path);
       },
-      onDenied: () => _handlePermissionError(),
+      onDenied: () => permission == null
+          ? downloadRequisites(text, permission: Permission.storage)
+          : _handlePermissionError(),
       onDeniedForever: () => _handlePermissionError(),
     );
   }

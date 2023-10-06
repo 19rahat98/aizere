@@ -21,10 +21,12 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   just_audio: ^0.9.32
   dio: ^5.0.3
-  path_provider: ^2.1.0
-  permission_handler: ^10.4.3
   http: ^0.13.5
   flutter_launcher_icons: ^0.12.0
+
+  #PERMISSION AND DEVICE INFO
+  path_provider: ^2.1.0
+  permission_handler: ^10.4.3
 
   flutter_localizations:
     sdk: flutter
